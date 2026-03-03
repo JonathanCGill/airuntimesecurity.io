@@ -1,6 +1,6 @@
 # Stress Testing MASO at E-Commerce Scale
 
-**10,000 Concurrent Customers, 60,000 Agent Instances, Six Agent Types**
+**10,000 Concurrent Customers, 60,000 Agent Instances, Nine Stress Dimensions**
 
 > Part of the [MASO Framework](../README.md) · Stress Testing
 > Version 1.0 · March 2026
@@ -42,6 +42,26 @@ The [100-Agent Stress Test](100-agent-stress-test-overview.md) examines eight st
 2. **Financial transaction velocity.** Every customer session involves real money. At 10,000 concurrent sessions, payment processing alone generates thousands of financial transactions per minute. A single compromised agent type affects every customer simultaneously.
 
 3. **Ephemeral lifecycle.** Agents are created and destroyed continuously. Identity, credentials, and observability must work for agents that exist for minutes, not hours or days. Traditional approaches to agent identity (pre-provisioned credentials, onboarding procedures) do not survive contact with Kubernetes autoscaling.
+
+4. **Economic pressure on security controls.** During peak trading (Black Friday, Christmas), costs escalate progressively while revenue growth plateaus. The corporate intent to profit during peak for technology reinvestment creates direct pressure to reduce control overhead. This scenario tests whether economic governance is robust enough to prevent cost-driven security erosion.
+
+---
+
+## The Economic Scaling Problem
+
+AI agent systems do not scale like traditional software. This is not a theoretical concern — it is the primary operational risk for any organisation deploying agents at customer-facing volume.
+
+Traditional e-commerce platforms have a well-understood cost model: infrastructure scales with traffic, and revenue scales with traffic. Margins are predictable. Capacity planning is a solved problem. AI agents break this model because **the cost of serving each customer is non-deterministic and unbounded without explicit controls.**
+
+A customer browsing a traditional product page costs the same regardless of what they ask. A customer interacting with a Sales Advisor Agent costs a variable amount depending on: how many questions they ask, how complex their query is, whether the agent needs to retrieve personalisation data from RAG, whether the payment succeeds on the first attempt or requires retries, and whether the agent enters an edge case that triggers escalation logic. Multiply this variance by 10,000 concurrent customers and the cost distribution has a fat tail that can consume margins.
+
+This risk is amplified during peak trading — exactly when margins matter most. The [parent stress test overview](100-agent-stress-test-overview.md#ai-systems-may-not-scale-economically) frames the general principle. This document applies it to a concrete scenario where:
+
+- **Revenue is supposed to fund reinvestment.** The corporate plan depends on peak trading profits to invest in more technology. If the AI system consumes those profits, the technology roadmap stalls.
+- **Customer behaviour changes under peak conditions.** Gift buyers browse differently than regular buyers. Returns surge after peak. Payment decline rates increase. Every behavioural shift increases per-interaction cost.
+- **Cost pressure creates governance decisions, not just technical decisions.** When costs escalate, someone must decide whether to reduce Judge sampling, substitute cheaper models, or suspend personalisation. These are security and risk decisions disguised as cost decisions. Whether they are made by the right people, with the right information, under time pressure, is what this stress test examines.
+
+Stress Dimensions 1–8 test whether MASO's security controls survive at scale. Stress Dimension 9 tests whether the organisation's economics survive — and whether economic pressure causes the security controls to be weakened through human decisions rather than technical failures.
 
 ---
 
@@ -371,6 +391,179 @@ The scale introduces attack vectors that do not exist at small scale:
 
 ---
 
+## Stress Dimension 9: Economic Governance Under Peak Trading Pressure
+
+### The Business Context
+
+It is Black Friday. Or it is Christmas week. The corporate board has one intent for this period: **profit.** Peak trading revenue is earmarked for reinvestment in technology — the AI platform itself, among other things. The agentic e-commerce system is not just a cost centre; it is the revenue engine that is supposed to fund its own next generation.
+
+This creates a specific pressure dynamic: the AI system must generate enough revenue to cover its own costs *and* produce a surplus for reinvestment. If costs outrun revenue, the entire investment thesis fails — not just for this quarter, but for the technology roadmap built on the assumption that peak trading generates the capital to fund it.
+
+### The Full Architecture Under Load
+
+The stress test scenario expands beyond the six customer-facing agents. The full system under peak load includes:
+
+| Component | Role | Cost Driver |
+|-----------|------|-------------|
+| **6 customer-facing agent types** (×10,000 instances each) | Buying, selling, returns, browsing, payments, hyperpersonalised recommendations | LLM inference tokens per customer interaction |
+| **Orchestration Agent** | Routes customer requests to appropriate agents, manages session lifecycle, handles inter-agent coordination | Per-routing-decision inference cost; scales with request volume |
+| **Evaluation (Judge) Agent** | Evaluates agent outputs for safety, accuracy, policy compliance before delivery | Most expensive per-call component; cost scales with evaluation coverage |
+| **RAG pipeline** | Vector database for product catalogue, customer preferences, purchase history, personalisation signals | Embedding queries per customer action; re-ranking inference cost |
+| **External APIs** | Payment gateways, logistics carriers, inventory management, CRM, fraud detection | Per-call API charges; some metered by volume |
+| **SQL databases** | Orders, payments, customer records, returns, product inventory | Query cost; connection pool scaling on EKS |
+| **Kafka** | Real-time product data stream — pricing updates, stock level changes, flash sale activations, promotion triggers | Consumer agent instances processing event volume; inference cost to interpret and act on events |
+
+During normal trading, this architecture serves 2,000–3,000 concurrent customers at a known cost baseline. The economic governance model ([Economic Governance](../../extensions/technical/economic-governance.md)) has established per-interaction cost norms, budget thresholds, and alert triggers calibrated to this baseline.
+
+Then peak trading arrives, and the numbers change.
+
+### The Cost Escalation Timeline
+
+The escalation is not a single spike. It is a progressive divergence between revenue growth and cost growth, unfolding over the peak trading period.
+
+#### Phase 1: +10% Above Norms — Within Tolerance
+
+**What's happening.** Customer volume is up. Black Friday campaigns are driving traffic. EKS Horizontal Pod Autoscaler is scaling agent instances as expected. 10,000 concurrent customers are being served.
+
+**Where the +10% comes from:**
+- More agent instances → linear increase in LLM inference cost
+- Longer customer sessions (browsing for gifts, comparing products) → more tokens per session
+- Higher RAG query volume (hyperpersonalisation working well — customers are engaged)
+- Kafka consumer agents processing increased product update volume (flash sale pricing, stock depletion events)
+
+**Revenue vs. cost.** Revenue is growing faster than cost. Margins are healthy. The +10% cost increase is expected and budgeted.
+
+**MASO economic controls.** The economic governance Meter → Attribute → Enforce → Optimise cycle is operating normally. The 50% budget alert threshold has not been reached. Cost-per-interaction is stable; total cost is up because volume is up. No intervention required.
+
+**Risk.** Low. This is the system working as designed at scale.
+
+#### Phase 2: +20% Above Norms — Margin Pressure
+
+**What's happening.** Peak day. Highest traffic of the year. Customer behaviour shifts: more returns of existing products (clearing for new purchases), more complex buying journeys (gift buying involves more browsing, more comparison, more advisor interaction), more payment retries (higher card decline rates from fraud detection systems under load).
+
+**Where the additional +10% comes from (cumulative +20%):**
+- **Agent conversation depth increases.** Gift buyers ask more questions. The Sales Advisor Agent averages 8 turns per customer instead of the normal 4. Token consumption per session nearly doubles for this agent type.
+- **RAG query multiplication.** Hyperpersonalisation generates 3× more embedding queries per session — browsing history, gift recipient profiling, cross-category recommendations. Each query hits the vector database and triggers re-ranking inference.
+- **Payment retry cascading.** Card decline rates rise from 3% to 8% (card issuers tighten fraud checks during peak). Each declined payment triggers the Payment Agent to retry, suggest alternative methods, and re-validate — consuming additional Judge evaluations (100% coverage on payment actions).
+- **Kafka event storm.** Product data changes accelerate: flash sale prices toggling on/off, stock levels depleting and restocking, new promotions activating. Kafka consumer agents process 5× normal event volume. Each event may trigger re-indexing in the RAG pipeline and re-personalisation for active sessions.
+- **Judge evaluation cost compounds.** The Judge evaluates 100% of payment and refund actions, 100% of order creation, 10% of advisor interactions. At 2× conversation depth, the 10% sample on advisor interactions produces 2× absolute evaluations.
+
+**Revenue vs. cost.** Revenue is still growing, but cost growth has overtaken revenue growth. Gross margin on AI-assisted transactions is thinning. The 75% budget alert has fired. Finance is asking questions.
+
+**MASO economic controls.** Graduated budget response triggers a **Warn** — escalation to the team lead, increased monitoring frequency. The economic governance dashboard shows cost-per-interaction rising from the baseline. Attribution data shows the increase is distributed: 40% from increased token consumption per session, 25% from Judge evaluation overhead, 20% from RAG pipeline scaling, 15% from Kafka consumer processing.
+
+**Risk.** Medium. No security controls have been degraded. But the pressure to "do something about cost" is building. This is where governance discipline is tested.
+
+#### Phase 3: +30% Above Norms — Non-Linear Cost Acceleration
+
+**What's happening.** The cost increase is no longer proportional to volume. Costs are accelerating non-linearly while customer volume has plateaued at 10,000 concurrent sessions.
+
+**Where the additional +10% comes from (cumulative +30%):**
+- **Agent retry spirals.** Flash sale promotions create edge cases in pricing logic. The Cart & Order Agent encounters price discrepancies between the cached price (shown to the customer) and the real-time Kafka-updated price. Disambiguation requires additional LLM reasoning, tool calls to the pricing API, and in 15% of cases, escalation to the Sales Advisor for customer communication. Each disambiguation event costs 3–5× a normal cart interaction.
+- **RAG freshness pressure.** Product data is changing faster than the RAG pipeline can re-index. Agents retrieve stale product descriptions and prices, then encounter contradictions from the real-time Kafka feed. Resolution requires additional inference to reconcile stale and fresh data. This is a data integrity failure (cross-ref [EC-2.13](../controls/execution-control.md) — Output schema enforcement) that manifests as economic waste.
+- **Judge evaluation on retries.** Every agent retry that touches a high-risk action (payment, order creation, refund) requires a fresh Judge evaluation. Retries caused by pricing edge cases generate Judge costs without generating revenue.
+- **Orchestration overhead.** The Orchestration Agent's routing decisions become more complex — managing retry logic, price disambiguation, and escalation paths. Its per-decision inference cost increases as the context it must evaluate grows.
+- **SQL query cost spike.** Returns processing increases. Each return triggers inventory adjustment queries, refund calculations, and customer history updates. The Customer Support Agent is generating 4× normal SQL write volume.
+
+**Revenue vs. cost.** Revenue growth has flattened (customer volume plateaued), but costs continue accelerating. The profit margin that was supposed to fund technology reinvestment is being consumed. The 90% budget alert has fired. The economic circuit breaker is approaching its threshold.
+
+**MASO economic controls.** Graduated budget response triggers **Throttle.** This is the critical decision point:
+
+| Throttle Option | Cost Reduction | Security/Revenue Risk |
+|----------------|---------------|----------------------|
+| Reduce Judge sampling on Sales Advisor from 10% to 2% | ~8% of Judge cost | Lower detection rate for policy violations in advisor interactions |
+| Route Product Presentation Agent to a cheaper model | ~15% of generator cost for that type | Lower quality personalisation; potential hallucination increase |
+| Reduce RAG retrieval depth (fewer candidates per query) | ~20% of RAG cost | Less accurate personalisation; stale data served more often |
+| Disable non-essential Kafka consumers (e.g., recommendation refresh) | ~10% of Kafka processing cost | Personalisation signals become stale; session-start recommendations frozen |
+| Increase Cart & Order Agent cache TTL (serve cached prices longer) | ~12% of pricing API cost | Higher rate of price discrepancies discovered at payment; more customer friction |
+
+**The governance question:** which throttle options are acceptable? The [Economic Governance](../../extensions/technical/economic-governance.md) framework's cardinal rule applies: **never optimise security controls to meet budget.** Reducing Judge sampling on payment actions is not an option. But reducing Judge sampling on Sales Advisor interactions from 10% to 5%? That is a risk decision, not a security violation — and it must be made by the AI Governance Committee, not by engineering under pressure.
+
+**Risk.** High. Cost pressure is creating active decision points about control intensity. The decisions made in this phase determine whether the system's security posture survives peak trading intact.
+
+#### Phase 4: +40% Above Norms — Profit Margin Eliminated
+
+**What's happening.** Costs have consumed the profit margin. The AI-assisted e-commerce system is costing more to operate during peak than the incremental revenue it generates over a non-AI baseline. The corporate reinvestment thesis — "peak trading profits fund technology investment" — is failing.
+
+**Where the additional +10% comes from (cumulative +40%):**
+- **Compound retry cascading.** The pricing edge cases from Phase 3 have not been resolved (no code deployment during peak trading freeze). Agent retries are generating secondary retries — a Cart & Order retry triggers a Payment Agent re-validation, which triggers a Judge evaluation, which flags a discrepancy, which escalates to the Orchestration Agent, which routes to the Sales Advisor for customer communication. A single price discrepancy now generates a 5-agent, 12-step cascade costing 10× a normal transaction.
+- **FDoS risk materialises.** Whether by competitor action, opportunistic attack, or coincidence, a subset of customer sessions are generating disproportionate cost. Sessions with 50+ turns (normal maximum: 15) are consuming 8× average token budget. Agent loop detection (if properly configured) catches the most extreme cases, but borderline-long sessions (20–30 turns) pass the loop threshold while still being significantly above cost norms.
+- **Returns surge.** Post-purchase returns increase on day 2–3 of peak trading. The Customer Support Agent processes return requests that involve refund authorisation (100% Judge coverage), inventory adjustment (SQL writes), customer communication (LLM inference), and in 30% of cases, replacement order initiation (triggering the full Cart & Order → Payment → Delivery pipeline again). Returns generate cost without generating net new revenue.
+- **Observability cost feedback loop.** The two-level observability system (Stress Dimension 1) is processing increased telemetry from the cost anomalies themselves. More anomalies → more alerts → more investigation workflows → more observability cost. The monitoring system's cost is growing because the thing it is monitoring — cost — is growing.
+
+**Revenue vs. cost.** Revenue is flat or declining (customers completing purchases, not starting new ones). Costs are still rising. Net margin on AI-operated commerce is negative for this period. The board's question shifts from "how do we optimise?" to "should we scale back the AI system and revert to non-AI checkout for the remainder of peak?"
+
+**MASO economic controls.** Graduated budget response triggers **Degrade** or approaches **Hard stop.** The system must make architectural decisions:
+
+| Response | What It Means | Customer Impact | MASO Implication |
+|----------|-------------|-----------------|------------------|
+| **Degrade: disable hyperpersonalisation** | RAG-driven recommendations suspended. Product Presentation Agent serves static catalogue. | Customers see generic product pages. Conversion rate drops. But per-session cost drops ~35%. | Personalisation was the revenue driver. Disabling it reduces cost but also revenue. Net effect depends on price sensitivity of remaining customers. |
+| **Degrade: batch non-urgent processing** | Returns processing, non-urgent customer queries, and logistics updates queued for off-peak processing. | Customers waiting for return confirmations experience delays. Delivery tracking updates lag. | Reduces real-time agent instance count. Kafka consumers can be scaled down. Risk: queued items may create a cost spike when processed later. |
+| **Revert: non-AI checkout** | Cart & Order and Payment Agents replaced with traditional checkout flow. AI retained for browsing and support only. | Customers lose conversational checkout. Payment flow becomes a standard web form. | Eliminates the highest-cost agent types from real-time operation. Dramatic cost reduction. But also eliminates the AI-driven conversion uplift that justified the system. |
+| **Hard stop: full AI suspension** | All agent types suspended. Platform reverts to pre-AI e-commerce. | Full reversion to traditional e-commerce experience. | The nuclear option. Eliminates all AI cost. Also eliminates all AI value. The reinvestment thesis is dead for this cycle. |
+
+### What This Scenario Tests
+
+This is not a security incident. No agent is compromised. No data is leaked. No injection has succeeded. Every MASO security control is functioning correctly. The system is *secure and expensive*.
+
+The stress test reveals whether the organisation's economic governance is robust enough to manage AI costs under real commercial pressure — or whether cost pressure causes security control erosion through human decisions rather than technical failures.
+
+#### Questions for the Tabletop
+
+**Cost visibility and attribution:**
+- Can your team identify, in real time, *why* costs are escalating? Can they distinguish volume-driven cost increases (expected) from per-interaction cost increases (unexpected)?
+- Is your cost attribution granular enough to identify which agent type, which action type, and which infrastructure component is driving the overrun?
+- Can you attribute cost to the specific root cause (pricing edge cases, RAG freshness lag, Kafka event storms) rather than just to the agent type?
+
+**Governance decision-making under pressure:**
+- Who decides to reduce Judge sampling rates? Is this an engineering decision, a security decision, or a governance committee decision?
+- How long does that decision take? If it requires committee approval and the committee meets weekly, the peak trading period is over before the decision is made.
+- Do you have pre-approved "peak trading runbooks" that define which throttle options are acceptable at each budget threshold? Or is every degradation decision ad hoc?
+- Is there a pre-defined point at which the system reverts to non-AI operation? Who has authority to trigger that reversion?
+
+**Security control resilience under cost pressure:**
+- Are your Judge sampling rates for CRITICAL actions (payments, refunds) hard-coded or configurable? Can an engineer under pressure reduce payment Judge coverage from 100% to 50% without governance approval?
+- If cheaper models are substituted under cost pressure, has anyone measured the security detection degradation? A 40% cheaper model that misses 15% more policy violations is not a cost saving — it is a risk increase.
+- Are your economic circuit breakers independent of your security circuit breakers? A cost circuit breaker that suspends agent operations should not also suspend security monitoring of in-flight transactions.
+
+**The reinvestment thesis:**
+- At what cost-to-revenue ratio does the AI system stop generating net value during peak? Have you modelled this?
+- What is the break-even point where reverting to non-AI commerce produces better margins?
+- If peak trading fails to generate reinvestment capital, what happens to the technology roadmap? Is there a contingency funding path, or does the roadmap stall?
+
+### MASO Controls Under Economic Stress
+
+| Control | Normal Operation | Under +40% Cost Pressure |
+|---------|-----------------|--------------------------|
+| EC-2.5 LLM-as-Judge | 100% on CRITICAL, risk-tiered sampling on others | Pressure to reduce all sampling rates. CRITICAL must remain at 100%. |
+| OB-2.5 Cost monitoring | Tracking and alerting | Active enforcement; graduated response triggered |
+| Economic circuit breaker | Dormant | Approaching or triggered. Must not cascade into security control suspension. |
+| EC-2.13 Output schema enforcement | Validates every output | Contributes to retry cost when outputs fail validation. But removing it would *increase* downstream costs from cascading data integrity failures. |
+| Guardrails (Layer 1) | 100% enforcement | Must remain at 100%. Cost is negligible (compute-only). This is the one layer that should never be throttled. |
+| RAG integrity (DP-2.3) | Periodic validation | Under pressure to reduce validation frequency. But stale RAG data is *causing* the pricing edge cases that drive retry costs. Reducing validation makes the problem worse. |
+| Agent loop detection | Monitoring for runaway loops | Mission-critical. A single undetected agent loop at 10,000 customers costs orders of magnitude more than during normal trading. |
+| PACE resilience | Primary mode | Type-level PACE may need to trigger Alternate for specific agent types (e.g., suspend hyperpersonalisation) without full system degradation. |
+
+### The Counter-Intuitive Finding
+
+The most dangerous cost-reduction decision is the one that looks most obvious: **reduce security control overhead to save money.** The stress test should demonstrate that in most cases, the opposite is true:
+
+- Removing Judge evaluation on advisor interactions saves 8% of Judge cost — but if a policy violation reaches customers, the complaint handling cost (Customer Support Agent at 100% Judge coverage) exceeds the savings by an order of magnitude.
+- Disabling output schema enforcement (EC-2.13) saves validation compute — but the resulting increase in data integrity failures causes retry cascades that cost far more than the validation.
+- Reducing RAG integrity checks saves processing time — but stale data causes the pricing discrepancies that are the primary driver of the +30% cost phase.
+- Cutting observability saves monitoring cost — but losing visibility into cost drivers makes it impossible to identify and fix the root causes.
+
+**The correct response to AI cost escalation is almost never "reduce controls." It is "fix the root causes that are driving wasteful computation."** In this scenario, the root causes are: pricing edge cases in the promotion logic, RAG freshness lag relative to Kafka-driven product updates, and insufficient cache coherence between the product data pipeline and the agent retrieval layer. These are engineering problems with engineering solutions — not governance problems that require weakening the control framework.
+
+The economic governance stress test passes when the team can:
+1. Identify the root causes within 30 minutes of the +20% alert.
+2. Implement targeted fixes (cache coherence, pricing logic patches, RAG refresh frequency) without degrading security controls.
+3. Have pre-approved peak trading runbooks that define acceptable degradation options at each budget threshold.
+4. Maintain CRITICAL-action Judge coverage at 100% throughout the entire escalation.
+5. Articulate, to the board, why the cost overrun happened and why reducing security controls was not the answer — before anyone asks them to.
+
+---
+
 ## Summary: Where MASO Holds and Where It Adapts
 
 ### Where MASO Holds Without Modification
@@ -393,6 +586,7 @@ The scale introduces attack vectors that do not exist at small scale:
 | **PACE resilience** | Two-level PACE: instance and type-aggregate | High - requires new orchestration logic for type-level transitions |
 | **Kill switch** | Graduated shutdown protocol with transaction drain | High - requires coordination with payment gateways and inventory systems |
 | **Identity lifecycle** | Map to Kubernetes pod identity; eliminate credential rotation | Low - Kubernetes-native identity is simpler, not harder |
+| **Economic governance** | Pre-approved peak trading runbooks; graduated cost responses with security-control floor; root-cause identification within 30 minutes of cost alert | High - requires cross-functional governance (security, finance, engineering) and pre-agreed decision rights under pressure |
 
 ---
 
@@ -406,6 +600,7 @@ The scale introduces attack vectors that do not exist at small scale:
 | [Observability Controls](../controls/observability.md) | Defines OB controls. This document proposes two-level observability as a scaling adaptation |
 | [Execution Control](../controls/execution-control.md) | Defines EC controls. This document proposes risk-tiered Judge sampling |
 | [Cost & Latency](../../extensions/technical/cost-and-latency.md) | Provides single-model cost analysis. This document extends it to 60,000-instance cost projections |
+| [Economic Governance](../../extensions/technical/economic-governance.md) | Defines the Meter → Attribute → Enforce → Optimise model. Stress Dimension 9 applies it under peak trading pressure with escalating cost-to-revenue divergence |
 | [PACE Resilience](../../PACE-RESILIENCE.md) | Defines the three-axis PACE model. This document proposes instance-level and type-level PACE as a scaling adaptation |
 
 ---
