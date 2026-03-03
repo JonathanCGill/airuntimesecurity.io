@@ -69,17 +69,18 @@ img[src$=".svg"] {
   display: none;
 }
 
-/* Landing page: 3-card grid layout */
+/* Landing page: 3-card grid layout with subgrid alignment */
 .landing-cards {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.2rem;
   margin: 1.5rem 0;
 }
 
 .landing-card {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 4;        /* h3, bold quote, description, button */
   border: 1px solid var(--md-default-fg-color--lightest);
   border-radius: 0.4rem;
   padding: 1.2rem 1.4rem;
@@ -87,7 +88,7 @@ img[src$=".svg"] {
 }
 
 .landing-card > p:last-child {
-  margin-top: auto;
+  align-self: end;
 }
 
 .landing-card h3 {
@@ -102,6 +103,11 @@ img[src$=".svg"] {
 /* Stack cards on mobile */
 @media (max-width: 768px) {
   .landing-cards {
+    grid-template-columns: 1fr;
+  }
+  .landing-card {
+    grid-row: span 1;
+    display: flex;
     flex-direction: column;
   }
 }
