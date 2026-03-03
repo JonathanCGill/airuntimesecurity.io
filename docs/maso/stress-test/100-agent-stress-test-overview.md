@@ -29,6 +29,26 @@ The purpose of this exercise is to help architects and security teams anticipate
 
 ---
 
+## AI Systems May Not Scale Economically
+
+There is an assumption embedded in most AI deployment plans: that the system which works at pilot scale will remain economically viable at production scale. This assumption is often wrong, and the failure mode is not technical — it is financial.
+
+Traditional software scales predictably. Double the users, roughly double the compute, roughly double the cost. Revenue scales with users. Margins hold. AI agent systems break this relationship in three ways:
+
+**1. Cost per interaction is non-deterministic.** The same customer query can cost 2× or 10× more depending on the model's reasoning path, the number of tool calls, the depth of the conversation, and whether the agent enters a retry loop. At pilot scale with 100 customers, variance averages out. At 10,000 concurrent customers, variance compounds — and the tail of expensive interactions drives total cost disproportionately.
+
+**2. Security controls scale with risk, not with revenue.** MASO's three-layer defence — guardrails, Judge evaluation, human oversight — exists because the risk demands it. But the cost of these controls does not decrease as customer volume increases. A Judge evaluation costs the same whether the system is serving 100 or 10,000 customers. At scale, security control overhead can exceed the cost of the agents themselves. Unlike infrastructure costs, this overhead cannot be amortised across users because each interaction requires independent evaluation.
+
+**3. Revenue growth plateaus before cost growth does.** In a peak trading scenario (Black Friday, Christmas), customer volume reaches a ceiling — the market is finite. But per-interaction costs can continue rising: longer conversations, more complex queries, more retries from edge cases, more returns processing. The result is a cost-revenue divergence where the system becomes more expensive to run precisely when it is supposed to be most profitable.
+
+This matters because organisations often plan to fund AI investment from the returns AI generates. If the AI system costs more to operate during peak periods than the incremental revenue it produces, the reinvestment thesis collapses — not from a technical failure, but from an economic one that nobody stress-tested.
+
+**The implication for MASO stress testing:** every dimension in this document has a cost axis. When assessing whether a control "survives" at scale, the question is not only *does it still work?* but also *can you still afford it?* And when cost pressure arrives, the follow-on question is: *does the organisation have the governance discipline to fix root causes rather than strip controls?*
+
+The [E-Commerce 10K Stress Test](ecommerce-10k-stress-test.md) (Stress Dimension 9) examines this dynamic in detail through a four-phase cost escalation scenario. The [Economic Governance](../../extensions/technical/economic-governance.md) extension provides the enforcement model. But the principle applies to every stress dimension here: **a system that is technically sound but economically unviable under load has failed the stress test.**
+
+---
+
 ## How to Run This Exercise
 
 ### Audience

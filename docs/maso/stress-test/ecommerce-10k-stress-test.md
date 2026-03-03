@@ -47,6 +47,24 @@ The [100-Agent Stress Test](100-agent-stress-test-overview.md) examines eight st
 
 ---
 
+## The Economic Scaling Problem
+
+AI agent systems do not scale like traditional software. This is not a theoretical concern — it is the primary operational risk for any organisation deploying agents at customer-facing volume.
+
+Traditional e-commerce platforms have a well-understood cost model: infrastructure scales with traffic, and revenue scales with traffic. Margins are predictable. Capacity planning is a solved problem. AI agents break this model because **the cost of serving each customer is non-deterministic and unbounded without explicit controls.**
+
+A customer browsing a traditional product page costs the same regardless of what they ask. A customer interacting with a Sales Advisor Agent costs a variable amount depending on: how many questions they ask, how complex their query is, whether the agent needs to retrieve personalisation data from RAG, whether the payment succeeds on the first attempt or requires retries, and whether the agent enters an edge case that triggers escalation logic. Multiply this variance by 10,000 concurrent customers and the cost distribution has a fat tail that can consume margins.
+
+This risk is amplified during peak trading — exactly when margins matter most. The [parent stress test overview](100-agent-stress-test-overview.md#ai-systems-may-not-scale-economically) frames the general principle. This document applies it to a concrete scenario where:
+
+- **Revenue is supposed to fund reinvestment.** The corporate plan depends on peak trading profits to invest in more technology. If the AI system consumes those profits, the technology roadmap stalls.
+- **Customer behaviour changes under peak conditions.** Gift buyers browse differently than regular buyers. Returns surge after peak. Payment decline rates increase. Every behavioural shift increases per-interaction cost.
+- **Cost pressure creates governance decisions, not just technical decisions.** When costs escalate, someone must decide whether to reduce Judge sampling, substitute cheaper models, or suspend personalisation. These are security and risk decisions disguised as cost decisions. Whether they are made by the right people, with the right information, under time pressure, is what this stress test examines.
+
+Stress Dimensions 1–8 test whether MASO's security controls survive at scale. Stress Dimension 9 tests whether the organisation's economics survive — and whether economic pressure causes the security controls to be weakened through human decisions rather than technical failures.
+
+---
+
 ## How to Run This Exercise
 
 This tabletop follows the same methodology as the [100-Agent Stress Test](100-agent-stress-test-overview.md#how-to-run-this-exercise). For each stress dimension:
