@@ -1,5 +1,9 @@
 # About the Author
 
+<div style="float: right; margin: 0 0 1em 1.5em; max-width: 200px;">
+  <img src="images/Jonathan Gill.jpg" alt="Jonathan Gill" style="border-radius: 8px; width: 100%;">
+</div>
+
 **Jonathan Gill** is a cybersecurity practitioner with over 30 years in information technology and 20+ years in enterprise security, now focused on the security challenges of generative and agentic AI in regulated environments.
 
 He develops threat models, risk frameworks, and practical mitigations for AI systems — with particular emphasis on runtime behavioural risks, loss-of-control scenarios, and oversight gaps in autonomous AI deployments.
