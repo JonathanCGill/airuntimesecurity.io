@@ -22,6 +22,7 @@ Most AI security guidance stops at the model layer. This framework addresses wha
 [Quick Start Guide](QUICK_START.md){ .md-button .md-button--primary }
 [See the Architecture](ARCHITECTURE.md){ .md-button }
 [Downloads](downloads.md){ .md-button }
+[About the Author](ABOUT.md){ .md-button }
 
 </div>
 
