@@ -234,6 +234,13 @@ img[src$=".svg"] {
   display: none;
 }
 
+/* Mobile drawer: active nav link stays black, no teal accent */
+.md-nav__link--active,
+.md-nav__link:focus,
+.md-nav__link:hover {
+  color: var(--md-default-fg-color);
+}
+
 /* Footer: subtle, matching the light theme */
 .md-footer {
   background-color: var(--md-primary-fg-color);
