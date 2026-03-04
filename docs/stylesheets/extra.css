@@ -237,8 +237,13 @@ img[src$=".svg"] {
 /* Mobile drawer: active nav link stays black, no teal accent */
 .md-nav__link--active,
 .md-nav__link:focus,
-.md-nav__link:hover {
-  color: var(--md-default-fg-color);
+.md-nav__link:hover,
+.md-nav__item--active > .md-nav__link,
+.md-nav--primary .md-nav__link--active,
+.md-nav--primary .md-nav__item--active > .md-nav__link,
+[data-md-level] .md-nav__link--active,
+.md-nav__link[data-md-state="current"] {
+  color: var(--md-default-fg-color) !important;
 }
 
 /* Footer: subtle, matching the light theme */
