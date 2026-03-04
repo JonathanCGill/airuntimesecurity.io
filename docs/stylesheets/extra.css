@@ -167,6 +167,12 @@ img[src$=".svg"] {
   box-shadow: none;
 }
 
+.md-header__inner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .md-header .md-logo img,
 .md-header .md-logo svg {
   filter: none;
