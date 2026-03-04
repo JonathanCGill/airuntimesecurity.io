@@ -6,11 +6,17 @@
   <style>
     .md-content__inner > h1:first-child { display: none; }
     .md-content__inner > .md-source-file { display: none; }
+    /* Hide desktop sidebar but keep mobile drawer */
+    @media (min-width: 76.25em) {
+      .md-sidebar--primary { display: none; }
+    }
   </style>
 {% endblock %}
 
-{# No sidebar on the landing page #}
-{% block site_nav %}{% endblock %}
+{# Hide desktop sidebar but keep mobile drawer functional #}
+{% block site_nav %}
+  {{ super() }}
+{% endblock %}
 
 {# Render content directly #}
 {% block content %}

@@ -5,7 +5,6 @@ template: home.html
 hide:
   - toc
   - path
-  - navigation
   - feedback
 comments: false
 ---
