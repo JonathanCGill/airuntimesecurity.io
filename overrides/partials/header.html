@@ -19,18 +19,19 @@
     </a>
 
     {# Inline nav tabs — visible on desktop only #}
+    {# Macro: drill into nested sections to find the first actual page #}
+    {% macro first_page_url(item) %}
+      {%- if item.url -%}
+        {{ item.url | url }}
+      {%- elif item.children -%}
+        {{ first_page_url(item.children[0]) }}
+      {%- endif -%}
+    {% endmacro %}
     <ul class="md-header-tabs">
       {% for nav_item in nav %}
       <li class="md-header-tabs__item">
-        {% if nav_item.url %}
-          {% set link_url = nav_item.url %}
-        {% elif nav_item.children %}
-          {% set link_url = nav_item.children[0].url %}
-        {% else %}
-          {% set link_url = "" %}
-        {% endif %}
         <a
-          href="{{ link_url | url }}"
+          href="{{ first_page_url(nav_item) | trim }}"
           class="md-header-tabs__link{% if nav_item.active %} md-header-tabs__link--active{% endif %}"
         >
           {{ nav_item.title }}
