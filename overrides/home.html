@@ -6,9 +6,17 @@
   <style>
     .md-content__inner > h1:first-child { display: none; }
     .md-content__inner > .md-source-file { display: none; }
-    /* Hide desktop sidebar but keep mobile drawer */
+    /* Hide both sidebars on desktop so content centres */
     @media (min-width: 76.25em) {
       .md-sidebar--primary { display: none; }
+      .md-sidebar--secondary { display: none; }
+    }
+    /* Centre the main content area when sidebars are hidden */
+    .md-main__inner {
+      display: block;
+      max-width: 45rem;
+      margin: 0 auto;
+      padding: 0 1rem;
     }
   </style>
 {% endblock %}
