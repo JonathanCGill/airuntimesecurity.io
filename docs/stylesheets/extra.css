@@ -160,6 +160,11 @@ img[src$=".svg"] {
   }
 }
 
+/* Footer: match the header (primary) colour */
+.md-footer {
+  background-color: var(--md-primary-fg-color);
+}
+
 /* Giscus comments: ensure full width within content area */
 .giscus {
   margin-top: 2rem;
