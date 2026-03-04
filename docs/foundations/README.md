@@ -159,7 +159,7 @@ When AI agents collaborate, delegate tasks, and take autonomous actions across t
 
 | Document | Purpose |
 | --- | --- |
-| [MASO Overview](../maso/) | Architecture, PACE integration, OWASP dual mapping, 6 control domains |
+| [MASO Overview](../maso/) | Architecture, PACE integration, OWASP dual mapping, 7 control domains |
 | [Tier 1 - Supervised](../maso/implementation/tier-1-supervised.md) | Low autonomy: human approves all writes |
 | [Tier 2 - Managed](../maso/implementation/tier-2-managed.md) | Medium autonomy: NHI, signed bus, LLM-as-Judge, continuous monitoring |
 | [Tier 3 - Autonomous](../maso/implementation/tier-3-autonomous.md) | High autonomy: self-healing PACE, adversarial testing, isolated kill switch |

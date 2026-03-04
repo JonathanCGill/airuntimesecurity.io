@@ -90,6 +90,7 @@ If deploying **multiple agents** that communicate, delegate, or act across trust
 | **Execution Control** | Sandboxed execution, blast radius caps, LLM-as-Judge gate, interaction timeouts |
 | **Observability** | Decision chain audit, anomaly scoring, drift detection, independent kill switch |
 | **Supply Chain** | AIBOM per agent, signed tool manifests, MCP server vetting |
+| **Privileged Agent Governance** | Elevated controls for orchestrators, planners, and meta-agents with disproportionate authority |
 
 **Implementation tiers:** [Tier 1 - Supervised](maso/implementation/tier-1-supervised.md) (human approves all writes) → [Tier 2 - Managed](maso/implementation/tier-2-managed.md) (auto-approve low-risk, escalate high-risk) → [Tier 3 - Autonomous](maso/implementation/tier-3-autonomous.md) (self-healing PACE, adversarial testing, kill switch).
 

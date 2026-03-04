@@ -33,13 +33,13 @@ Seven coloured lines represent seven control domains. Stations are key controls.
 
 ## Control Domains
 
-The framework organises 123 controls into seven domains. The first five map to specific OWASP risks. The sixth - Prompt, Goal & Epistemic Integrity - addresses both the three OWASP risks that require cross-cutting controls and the eight epistemic risks identified in the [Emergent Risk Register](controls/risk-register.md) that have no OWASP equivalent. The seventh - Privileged Agent Governance - addresses the unique risks of orchestrators, planners, and other agents with elevated authority.
+The framework organises 128 controls into seven domains. The first five map to specific OWASP risks. The sixth - Prompt, Goal & Epistemic Integrity - addresses both the three OWASP risks that require cross-cutting controls and the nine epistemic risks identified in the [Emergent Risk Register](controls/risk-register.md) that have no OWASP equivalent. The seventh - Privileged Agent Governance - addresses the unique risks of orchestrators, planners, and other agents with elevated authority.
 
 ### 0. [Prompt, Goal & Epistemic Integrity](controls/prompt-goal-and-epistemic-integrity.md)
 
 Every agent's instructions, objectives, and information chain must be trustworthy and verifiable. Input sanitisation on all channels - not just user-facing. System prompt isolation prevents cross-agent extraction. Immutable task specifications with continuous goal integrity monitoring. Epistemic controls prevent groupthink, hallucination amplification, uncertainty stripping, and semantic drift across agent chains.
 
-*Covers: LLM01, LLM07, ASI01, plus Epistemic Risks EP-01 through EP-08*
+*Covers: LLM01, LLM07, ASI01, plus Epistemic Risks EP-01 through EP-09*
 
 ### 1. [Identity & Access](controls/identity-and-access.md)
 
@@ -228,7 +228,7 @@ These questions come up in every MASO deployment. The answers sit across the fra
 | What if the Judge is wrong or manipulated? | [Judge Assurance](../core/judge-assurance.md) · [When the Judge Can Be Fooled](../core/when-the-judge-can-be-fooled.md) · [Privileged Agent Governance](controls/privileged-agent-governance.md) |
 | How do we prevent operator fatigue at scale? | [Human Factors](../strategy/human-factors.md) - skill development, alert fatigue, canary testing, challenge rates |
 | How do we vet models, tools, and MCP servers? | [Supply Chain Controls](controls/supply-chain.md) - AIBOM, signed manifests, model provenance, dependency scanning |
-| What emergent risks have no OWASP equivalent? | [Emergent Risk Register](controls/risk-register.md) - 33 risks across 9 categories including epistemic, coordination, and inference-side attacks |
+| What emergent risks have no OWASP equivalent? | [Emergent Risk Register](controls/risk-register.md) - 34 risks across 9 categories including epistemic, coordination, and inference-side attacks |
 | What about DLP, API validation, database controls, and existing IAM? | [Defence in Depth Beyond the AI Layer](../foundations/README.md#defence-in-depth-beyond-the-ai-layer) - MASO controls are a layer within your wider security architecture, not a replacement for it. External DLP (inbound and outbound), API gateways, database access controls, SIEM, and secure coding practices all apply |
 
 ---

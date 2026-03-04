@@ -60,7 +60,7 @@ Each layer catches what the others miss. Remove any layer and you have a gap. Th
 | --- | --- |
 | **Get started in 30 minutes** | **[Quick Start](docs/QUICK_START.md)** — from zero to working controls |
 | **Secure a single-model AI system** | **[Foundation Framework](docs/foundations/)** — 80 controls, risk tiers, PACE resilience |
-| **Secure a multi-agent system** | **[MASO Framework](docs/maso/)** — 93 controls, 6 domains, 3 tiers |
+| **Secure a multi-agent system** | **[MASO Framework](docs/maso/)** — 128 controls, 7 domains, 3 tiers |
 | **Deploy low-risk AI fast** | **[Fast Lane](docs/FAST-LANE.md)** — self-certification for internal, read-only, no regulated data |
 
 <details>
@@ -75,7 +75,7 @@ Each layer catches what the others miss. Remove any layer and you have a gap. Th
 | How the Judge can be attacked | [When the Judge Can Be Fooled](docs/core/when-the-judge-can-be-fooled.md) — output crafting, judge manipulation, mitigations by tier |
 | Securing the AI supply chain | [Supply Chain Controls](docs/maso/controls/supply-chain.md) — AIBOM, signed manifests, MCP vetting, model provenance |
 | Human operator fatigue and automation bias | [Human Factors](docs/strategy/human-factors.md) — skill development, alert fatigue, challenge rate testing |
-| Risks that emerge when agents collaborate | [Emergent Risk Register](docs/maso/controls/risk-register.md) — 33 risks across 9 categories, with coverage assessment |
+| Risks that emerge when agents collaborate | [Emergent Risk Register](docs/maso/controls/risk-register.md) — 34 risks across 9 categories, with coverage assessment |
 
 </details>
 
@@ -118,7 +118,7 @@ When multiple LLMs collaborate, delegate, and take autonomous actions, new failu
 - **Delegation creates transitive authority** — permissions transfer implicitly through delegation chains nobody designed
 - **Failures look like success** — the most dangerous outputs are well-formatted, confident, unanimously agreed, and wrong
 
-The **[MASO Framework](docs/maso/)** extends the foundation into multi-agent orchestration: 93 controls across 6 domains, 3 implementation tiers (supervised → managed → autonomous), full OWASP coverage for both LLM and Agentic top 10s, plus 30 emergent risks that have no OWASP equivalent — including epistemic failures like groupthink and synthetic corroboration that no other framework formally addresses.
+The **[MASO Framework](docs/maso/)** extends the foundation into multi-agent orchestration: 128 controls across 7 domains, 3 implementation tiers (supervised → managed → autonomous), full OWASP coverage for both LLM and Agentic top 10s, plus 34 emergent risks that have no OWASP equivalent — including epistemic failures like groupthink and synthetic corroboration that no other framework formally addresses.
 
 **→ [Enter MASO](docs/maso/)**
 

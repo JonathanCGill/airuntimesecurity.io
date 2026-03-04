@@ -48,7 +48,7 @@ When multiple LLMs collaborate, delegate, and take autonomous actions, single-ag
 
 Multi-agent security requires per-agent identity, per-agent permissions, per-agent evaluation - plus controls for the interactions between them: message bus security, epistemic integrity, kill switch architecture.
 
-**→ [MASO Framework](maso/)** - 123 controls across 7 domains, 3 implementation tiers, full OWASP dual coverage
+**→ [MASO Framework](maso/)** - 128 controls across 7 domains, 3 implementation tiers, full OWASP dual coverage
 
 ---
 

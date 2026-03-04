@@ -84,13 +84,13 @@ Simultaneously added the Implementation Guide: ~1,500 lines of copy-paste-ready 
 
 ### February 2026 - MASO: The Multi-Agent Problem
 
-**The biggest addition: 123 controls for multi-agent orchestration.**
+**The biggest addition: 128 controls for multi-agent orchestration.**
 
 The Multi-Agent Security Operations (MASO) framework was the response to a fundamental architectural shift. Single-agent controls assume one AI, one context window, one trust boundary. Multi-agent systems break all three assumptions.
 
 MASO added:
 
-- 6 control domains (Prompt/Goal/Epistemic Integrity, Identity & Access, Data Protection, Execution Control, Observability, Supply Chain)
+- 7 control domains (Prompt/Goal/Epistemic Integrity, Identity & Access, Data Protection, Execution Control, Observability, Supply Chain, Privileged Agent Governance)
 - 3 implementation tiers with graduation criteria
 - Incident Tracker mapping known real-world incidents to controls, plus risk stories from production failures
 - Red Team Playbook with 13 adversarial test scenarios
@@ -98,7 +98,7 @@ MASO added:
 - Worked examples in financial services, healthcare, and critical infrastructure
 - Emerging Threats analysis with 8 forward-looking threat patterns
 - Dual OWASP coverage: LLM Top 10 (2025) + Agentic Top 10 (2026)
-- 30+ emergent risks beyond OWASP taxonomies
+- 34 emergent risks beyond OWASP taxonomies
 
 **What drove this:** Three things converging: (1) the Morris II worm proof-of-concept showing self-replicating prompt injection across agents, (2) the MCP supply chain attacks demonstrating that agent tool ecosystems have the same problems as npm circa 2016, and (3) the recognition that epistemic failures - groupthink, hallucination amplification, confidence inflation - are not adversarial attacks but emergent properties of multi-agent interaction that produce failures indistinguishable from success.
 

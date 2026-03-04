@@ -7,13 +7,13 @@
 
 ## Review Findings
 
-The source risk table identifies 30 emergent risks across nine categories. Comparison against the five MASO control domains and the OWASP dual mapping reveals three classes of coverage:
+The source risk table identifies 34 emergent risks across nine categories. Comparison against the seven MASO control domains and the OWASP dual mapping reveals three classes of coverage:
 
 **MASO already strong (no new controls needed):** Cross-agent prompt injection, confused deputy, privilege escalation by delegation, tool-chain injection, role drift, goal drift, memory poisoning, provenance loss, cost blowouts. These map directly to existing MASO controls that are equal to or stronger than the source table's mitigations.
 
-**MASO partially covers but needs amendment (8 amendments):** Secrets leakage, logging as breach vector, RAG poisoning, latency compounding, automation bias, accountability blur, role drift testing, goal drift judge criteria. The MASO controls address the attack vector but miss a specific dimension the source table identifies.
+**MASO partially covers but needs amendment (9 amendments):** Secrets leakage, logging as breach vector, RAG poisoning, latency compounding, automation bias, accountability blur, role drift testing, goal drift judge criteria. The MASO controls address the attack vector but miss a specific dimension the source table identifies.
 
-**Genuine gaps requiring new controls (15 new controls):** The entire epistemic category (8 risks), two coordination risks (deadlock/livelock, oscillation), both safety/misuse risks, both governance risks, and one operational risk (partial failure). These are emergent multi-agent failure modes with no direct OWASP equivalent. The source table's mitigations are sound starting points; MASO needs to formalise them.
+**Genuine gaps requiring new controls (18 new controls):** The entire epistemic category (9 risks), two coordination risks (deadlock/livelock, oscillation), both safety/misuse risks, both governance risks, one operational risk (partial failure), and two inference-side risks (membership inference, timing side-channel). These are emergent multi-agent failure modes with no direct OWASP equivalent. The source table's mitigations are sound starting points; MASO needs to formalise them.
 
 The most significant finding: **the epistemic risks are the highest-priority gap.** A multi-agent system can fail catastrophically on groupthink, hallucination amplification, or uncertainty stripping with no external attacker present. Current MASO controls are oriented toward adversarial threats (OWASP) and operational resilience (PACE). They do not address information-processing failures between agents.
 
@@ -125,7 +125,7 @@ These target the model's inference endpoint rather than its behaviour. They sit 
 
 ## Consolidated Amendment Summary
 
-### New Controls (17)
+### New Controls (18)
 
 | ID | Name | Domain | Tier | Source Risk |
 |----|------|--------|------|-------------|
@@ -137,6 +137,7 @@ These target the model's inference endpoint rather than its behaviour. They sit 
 | EP-C06 | Uncertainty preservation | Data Protection | 2+ | EP-06 Uncertainty stripping |
 | EP-C07 | Plan-execution conformance | Execution Control | 2+ | EP-07 Planner-executor mismatch |
 | EP-C08 | Assumption isolation | Data Protection | 2+ | EP-08 Hidden assumptions |
+| EP-C09 | Task ambiguity resolution | Prompt, Goal & Epistemic | 1+ | EP-09 Task ambiguity as silent failure |
 | CR-C01 | Interaction timeout | Execution Control | 1+ | CR-01 Deadlock/livelock |
 | CR-C02 | Decision commit protocol | Execution Control | 2+ | CR-02 Oscillation |
 | SM-C01 | Aggregate harm assessment | Execution Control | 2+ | SM-01 Cumulative harm |
@@ -167,7 +168,7 @@ These target the model's inference endpoint rather than its behaviour. They sit 
 
 | Category | Risks | Already covered | Partial / amended | New control needed |
 |----------|-------|----------------|-------------------|-------------------|
-| Epistemic | 8 | 0 | 0 | 8 |
+| Epistemic | 9 | 0 | 0 | 9 |
 | Coordination | 4 | 2 | 2 | 2 |
 | Security | 6 | 4 | 2 | 0 |
 | Safety/Misuse | 2 | 0 | 0 | 2 |
@@ -176,13 +177,13 @@ These target the model's inference endpoint rather than its behaviour. They sit 
 | Operational | 3 | 1 | 1 | 1 |
 | Human Factors | 2 | 0 | 2 | 0 |
 | Inference-Side | 3 | 0 | 1 | 2 |
-| **Total** | **33** | **9** | **9** | **17** |
+| **Total** | **34** | **9** | **9** | **18** |
 
 ---
 
 ### Key Observation
 
-The source table's mitigations align well with MASO's approach in the security and data categories - these are the domains where OWASP coverage is strongest. The critical gap is epistemic: all eight epistemic risks require new controls. These risks are the most dangerous because they produce failures that look like success - confident, well-formatted, unanimously agreed outputs that are wrong.
+The source table's mitigations align well with MASO's approach in the security and data categories - these are the domains where OWASP coverage is strongest. The critical gap is epistemic: all nine epistemic risks require new controls. These risks are the most dangerous because they produce failures that look like success - confident, well-formatted, unanimously agreed outputs that are wrong.
 
 The source table correctly identifies that the Judge/Challenger is not the solution for every risk. Specifically: secrets leakage (SR-05), logging as breach vector (SR-06), cost blowouts (OP-01), and accountability blur (HF-02) require platform governance and infrastructure controls, not evaluation-layer interventions. MASO's tiered approach (prevention at Layer 1, detection at Layer 2, governance at Layer 3) is the right architecture for this - but the existing control specs need the amendments listed above to close the gaps.
 

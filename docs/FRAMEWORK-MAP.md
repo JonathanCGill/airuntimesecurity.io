@@ -16,7 +16,7 @@ This framework has two halves. The **Foundation** covers single-model AI deploym
 
 [![MASO Tube Map](images/maso-tube-map.svg)](images/maso-tube-map.svg)
 
-**MASO** - Seven control domains, 123 controls, three implementation tiers, dual OWASP coverage. For systems where multiple agents collaborate autonomously. **→ [Start here](maso/)**
+**MASO** - Seven control domains, 128 controls, three implementation tiers, dual OWASP coverage. For systems where multiple agents collaborate autonomously. **→ [Start here](maso/)**
 
 ---
 
@@ -138,13 +138,13 @@ For multi-agent monitoring, the [MASO Observability domain](maso/controls/observ
 | Document | Purpose |
 |---|---|
 | [MASO Overview](maso/) | Architecture, PACE integration, OWASP mapping |
-| [Prompt, Goal & Epistemic Integrity](maso/controls/prompt-goal-and-epistemic-integrity.md) | 20 controls for instruction integrity and information quality |
+| [Prompt, Goal & Epistemic Integrity](maso/controls/prompt-goal-and-epistemic-integrity.md) | 22 controls for instruction integrity and information quality |
 | [Identity & Access](maso/controls/identity-and-access.md) | NHI, zero-trust, scoped permissions |
 | [Data Protection](maso/controls/data-protection.md) | Cross-agent data fencing, DLP, RAG integrity |
 | [Execution Control](maso/controls/execution-control.md) | Sandboxing, blast radius, Judge gate |
 | [Observability](maso/controls/observability.md) | Audit, anomaly scoring, kill switch |
 | [Supply Chain](maso/controls/supply-chain.md) | AIBOM, tool manifests, MCP vetting |
-| [Risk Register](maso/controls/risk-register.md) | 30 emergent risks beyond OWASP |
+| [Risk Register](maso/controls/risk-register.md) | 34 emergent risks beyond OWASP |
 | [Tier 1 - Supervised](maso/implementation/tier-1-supervised.md) | Human approves all writes |
 | [Tier 2 - Managed](maso/implementation/tier-2-managed.md) | NHI, signed bus, Judge, continuous monitoring |
 | [Tier 3 - Autonomous](maso/implementation/tier-3-autonomous.md) | Self-healing PACE, adversarial testing, kill switch |
