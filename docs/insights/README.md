@@ -91,7 +91,7 @@ Deeper examinations of where the framework meets production reality - what works
 | [Containment Through Intent](containment-through-intent.md) | Declared intent is the organising principle that gives every defence layer its reference point |
 | [When the Pattern Breaks](when-the-pattern-breaks.md) | The three-layer pattern designed for single-agent systems fails to scale in complex multi-agent architectures |
 | [Open-Weight Models Shift the Burden](open-weight-models-shift-the-burden.md) | Self-hosted models inherit the provider's control responsibilities |
-| [PACE Resilience](PACE-RESILIENCE.md) | How the three-layer architecture achieves operational resilience through layered, independent control redundancy |
+| [PACE Resilience](../PACE-RESILIENCE.md) | How the three-layer architecture achieves operational resilience through layered, independent control redundancy |
 | [Security as Enablement, Not Commentary](security-as-enablement.md) | Security frameworks create value when delivered as platform infrastructure, not as narrative that diagnoses teams from the sidelines |
 | [The Constraint Curve](the-constraint-curve.md) | Every constraint reduces both risk and capability - proportionate controls find the peak; over-constraining destroys the value that justified using an LLM |
 | [The Hallucination Boundary](the-hallucination-boundary.md) | The same hallucination is a nuisance in one context and a catastrophe in another - tolerance is a function of decision authority, blast radius, and reversibility |

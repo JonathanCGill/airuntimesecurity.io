@@ -57,7 +57,7 @@ The three-layer architecture is explicitly a closed-loop control system:
 | **Setpoint** (desired state) | [Declared intent specification](containment-through-intent.md) |
 | **Sensor** (measurement) | [LLM-as-Judge](../core/judge-assurance.md) + [Observability](../maso/controls/observability.md) |
 | **Comparator** (error detection) | [Behavioural drift detection](behavioral-anomaly-detection.md) |
-| **Actuator** (correction) | [Human oversight escalation](humans-remain-accountable.md) + [PACE degradation](PACE-RESILIENCE.md) |
+| **Actuator** (correction) | [Human oversight escalation](humans-remain-accountable.md) + [PACE degradation](../PACE-RESILIENCE.md) |
 
 Closed-loop systems can still fail - through sensor error (judge blind spots), actuator failure (escalation processes that do not respond effectively), or feedback delay (drift that accumulates faster than detection). But closed-loop systems degrade gracefully and are self-correcting by design. Open-loop systems fail silently and without recovery.
 
@@ -174,7 +174,7 @@ The constrain-regardless architecture aligns with regulatory expectations:
 | [Infrastructure Beats Instructions](infrastructure-beats-instructions.md) | Why containment must be enforced through infrastructure, not prompts - action-space constraints in practice |
 | [The Intent Layer](the-intent-layer.md) | The Declare → Execute → Evaluate pattern that implements closed-loop control |
 | [Judge Assurance](../core/judge-assurance.md) | How to measure and maintain the enterprise-owned Judge's accuracy |
-| [PACE Resilience](PACE-RESILIENCE.md) | Structured degradation when the closed-loop detects failure |
+| [PACE Resilience](../PACE-RESILIENCE.md) | Structured degradation when the closed-loop detects failure |
 | [Why AI Security Is a Runtime Problem](why-ai-security-is-a-runtime-problem.md) | The broader case for continuous runtime security over point-in-time assessment |
 
 ---

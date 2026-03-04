@@ -176,7 +176,7 @@ That is what regulators ask for. That is what auditors examine. That is what inc
 | [Infrastructure Beats Instructions](infrastructure-beats-instructions.md) | Why intent must be enforced through infrastructure, not prompts |
 | [Humans Remain Accountable](humans-remain-accountable.md) | Why the human accountability layer is irreducible, even with intent-based containment |
 | [Why Guardrails Aren't Enough](why-guardrails-arent-enough.md) | Why guardrails alone (even intent-derived ones) miss semantic violations |
-| [PACE Resilience](PACE-RESILIENCE.md) | How structured degradation maintains intent alignment during failure |
+| [PACE Resilience](../PACE-RESILIENCE.md) | How structured degradation maintains intent alignment during failure |
 | [PG Controls](../maso/controls/prompt-goal-and-epistemic-integrity.md) | The specific MASO controls that protect intent specifications (PG-1.3, PG-2.2, PG-3.2) |
 | [Execution Control](../maso/controls/execution-control.md) | Infrastructure enforcement of intent-derived boundaries |
 | [Observability](../maso/controls/observability.md) | Monitoring agent behaviour against intent-derived baselines |
