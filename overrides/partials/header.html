@@ -2,6 +2,10 @@
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
 
+    {# AIRS red dot logo #}
+    <a href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}"
+       class="airs-dot" aria-label="AIRS Home">AIRS</a>
+
     {# Mobile drawer toggle #}
     <label class="md-header__button md-icon" for="__drawer">
       {% set icon = config.theme.icon.menu or "material/menu" %}
