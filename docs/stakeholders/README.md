@@ -19,6 +19,8 @@ These pages tell you **what matters for your role**, **why you should care**, an
 | **[Security Leaders](security-leaders.md)** | CISOs, Security Directors, Security Architects | *How do I secure AI when the threat model is unlike anything I've secured before?* |
 | **[Risk & Governance](risk-and-governance.md)** | CROs, Risk Managers, GRC Teams | *How do I quantify AI risk and prove to the board that controls are working?* |
 | **[Enterprise Architects](enterprise-architects.md)** | Solution Architects, Platform Architects, Technical Leads | *Where do controls go in my pipeline, what do they cost, and how do they fail?* |
+| **[Chief Information Officers](chief-information-officers.md)** | CIOs, CTOs, VP Technology | *How do I govern AI across my technology portfolio when every product runs different agents?* |
+| **[Business Owners](business-owners.md)** | Business Unit Leaders, P&L Owners, General Managers | *How do I manage AI risk across my product lines when agents are operational and the cost is real?* |
 | **[Product Owners](product-owners.md)** | Product Managers, Business Owners, Delivery Leads | *What controls are required to ship AI, and what do they cost in time and money?* |
 | **[AI Engineers](ai-engineers.md)** | ML Engineers, AI Developers, Data Scientists, Platform Engineers | *What do I actually build? Give me implementation patterns, not governance theory.* |
 | **[Compliance & Legal](compliance-and-legal.md)** | Compliance Officers, Legal Counsel, DPOs, Audit Teams | *How do I demonstrate that AI deployments meet regulatory obligations - with evidence?* |
