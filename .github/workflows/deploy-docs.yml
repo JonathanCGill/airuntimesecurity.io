@@ -25,7 +25,13 @@ jobs:
           python-version: "3.x"
 
       - name: Install dependencies
-        run: pip install "mkdocs>=1.6,<2" mkdocs-material
+        run: pip install "mkdocs>=1.6,<2" mkdocs-material mkdocs-with-pdf
+
+      - name: Generate MASO PDF
+        run: mkdocs build -f mkdocs-pdf.yml
+
+      - name: Copy generated PDF to docs
+        run: cp site-pdf/pdf/MASO-Framework.pdf docs/Downloads/MASO-Framework.pdf
 
       - name: Build site
         run: mkdocs build

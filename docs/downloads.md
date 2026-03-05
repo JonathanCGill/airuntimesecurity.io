@@ -21,6 +21,16 @@ Covers the limitations of pre-deployment evaluation, the case for runtime enforc
 
 > See also: [Why Containment Beats Evaluation](insights/why-containment-beats-evaluation.md) (online version)
 
+## Framework Reference
+
+### MASO Framework (Full PDF)
+
+The complete Multi-Agent Security Operations (MASO) framework as a single PDF document. Includes all 7 control domains (128 controls), implementation tiers, red team playbook, incident tracker, integration guide, and worked examples.
+
+[Download PDF](Downloads/MASO-Framework.pdf){ .md-button }
+
+> See also: [Multi-Agent Security Operations (MASO)](maso/README.md) (online reference)
+
 ## Training Materials
 
 ### MASO Practitioner Training v.1
