@@ -293,8 +293,3 @@ img[src$=".svg"] {
 .md-copyright {
   color: var(--md-default-fg-color--light);
 }
-
-/* Giscus comments: ensure full width within content area */
-.giscus {
-  margin-top: 2rem;
-}
