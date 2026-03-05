@@ -41,6 +41,7 @@ theme:
     - content.action.edit
     - content.action.view
     - toc.follow
+  favicon: images/favicon.svg
   icon: {}
 
 plugins:
