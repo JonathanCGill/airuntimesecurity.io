@@ -117,6 +117,11 @@ img[src$=".svg"] {
   flex-grow: 1;
 }
 
+.home-path .md-button {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
 @media (max-width: 768px) {
   .home-paths {
     grid-template-columns: 1fr;
