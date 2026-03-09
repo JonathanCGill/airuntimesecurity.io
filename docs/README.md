@@ -20,6 +20,12 @@ AI system behaviour during live operation.
 
 </div>
 
+<div class="pull-quote" markdown>
+
+> **"The most dangerous AI failures look like normal responses."**
+
+</div>
+
 ## The Framework
 
 [AI Runtime Security](what-is-ai-runtime-security.md) is the practice of monitoring, constraining, and governing AI system behaviour in production environments. It applies defence-in-depth principles at the point of execution, treating deployment as the beginning of the risk lifecycle rather than the end of it.

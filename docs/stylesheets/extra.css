@@ -100,6 +100,22 @@ img[src$=".svg"] {
   color: var(--md-default-fg-color--light);
 }
 
+/* Pull quote */
+.pull-quote {
+  text-align: center;
+  margin: 0 auto 2.5rem;
+  max-width: 32rem;
+}
+
+.pull-quote blockquote {
+  border-left: none !important;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: var(--md-default-fg-color--light);
+  padding: 0;
+  margin: 0;
+}
+
 /* Three clickable paths at bottom of homepage */
 .home-paths {
   display: grid;
