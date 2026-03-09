@@ -33,7 +33,7 @@ pipeline = SecurityPipeline(
 
 ## Evaluation Flow
 
-The pipeline provides two methods — one for input, one for output. Call them around your model:
+The pipeline does **not** call your AI model. It provides two methods — `evaluate_input()` and `evaluate_output()` — that you call *around* your own model call. This keeps AIRS model-agnostic: it works with any provider, framework, or architecture.
 
 ```python
 from airs.core.models import AIRequest, AIResponse

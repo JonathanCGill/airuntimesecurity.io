@@ -4,6 +4,29 @@
 
 The AIRS Python SDK implements the three-layer security architecture as a drop-in library for Python AI applications. Instead of reading about controls, you can `pip install` them.
 
+## Bring Your Own Model
+
+The SDK is **model-agnostic**. It does not call AI models for you — it wraps security controls *around* your existing model calls. You continue using whatever model, provider, or framework you already have:
+
+```python
+# 1. AIRS checks the input
+input_result = await pipeline.evaluate_input(request)
+
+# 2. You call YOUR model — OpenAI, Anthropic, Bedrock, Ollama, local, anything
+ai_output = await your_model(request.input_text)
+
+# 3. AIRS checks the output
+output_result = await pipeline.evaluate_output(request, response)
+```
+
+AIRS only sees the text going in and the text coming out. It doesn't know or care which model you're using, how you're calling it, or what framework it runs on. This means it works with:
+
+- **Any model provider** — OpenAI, Anthropic, Google, Mistral, Cohere, local models
+- **Any framework** — LangChain, LlamaIndex, Haystack, raw API calls
+- **Any architecture** — single model, RAG, agents, multi-agent orchestration
+
+The one exception is the optional **LLM-as-Judge**, which does call an OpenAI-compatible API to *evaluate* outputs. This is the judge model — a separate, independent model used for security evaluation, not your production model.
+
 ## What It Provides
 
 | Component | What It Does |

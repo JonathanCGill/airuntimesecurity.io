@@ -1,6 +1,6 @@
 # FastAPI Integration
 
-Drop-in middleware that protects your AI endpoints with the full AIRS security pipeline. No changes to your route handlers required.
+Drop-in middleware that protects your AI endpoints with the full AIRS security pipeline. No changes to your route handlers required. You bring your own model — the middleware wraps security checks around your existing endpoint logic.
 
 ## Install
 
