@@ -5,6 +5,7 @@ from airs.runtime.judge import Judge, LLMJudge
 from airs.runtime.circuit_breaker import CircuitBreaker, CircuitState
 from airs.runtime.pace import PACEController
 from airs.runtime.pipeline import SecurityPipeline, PipelineConfig
+from airs.runtime.tool_policy import ToolCall, ToolPolicy, ToolPolicyEngine, ToolPolicyResult
 
 __all__ = [
     "CircuitBreaker",
@@ -18,4 +19,8 @@ __all__ = [
     "PipelineConfig",
     "RegexGuardrail",
     "SecurityPipeline",
+    "ToolCall",
+    "ToolPolicy",
+    "ToolPolicyEngine",
+    "ToolPolicyResult",
 ]

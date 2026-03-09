@@ -36,6 +36,9 @@ The one exception is the optional **LLM-as-Judge**, which does call an OpenAI-co
 | **Circuit Breaker** | Sliding-window failure tracking, auto-trip, manual emergency stop, recovery |
 | **PACE Controller** | State machine for structured degradation (Primary → Alternate → Contingency → Emergency) |
 | **Security Pipeline** | Orchestrates all layers with configurable behavior per PACE state |
+| **Agent Security** | Identity propagation, delegation depth enforcement, cycle detection, scope narrowing |
+| **Tool Policy Engine** | Tool-call → policy → allow/deny. Deny-list, allow-list, per-agent-type restrictions |
+| **Telemetry & Audit** | Structured security events with correlation IDs, pluggable audit sinks for SOC integration |
 | **CLI Assessment** | Interactive tool that classifies your deployment and recommends controls |
 | **FastAPI Middleware** | Drop-in middleware that protects AI endpoints automatically |
 
@@ -286,6 +289,8 @@ airs assess --json
 | [Judge](judge.md) | Layer 2 — rule-based and LLM-based evaluation |
 | [Circuit Breaker & PACE](resilience.md) | Emergency stop and structured degradation |
 | [Pipeline](pipeline.md) | Full pipeline orchestration and configuration |
+| [Agent Security](agents.md) | Identity propagation, delegation enforcement, tool access control |
+| [Telemetry & Audit](telemetry.md) | Structured security events, audit sinks, SOC integration |
 | [FastAPI Integration](fastapi.md) | Drop-in middleware for FastAPI apps |
 | [Examples](examples.md) | Complete working examples |
 
@@ -297,6 +302,9 @@ airs assess --json
 
 ```
 src/airs/
+├── agents/
+│   ├── identity.py          # AgentIdentity, AgentContext, chain propagation
+│   └── delegation.py        # DelegationPolicy, DelegationEnforcer
 ├── cli/
 │   ├── __init__.py          # CLI app setup
 │   └── assess.py            # Interactive assessment
@@ -309,11 +317,15 @@ src/airs/
 │   ├── judge.py             # Layer 2: RuleBased, LLM
 │   ├── circuit_breaker.py   # Emergency stop
 │   ├── pace.py              # PACE state machine
-│   └── pipeline.py          # Full pipeline orchestrator
+│   ├── pipeline.py          # Full pipeline orchestrator
+│   └── tool_policy.py       # Tool access control (allow/deny)
+├── telemetry/
+│   ├── events.py            # AISecurityEvent schema, EventType, emit()
+│   └── audit.py             # AuditSink, LogSink, BufferSink, CallbackSink
 └── integrations/
     └── fastapi.py           # Drop-in middleware
 
-tests/                       # 52 tests
+tests/                       # 100 tests
 examples/
 ├── quickstart.py            # Minimal working example
 └── fastapi_app.py           # Complete FastAPI app

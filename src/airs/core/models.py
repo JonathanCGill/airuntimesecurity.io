@@ -86,6 +86,10 @@ class AIRequest(BaseModel):
     metadata: dict[str, Any] = Field(default_factory=dict)
     timestamp: float = Field(default_factory=time.time)
 
+    # Agent context for multi-agent identity propagation (optional).
+    # When set, the pipeline includes agent chain info in telemetry events.
+    agent_context: Any | None = None  # airs.agents.identity.AgentContext
+
 
 class AIResponse(BaseModel):
     """Outbound response from an AI system, before security evaluation."""
