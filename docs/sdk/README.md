@@ -115,45 +115,7 @@ airs assess --json
 
 ## Architecture
 
-```
-   Request
-      │
-      ▼
-┌──────────────┐
-│  Guardrails  │  Layer 1: Block known-bad (~1ms)
-│  (Input)     │  Injection, PII, content policy
-└──────┬───────┘
-       │ PASS
-       ▼
-┌──────────────┐
-│  Your AI     │  Your model / agent / pipeline
-│  Model       │
-└──────┬───────┘
-       │
-       ▼
-┌──────────────┐
-│  Guardrails  │  Layer 1: Block known-bad in output
-│  (Output)    │  PII leakage, system prompt leakage
-└──────┬───────┘
-       │ PASS
-       ▼
-┌──────────────┐
-│  LLM Judge   │  Layer 2: Detect unknown-bad (~500ms)
-│              │  Policy violations, hallucination
-└──────┬───────┘
-       │ PASS
-       ▼
-┌──────────────┐
-│  Human       │  Layer 3: Decide ambiguous cases
-│  Oversight   │  Queued when PACE state requires it
-└──────┬───────┘
-       │
-       ▼
-   Response
-
-   Circuit Breaker monitors all layers.
-   PACE controls operational posture.
-```
+![AIRS Security Pipeline](../images/sdk-pipeline-architecture.svg)
 
 ## Project Structure
 

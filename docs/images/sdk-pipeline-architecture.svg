@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="680" viewBox="0 0 720 680">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#475569"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22c55e"/>
+    </marker>
+  </defs>
+
+  <rect width="720" height="680" fill="#f8fafc" rx="12"/>
+
+  <!-- Title -->
+  <text x="360" y="30" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">AIRS Security Pipeline</text>
+
+  <!-- Request label -->
+  <text x="200" y="62" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="600" fill="#475569" text-anchor="middle">Request</text>
+  <line x1="200" y1="68" x2="200" y2="88" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Layer 1: Input Guardrails -->
+  <rect x="80" y="90" width="240" height="64" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text x="200" y="115" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="bold" fill="#166534" text-anchor="middle">Guardrails (Input)</text>
+  <text x="200" y="133" font-family="Inter, Arial, sans-serif" font-size="11" fill="#166534" text-anchor="middle">Injection, PII, content policy</text>
+  <!-- Layer 1 annotation -->
+  <text x="340" y="112" font-family="Inter, Arial, sans-serif" font-size="11" fill="#64748b">Layer 1: Block known-bad</text>
+  <text x="340" y="128" font-family="Inter, Arial, sans-serif" font-size="11" fill="#94a3b8">~1ms  |  deterministic</text>
+
+  <!-- PASS arrow -->
+  <line x1="200" y1="154" x2="200" y2="186" stroke="#22c55e" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <text x="215" y="175" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#22c55e">PASS</text>
+
+  <!-- Your AI Model -->
+  <rect x="80" y="188" width="240" height="64" rx="8" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="200" y="213" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="bold" fill="#475569" text-anchor="middle">Your AI Model</text>
+  <text x="200" y="231" font-family="Inter, Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Model / agent / pipeline</text>
+  <!-- Annotation -->
+  <text x="340" y="218" font-family="Inter, Arial, sans-serif" font-size="11" fill="#94a3b8">Your code — AIRS wraps this</text>
+
+  <!-- Arrow -->
+  <line x1="200" y1="252" x2="200" y2="284" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Layer 1: Output Guardrails -->
+  <rect x="80" y="286" width="240" height="64" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text x="200" y="311" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="bold" fill="#166534" text-anchor="middle">Guardrails (Output)</text>
+  <text x="200" y="329" font-family="Inter, Arial, sans-serif" font-size="11" fill="#166534" text-anchor="middle">PII leakage, system prompt leak</text>
+  <text x="340" y="310" font-family="Inter, Arial, sans-serif" font-size="11" fill="#64748b">Layer 1: Block known-bad</text>
+  <text x="340" y="326" font-family="Inter, Arial, sans-serif" font-size="11" fill="#94a3b8">~1ms  |  deterministic</text>
+
+  <!-- PASS arrow -->
+  <line x1="200" y1="350" x2="200" y2="382" stroke="#22c55e" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <text x="215" y="371" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#22c55e">PASS</text>
+
+  <!-- Layer 2: LLM Judge -->
+  <rect x="80" y="384" width="240" height="64" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="200" y="409" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b45309" text-anchor="middle">LLM-as-Judge</text>
+  <text x="200" y="427" font-family="Inter, Arial, sans-serif" font-size="11" fill="#92400e" text-anchor="middle">Policy, hallucination, safety</text>
+  <text x="340" y="408" font-family="Inter, Arial, sans-serif" font-size="11" fill="#64748b">Layer 2: Detect unknown-bad</text>
+  <text x="340" y="424" font-family="Inter, Arial, sans-serif" font-size="11" fill="#94a3b8">~500ms  |  PACE-controlled</text>
+
+  <!-- PASS arrow -->
+  <line x1="200" y1="448" x2="200" y2="480" stroke="#22c55e" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <text x="215" y="469" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#22c55e">PASS</text>
+
+  <!-- Layer 3: Human Oversight -->
+  <rect x="80" y="482" width="240" height="64" rx="8" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="200" y="507" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e40af" text-anchor="middle">Human Oversight</text>
+  <text x="200" y="525" font-family="Inter, Arial, sans-serif" font-size="11" fill="#1e40af" text-anchor="middle">Review queue, approval gates</text>
+  <text x="340" y="506" font-family="Inter, Arial, sans-serif" font-size="11" fill="#64748b">Layer 3: Decide ambiguous cases</text>
+  <text x="340" y="522" font-family="Inter, Arial, sans-serif" font-size="11" fill="#94a3b8">When PACE state requires it</text>
+
+  <!-- Arrow to Response -->
+  <line x1="200" y1="546" x2="200" y2="576" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Response label -->
+  <text x="200" y="596" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="600" fill="#475569" text-anchor="middle">Response</text>
+
+  <!-- Circuit Breaker + PACE box -->
+  <rect x="80" y="620" width="560" height="44" rx="8" fill="#fef2f2" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="200" y="640" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="bold" fill="#dc2626">Circuit Breaker</text>
+  <text x="200" y="654" font-family="Inter, Arial, sans-serif" font-size="10" fill="#dc2626">monitors all layers</text>
+  <line x1="360" y1="628" x2="360" y2="656" stroke="#fca5a5" stroke-width="1"/>
+  <text x="480" y="640" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="bold" fill="#dc2626">PACE Controller</text>
+  <text x="480" y="654" font-family="Inter, Arial, sans-serif" font-size="10" fill="#dc2626">controls operational posture</text>
+
+  <!-- Side bracket connecting breaker to all layers -->
+  <path d="M 64 90 L 50 90 L 50 546 L 64 546" stroke="#ef4444" stroke-width="1.5" fill="none" stroke-dasharray="4,3"/>
+  <line x1="50" y1="546" x2="50" y2="620" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,3"/>
+</svg>

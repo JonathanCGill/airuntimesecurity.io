@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="300" viewBox="0 0 680 300">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#475569"/>
+    </marker>
+    <marker id="arr-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#dc2626"/>
+    </marker>
+    <marker id="arr-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#16a34a"/>
+    </marker>
+    <marker id="arr-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#d97706"/>
+    </marker>
+  </defs>
+
+  <rect width="680" height="300" fill="#f8fafc" rx="12"/>
+
+  <!-- Title -->
+  <text x="340" y="28" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">Circuit Breaker States</text>
+
+  <!-- CLOSED state -->
+  <rect x="40" y="70" width="160" height="80" rx="40" fill="#dcfce7" stroke="#22c55e" stroke-width="2.5"/>
+  <text x="120" y="107" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="bold" fill="#166534" text-anchor="middle">CLOSED</text>
+  <text x="120" y="126" font-family="Inter, Arial, sans-serif" font-size="11" fill="#166534" text-anchor="middle">AI traffic flowing</text>
+
+  <!-- OPEN state -->
+  <rect x="460" y="70" width="160" height="80" rx="40" fill="#fef2f2" stroke="#ef4444" stroke-width="2.5"/>
+  <text x="540" y="107" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="bold" fill="#dc2626" text-anchor="middle">OPEN</text>
+  <text x="540" y="126" font-family="Inter, Arial, sans-serif" font-size="11" fill="#dc2626" text-anchor="middle">Fallback active</text>
+
+  <!-- HALF_OPEN state -->
+  <rect x="250" y="190" width="160" height="80" rx="40" fill="#fef3c7" stroke="#f59e0b" stroke-width="2.5"/>
+  <text x="330" y="227" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="bold" fill="#b45309" text-anchor="middle">HALF_OPEN</text>
+  <text x="330" y="246" font-family="Inter, Arial, sans-serif" font-size="11" fill="#92400e" text-anchor="middle">Recovery test</text>
+
+  <!-- CLOSED → OPEN -->
+  <path d="M 200 95 C 280 70, 380 70, 460 95" stroke="#dc2626" stroke-width="2" fill="none" marker-end="url(#arr-red)"/>
+  <rect x="270" y="55" width="150" height="20" rx="4" fill="#fef2f2"/>
+  <text x="345" y="69" font-family="Inter, Arial, sans-serif" font-size="10" fill="#dc2626" text-anchor="middle">failures exceed threshold</text>
+
+  <!-- OPEN → HALF_OPEN -->
+  <path d="M 480 150 C 460 180, 430 200, 410 210" stroke="#d97706" stroke-width="2" fill="none" marker-end="url(#arr-amber)"/>
+  <text x="470" y="185" font-family="Inter, Arial, sans-serif" font-size="10" fill="#d97706" text-anchor="end">recovery timeout</text>
+
+  <!-- HALF_OPEN → CLOSED -->
+  <path d="M 250 220 C 200 210, 160 180, 140 150" stroke="#16a34a" stroke-width="2" fill="none" marker-end="url(#arr-green)"/>
+  <text x="162" y="200" font-family="Inter, Arial, sans-serif" font-size="10" fill="#16a34a" text-anchor="start">recovery succeeds</text>
+
+  <!-- HALF_OPEN → OPEN -->
+  <path d="M 410 240 C 440 250, 510 250, 550 150" stroke="#dc2626" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-end="url(#arr-red)"/>
+  <text x="520" y="248" font-family="Inter, Arial, sans-serif" font-size="10" fill="#dc2626" text-anchor="end">any failure</text>
+</svg>

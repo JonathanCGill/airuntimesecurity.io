@@ -46,15 +46,7 @@ breaker = CircuitBreaker(
 
 ### Circuit States
 
-```
-    CLOSED ──(failures exceed threshold)──▶ OPEN
-       ▲                                      │
-       │                               (recovery timeout)
-       │                                      │
-       └──(recovery succeeds)──── HALF_OPEN ◀─┘
-                                      │
-                           (any failure)──▶ OPEN
-```
+![Circuit Breaker States](../images/sdk-circuit-breaker-states.svg)
 
 | State | AI Traffic | Description |
 |-------|-----------|-------------|

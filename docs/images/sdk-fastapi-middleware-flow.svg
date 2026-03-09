@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="520" viewBox="0 0 720 520">
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#475569"/>
+    </marker>
+    <marker id="a-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22c55e"/>
+    </marker>
+    <marker id="a-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#dc2626"/>
+    </marker>
+    <marker id="a-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6"/>
+    </marker>
+  </defs>
+
+  <rect width="720" height="520" fill="#f8fafc" rx="12"/>
+
+  <!-- Title -->
+  <text x="360" y="28" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">FastAPI Middleware Flow</text>
+
+  <!-- Column headers -->
+  <rect x="50" y="45" width="120" height="30" rx="6" fill="#e2e8f0"/>
+  <text x="110" y="65" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="bold" fill="#475569" text-anchor="middle">Client</text>
+
+  <rect x="260" y="45" width="180" height="30" rx="6" fill="#dbeafe"/>
+  <text x="350" y="65" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e40af" text-anchor="middle">AIRS Middleware</text>
+
+  <rect x="530" y="45" width="140" height="30" rx="6" fill="#e2e8f0"/>
+  <text x="600" y="65" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="bold" fill="#475569" text-anchor="middle">Your Handler</text>
+
+  <!-- Lifelines -->
+  <line x1="110" y1="75" x2="110" y2="490" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <line x1="350" y1="75" x2="350" y2="490" stroke="#93c5fd" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <line x1="600" y1="75" x2="600" y2="490" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4,4"/>
+
+  <!-- Step 1: POST request -->
+  <line x1="110" y1="105" x2="340" y2="105" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+  <text x="225" y="98" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#475569" text-anchor="middle">POST /ai/chat</text>
+
+  <!-- Step 2: Input guardrails -->
+  <rect x="275" y="120" width="150" height="36" rx="6" fill="#dcfce7" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="350" y="142" font-family="Inter, Arial, sans-serif" font-size="11" fill="#166534" text-anchor="middle">Input guardrails</text>
+
+  <!-- Step 2a: Block path -->
+  <line x1="275" y1="142" x2="120" y2="175" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#a-red)"/>
+  <rect x="130" y="165" width="100" height="22" rx="4" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
+  <text x="180" y="180" font-family="Inter, Arial, sans-serif" font-size="10" fill="#dc2626" text-anchor="middle">403 Blocked</text>
+  <text x="175" y="197" font-family="Inter, Arial, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">(if input blocked)</text>
+
+  <!-- Step 3: Forward to handler -->
+  <line x1="350" y1="215" x2="590" y2="215" stroke="#3b82f6" stroke-width="2" marker-end="url(#a-blue)"/>
+  <text x="470" y="208" font-family="Inter, Arial, sans-serif" font-size="11" fill="#3b82f6" text-anchor="middle">forward request</text>
+
+  <!-- Step 4: AI model processing -->
+  <rect x="540" y="225" width="120" height="36" rx="6" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="600" y="247" font-family="Inter, Arial, sans-serif" font-size="11" fill="#475569" text-anchor="middle">call AI model</text>
+
+  <!-- Step 5: Response back -->
+  <line x1="590" y1="275" x2="360" y2="275" stroke="#3b82f6" stroke-width="2" marker-end="url(#a-blue)"/>
+  <text x="470" y="268" font-family="Inter, Arial, sans-serif" font-size="11" fill="#3b82f6" text-anchor="middle">response</text>
+
+  <!-- Step 6: Output guardrails + judge -->
+  <rect x="275" y="290" width="150" height="36" rx="6" fill="#dcfce7" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="350" y="312" font-family="Inter, Arial, sans-serif" font-size="11" fill="#166534" text-anchor="middle">Output guardrails</text>
+
+  <rect x="275" y="332" width="150" height="36" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="350" y="354" font-family="Inter, Arial, sans-serif" font-size="11" fill="#92400e" text-anchor="middle">Judge (if sampled)</text>
+
+  <!-- Step 6a: Block path -->
+  <line x1="275" y1="350" x2="120" y2="390" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#a-red)"/>
+  <rect x="130" y="380" width="100" height="22" rx="4" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
+  <text x="180" y="395" font-family="Inter, Arial, sans-serif" font-size="10" fill="#dc2626" text-anchor="middle">403 Blocked</text>
+  <text x="175" y="412" font-family="Inter, Arial, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">(if output blocked)</text>
+
+  <!-- Step 7: Return response -->
+  <line x1="340" y1="440" x2="120" y2="440" stroke="#22c55e" stroke-width="2" marker-end="url(#a-green)"/>
+  <text x="225" y="433" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600" fill="#22c55e" text-anchor="middle">200 + AIRS headers</text>
+
+  <!-- Headers annotation -->
+  <rect x="400" y="450" width="270" height="52" rx="6" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="415" y="467" font-family="monospace" font-size="10" fill="#64748b">x-airs-request-id: a1b2c3</text>
+  <text x="415" y="481" font-family="monospace" font-size="10" fill="#64748b">x-airs-pace-state: primary</text>
+  <text x="415" y="495" font-family="monospace" font-size="10" fill="#64748b">x-airs-latency-ms: 2.3</text>
+</svg>

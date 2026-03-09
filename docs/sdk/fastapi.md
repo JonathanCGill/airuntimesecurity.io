@@ -35,27 +35,7 @@ That's it. All POST requests to `/ai/*`, `/chat/*`, and `/completion/*` are now 
 
 The middleware intercepts the request/response cycle:
 
-```
-Client                  Middleware                 Your Handler
-  │                        │                            │
-  ├── POST /ai/chat ──────▶│                            │
-  │                        ├── check input guardrails   │
-  │                        │   (block injection, PII)   │
-  │                        │                            │
-  │    ◀── 403 blocked ───┤   (if blocked)              │
-  │                        │                            │
-  │                        ├── forward request ─────────▶│
-  │                        │                            ├── call AI model
-  │                        │◀── response ───────────────┤
-  │                        │                            │
-  │                        ├── check output guardrails  │
-  │                        ├── run judge (if sampled)   │
-  │                        │                            │
-  │    ◀── 403 blocked ───┤   (if output blocked)       │
-  │                        │                            │
-  │    ◀── 200 + headers ─┤   (if passed)               │
-  │                        │                            │
-```
+![FastAPI Middleware Flow](../images/sdk-fastapi-middleware-flow.svg)
 
 ## Configuration
 
