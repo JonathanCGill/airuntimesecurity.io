@@ -32,6 +32,7 @@ The framework maps its controls to the standards you're already tracking:
 | **ISO 27001** | [ISO 27001 Alignment](../extensions/regulatory/iso-27001-alignment.md) | Extension of ISMS to AI-specific risks |
 | **NIST SP 800-218A** | [SP 800-218A Mapping](../infrastructure/mappings/nist-sp800-218a.md) | Secure AI development lifecycle |
 | **NIST CSF 2.0** | [CSF 2.0 Mapping](../infrastructure/mappings/csf-2.0.md) | Cybersecurity framework function alignment |
+| **NIST IR 8596** | [IR 8596 Alignment](../extensions/regulatory/nist-ir-8596-alignment.md) | Cyber AI Profile — all six CSF Functions for "Secure" focus area |
 | **OWASP LLM Top 10** | [OWASP Mapping](../infrastructure/mappings/owasp-llm-top10.md) | Full control mapping to all 10 risks |
 | **DORA** | Referenced in [MASO](../maso/) | Digital operational resilience for financial services |
 

@@ -14,6 +14,16 @@ This framework's risk tier classification and governance structure align with NI
 
 - [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
 
+### NIST IR 8596: Cybersecurity Framework Profile for Artificial Intelligence (Cyber AI Profile)
+
+Released December 2025 as a preliminary draft. Bridges the NIST Cybersecurity Framework (CSF) 2.0 with AI-specific considerations across three focus areas: securing AI systems, conducting AI-enabled cyber defence, and thwarting AI-enabled cyberattacks. Organised as six tables (one per CSF Function) with AI-specific considerations and priority ratings (1–3) for each subcategory. Developed by NIST's National Cybersecurity Center of Excellence (NCCoE) with input from 6,500+ contributors.
+
+This framework's infrastructure controls map to the "Secure" focus area across all six CSF Functions. The existing [CSF 2.0 mapping](infrastructure/mappings/csf-2.0.md) provides subcategory-level traceability, and the [IR 8596 alignment review](extensions/regulatory/nist-ir-8596-alignment.md) provides a full gap analysis. The framework extends beyond IR 8596's current scope in multi-agent security, operational resilience patterns, and agent-specific threat models.
+
+- [NIST IR 8596 Publication Page](https://csrc.nist.gov/pubs/ir/8596/iprd)
+- [NIST IR 8596 PDF](https://nvlpubs.nist.gov/nistpubs/ir/2025/NIST.IR.8596.iprd.pdf)
+- [NCCoE Cyber AI Profile Project](https://www.nccoe.nist.gov/projects/cyber-ai-profile)
+
 ### NIST AI 600-1: Generative AI Profile
 
 A companion to the AI RMF specifically addressing generative AI risks - data memorisation/leakage, confabulations (hallucinations), training data poisoning, and prompt injection. Published July 2024, developed pursuant to Executive Order 14110.
