@@ -174,15 +174,30 @@ For every control, document:
 - **Recovery requires chain verification.** Before returning from Contingency or Emergency, verify no poisoned data persists in any agent's memory, context, or RAG corpus.
 - **Test transitions before production.** If you have never activated your circuit breaker in a test, it does not work.
 
-## Step 6: Address Token Exhaustion
+## Step 6: Design for Token Exhaustion
 
-Token exhaustion is an operational control concern, not just a cost concern. Design for it:
+Token exhaustion is a **dual failure path** — the agent degrades and the Judge monitoring it degrades at the same time. This is a correlated failure that must be explicitly modeled in your PACE plan. See [Module 5: Emergent Risks](05-emergent-risks.md#operational-degradation-token-exhaustion-as-a-dual-failure-path) for the full risk analysis.
 
-- **Context rotation.** Periodically summarize and reset agent context to prevent attention dilution
-- **Summarization checkpoints.** At each handoff, produce a structured summary rather than forwarding raw context
-- **Session time-boxing.** Maximum execution duration per agent prevents unbounded context growth
-- **Budget monitoring.** Track token consumption per agent and alert when approaching thresholds
-- **Retry limits.** Cap retry attempts to prevent error-message accumulation that accelerates degradation
+### Prevention
+
+- [ ] **Context rotation strategy.** Define when and how agents checkpoint structured state and flush their context. Use typed fields (JSON schemas) for constraints and decisions — not free-text summaries — to prevent semantic drift during rotation.
+- [ ] **Input volume caps.** Limit data flowing into any single agent context. Force decomposition into smaller scoped tasks rather than unbounded accumulation.
+- [ ] **Retry caps.** Maximum retry attempts per agent (recommended: 3). If it cannot succeed, escalate — do not let it degrade further.
+- [ ] **Session time-boxing.** Maximum execution duration per agent prevents unbounded context growth.
+- [ ] **Judge context isolation.** The Judge manages its own context budget independently and evaluates in fresh or rotation-managed context.
+
+### Detection
+
+- [ ] **Token budget monitoring.** Track consumption per agent as a first-class metric. Alert at 70%, 85%, 95% thresholds.
+- [ ] **Quality regression signals.** Monitor for format violations, constraint drift, hallucination rate changes — leading indicators of context degradation.
+- [ ] **Judge budget monitoring.** If the Judge approaches its capacity, treat it as a detection-layer degradation event, not just an operational metric.
+
+### Response (Scaled to Tier)
+
+- [ ] **Tier 1:** Administrator warnings at thresholds. Recommend manual context rotation.
+- [ ] **Tier 2:** Fail-closed on affected agents at critical threshold. Automatic context rotation. If Judge is also at threshold, PACE P→A transition (tighten scope, human approval for writes).
+- [ ] **Tier 3:** Automatic PACE transition at critical threshold. Correlated agent + Judge exhaustion triggers Contingency minimum — two defence layers have degraded simultaneously.
+- [ ] **All tiers:** Exhaustion of both agent and Judge simultaneously is a correlated dual-layer failure. It must trigger a PACE transition, not just an alert.
 
 ## Step 7: Map to Your Orchestration Framework
 

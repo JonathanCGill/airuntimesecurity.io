@@ -66,30 +66,108 @@ Epistemic risks are the highest-priority gap addressed by MASO. They describe in
 
 **MASO response:** Hard role boundaries enforced through tool access control lists — not prompts. A critic physically has no write tools. An executor physically has no approval authority. Enforcement at infrastructure layer.
 
-## Operational Degradation: Token Exhaustion and Silent Failures
+## Operational Degradation: Token Exhaustion as a Dual Failure Path
 
-### Token Exhaustion as a Security Risk
+### The Risk: Agent Failure *and* Detection Failure Simultaneously
 
-As agents process more information, their context windows fill. This causes progressive degradation that creates security vulnerabilities:
+Token exhaustion is not merely a performance or cost concern. It is a **dual failure path** — the agent degrades *and* the mechanisms designed to detect that degradation degrade at the same time. This is exactly the kind of correlated failure that PACE is designed to catch, but only if it is explicitly modeled as a risk.
 
-**Attention dilution.** Safety instructions in the system prompt compete with thousands of tokens of accumulated content. As context fills, the model attends less reliably to its constraints. Prompt-based guardrails effectively weaken without anything adversarial happening.
+When an agent's context window fills, four things degrade progressively:
 
-**Lost-in-the-middle effect.** Models empirically recall information at the beginning and end of context better than the middle. Critical constraints or intermediate reasoning buried in a long context can functionally disappear.
+**1. Attention dilution.** Safety instructions in the system prompt compete with thousands of tokens of accumulated content. As context fills, the model attends less reliably to its constraints. Prompt-based guardrails effectively weaken without anything adversarial happening.
 
-**Increased hallucination rate.** Noisy, conflicting, or redundant context increases the likelihood of plausible-sounding but unsupported outputs — which then propagate through the agent chain.
+**2. Lost-in-the-middle effect.** Models empirically recall information at the beginning and end of context better than the middle. Critical constraints or intermediate reasoning buried in a long context can functionally disappear.
 
-**Instruction-following degradation.** The model becomes less reliable at following structured output formats, respecting tool schemas, and honoring role boundaries. This is where agents "drift" from their roles.
+**3. Increased hallucination rate.** Noisy, conflicting, or redundant context increases the likelihood of plausible-sounding but unsupported outputs — which then propagate through the agent chain.
 
-**Why this compounds in multi-agent systems:**
+**4. Instruction-following degradation.** The model becomes less reliable at following structured output formats, respecting tool schemas, and honoring role boundaries. This is where agents silently "drift" from their roles.
 
-- Each agent burns tokens independently — degradation is invisible from the orchestrator's perspective
-- Retry loops accelerate exhaustion: each failed attempt consumes more context, making the agent *worse* at each retry
-- The LLM-as-Judge is also vulnerable — a degraded Judge reviewing a degraded agent is a compounding failure
-- Token exhaustion is gradual, not binary — behavioral baselines may not catch it because outputs still look superficially reasonable
+### Why This Is a Correlated Failure in Multi-Agent Systems
 
-**Security implication:** As system prompt influence weakens, adversarial content injected through tool outputs or RAG results has proportionally *more* influence. The agent's defenses weaken as its context fills.
+The compounding dynamics make token exhaustion especially dangerous:
 
-**MASO response:** This maps to execution control (time-boxing, blast radius caps), observability (behavioral drift detection), and the circuit breaker. Token budget management should be treated as an operational control, not just a cost concern. Context rotation strategies, summarization checkpoints, and session time-boxing all help prevent exhaustion-driven degradation.
+- **Each agent burns tokens independently.** The orchestrator cannot see that a sub-agent's context is 90% full. Degradation is invisible from the outside until it produces a bad output.
+- **Retry loops accelerate exhaustion.** Each failed attempt consumes more context — error messages, failed tool outputs, correction attempts all accumulate. The agent gets *worse* at solving the problem with each retry, not better.
+- **The LLM-as-Judge is also vulnerable.** If the Judge is evaluating long chains of agent output, its own context fills. A degraded Judge reviewing a degraded agent means **two defence layers fail simultaneously** — the agent produces lower-quality output, and the Judge is less likely to catch it. This is a direct path to an undetected failure.
+- **Token exhaustion is gradual, not binary.** There is no crash, no error code, no circuit breaker trigger. The agent's outputs still *look* reasonable. Behavioral baselines may not flag a slow quality decline until damage is done.
+- **Adversarial exploitation becomes easier.** As system prompt influence weakens under context pressure, adversarial content injected through tool outputs or RAG results has proportionally *more* influence on the model's behavior. The agent's immune system weakens as it gets tired.
+
+### Controls: Prevent, Detect, Respond
+
+Token exhaustion requires controls at all three stages — not just monitoring.
+
+#### Prevention: Token Budget Management
+
+| Control | Description | Tier |
+|---------|-------------|------|
+| **Context rotation** | Periodically checkpoint essential structured state (goal, constraints, accumulated decisions), flush the context, and resume with a clean window. The agent does not lose its work — it gets a fresh attention budget. | Tier 2+ |
+| **Input volume limiting** | Cap the volume of data flowing into any single agent context. Force task decomposition into smaller scoped sub-tasks rather than letting one agent accumulate unbounded context. | Tier 1+ |
+| **Summarization checkpoints** | At each agent handoff, produce a structured summary rather than forwarding raw context. Use typed fields (JSON schemas) for constraints and decisions to resist semantic drift during summarization. | Tier 2+ |
+| **Retry caps** | Limit retry attempts per agent to prevent error-message accumulation. If an agent cannot succeed in N attempts, escalate — do not let it keep trying with an increasingly degraded context. | Tier 1+ |
+| **Judge context isolation** | The Judge must manage its own context budget independently. It should evaluate agent outputs in fresh or rotation-managed context — never by accumulating the full history of everything it has reviewed. | Tier 2+ |
+
+#### Detection: Token Budget Monitoring
+
+| Control | Description | Tier |
+|---------|-------------|------|
+| **Threshold alerts** | Monitor token consumption per agent as a first-class operational metric (like CPU or memory). Alert operators at configurable thresholds (e.g., 70%, 85%, 95% of context capacity). | Tier 1+ |
+| **Quality regression signals** | Monitor for symptoms of context degradation: increased format violations, constraint drift, hallucination rate changes, instruction-following failures. These are leading indicators before the context is fully exhausted. | Tier 2+ |
+| **Judge budget monitoring** | Track the Judge's context consumption independently. If the Judge approaches its own capacity threshold, this is a **detection-layer degradation** event — treat it as a PACE trigger, not just an operational metric. | Tier 2+ |
+
+#### Response: PACE-Integrated Escalation
+
+This is where token exhaustion connects directly to the PACE model. The response must be **scaled to tier and risk**, not one-size-fits-all:
+
+| Threshold | Tier 1 Response | Tier 2 Response | Tier 3 Response |
+|-----------|----------------|-----------------|-----------------|
+| **Warning** (e.g., 70%) | Log alert. Notify administrator. | Log alert. Initiate context rotation for affected agent. Notify operator. | Automated context rotation. Notify operator. Quality regression monitoring tightened. |
+| **Critical** (e.g., 85%) | Log alert. Notify administrator. Recommend manual context rotation. | **Fail-closed on the affected agent.** Pause agent, rotate context, resume. If Judge is also at threshold, transition P→A (tighten scope, require human approval for writes). | **Automatic P→A transition.** Affected agent paused and rotated. Backup agent activated. If Judge is at threshold, transition to P→C (human-in-the-loop for all decisions). |
+| **Exhaustion** (e.g., 95%+) | Fail-closed. Agent paused until administrator intervenes. | **P→A or A→C transition.** Agent terminated and restarted with clean context and checkpointed state. Human approves all pending actions. | **A→C or C→E transition** depending on blast radius. If both agent and Judge are exhausted simultaneously, treat as correlated failure — Contingency minimum. |
+
+**The key principle:** When the agent *and* the Judge both approach exhaustion thresholds, this is a **correlated dual-layer failure**. It must trigger a PACE transition, not just an alert. The appropriate response depends on tier:
+
+- **Tier 1:** Administrator warning is sufficient — human oversight is already in the loop for all actions.
+- **Tier 2:** Fail-closed on affected agents. Automatic context rotation. If rotation is not possible, transition to Alternate with tightened human oversight.
+- **Tier 3:** Automatic PACE transition. Correlated exhaustion of agent and Judge at Tier 3 is a Contingency-level event — two independent defence layers have degraded simultaneously.
+
+### Context Rotation: The Primary Mitigation
+
+Context rotation is the core operational response to token exhaustion. It preserves the agent's work while restoring its cognitive capacity:
+
+```
+  Agent operating normally
+        │
+        ▼
+  Token budget threshold reached
+        │
+        ▼
+  Checkpoint structured state:
+  ┌─────────────────────────────┐
+  │ • Original task/goal        │
+  │ • Active constraints        │
+  │ • Decisions made so far     │
+  │ • Current step in plan      │
+  │ • Uncertainty metadata      │
+  │ • Assumption register       │
+  └─────────────────────────────┘
+        │
+        ▼
+  Flush context window
+        │
+        ▼
+  Resume with:
+  • System prompt (full strength)
+  • Checkpointed structured state
+  • Fresh attention budget
+```
+
+**Critical design consideration:** Summarization during context rotation introduces its own risk — semantic drift (EP-05). This is why checkpointed state must use **structured fields** (JSON schemas, typed constraints), not free-text summaries. "Must not exceed 5%" stored as `{constraint: "max_percentage", value: 5, type: "hard_limit"}` survives rotation intact. "Keep the percentage low" does not.
+
+### Why This Matters for Solution Design
+
+Token exhaustion is not an edge case. It is an **expected operational condition** for any long-running or complex multi-agent system. If your agents process large documents, interact over many turns, or perform multi-step research, they *will* approach context limits. The question is not whether it will happen, but whether your system degrades gracefully when it does.
+
+Treat token budget like any other resource constraint — monitor it, set thresholds, define responses, and test your rotation and failover paths.
 
 ### Partial Failure Masquerading as Success (OP-03)
 

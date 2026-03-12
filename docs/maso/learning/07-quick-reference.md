@@ -24,7 +24,7 @@
 | Structured data over natural language | Constraints, uncertainty, provenance, and assumptions travel as typed fields, not prose. |
 | The Judge evaluates the aggregate | Multi-step plans are reviewed as a whole, not just individual outputs. |
 | Blast radius caps are infrastructure | Maximum impact limits are enforced by the platform, not by agent judgment. |
-| Token exhaustion is a security risk | Context pressure weakens prompt-based defenses and increases hallucination rates. Manage it as an operational control. |
+| Token exhaustion is a dual failure path | Context pressure degrades the agent *and* the Judge simultaneously. This correlated failure must trigger PACE transitions, not just alerts. |
 | Observability is not optional | If you cannot explain what happened and why, you cannot govern the system. |
 | Test your fallbacks | A PACE plan that has not been tested is a plan that will not work. |
 
@@ -130,11 +130,21 @@ Use this when designing a new multi-agent system or assessing an existing one.
 - [ ] Self-referential evidence prohibited
 - [ ] At least one challenger/adversarial agent for high-consequence decisions
 
+### Token Exhaustion Controls
+- [ ] Token budget monitored per agent as a first-class operational metric
+- [ ] Alert thresholds defined (warning, critical, exhaustion) per tier
+- [ ] Context rotation strategy: checkpoint structured state, flush, resume
+- [ ] Checkpointed state uses typed fields, not free-text summaries
+- [ ] Retry caps per agent to prevent error-accumulation degradation
+- [ ] Judge context managed independently from task agents
+- [ ] Correlated agent + Judge exhaustion defined as a PACE trigger
+- [ ] Tier 2+: fail-closed on affected agent at critical threshold
+- [ ] Tier 3: automatic PACE transition at critical threshold
+
 ### Operational Resilience
 - [ ] PACE transitions defined for every control
 - [ ] Fail posture (open/closed) documented per control per tier
 - [ ] Non-AI fallback path exists and is tested
-- [ ] Token budget management and context rotation strategies
 - [ ] Recovery procedures include chain verification
 
 ### Observability & Governance
