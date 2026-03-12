@@ -120,6 +120,7 @@ img[src$=".svg"] {
 .home-paths {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  align-items: start;
   gap: 1.5rem;
   margin: 2rem 0 1rem;
 }
@@ -141,12 +142,12 @@ img[src$=".svg"] {
 
 .home-path p:last-of-type {
   margin-bottom: 0.5rem;
-  flex-grow: 1;
 }
 
 .home-path .md-button {
   margin-top: auto;
   align-self: flex-start;
+  white-space: nowrap;
 }
 
 @media (max-width: 768px) {
