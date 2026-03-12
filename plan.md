@@ -3,7 +3,7 @@
 ## Summary
 
 Swap the two domains so that:
-- **This site** (AI-RS framework docs) uses `airuntimesecurity.io` (currently `.co.za`)
+- **This site** (AIRS framework docs) uses `airuntimesecurity.io` (currently `.co.za`)
 - **Training/learning site** uses `airuntimesecurity.co.za` (currently `.io`)
 
 ## Files to change

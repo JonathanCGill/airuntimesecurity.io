@@ -1,5 +1,5 @@
 ---
-description: "AI-RS framework guide for ML engineers and AI developers — concrete implementation patterns, architecture placement, and testing approaches for AI security controls."
+description: "AIRS framework guide for ML engineers and AI developers — concrete implementation patterns, architecture placement, and testing approaches for AI security controls."
 ---
 
 # AI Engineers

@@ -1,25 +1,25 @@
-# AI-RS Python SDK
+# AIRS Python SDK
 
 **Turn the framework into running code.**
 
-The AI-RS Python SDK implements the three-layer security architecture as a drop-in library for Python AI applications. Instead of reading about controls, you can `pip install` them.
+The AIRS Python SDK implements the three-layer security architecture as a drop-in library for Python AI applications. Instead of reading about controls, you can `pip install` them.
 
 ## Bring Your Own Model
 
 The SDK is **model-agnostic**. It does not call AI models for you — it wraps security controls *around* your existing model calls. You continue using whatever model, provider, or framework you already have:
 
 ```python
-# 1. AI-RS checks the input
+# 1. AIRS checks the input
 input_result = await pipeline.evaluate_input(request)
 
 # 2. You call YOUR model — OpenAI, Anthropic, Bedrock, Ollama, local, anything
 ai_output = await your_model(request.input_text)
 
-# 3. AI-RS checks the output
+# 3. AIRS checks the output
 output_result = await pipeline.evaluate_output(request, response)
 ```
 
-AI-RS only sees the text going in and the text coming out. It doesn't know or care which model you're using, how you're calling it, or what framework it runs on. This means it works with:
+AIRS only sees the text going in and the text coming out. It doesn't know or care which model you're using, how you're calling it, or what framework it runs on. This means it works with:
 
 - **Any model provider** — OpenAI, Anthropic, Google, Mistral, Cohere, local models
 - **Any framework** — LangChain, LlamaIndex, Haystack, raw API calls
@@ -108,7 +108,7 @@ asyncio.run(main())
 
 ## Model Integration Examples
 
-The quick start above uses a hardcoded string in place of a real model call. Here's how to wire AI-RS into real model providers.
+The quick start above uses a hardcoded string in place of a real model call. Here's how to wire AIRS into real model providers.
 
 ### Anthropic (Claude)
 
@@ -135,7 +135,7 @@ async def ask_claude(user_input: str) -> str:
         pace=PACEController(),
     )
 
-    # --- Step 1: AI-RS checks the input ---
+    # --- Step 1: AIRS checks the input ---
     request = AIRequest(input_text=user_input, model="claude-sonnet-4-6")
     input_result = await pipeline.evaluate_input(request)
 
@@ -150,7 +150,7 @@ async def ask_claude(user_input: str) -> str:
     )
     ai_output = message.content[0].text
 
-    # --- Step 3: AI-RS checks the output ---
+    # --- Step 3: AIRS checks the output ---
     response = AIResponse(request_id=request.request_id, output_text=ai_output)
     output_result = await pipeline.evaluate_output(request, response)
 
@@ -186,7 +186,7 @@ async def ask_gpt(user_input: str) -> str:
         pace=PACEController(),
     )
 
-    # --- Step 1: AI-RS checks the input ---
+    # --- Step 1: AIRS checks the input ---
     request = AIRequest(input_text=user_input, model="gpt-4o")
     input_result = await pipeline.evaluate_input(request)
 
@@ -200,7 +200,7 @@ async def ask_gpt(user_input: str) -> str:
     )
     ai_output = completion.choices[0].message.content
 
-    # --- Step 3: AI-RS checks the output ---
+    # --- Step 3: AIRS checks the output ---
     response = AIResponse(request_id=request.request_id, output_text=ai_output)
     output_result = await pipeline.evaluate_output(request, response)
 
@@ -225,7 +225,7 @@ async def secured_call(
     model_fn: Callable[[str], Awaitable[str]],
     model_name: str = "",
 ) -> str:
-    """Wrap any async model call with AI-RS security checks."""
+    """Wrap any async model call with AIRS security checks."""
     request = AIRequest(input_text=user_input, model=model_name)
     input_result = await pipeline.evaluate_input(request)
     if not input_result.allowed:
@@ -296,7 +296,7 @@ airs assess --json
 
 ## Architecture
 
-![AI-RS Security Pipeline](../images/sdk-pipeline-architecture.svg)
+![AIRS Security Pipeline](../images/sdk-pipeline-architecture.svg)
 
 ## Project Structure
 

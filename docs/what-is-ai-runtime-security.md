@@ -1,11 +1,11 @@
 ---
 title: What is AI Runtime Security?
-description: "AI Runtime Security (AI-RS) is the discipline of controlling and observing AI system behaviour during live operation — definition, scope, core controls, and relationship to existing security domains."
+description: "AI Runtime Security (AIRS) is the discipline of controlling and observing AI system behaviour during live operation — definition, scope, core controls, and relationship to existing security domains."
 ---
 
 # What is AI Runtime Security?
 
-**AI Runtime Security (AI-RS)** is the discipline of controlling and observing AI system behaviour during live operation, rather than relying solely on design-time testing or model evaluation.
+**AI Runtime Security (AIRS)** is the discipline of controlling and observing AI system behaviour during live operation, rather than relying solely on design-time testing or model evaluation.
 
 It addresses a gap that existing security disciplines do not cover: the period between deployment and decommission, when AI systems interact with real users, real data, and real business processes — and when their behaviour can diverge from what was tested, expected, or authorised.
 
@@ -47,7 +47,7 @@ Each layer operates independently. No single failure compromises the system.
 
 AI Runtime Security does not replace existing security disciplines. It extends them into a domain they were not designed to cover.
 
-| Existing discipline | What it secures | Where AI-RS extends it |
+| Existing discipline | What it secures | Where AIRS extends it |
 |--------------------|----------------|----------------------|
 | Application Security | Code, APIs, web applications | AI-specific input/output validation, prompt injection defence |
 | Network Security | Traffic, segmentation, perimeters | Agent-to-agent communication, tool-call routing |
@@ -64,7 +64,7 @@ Frameworks get copied. Categories get cited.
 
 AI Runtime Security is not a single product, vendor capability, or proprietary methodology. It is a field of practice that any organisation deploying AI systems in production needs to address.
 
-The [AI-RS Framework](ARCHITECTURE.md) is a reference architecture for this discipline — one implementation model that provides controls, patterns, and operational guidance. But the discipline itself is broader than any single framework. It encompasses:
+The [AIRS Framework](ARCHITECTURE.md) is a reference architecture for this discipline — one implementation model that provides controls, patterns, and operational guidance. But the discipline itself is broader than any single framework. It encompasses:
 
 - The [Foundation Framework](foundations/) for single-agent deployments (80+ controls)
 - [Multi-Agent Security Operations (MASO)](maso/) for autonomous agent coordination (128 controls)
@@ -86,4 +86,4 @@ AI Runtime Security maps to established regulatory and standards frameworks:
 
 ---
 
-*[Jonathan C. Gill](https://www.linkedin.com/in/jonathancgill/) is a contributor to the AI Runtime Security discipline through the AI-RS Framework at [airuntimesecurity.io](https://airuntimesecurity.io).*
+*[Jonathan C. Gill](https://www.linkedin.com/in/jonathancgill/) is a contributor to the AI Runtime Security discipline through the AIRS Framework at [airuntimesecurity.io](https://airuntimesecurity.io).*

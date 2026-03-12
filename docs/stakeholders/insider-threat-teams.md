@@ -1,5 +1,5 @@
 ---
-description: "AI-RS framework guide for insider risk analysts — extending UEBA and behavioural analytics programmes to monitor AI agent behaviour as non-human entities."
+description: "AIRS framework guide for insider risk analysts — extending UEBA and behavioural analytics programmes to monitor AI agent behaviour as non-human entities."
 ---
 
 # Insider Threat Teams

@@ -1,6 +1,6 @@
 # Security Pipeline
 
-The `SecurityPipeline` orchestrates all three layers into a single evaluation flow. It is the main entry point for integrating AI-RS into your application.
+The `SecurityPipeline` orchestrates all three layers into a single evaluation flow. It is the main entry point for integrating AIRS into your application.
 
 ## Building a Pipeline
 
@@ -33,7 +33,7 @@ pipeline = SecurityPipeline(
 
 ## Evaluation Flow
 
-The pipeline does **not** call your AI model. It provides two methods — `evaluate_input()` and `evaluate_output()` — that you call *around* your own model call. This keeps AI-RS model-agnostic: it works with any provider, framework, or architecture.
+The pipeline does **not** call your AI model. It provides two methods — `evaluate_input()` and `evaluate_output()` — that you call *around* your own model call. This keeps AIRS model-agnostic: it works with any provider, framework, or architecture.
 
 ```python
 from airs.core.models import AIRequest, AIResponse

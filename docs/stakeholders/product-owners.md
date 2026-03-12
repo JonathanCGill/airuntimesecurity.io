@@ -1,5 +1,5 @@
 ---
-description: "AI-RS framework guide for product managers — what AI controls cost, what they prevent, and how to ship AI features without security blocking delivery."
+description: "AIRS framework guide for product managers — what AI controls cost, what they prevent, and how to ship AI features without security blocking delivery."
 ---
 
 # Product Owners

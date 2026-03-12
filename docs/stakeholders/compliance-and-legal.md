@@ -1,5 +1,5 @@
 ---
-description: "AI-RS framework guide for compliance officers and legal counsel — regulatory mapping, evidence generation, and audit-ready documentation for AI systems."
+description: "AIRS framework guide for compliance officers and legal counsel — regulatory mapping, evidence generation, and audit-ready documentation for AI systems."
 ---
 
 # Compliance & Legal

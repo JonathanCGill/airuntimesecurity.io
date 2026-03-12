@@ -1,5 +1,5 @@
 ---
-description: "AI-RS framework guide for CROs and risk managers — quantifying AI risk, setting appetite, and demonstrating control effectiveness to the board."
+description: "AIRS framework guide for CROs and risk managers — quantifying AI risk, setting appetite, and demonstrating control effectiveness to the board."
 ---
 
 # Risk & Governance

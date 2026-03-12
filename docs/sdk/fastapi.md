@@ -1,6 +1,6 @@
 # FastAPI Integration
 
-Drop-in middleware that protects your AI endpoints with the full AI-RS security pipeline. No changes to your route handlers required. You bring your own model — the middleware wraps security checks around your existing endpoint logic.
+Drop-in middleware that protects your AI endpoints with the full AIRS security pipeline. No changes to your route handlers required. You bring your own model — the middleware wraps security checks around your existing endpoint logic.
 
 ## Install
 
@@ -78,7 +78,7 @@ The middleware adds headers to every protected response:
 |--------|---------|-------------|
 | `x-airs-request-id` | `a1b2c3d4e5f6` | Unique request ID for audit trail |
 | `x-airs-pace-state` | `primary` | Current PACE state |
-| `x-airs-latency-ms` | `2.3` | Total AI-RS evaluation time |
+| `x-airs-latency-ms` | `2.3` | Total AIRS evaluation time |
 | `x-airs-blocked` | `true` | Present only if request was blocked |
 
 ## Blocked Response Format
@@ -118,7 +118,7 @@ pipeline = SecurityPipeline(
     pace=PACEController(),
 )
 
-app = FastAPI(title="AI-RS Protected AI Service")
+app = FastAPI(title="AIRS Protected AI Service")
 app.add_middleware(AIRSMiddleware, pipeline=pipeline)
 
 
@@ -191,12 +191,12 @@ curl -X POST http://localhost:8000/airs/circuit-breaker/trip
 
 ## Non-Protected Routes
 
-Routes that don't match `protected_paths` are passed through without any AI-RS evaluation:
+Routes that don't match `protected_paths` are passed through without any AIRS evaluation:
 
 ```python
 @app.get("/health")
 async def health():
-    return {"status": "ok"}  # Not intercepted by AI-RS
+    return {"status": "ok"}  # Not intercepted by AIRS
 
 @app.get("/ai/status")  # Matches /ai prefix but is GET, not POST
 async def ai_status():

@@ -1,6 +1,6 @@
 ---
-title: AI Runtime Security (AI-RS)
-description: "AI Runtime Security (AI-RS) is the framework for monitoring, controlling, and constraining AI system behaviour in production environments. The AI-RS Framework provides reference architecture and controls for implementing runtime AI security."
+title: AI Runtime Security (AIRS)
+description: "AI Runtime Security (AIRS) is the framework for monitoring, controlling, and constraining AI system behaviour in production environments. The AIRS Framework provides reference architecture and controls for implementing runtime AI security."
 template: home.html
 hide:
   - toc
@@ -9,7 +9,7 @@ hide:
 comments: false
 ---
 
-# AI Runtime Security (AI-RS)
+# AI Runtime Security (AIRS)
 
 <div class="home-subtitle" markdown>
 
@@ -50,7 +50,7 @@ Prompt engineering is fragile. Input and output filters catch known patterns but
 
 In every other domain of enterprise security (network, identity, data) we layer controls. We assume any single control will fail and we design accordingly. AI security has not caught up. The industry is still treating deployment as the finish line when it is actually where the risk begins.
 
-### The AI-RS approach
+### The AIRS approach
 
 AI Runtime Security applies defence-in-depth at the point of execution. Four core controls, each independent, each compensating for the others:
 
@@ -68,7 +68,7 @@ Each layer operates independently. If guardrails miss something, the judge catch
 
 Banking supervisors, data protection authorities, and AI regulators are all converging on the same expectation: you must be able to demonstrate that your AI systems behave within defined boundaries, and that you have controls to detect and respond when they do not.
 
-The AI-RS Framework maps directly to EU AI Act requirements for high-risk AI systems, NIST AI RMF functions, ISO 42001 controls, and sector-specific expectations from banking regulators. It is not a compliance checkbox. It is an operational architecture that produces the evidence compliance requires. The controls are the compliance. That is the point.
+The AIRS Framework maps directly to EU AI Act requirements for high-risk AI systems, NIST AI RMF functions, ISO 42001 controls, and sector-specific expectations from banking regulators. It is not a compliance checkbox. It is an operational architecture that produces the evidence compliance requires. The controls are the compliance. That is the point.
 
 ### Where to go from here
 

@@ -16,7 +16,7 @@ He develops threat models, risk frameworks, and practical mitigations for AI sys
 
 AI security governance at enterprise scale: designing regulator-ready AI security control frameworks, assessing generative and agentic AI solutions, and defining security guardrails for cloud-native AI platforms. Translating complex technical risk into actionable guidance for engineering teams, regulators, and executive leadership.
 
-He is a contributor to the [AI Runtime Security (AI-RS)](what-is-ai-runtime-security.md) discipline — the practice of monitoring, controlling, and constraining AI system behaviour in production environments. The AI-RS Framework is a reference architecture for this discipline: practical, open-source, and built for regulated enterprises that need more than pre-deployment evaluation.
+He is a contributor to the [AI Runtime Security (AIRS)](what-is-ai-runtime-security.md) discipline — the practice of monitoring, controlling, and constraining AI system behaviour in production environments. The AIRS Framework is a reference architecture for this discipline: practical, open-source, and built for regulated enterprises that need more than pre-deployment evaluation.
 
 ## Expertise
 

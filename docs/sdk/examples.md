@@ -1,6 +1,6 @@
 # Examples
 
-Complete working examples that demonstrate the AI-RS SDK in action.
+Complete working examples that demonstrate the AIRS SDK in action.
 
 ## Quick Start — All Layers in 60 Lines
 
@@ -88,7 +88,7 @@ Circuit breaker blocked: True
 
 ## FastAPI App — Protected AI Service
 
-A complete FastAPI application with AI-RS middleware and operational endpoints:
+A complete FastAPI application with AIRS middleware and operational endpoints:
 
 ```bash
 pip install ".[fastapi]"

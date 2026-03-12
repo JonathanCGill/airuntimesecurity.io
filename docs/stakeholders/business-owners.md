@@ -1,5 +1,5 @@
 ---
-description: "AI-RS framework guide for business unit leaders — managing AI risk across product lines when agents are operational and the risk is yours."
+description: "AIRS framework guide for business unit leaders — managing AI risk across product lines when agents are operational and the risk is yours."
 ---
 
 # Business Owners
