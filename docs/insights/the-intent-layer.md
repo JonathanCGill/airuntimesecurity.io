@@ -4,6 +4,8 @@
 
 [![Multi-Agent Security Architecture](../images/multi-agent-security-architecture.svg)](../images/multi-agent-security-architecture.svg)
 
+**See also:** [MASO Objective Intent](../maso/controls/objective-intent.md) — extends the intent concept from workflow-level post-execution evaluation to per-agent, per-judge, and per-workflow behavioral contracts with tactical, strategic, and judge-monitoring evaluation levels.
+
 ## The Gap
 
 Consider a multi-agent financial analysis workflow:
@@ -35,7 +37,7 @@ This is not a vague objective. It is a structured specification:
 - **Constraints:** "Use only data from the last 30 days. Do not recommend actions exceeding $Y in exposure. Flag uncertainty above threshold Z."
 - **Success criteria:** "The recommendation must be traceable to specific data points. Sentiment claims must cite sources. Risk scores must be internally consistent."
 
-The research calls this an **Intent Specification (ISpec)** - a formal schema that encodes the deployer's intent including ethical rules, environmental limits, and performance objectives. The Verifiability-First Agents framework (Xu, Hu, and Lin, 2024) treats this as "the constitution of an agent" - every decision and tool call is compared against it.
+The research calls this an **Intent Specification (ISpec)** - a formal schema that encodes the deployer's intent including ethical rules, environmental limits, and performance objectives. The Verifiability-First Agents framework (Xu, Hu, and Lin, 2024) treats this as "the constitution of an agent" - every decision and tool call is compared against it. The [MASO Objective Intent](../maso/controls/objective-intent.md) domain operationalises this concept as the **Objective Intent Specification (OISpec)** — a typed, version-controlled schema attached to every agent, judge, and workflow, with evaluation at tactical (single agent), strategic (aggregate), and judge-monitoring levels.
 
 **Why this matters:** Without a declared intent, a post-execution judge has no reference point. It can evaluate coherence and consistency, but it can't evaluate *correctness* because it doesn't know what "correct" was supposed to look like. The intent declaration gives the judge a target to compare against.
 

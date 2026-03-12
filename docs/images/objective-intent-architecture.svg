@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 820" font-family="'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <marker id="arrowDown" markerWidth="10" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#546e7a"/>
+    </marker>
+    <marker id="arrowUp" markerWidth="10" markerHeight="7" refX="5" refY="3.5" orient="auto-start-reverse">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2e7d32"/>
+    </marker>
+    <marker id="arrowLateral" markerWidth="10" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e65100"/>
+    </marker>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fafbfc"/>
+      <stop offset="100%" stop-color="#f0f2f5"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1100" height="820" rx="12" fill="url(#bgGrad)" stroke="#d0d7de" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="550" y="38" text-anchor="middle" font-size="18" font-weight="700" fill="#1a1a2e">Objective Intent Evaluation Architecture</text>
+  <text x="550" y="58" text-anchor="middle" font-size="12" fill="#546e7a">Tactical (one) → Strategic (whole) → Judge monitoring (lateral)</text>
+
+  <!-- === LEVEL LABELS === -->
+  <!-- Strategic level label -->
+  <rect x="20" y="78" width="120" height="28" rx="4" fill="#1565c0" opacity="0.9"/>
+  <text x="80" y="97" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">STRATEGIC</text>
+
+  <!-- Tactical level label -->
+  <rect x="20" y="310" width="120" height="28" rx="4" fill="#2e7d32" opacity="0.9"/>
+  <text x="80" y="329" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">TACTICAL</text>
+
+  <!-- Judge monitoring label -->
+  <rect x="20" y="580" width="120" height="28" rx="4" fill="#e65100" opacity="0.9"/>
+  <text x="80" y="599" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">JUDGE MONITOR</text>
+
+  <!-- ========== STRATEGIC LEVEL ========== -->
+  <!-- Workflow OISpec -->
+  <rect x="350" y="80" width="400" height="80" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+  <text x="550" y="105" text-anchor="middle" font-size="13" font-weight="700" fill="#1565c0">Workflow Objective Intent (OISpec)</text>
+  <text x="550" y="122" text-anchor="middle" font-size="10.5" fill="#37474f">"Produce accurate risk assessment for portfolio X</text>
+  <text x="550" y="136" text-anchor="middle" font-size="10.5" fill="#37474f">using market data and news sentiment"</text>
+  <text x="550" y="152" text-anchor="middle" font-size="9.5" fill="#78909c">Aggregate success/failure criteria · Agent intent references</text>
+
+  <!-- Strategic Evaluation Agent -->
+  <rect x="350" y="195" width="400" height="65" rx="8" fill="#bbdefb" stroke="#1565c0" stroke-width="2"/>
+  <text x="550" y="218" text-anchor="middle" font-size="12" font-weight="700" fill="#0d47a1">Strategic Evaluation Agent</text>
+  <text x="550" y="235" text-anchor="middle" font-size="10" fill="#37474f">Assesses aggregate compliance against workflow OISpec</text>
+  <text x="550" y="250" text-anchor="middle" font-size="9.5" fill="#78909c">Catches emergent failures · Intent gaps · Conflicting actions</text>
+
+  <!-- Arrow: Workflow OISpec → Strategic Evaluator -->
+  <line x1="550" y1="160" x2="550" y2="195" stroke="#546e7a" stroke-width="1.5" marker-end="url(#arrowDown)"/>
+
+  <!-- ========== TACTICAL LEVEL ========== -->
+  <!-- Agent A -->
+  <rect x="160" y="310" width="220" height="95" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+  <text x="270" y="332" text-anchor="middle" font-size="11" font-weight="700" fill="#1b5e20">Agent A — Data Retriever</text>
+  <rect x="172" y="340" width="196" height="56" rx="4" fill="#fff" stroke="#c8e6c9" stroke-width="1"/>
+  <text x="270" y="356" text-anchor="middle" font-size="9.5" font-weight="600" fill="#2e7d32">OISpec:</text>
+  <text x="270" y="370" text-anchor="middle" font-size="9" fill="#37474f">"Retrieve market data for last 30 days"</text>
+  <text x="270" y="383" text-anchor="middle" font-size="8.5" fill="#78909c">Tools: [market-data-api] · Scope: Portfolio X</text>
+
+  <!-- Agent B -->
+  <rect x="440" y="310" width="220" height="95" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+  <text x="550" y="332" text-anchor="middle" font-size="11" font-weight="700" fill="#1b5e20">Agent B — Sentiment Analyst</text>
+  <rect x="452" y="340" width="196" height="56" rx="4" fill="#fff" stroke="#c8e6c9" stroke-width="1"/>
+  <text x="550" y="356" text-anchor="middle" font-size="9.5" font-weight="600" fill="#2e7d32">OISpec:</text>
+  <text x="550" y="370" text-anchor="middle" font-size="9" fill="#37474f">"Analyse news sentiment for portfolio X"</text>
+  <text x="550" y="383" text-anchor="middle" font-size="8.5" fill="#78909c">Tools: [news-api] · Cite sources · Flag uncertainty</text>
+
+  <!-- Agent C -->
+  <rect x="720" y="310" width="220" height="95" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+  <text x="830" y="332" text-anchor="middle" font-size="11" font-weight="700" fill="#1b5e20">Agent C — Risk Combiner</text>
+  <rect x="732" y="340" width="196" height="56" rx="4" fill="#fff" stroke="#c8e6c9" stroke-width="1"/>
+  <text x="830" y="356" text-anchor="middle" font-size="9.5" font-weight="600" fill="#2e7d32">OISpec:</text>
+  <text x="830" y="370" text-anchor="middle" font-size="9" fill="#37474f">"Combine into risk score with full tracing"</text>
+  <text x="830" y="383" text-anchor="middle" font-size="8.5" fill="#78909c">Preserve uncertainty · No trading instructions</text>
+
+  <!-- Arrows: Strategic Evaluator → Agents -->
+  <line x1="450" y1="260" x2="300" y2="308" stroke="#546e7a" stroke-width="1.2" stroke-dasharray="6 3" marker-end="url(#arrowDown)"/>
+  <line x1="550" y1="260" x2="550" y2="308" stroke="#546e7a" stroke-width="1.2" stroke-dasharray="6 3" marker-end="url(#arrowDown)"/>
+  <line x1="650" y1="260" x2="800" y2="308" stroke="#546e7a" stroke-width="1.2" stroke-dasharray="6 3" marker-end="url(#arrowDown)"/>
+  <text x="380" y="278" font-size="8.5" fill="#78909c">Intent flows down</text>
+
+  <!-- Tactical Judges -->
+  <rect x="175" y="440" width="190" height="55" rx="6" fill="#fff3e0" stroke="#e65100" stroke-width="1.5"/>
+  <text x="270" y="460" text-anchor="middle" font-size="10" font-weight="600" fill="#bf360c">Tactical Judge A</text>
+  <text x="270" y="475" text-anchor="middle" font-size="8.5" fill="#5d4037">Evaluates Agent A vs OISpec A</text>
+  <text x="270" y="487" text-anchor="middle" font-size="8" fill="#78909c">Per-action compliance check</text>
+
+  <rect x="455" y="440" width="190" height="55" rx="6" fill="#fff3e0" stroke="#e65100" stroke-width="1.5"/>
+  <text x="550" y="460" text-anchor="middle" font-size="10" font-weight="600" fill="#bf360c">Tactical Judge B</text>
+  <text x="550" y="475" text-anchor="middle" font-size="8.5" fill="#5d4037">Evaluates Agent B vs OISpec B</text>
+  <text x="550" y="487" text-anchor="middle" font-size="8" fill="#78909c">Per-action compliance check</text>
+
+  <rect x="735" y="440" width="190" height="55" rx="6" fill="#fff3e0" stroke="#e65100" stroke-width="1.5"/>
+  <text x="830" y="460" text-anchor="middle" font-size="10" font-weight="600" fill="#bf360c">Tactical Judge C</text>
+  <text x="830" y="475" text-anchor="middle" font-size="8.5" fill="#5d4037">Evaluates Agent C vs OISpec C</text>
+  <text x="830" y="487" text-anchor="middle" font-size="8" fill="#78909c">Per-action compliance check</text>
+
+  <!-- Arrows: Agents → Tactical Judges -->
+  <line x1="270" y1="405" x2="270" y2="438" stroke="#e65100" stroke-width="1.2" marker-end="url(#arrowDown)"/>
+  <line x1="550" y1="405" x2="550" y2="438" stroke="#e65100" stroke-width="1.2" marker-end="url(#arrowDown)"/>
+  <line x1="830" y1="405" x2="830" y2="438" stroke="#e65100" stroke-width="1.2" marker-end="url(#arrowDown)"/>
+
+  <!-- Evaluation flows up arrows -->
+  <line x1="230" y1="440" x2="430" y2="260" stroke="#2e7d32" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrowUp)"/>
+  <line x1="550" y1="440" x2="550" y2="260" stroke="#2e7d32" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrowUp)"/>
+  <line x1="870" y1="440" x2="670" y2="260" stroke="#2e7d32" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrowUp)"/>
+  <text x="730" y="278" font-size="8.5" fill="#2e7d32">Evaluation flows up</text>
+
+  <!-- ========== JUDGE MONITORING LEVEL ========== -->
+  <!-- Judge Meta-Evaluator -->
+  <rect x="310" y="555" width="480" height="70" rx="8" fill="#fbe9e7" stroke="#e65100" stroke-width="2"/>
+  <text x="550" y="578" text-anchor="middle" font-size="12" font-weight="700" fill="#bf360c">Judge Meta-Evaluator</text>
+  <text x="550" y="596" text-anchor="middle" font-size="10" fill="#37474f">Monitors all judges against their declared OISpecs</text>
+  <text x="550" y="610" text-anchor="middle" font-size="9.5" fill="#78909c">Detects: criteria drift · scope creep · accuracy decay · calibration failure</text>
+
+  <!-- Arrows: Tactical Judges → Meta-Evaluator -->
+  <line x1="270" y1="495" x2="400" y2="553" stroke="#e65100" stroke-width="1.2" marker-end="url(#arrowLateral)"/>
+  <line x1="550" y1="495" x2="550" y2="553" stroke="#e65100" stroke-width="1.2" marker-end="url(#arrowLateral)"/>
+  <line x1="830" y1="495" x2="700" y2="553" stroke="#e65100" stroke-width="1.2" marker-end="url(#arrowLateral)"/>
+
+  <!-- Human Review termination -->
+  <rect x="380" y="660" width="340" height="60" rx="8" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2"/>
+  <text x="550" y="683" text-anchor="middle" font-size="12" font-weight="700" fill="#4a148c">Sampled Human Review</text>
+  <text x="550" y="700" text-anchor="middle" font-size="10" fill="#37474f">Recursion terminates here — humans calibrate all evaluators</text>
+  <text x="550" y="714" text-anchor="middle" font-size="9" fill="#78909c">Statistical sample · Increasing rate on anomaly detection</text>
+
+  <!-- Arrow: Meta-Evaluator → Human Review -->
+  <line x1="550" y1="625" x2="550" y2="658" stroke="#7b1fa2" stroke-width="1.5" marker-end="url(#arrowDown)"/>
+
+  <!-- ========== LEGEND ========== -->
+  <rect x="30" y="690" width="260" height="110" rx="6" fill="#fff" stroke="#d0d7de" stroke-width="1" opacity="0.9"/>
+  <text x="45" y="710" font-size="10" font-weight="600" fill="#1a1a2e">Legend</text>
+  <line x1="45" y1="725" x2="85" y2="725" stroke="#546e7a" stroke-width="1.5" stroke-dasharray="6 3"/>
+  <text x="95" y="729" font-size="9" fill="#37474f">Intent flows down (decomposition)</text>
+  <line x1="45" y1="745" x2="85" y2="745" stroke="#2e7d32" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="95" y="749" font-size="9" fill="#37474f">Evaluation flows up (aggregation)</text>
+  <line x1="45" y1="765" x2="85" y2="765" stroke="#e65100" stroke-width="1.5"/>
+  <text x="95" y="769" font-size="9" fill="#37474f">Judge monitoring (lateral/independent)</text>
+  <line x1="45" y1="785" x2="85" y2="785" stroke="#7b1fa2" stroke-width="1.5"/>
+  <text x="95" y="789" font-size="9" fill="#37474f">Human calibration (termination point)</text>
+
+  <!-- ========== KEY INSIGHT BOX ========== -->
+  <rect x="810" y="600" width="260" height="135" rx="6" fill="#fffde7" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="940" y="620" text-anchor="middle" font-size="10" font-weight="700" fill="#e65100">Key Insight</text>
+  <text x="825" y="640" font-size="9" fill="#37474f">Intent flows downward</text>
+  <text x="825" y="654" font-size="8.5" fill="#546e7a">(workflow → agent decomposition)</text>
+  <text x="825" y="674" font-size="9" fill="#37474f">Evaluation flows upward</text>
+  <text x="825" y="688" font-size="8.5" fill="#546e7a">(agent → workflow aggregation)</text>
+  <text x="825" y="708" font-size="9" fill="#37474f">Judge monitoring is lateral</text>
+  <text x="825" y="722" font-size="8.5" fill="#546e7a">(independent of both flows)</text>
+</svg>

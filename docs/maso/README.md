@@ -28,7 +28,7 @@ Seven coloured lines represent seven control domains. Stations are key controls.
 
 ## Control Domains
 
-The framework organises 128 controls into seven domains. The first five map to specific OWASP risks. The sixth - Prompt, Goal & Epistemic Integrity - addresses both the three OWASP risks that require cross-cutting controls and the nine epistemic risks identified in the [Emergent Risk Register](controls/risk-register.md) that have no OWASP equivalent. The seventh - Privileged Agent Governance - addresses the unique risks of orchestrators, planners, and other agents with elevated authority.
+The framework organises controls into eight domains. The first five map to specific OWASP risks. The sixth - Prompt, Goal & Epistemic Integrity - addresses both the three OWASP risks that require cross-cutting controls and the nine epistemic risks identified in the [Emergent Risk Register](controls/risk-register.md) that have no OWASP equivalent. The seventh - Privileged Agent Governance - addresses the unique risks of orchestrators, planners, and other agents with elevated authority.
 
 ### 0. [Prompt, Goal & Epistemic Integrity](controls/prompt-goal-and-epistemic-integrity.md)
 
@@ -71,6 +71,12 @@ Model provenance tracking and AIBOM generation for every model in the agent syst
 Orchestrators, planners, and meta-agents hold disproportionate authority - they can create agents, assign tasks, allocate resources, and modify workflows. These privileged agents require elevated controls: mandatory human approval gates, authority delegation limits, audit trails for every privilege exercise, and independent monitoring that the privileged agent cannot influence.
 
 *Covers: ASI03, ASI07, LLM06 (elevated controls for high-authority agents)*
+
+### 7. [Objective Intent](controls/objective-intent.md)
+
+Every agent, judge, and workflow operates against a developer-declared Objective Intent Specification (OISpec) — a structured, version-controlled contract defining what the agent should accomplish and within what parameters. Tactical judges evaluate individual agents against their OISpecs. A strategic evaluation agent assesses whether combined agent actions satisfy the workflow's aggregated intent. Judges are themselves monitored against their own OISpecs. This is the bridge from fault detection to behavioral assurance: from catching things that go wrong to verifying that things go right.
+
+*Covers: Intent alignment at all levels — individual agent compliance (tactical), aggregate workflow compliance (strategic), and judge behavioral monitoring (lateral). Most critical at HIGH and CRITICAL risk tiers.*
 
 ## OWASP Risk Coverage
 
@@ -206,6 +212,7 @@ These questions come up in every MASO deployment. The answers sit across the fra
 | How do we prevent operator fatigue at scale? | [Human Factors](../strategy/human-factors.md) - skill development, alert fatigue, canary testing, challenge rates |
 | How do we vet models, tools, and MCP servers? | [Supply Chain Controls](controls/supply-chain.md) - AIBOM, signed manifests, model provenance, dependency scanning |
 | What emergent risks have no OWASP equivalent? | [Emergent Risk Register](controls/risk-register.md) - 34 risks across 9 categories including epistemic, coordination, and inference-side attacks |
+| How do we evaluate whether agents are doing what they were designed to do? | [Objective Intent](controls/objective-intent.md) - developer-declared OISpecs for every agent, judge, and workflow. Tactical judges evaluate individual compliance, strategic evaluators assess aggregate behavior, judge meta-evaluators close the watchmen loop |
 | What about DLP, API validation, database controls, and existing IAM? | [Defence in Depth Beyond the AI Layer](../foundations/README.md#defence-in-depth-beyond-the-ai-layer) - MASO controls are a layer within your wider security architecture, not a replacement for it. External DLP (inbound and outbound), API gateways, database access controls, SIEM, and secure coding practices all apply |
 
 ## Relationship to Parent Framework
@@ -225,6 +232,7 @@ controls/
 ├── execution-control.md
 ├── observability.md
 ├── supply-chain.md
+├── objective-intent.md
 └── risk-register.md
 threat-intelligence/
 ├── incident-tracker.md

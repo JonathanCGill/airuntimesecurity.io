@@ -133,3 +133,91 @@ class PipelineResult(BaseModel):
     @property
     def judge_result(self) -> LayerResult | None:
         return next((r for r in self.layer_results if r.layer == ControlLayer.JUDGE), None)
+
+
+# ---------------------------------------------------------------------------
+# Objective Intent — developer-declared behavioral contracts
+# ---------------------------------------------------------------------------
+
+class IntentEvaluationLevel(str, Enum):
+    """The level at which intent evaluation operates."""
+
+    TACTICAL = "tactical"      # single agent against its OISpec
+    STRATEGIC = "strategic"    # aggregate agents against workflow OISpec
+    JUDGE = "judge"            # judge against its own OISpec
+
+
+class IntentEvaluationFrequency(str, Enum):
+    """How often an agent's actions are evaluated against its OISpec."""
+
+    EVERY_ACTION = "every_action"
+    PER_PHASE = "per_phase"
+    POST_EXECUTION = "post_execution"
+
+
+class IntentViolationSeverity(str, Enum):
+    """Severity of an OISpec violation."""
+
+    LOW = "low"          # minor deviation, log only
+    MEDIUM = "medium"    # notable deviation, flag for review
+    HIGH = "high"        # material violation, escalate
+    CRITICAL = "critical"  # severe violation, quarantine output
+
+
+class ObjectiveIntentSpec(BaseModel):
+    """Objective Intent Specification (OISpec) — a developer-declared
+    behavioral contract for an agent, judge, or workflow.
+
+    Consumed by tactical judges, strategic evaluators, and the
+    judge meta-evaluator to assess whether actual behavior aligns
+    with declared purpose.
+    """
+
+    oisspec_id: str = Field(default_factory=lambda: uuid.uuid4().hex[:16])
+    oisspec_version: str = "1.0"
+    agent_id: str
+    agent_role: str = ""  # "task", "orchestrator", "evaluator", "observer"
+    created_by: str = ""
+    version: int = 1
+
+    # What the agent is supposed to accomplish
+    goal: str
+    success_criteria: list[str] = Field(default_factory=list)
+    failure_criteria: list[str] = Field(default_factory=list)
+
+    # Operational parameters
+    permitted_tools: list[str] = Field(default_factory=list)
+    prohibited_actions: list[str] = Field(default_factory=list)
+    data_scope: str = ""
+    output_constraints: dict[str, Any] = Field(default_factory=dict)
+
+    # Authority boundaries
+    can_delegate: bool = False
+    max_delegation_depth: int = 0
+    can_create_agents: bool = False
+    can_modify_workflow: bool = False
+
+    # Evaluation configuration
+    risk_classification: RiskTier = RiskTier.MEDIUM
+    evaluation_frequency: IntentEvaluationFrequency = IntentEvaluationFrequency.PER_PHASE
+
+    # Integrity
+    oisspec_hash: str = ""
+    timestamp: float = Field(default_factory=time.time)
+    metadata: dict[str, Any] = Field(default_factory=dict)
+
+
+class IntentEvaluationResult(BaseModel):
+    """Result of evaluating an agent's behavior against its OISpec."""
+
+    evaluation_id: str = Field(default_factory=lambda: uuid.uuid4().hex[:16])
+    oisspec_id: str
+    agent_id: str
+    evaluation_level: IntentEvaluationLevel
+    compliant: bool
+    alignment_score: float = 1.0  # 0.0–1.0
+    violations: list[str] = Field(default_factory=list)
+    violation_severity: IntentViolationSeverity = IntentViolationSeverity.LOW
+    reason: str = ""
+    timestamp: float = Field(default_factory=time.time)
+    metadata: dict[str, Any] = Field(default_factory=dict)
