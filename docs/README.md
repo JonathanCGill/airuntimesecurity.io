@@ -112,9 +112,9 @@ Securing autonomous agent coordination in multi-agent systems.
 
 <p class="learning-callout__title">New to the MASO Framework?</p>
 
-<p class="learning-callout__desc">AIruntime.io is a dedicated learning site for the Multi-Agent Security Operations framework — structured guides, walkthroughs, and practical examples to help you get started.</p>
+<p class="learning-callout__desc">AIruntimesecurity.io is a dedicated learning site for the Multi-Agent Security Operations framework — structured guides, walkthroughs, and practical examples to help you get started.</p>
 
-[Explore AIruntime.io](https://airuntime.io){ .md-button }
+[Explore AIruntimesecurity.io](https://airuntimesecurity.io){ .md-button }
 
 </div>
 
