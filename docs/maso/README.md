@@ -1,10 +1,12 @@
 ---
-description: "The Multi-Agent Security Operations (MASO) framework: a PACE-driven approach to securing multi-model agent orchestration with layered defence and inter-agent controls."
+description: "The Multi-Agent Security Operations (MASO) framework: risk-proportionate, PACE-driven controls for securing multi-model agent orchestration. Select the controls you need. Deselect the ones you do not."
 ---
 
 # Multi-Agent Security Operations (MASO) Framework
 
-**A PACE-Driven Approach to Securing Multi-Model Agent Orchestration**
+**Risk-proportionate controls for securing multi-model agent orchestration.**
+
+MASO extends the parent framework's principles into multi-agent territory. The same philosophy applies: controls should be proportionate to risk, applied at the right time for the right purposes. AI product owners can quickly identify the controls relevant to their deployment and consciously deselect those that do not apply. Every organisation has its own way of working, and the framework is designed to fit that context rather than override it.
 
 ## Architecture
 
@@ -217,7 +219,7 @@ These questions come up in every MASO deployment. The answers sit across the fra
 
 ## Relationship to Parent Framework
 
-MASO is the multi-agent extension of [AI Runtime Security](../). It inherits the three-layer defence model, PACE resilience methodology, risk classification matrix, and regulatory mapping framework.
+MASO is the multi-agent extension of [AI Runtime Security](../). It inherits the three-layer defence model, PACE resilience methodology, risk classification matrix, and regulatory mapping framework. It also inherits the core philosophy: controls are proportionate to risk, organisations select what they need based on their own context, and the goal is reducing harm rather than imposing process.
 
 It extends into multi-agent territory by addressing multi-model orchestration security, inter-agent communication integrity, the OWASP Agentic Top 10 (2026), compound risk dynamics, Non-Human Identity management, and kill switch architecture.
 

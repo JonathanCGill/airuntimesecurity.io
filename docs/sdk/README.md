@@ -2,7 +2,7 @@
 
 **Turn the framework into running code.**
 
-The AIRS Python SDK implements the three-layer security architecture as a drop-in library for Python AI applications. Instead of reading about controls, you can `pip install` them.
+The AIRS Python SDK implements the three-layer security architecture as a drop-in library for Python AI applications. Instead of reading about controls, you can `pip install` them. Like the framework itself, the SDK is designed to be risk-proportionate: use the components you need for your risk tier, leave out the ones you do not.
 
 ## Bring Your Own Model
 

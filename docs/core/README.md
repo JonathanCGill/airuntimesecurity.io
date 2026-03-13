@@ -4,9 +4,9 @@ description: Core implementation guide for AI runtime security controls includin
 
 # AI Runtime Security - Core
 
-Reducing risk to an acceptable level through structured identification, assessment, and treatment of threats to the confidentiality, integrity, and availability of AI systems in production.
+Reducing harm caused by AI systems in production through risk-proportionate controls that you select, adapt, or consciously deselect based on your risk appetite and the way your organisation works.
 
-> *This is the implementation companion to the [Foundation overview](../foundations/). The Foundation explains the architecture and principles. This section contains the risk classification criteria, control definitions, checklists, and specialised controls you need to implement them.*
+> *This is the implementation companion to the [Foundation overview](../foundations/). The Foundation explains the architecture and principles. This section contains the risk classification criteria, control definitions, checklists, and specialised controls you need to implement them. Start with the essentials. Branch into specialised topics based on your deployment. Deselect what does not apply.*
 
 ## Reading Order
 
@@ -77,7 +77,7 @@ This isn't theoretical. Production implementations include:
 
 **→ For detailed solution comparison, see [Current Solutions](../extensions/technical/current-solutions.md)**
 
-What's been missing: clear guidance on *why* this pattern is necessary and *how* to implement it proportionate to risk.
+What has been missing: clear guidance on *why* this pattern is necessary and *how* to implement it proportionate to risk, in a way that respects how each organisation actually works.
 
 ## Scope
 
@@ -167,10 +167,11 @@ What's been missing: clear guidance on *why* this pattern is necessary and *how*
 
 ## Key Principles
 
-1. **Match controls to risk** - Don't over-engineer LOW tier systems
-2. **Guardrails are necessary but not sufficient** - They miss novel attacks and nuance
-3. **Judge is assurance, not control** - It detects; humans decide what to do
-4. **Infrastructure beats instructions** - Enforce technically, not via prompts
-5. **Assume bypasses happen** - Design for detection, not just prevention
-6. **Humans remain accountable** - AI assists; humans own outcomes
+1. **Match controls to risk** - Apply the right controls at the right time for the right purposes. Do not over-engineer low-risk systems
+2. **Respect organisational context** - Every organisation has its own structures and ways of working. Select and adapt controls accordingly
+3. **Guardrails are necessary but not sufficient** - They miss novel attacks and nuance
+4. **Judge is assurance, not control** - It detects; humans decide what to do
+5. **Infrastructure beats instructions** - Enforce technically, not via prompts
+6. **Assume bypasses happen** - Design for detection, not just prevention
+7. **Humans remain accountable** - AI assists; humans own outcomes
 

@@ -1,16 +1,16 @@
 ---
-description: Infrastructure controls that enforce AI behavioral security across identity, access, logging, network segmentation, and incident response.
+description: Infrastructure controls that enforce AI behavioral security across identity, access, logging, network segmentation, and incident response. Select or deselect controls based on your risk tier and organisational context.
 ---
 
 # AI Security Infrastructure Controls
 
 **The infrastructure layer that makes behavioral AI security enforceable.**
 
-Companion to [AI Runtime Security](https://github.com/JonathanCGill/ai-runtime-behavior-security), which defines the three-layer behavioral security pattern (Guardrails → LLM-as-Judge → Human Oversight). This repo defines the 80 technical infrastructure controls that underpin that pattern.
+Companion to [AI Runtime Security](https://github.com/JonathanCGill/ai-runtime-behavior-security), which defines the three-layer behavioral security pattern (Guardrails, LLM-as-Judge, Human Oversight). This section defines 80 technical infrastructure controls that underpin that pattern. Each control specifies which risk tiers it applies to, so you can quickly identify what you need and deselect what you do not.
 
 ## The Problem
 
-You can't enforce behavioral security controls on infrastructure you don't control. The parent framework tells you *what* to enforce. This repo tells you *how* to enforce it:
+You cannot enforce behavioral security controls on infrastructure you do not control. The parent framework tells you *what* to enforce. This section tells you *how* to enforce it:
 
 - **Who can reach the model?** → [Identity & Access Management](controls/identity-and-access.md)
 - **How do you know it's working?** → [Logging & Observability](controls/logging-and-observability.md)
@@ -222,7 +222,7 @@ Fourteen SVG diagrams covering IAM architecture, logging pipelines, network zone
 
 1. **Vendor-neutral.** Controls are defined in terms of *what* must be enforced, not *which product* enforces it. Platform-specific guidance lives in `reference/platform-patterns/`.
 2. **Three-layer aligned.** Every control maps back to how it supports Guardrails, Judge, or Human Oversight.
-3. **Risk-tiered.** Controls specify which risk tiers they apply to, enabling proportionate implementation.
+3. **Risk-tiered.** Controls specify which risk tiers they apply to, enabling proportionate implementation. Select what applies. Deselect what does not.
 4. **Practitioner-focused.** Written for security architects and engineers, not executive summaries.
 5. **Agentic-aware.** Agent-specific controls are treated as first-class concerns, not afterthoughts.
 6. **Infrastructure beats instructions.** Security controls are enforced via deterministic infrastructure (gateways, network policy, vaults), never via prompt instructions that can be overridden.

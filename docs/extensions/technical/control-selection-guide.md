@@ -1,10 +1,10 @@
 # Control Selection Guide
 
-How to select the right controls for your AI system based on risk tier and use case characteristics.
+How to quickly identify the controls your AI system needs and consciously deselect the ones it does not.
 
 ## Overview
 
-Not every AI system needs every control. This guide helps you select appropriate controls based on:
+Not every AI system needs every control. Controls should be proportionate to the risk each use case creates, applied at the right time for the right purposes. This guide helps AI product owners select appropriate controls based on:
 
 1. **Risk tier** - CRITICAL, HIGH, MEDIUM, LOW
 2. **Use case type** - Customer-facing, internal, agentic, batch

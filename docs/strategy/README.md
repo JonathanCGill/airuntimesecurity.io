@@ -1,5 +1,5 @@
 ---
-description: Guided path from business problem identification through governed AI system deployment and continuous monitoring in production.
+description: Guided path from business problem identification through governed AI system deployment and continuous monitoring in production. Risk-proportionate controls applied at the right time, respecting how your organisation works.
 ---
 
 # From Strategy to Production
@@ -26,7 +26,7 @@ This section takes a different approach: **guardrails instead of gates.**
 - **Detect** where prevention isn't practical - monitoring, logging, and anomaly detection surface problems whether or not a formal review happened.
 - **Absorb failure** - the environment is designed so that when something goes wrong (and it will), the blast radius is contained and recovery is fast.
 
-This doesn't mean accepting shadow IT. It means recognising that change happens, security is not always present at the point of decision, and the system must be resilient enough to handle that reality. The goal is visibility and proportionate response, not the illusion of control that a gate provides.
+This does not mean accepting shadow IT. It means recognising that change happens, security is not always present at the point of decision, and the system must be resilient enough to handle that reality. Every organisation has its own structures and ways of getting things done. The goal is visibility and proportionate response that respects this, not the illusion of control that a gate provides.
 
 ## The Progression
 

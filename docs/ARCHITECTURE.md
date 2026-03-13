@@ -1,10 +1,10 @@
 ---
-description: "AIRS Framework architecture: layered runtime controls for single-agent and multi-agent AI systems."
+description: "AIRS Framework architecture: risk-proportionate, layered runtime controls for single-agent and multi-agent AI systems."
 ---
 
 # Architecture Overview
 
-The goal of this architecture is to reduce risk to an acceptable level through layered controls that identify, assess, and treat threats to the confidentiality, integrity, and availability of AI systems at runtime. Everything described here serves that goal.
+The goal of this architecture is to reduce harm caused by AI systems in production through layered controls that are proportionate to risk. Not every AI use case needs every control. The architecture provides risk-oriented paths so that AI product owners can quickly identify the controls they need and apply them, or consciously deselect the ones they do not need. Everything described here serves that goal.
 
 ![Three-layer runtime security: Guardrails, LLM-as-Judge, Human Oversight](images/three-layer-simple.svg){ .arch-diagram }
 
@@ -31,7 +31,7 @@ For a single AI model - a chatbot, a document processor, an assistant - the thre
 - **LLM-as-Judge** runs asynchronously, evaluating whether the response is appropriate, safe, within scope, and consistent with purpose. Different model, different provider if possible - **enterprise-owned and configured**, not vendor-side safeguards. If the primary model is compromised, the Judge must not be compromised with it. Catches within-bounds adversarial behavior that containment cannot address.
 - **Human Oversight** scales with risk. Low-risk systems get spot checks. High-risk systems get human approval before execution. Only genuinely ambiguous cases reach human reviewers. Handles what neither containment nor the Judge can resolve autonomously.
 
-Controls scale to risk tier - from minimal self-certification ([Fast Lane](FAST-LANE.md)) to full architecture with mandatory human approval.
+Controls scale to risk tier. A low-risk internal tool needs minimal guardrails and self-certification ([Fast Lane](FAST-LANE.md)). A customer-facing agent handling regulated data needs the full architecture with mandatory human approval. The framework respects that every organisation has its own way of working, and lets you match controls to your context rather than imposing a single mandate.
 
 **→ [Foundation Framework](foundations/)** - 80 controls, risk tiers, implementation checklists
 

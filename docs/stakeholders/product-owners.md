@@ -1,10 +1,10 @@
 ---
-description: "AIRS framework guide for product managers, covering what AI controls cost, what they prevent, and how to ship AI features without security blocking delivery."
+description: "AIRS framework guide for product managers: quickly identify the controls you need, deselect the ones you do not, and ship AI features with proportionate security."
 ---
 
 # Product Owners
 
-**Product Managers, Business Owners, Delivery Leads - what controls cost, what they prevent, and how to ship AI without getting blocked by security.**
+**Product Managers, Business Owners, Delivery Leads: quickly identify the controls you need, consciously deselect the ones you do not, and ship AI with proportionate security.**
 
 > *Part of [Stakeholder Views](README.md) · [AI Runtime Security](../)*
 
@@ -18,7 +18,7 @@ Here's what's actually happening:
 
 2. **Controls aren't equally expensive.** A LOW-tier system (internal FAQ bot) needs minimal controls and can deploy in days. A CRITICAL-tier system (credit decisioning) needs substantial controls and takes longer. The framework scales - not everything is maximum security.
 
-3. **Most delivery delays come from ambiguity, not controls.** Teams stall when they don't know what's required. A clear classification and a proportionate control list is faster than endless security reviews.
+3. **Most delivery delays come from ambiguity, not controls.** Teams stall when they do not know what is required. A clear classification and a proportionate control list is faster than endless security reviews. The framework is designed so you can quickly identify what applies and deselect what does not.
 
 ## What This Framework Gives You
 
@@ -37,7 +37,7 @@ Most internal productivity tools - meeting summarisers, document search, code as
 
 ### A clear answer to "what controls do I need?"
 
-The framework maps controls to risk tier. No negotiation needed:
+The framework maps controls to risk tier. You select the ones that apply. You consciously deselect the ones that do not. No negotiation needed:
 
 | Your System | Tier | Controls Required | Typical Delivery Impact |
 |---|---|---|---|

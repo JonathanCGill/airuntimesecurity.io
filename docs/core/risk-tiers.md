@@ -1,8 +1,10 @@
 ---
-description: "Risk tier definitions for AI systems, from LOW to CRITICAL, with control requirements scaled to impact, autonomy, and data sensitivity."
+description: "Risk tier definitions for AI systems, from LOW to CRITICAL, with control requirements scaled to impact, autonomy, and data sensitivity. Select or deselect controls based on your risk appetite and organisational context."
 ---
 
 # Risk Tiers and Control Selection
+
+Risk tiers exist so that controls are proportionate to the harm an AI system could cause. The purpose is not to impose a uniform set of requirements. It is to help AI product owners quickly identify the controls they need and consciously deselect the ones they do not, based on the risk profile of each use case and the way their organisation works.
 
 ## Tier Definitions
 

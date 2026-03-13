@@ -1,5 +1,5 @@
 ---
-description: Runtime security controls for single-model AI deployments. A structured approach to reducing AI risk through layered controls scaled to risk tiers.
+description: Runtime security controls for single-model AI deployments. Risk-proportionate, layered controls that you select or consciously deselect based on your risk appetite and organisational context.
 ---
 
 # AI Runtime Security - Single-Agent Controls
@@ -66,7 +66,7 @@ If your deployment is internal, read-only, handles no regulated data, and has a 
 
 ## Risk-Scaled Controls
 
-Controls scale to risk so low-risk AI moves fast and high-risk AI stays safe.
+Controls scale to risk so that low-risk AI moves fast and high-risk AI stays safe. The framework provides a menu of control patterns. Select the ones you need. Consciously deselect the ones you do not. Every organisation has its own way of doing things, and the controls are designed to fit your context rather than impose a single way of working.
 
 | Risk Tier | Controls Required | PACE Posture | Use Case Examples |
 | --- | --- | --- | --- |
@@ -216,7 +216,7 @@ This isn't a theoretical proposal. These platforms already implement variants of
 
 **In scope:** Custom LLM applications, AI decision support, document processing, single-agent systems - from deployment through incident response.
 
-**Out of scope:** Vendor AI products (use vendor controls), model training (see MLOps security guidance), and pre-deployment testing. This framework is about what happens in production.
+**Out of scope:** Vendor AI products (use vendor controls), model training (see MLOps security guidance), and pre-deployment testing. This framework is about reducing harm during live operation.
 
 **Pre-deployment complement:** For secure development practices covering data sourcing, training, fine-tuning, and model release, see [NIST SP 800-218A](https://csrc.nist.gov/pubs/sp/800/218/a/final). This framework begins where SP 800-218A ends.
 

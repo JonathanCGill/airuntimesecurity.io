@@ -26,7 +26,7 @@ Four realities are converging:
 
 ### A risk-based investment model
 
-Not every AI system needs the same investment in controls. The framework's [Risk Tiers](../core/risk-tiers.md) map directly to cost:
+Not every AI system needs the same investment in controls. The framework gives you risk-oriented paths so you can quickly identify what each product line needs and consciously deselect what it does not. The [Risk Tiers](../core/risk-tiers.md) map directly to cost:
 
 | Your Product's AI | Likely Tier | Control Investment | Business Impact |
 |---|---|---|---|

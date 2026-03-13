@@ -1,14 +1,14 @@
 ---
-description: Role-specific entry points into the AI runtime security reference for CISOs, risk leaders, enterprise architects, product owners, AI engineers, compliance teams, and insider threat teams.
+description: Role-specific entry points into the AI runtime security framework for CISOs, risk leaders, enterprise architects, product owners, AI engineers, compliance teams, and insider threat teams.
 ---
 
 # Stakeholder Views
 
 **Your role. Your risks. Your entry point.**
 
-This reference covers a lot of ground - risk tiers, three-layer controls, PACE resilience, MASO multi-agent security, infrastructure controls, regulatory mappings, strategy. Nobody needs all of it.
+This framework covers a lot of ground. Nobody needs all of it. The framework is designed so that you can quickly identify the controls relevant to your role and context, apply the ones you need, and consciously deselect the ones you do not.
 
-These pages tell you **what matters for your role**, **why you should care**, and **where to start reading**. Each one is a window from your perspective - not a summary of everything, but a filter for what's relevant to your work.
+These pages tell you **what matters for your role**, **why you should care**, and **where to start reading**. Each one is a window from your perspective, not a summary of everything, but a filter for what is relevant to your work.
 
 ![Stakeholder Map](../images/stakeholder-map.svg)
 

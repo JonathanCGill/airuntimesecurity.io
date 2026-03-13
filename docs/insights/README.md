@@ -1,10 +1,10 @@
 ---
-description: Research insights on why runtime behavioral monitoring solves AI security challenges that pre-deployment testing alone cannot address.
+description: Research insights on why runtime behavioral monitoring solves AI security challenges that pre-deployment testing alone cannot address. The evidence base for risk-proportionate controls.
 ---
 
 # Insights
 
-The *why* before the *how*. Each article identifies a specific problem that the [core controls](../core) and [extensions](../extensions) then solve.
+The *why* before the *how*. Each article identifies a specific problem that the [core controls](../core) and [extensions](../extensions) then solve. Together, they make the case for risk-proportionate runtime controls that reduce harm without imposing disproportionate process.
 
 ## Start Here
 
