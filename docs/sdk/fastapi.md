@@ -5,7 +5,7 @@ Drop-in middleware that protects your AI endpoints with the full AIRS security p
 ## Install
 
 ```bash
-pip install ".[fastapi]"
+pip install "airs[fastapi]"
 ```
 
 ## Basic Setup

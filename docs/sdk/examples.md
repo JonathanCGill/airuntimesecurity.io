@@ -91,7 +91,7 @@ Circuit breaker blocked: True
 A complete FastAPI application with AIRS middleware and operational endpoints:
 
 ```bash
-pip install ".[fastapi]"
+pip install "airs[fastapi]"
 uvicorn examples.fastapi_app:app --reload
 ```
 
@@ -240,7 +240,7 @@ pipeline = SecurityPipeline(
 ## Running the Tests
 
 ```bash
-pip install ".[dev]"
+pip install "airs[dev]"
 
 # Run all 160 tests
 python -m pytest tests/ -v

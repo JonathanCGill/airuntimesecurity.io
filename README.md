@@ -48,8 +48,14 @@ Each layer catches what the others miss. Remove any layer and you have a gap. Th
 
 ## Start Here
 
+```bash
+pip install airs
+airs assess
+```
+
 | I want to... | Go to |
 | --- | --- |
+| **Install the SDK and start coding** | **[SDK Documentation](docs/sdk/README.md)** — `pip install airs` and build security in |
 | **Get started in 30 minutes** | **[Quick Start](docs/QUICK_START.md)** — from zero to working controls |
 | **Secure a single-model AI system** | **[Foundation Framework](docs/foundations/)** — 80 controls, risk tiers, PACE resilience |
 | **Secure a multi-agent system** | **[MASO Framework](docs/maso/)** — 128 controls, 7 domains, 3 tiers |

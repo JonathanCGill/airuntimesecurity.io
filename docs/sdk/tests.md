@@ -7,6 +7,13 @@ The test suite is the SDK's most important documentation. It doesn't just verify
 ## Get the Code and Run It
 
 ```bash
+pip install "airs[dev]"
+python -m pytest tests/ -v
+```
+
+Or from source:
+
+```bash
 git clone https://github.com/JonathanCGill/airuntimesecurity.io.git
 cd airuntimesecurity.io
 pip install ".[dev]"

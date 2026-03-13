@@ -28,6 +28,20 @@ The industry is converging on three layers of control:
 
 This guide shows you how to implement this pattern proportionate to your risk level.
 
+## Step 0: Install the SDK (1 minute)
+
+```bash
+pip install airs
+```
+
+Verify the install by running the built-in assessment tool:
+
+```bash
+airs assess
+```
+
+This gives you an interactive questionnaire that classifies your deployment's risk tier and recommends controls. For machine-readable output, use `airs assess --json`.
+
 ## Step 1: Classify Your System (5 minutes)
 
 Answer these questions:
@@ -63,7 +77,24 @@ Block malicious inputs before they reach the model.
 - Input length limits
 - Rate limiting
 
-**Available tools:**
+**With the AIRS SDK:**
+
+```python
+from airs.runtime import SecurityPipeline, GuardrailChain, RegexGuardrail
+from airs.core.models import AIRequest
+
+pipeline = SecurityPipeline(
+    guardrails=GuardrailChain([RegexGuardrail()]),
+)
+
+request = AIRequest(input_text=user_input)
+result = await pipeline.evaluate_input(request)
+if not result.allowed:
+    return fallback_response(result)
+```
+
+**Other available tools:**
+
 - [NVIDIA NeMo Guardrails](https://github.com/NVIDIA/NeMo-Guardrails) - Open-source, programmable
 - [Guardrails AI](https://www.guardrailsai.com/) - Validator framework
 - AWS Bedrock Guardrails - Managed service

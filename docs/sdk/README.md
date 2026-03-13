@@ -45,25 +45,48 @@ The one exception is the optional **LLM-as-Judge**, which does call an OpenAI-co
 ## Install
 
 ```bash
-# Clone the repository
-git clone https://github.com/JonathanCGill/airuntimesecurity.io.git
-cd airuntimesecurity.io
+pip install airs
+```
 
-# Install core (guardrails, circuit breaker, PACE, CLI)
-pip install .
+That's it. You now have the core SDK (guardrails, circuit breaker, PACE, telemetry) and the `airs` CLI.
 
+### Optional extras
+
+```bash
 # With FastAPI middleware
-pip install ".[fastapi]"
+pip install "airs[fastapi]"
 
 # With LLM-as-Judge (requires OpenAI-compatible API)
-pip install ".[judge]"
+pip install "airs[judge]"
 
 # Everything
-pip install ".[all]"
+pip install "airs[all]"
+```
+
+### Verify it works
+
+```bash
+# Check version
+airs version
+
+# Run the interactive assessment
+airs assess
+
+# Machine-readable output
+airs assess --json --non-interactive
 ```
 
 !!! tip "No external dependencies for core"
     The core SDK (guardrails, circuit breaker, PACE) requires only `pydantic`, `rich`, and `typer`. No API keys or external services needed to get started.
+
+??? note "Install from source"
+    If you prefer to install from source:
+
+    ```bash
+    git clone https://github.com/JonathanCGill/airuntimesecurity.io.git
+    cd airuntimesecurity.io
+    pip install ".[all,dev]"
+    ```
 
 ## 5-Minute Quick Start
 
@@ -297,22 +320,17 @@ airs assess --json
 
 ## Get the Code
 
-The SDK is part of the [AI Runtime Security repository](https://github.com/JonathanCGill/airuntimesecurity.io). Clone it and install:
+Install from PyPI:
+
+```bash
+pip install airs
+```
+
+Or install from source for development:
 
 ```bash
 git clone https://github.com/JonathanCGill/airuntimesecurity.io.git
 cd airuntimesecurity.io
-
-# Core (guardrails, circuit breaker, PACE, CLI) — no API keys needed
-pip install .
-
-# With FastAPI middleware
-pip install ".[fastapi]"
-
-# With LLM-as-Judge (requires OpenAI-compatible API)
-pip install ".[judge]"
-
-# Everything including dev tools (pytest, ruff)
 pip install ".[all,dev]"
 ```
 
