@@ -1,6 +1,6 @@
 ---
 title: AI Runtime Security (AIRS)
-description: "AI Runtime Security (AIRS) is a risk-proportionate framework for monitoring, controlling, and constraining AI system behaviour in production environments. It focuses on guardrails rather than gates, enabling organisations to consciously select controls based on risk appetite."
+description: "AI Runtime Security (AIRS) is a risk-proportionate framework for reducing harm caused by organisations' use of AI. It provides risk-oriented paths and control patterns that AI product owners can quickly adopt, adapt, or consciously deselect based on their own risk appetite and organisational context."
 template: home.html
 hide:
   - toc
@@ -13,11 +13,9 @@ comments: false
 
 <div class="home-subtitle" markdown>
 
-**A structured approach to reducing AI risk in production.**
+**Reduce harm caused by your organisation's use of AI.**
 
-A framework for identifying, assessing, and treating threats
-to the confidentiality, integrity, and availability of AI systems
-during live operation.
+A risk-proportionate framework of control patterns that you select, adapt, or consciously deselect based on your own risk appetite and the way your organisation works.
 
 </div>
 
@@ -29,11 +27,13 @@ during live operation.
 
 ## The Framework
 
-[AI Runtime Security](what-is-ai-runtime-security.md) is the practice of identifying, assessing, and treating threats to the confidentiality, integrity, and availability of AI systems during live operation. It applies defence-in-depth principles at the point of execution, treating deployment as the beginning of the risk lifecycle rather than the end of it.
+[AI Runtime Security](what-is-ai-runtime-security.md) helps organisations protect themselves from the risks that AI systems create during live operation. It applies defence-in-depth principles at the point of execution, treating deployment as the beginning of the risk lifecycle rather than the end of it.
 
 This is not a vendor product or a proprietary methodology. It is a field of practice, comparable to how disciplines like Zero Trust, DevSecOps, and Security Chaos Engineering emerged to address gaps that existing security models did not cover.
 
-The framework is built around a core principle: **controls should be proportionate to risk**. Not every AI use case carries the same risk. A summarisation tool for internal meeting notes does not need the same controls as a customer-facing advisory agent handling regulated financial data. AIRS gives you risk-oriented paths so you can apply the right level of control to each situation.
+The framework is built around a core principle: **controls should be proportionate to risk**. Not every AI use case carries the same risk. A summarisation tool for internal meeting notes does not need the same controls as a customer-facing advisory agent handling regulated financial data. The framework gives you risk-oriented paths and control patterns so you can apply the right level of control to each situation, at the right time, for the right purposes.
+
+Critically, the framework is designed around how organisations actually work. Every organisation has its own structures, processes, risk tolerances, and ways of getting things done. The framework respects this. Rather than imposing a single way of working, it provides a menu of controls that AI product owners and business owners can quickly navigate to identify what they need and apply it, or consciously deselect what they do not need. The goal is to make it easy to do the right thing for your context.
 
 **[What is AI Runtime Security? →](what-is-ai-runtime-security.md)**
 
@@ -57,9 +57,9 @@ In every other domain of enterprise security (network, identity, data) we layer 
 
 ### The AIRS approach
 
-AI Runtime Security applies defence-in-depth at the point of execution. It provides a menu of controls that you select based on the risk profile of each use case. Not everything needs every control. The framework gives AI product owners and business owners the ability to consciously deselect controls based on their risk appetite, rather than imposing a one-size-fits-all mandate.
+AI Runtime Security applies defence-in-depth at the point of execution. It provides a structured menu of controls that you select based on the risk profile of each use case. Not everything needs every control. The framework is designed so that AI product owners can quickly identify the controls they need and apply them, or consciously deselect the ones they do not need, based on their own risk appetite and organisational context.
 
-Four core controls, each independent, each compensating for the others:
+Four core control patterns, each independent, each compensating for the others:
 
 **Guardrails** enforce hard boundaries. Content policies, scope constraints, tool-use permissions. They are fast, deterministic, and limited. They catch the obvious failures.
 
