@@ -193,3 +193,90 @@ class RiskClassifier:
 
         tier = self.classify(profile)
         return tier, risk_factors, mitigations, score_breakdown
+
+
+def generate_intent_statement(profile: DeploymentProfile) -> str:
+    """Synthesize a natural-language intent statement from the deployment profile.
+
+    This describes what the AI is supposed to do, who it serves, and what
+    constraints it operates under.  Used as the anchor for judge evaluation
+    and displayed in the assessment output so users can verify it.
+    """
+    # ── Audience ──
+    if profile.external_facing:
+        audience = "external users (customers or the public)"
+    else:
+        audience = "internal staff"
+
+    user_scale = {
+        "small": "a small user base (under 100)",
+        "medium": "a medium user base (100-10k)",
+        "large": "a large user base (10,000+)",
+    }.get(profile.user_count, "an unknown number of users")
+
+    # ── Purpose / name ──
+    name_part = f'"{profile.name}" ' if profile.name else ""
+
+    # ── Data ──
+    data_parts: list[str] = []
+    if profile.handles_pii:
+        data_parts.append("personally identifiable information (PII)")
+    if profile.handles_financial_data:
+        data_parts.append("financial data")
+    if profile.handles_regulated_data:
+        data_parts.append("regulated data (HIPAA/SOX/GDPR)")
+    data_phrase = ""
+    if data_parts:
+        data_phrase = f" It processes {', '.join(data_parts)}."
+
+    # ── Actions ──
+    action_phrase = ""
+    if profile.can_take_actions:
+        reversibility = "irreversible" if not profile.actions_are_reversible else "reversible"
+        impact_map = {
+            "none": "",
+            "low": " with low financial impact (under $1k)",
+            "medium": " with medium financial impact (under $100k)",
+            "high": " with high financial impact (over $100k)",
+        }
+        impact_part = impact_map.get(profile.max_financial_impact, "")
+        action_phrase = (
+            f" It can take {reversibility} autonomous actions"
+            f" (write data, call APIs, make transactions){impact_part}."
+        )
+    else:
+        action_phrase = " It is read-only and cannot take autonomous actions."
+
+    # ── Architecture ──
+    arch_parts: list[str] = []
+    if profile.multi_agent:
+        arch_parts.append("multi-agent orchestration")
+    if profile.uses_rag:
+        arch_parts.append("retrieval-augmented generation (RAG)")
+    if profile.uses_tools:
+        arch_parts.append("tool/function calling")
+    if profile.uses_mcp:
+        arch_parts.append("Model Context Protocol (MCP)")
+    arch_phrase = ""
+    if arch_parts:
+        arch_phrase = f" Its architecture uses {', '.join(arch_parts)}."
+
+    # ── Oversight ──
+    oversight_parts: list[str] = []
+    if profile.human_reviews_all_outputs:
+        oversight_parts.append("all outputs are reviewed by a human before delivery")
+    if profile.has_existing_guardrails:
+        oversight_parts.append("existing guardrails are in place")
+    oversight_phrase = ""
+    if oversight_parts:
+        oversight_phrase = f" Current safeguards: {'; '.join(oversight_parts)}."
+
+    # ── Regulatory ──
+    reg_phrase = ""
+    if profile.regulated_industry:
+        reg_phrase = " It operates in a regulated industry (healthcare, finance, or legal)."
+
+    return (
+        f"This AI deployment {name_part}serves {audience} across {user_scale}."
+        f"{data_phrase}{action_phrase}{arch_phrase}{reg_phrase}{oversight_phrase}"
+    )
