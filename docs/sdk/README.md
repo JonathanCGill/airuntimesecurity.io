@@ -176,14 +176,14 @@ asyncio.run(main())
 The SDK is model-agnostic — it wraps security controls around your existing model calls. The quick start above uses a hardcoded string in place of a real model. To test against a live model, use the CLI:
 
 ```bash
-# Test against OpenAI
+# Test guardrails against a live model
 airs assess --provider openai --model gpt-4o --non-interactive
 
-# Test against Anthropic
-airs assess --provider anthropic --model claude-sonnet-4-20250514 --non-interactive
+# Test guardrails + LLM-as-Judge (catches what guardrails miss)
+airs assess --provider anthropic --model claude-sonnet-4-20250514 --judge-model gpt-4o-mini --non-interactive
 ```
 
-This sends test prompts through the full AIRS pipeline against a live model and shows what gets blocked. See [Live model testing](#live-model-testing-optional) below for details on API keys and costs.
+This sends test prompts through the full AIRS pipeline against a live model and shows what gets blocked. Adding `--judge-model` enables Layer 2 evaluation — an independent model that catches subtle issues like hallucinations, medical advice without disclaimers, and synthetic PII that regex guardrails won't flag. See [Live model testing](#live-model-testing-optional) below for details on API keys and costs.
 
 ## CLI Assessment
 
@@ -209,20 +209,31 @@ airs assess --json
 
 ### Live model testing (optional)
 
-You can also run the assessment against a live AI model. This sends test prompts (clean questions + injection/jailbreak attempts) through the full AIRS security pipeline and shows what gets blocked and what gets through.
+You can also run the assessment against a live AI model. This sends test prompts through the full AIRS security pipeline and shows what gets blocked and what gets through.
+
+The live test has two parts:
+
+1. **Guardrail tests** (always run with `--provider`) — 4 prompts that test input filtering. Two clean prompts should pass; two injection/jailbreak prompts should be blocked by the regex guardrails.
+
+2. **Judge tests** (opt-in with `--judge-model`) — 4 additional prompts that pass guardrails but are designed to produce outputs that need an LLM judge to evaluate: indirect medical advice, fabricated data about fictional companies, synthetic PII generation, and a clean factual baseline.
 
 ```bash
-# Test against OpenAI
-airs assess --provider openai --model gpt-4o --non-interactive --json
+# Guardrail tests only (rule-based, no judge model needed)
+airs assess --provider openai --model gpt-4o --non-interactive
 
-# Test against Anthropic
-airs assess --provider anthropic --model claude-sonnet-4-20250514 --non-interactive --json
+# Guardrail tests + LLM-as-Judge tests
+airs assess --provider openai --model gpt-4o --judge-model gpt-4o-mini --non-interactive
 
-# Omit --model to use the default for each provider
-airs assess --provider openai --non-interactive
+# Anthropic model with OpenAI judge
+airs assess --provider anthropic --model claude-sonnet-4-20250514 --judge-model gpt-4o-mini --non-interactive
+
+# JSON output
+airs assess --provider openai --judge-model gpt-4o-mini --non-interactive --json
 ```
 
-**No API key? No problem.** The assessment works perfectly without `--provider`. Live model testing is entirely optional — it just adds a real-world demo of the guardrails in action.
+**Why a separate judge model?** The judge must be a *different* model from the one being evaluated — using the same model to judge itself defeats the purpose. The `--judge-model` uses an OpenAI-compatible API, so you need `pip install openai` and an `OPENAI_API_KEY` regardless of which provider your production model uses.
+
+**No API key? No problem.** The assessment works perfectly without `--provider`. Live model testing is entirely optional — it just adds a real-world demo of the security layers in action.
 
 !!! info "Prerequisites for live testing"
     Live model testing requires two things:
@@ -230,7 +241,7 @@ airs assess --provider openai --non-interactive
     1. **The provider's Python package** — see [Model provider packages (BYOK)](#model-provider-packages-byok) above
     2. **An API key** — if the key isn't set as an environment variable, `airs assess` will prompt you to paste it
 
-    **Quick setup:**
+    **Quick setup — guardrails only:**
 
     ```bash
     # OpenAI
@@ -242,7 +253,19 @@ airs assess --provider openai --non-interactive
     export ANTHROPIC_API_KEY=sk-ant-your-key-here
     ```
 
-    **Costs:** Each live test run makes a small number of API calls (4 short prompts). This typically costs a few cents on your account. No calls are made unless you explicitly use `--provider`.
+    **Quick setup — guardrails + judge:**
+
+    ```bash
+    # The judge always uses an OpenAI-compatible API
+    pip install openai
+    export OPENAI_API_KEY=sk-your-key-here
+
+    # If your production model is Anthropic, install that too
+    pip install anthropic
+    export ANTHROPIC_API_KEY=sk-ant-your-key-here
+    ```
+
+    **Costs:** Each live test run makes a small number of API calls (4 guardrail prompts + 4 judge prompts if enabled). This typically costs a few cents on your account. No calls are made unless you explicitly use `--provider`.
 
 ## What's Next
 
