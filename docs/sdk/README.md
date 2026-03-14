@@ -2,7 +2,18 @@
 
 **Turn the framework into running code.**
 
-The AIRS Python SDK implements the three-layer security architecture as a drop-in library for Python AI applications. Instead of reading about controls, you can `pip install` them. Like the framework itself, the SDK is designed to be risk-proportionate: use the components you need for your risk tier, leave out the ones you do not.
+## Purpose
+
+The AIRS Python SDK exists to help teams *think about* AI runtime security before they ship. It implements the three-layer security architecture from the AIRS framework as a drop-in Python library, giving you a concrete starting point for understanding where your AI deployment's risks are and what controls you should consider.
+
+The SDK is not a finished product. It is a working reference implementation — a mechanism to explore risk classification, guardrail design, judge evaluation, and structured degradation in the context of *your* deployment. By answering the assessment questionnaire and running the test scenarios, you build a mental model of what threats you face and what security layers need to exist, even if the specific guardrails and patterns in this SDK are not the ones you ultimately deploy.
+
+Like the framework itself, the SDK is designed to be risk-proportionate: use the components you need for your risk tier, leave out the ones you do not.
+
+!!! warning "Early-stage SDK — not for production assurance"
+    The examples, test scenarios, and guardrail patterns included in this SDK are **limited and illustrative**. They demonstrate the *shape* of a security layer, not the depth required for a real, production AI solution. Do not rely on the current examples to assess or protect a production system.
+
+    As the SDK matures, more examples aligned to specific use cases, industries, and threat models will be added. For now, treat this as a starting point for your own implementation — not a substitute for it.
 
 ## Bring Your Own Model
 
