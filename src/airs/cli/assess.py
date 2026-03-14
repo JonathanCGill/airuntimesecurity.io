@@ -146,6 +146,16 @@ def assess_cmd(
         _output_rich(profile, tier, risk_factors, mitigations, controls, maso_tier)
 
     # ── Live model test ────────────────────────────────────────────────
+    # Ask interactively if no --provider was given and we're in interactive mode
+    if not provider and not non_interactive and not output_json:
+        console.print()
+        console.print("[bold]7. Live Model Test (optional)[/bold]")
+        run_live = _ask_bool("  Run a live model test against a real provider?")
+        if run_live:
+            provider = _ask_choice("  Provider", ["openai", "anthropic"], "openai")
+            default_model = _default_model(provider)
+            model = typer.prompt(f"  Model name", default=default_model)
+
     if provider:
         live_results = asyncio.run(_run_live_test(provider, model, output_json))
         if output_json:
