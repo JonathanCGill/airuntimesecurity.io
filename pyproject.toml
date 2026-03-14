@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "airs"
-version = "0.1.1"
+version = "0.1.2"
 description = "AI Runtime Security - Implementation toolkit for the AIRS framework"
 readme = "README.md"
 license = "MIT"
@@ -41,7 +41,7 @@ airs = "airs.cli:app"
 packages = ["src/airs"]
 
 [tool.ruff]
-target-version = "py310"
+target-version = "0.1.2"
 line-length = 100
 
 [tool.pytest.ini_options]
