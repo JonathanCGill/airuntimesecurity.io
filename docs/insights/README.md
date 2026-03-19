@@ -29,6 +29,7 @@ Where the three-layer pattern meets its limits - and what to do about it.
 |---|---------|-----------------|----------|
 | 7 | [The Verification Gap](the-verification-gap.md) | Current safety approaches can't confirm ground truth | [Judge Assurance](../core/judge-assurance.md) |
 | 8 | [Behavioral Anomaly Detection](behavioral-anomaly-detection.md) | Aggregating signals to detect drift from normal | [Anomaly Detection Ops](../extensions/technical/anomaly-detection-ops.md) |
+| 8b | [Model Drift Impact](model-drift-impact.md) | Model drift degrades every control layer simultaneously, and closed-loop monitoring is the only viable response | [Observability Controls](../maso/controls/observability.md) |
 | 9 | [Multimodal AI Breaks Your Text-Based Guardrails](multimodal-breaks-guardrails.md) | Images, audio, and video bypass text controls | [Multimodal Controls](../core/multimodal-controls.md) |
 | 10 | [When AI Thinks Before It Answers](when-ai-thinks.md) | Reasoning models need reasoning-aware controls | [Reasoning Model Controls](../core/reasoning-model-controls.md) |
 | 11 | [When Agents Talk to Agents](when-agents-talk-to-agents.md) | Multi-agent systems have accountability gaps | [Multi-Agent Controls](../core/multi-agent-controls.md) |

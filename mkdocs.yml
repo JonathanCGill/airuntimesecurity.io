@@ -191,6 +191,7 @@ nav:
       - State of Reality: insights/state-of-reality.md
       - Where Agentic AI Meets Human Behaviour: insights/where-agentic-ai-meets-human-behaviour.md
       - Evaluation Integrity Risks: insights/evaluation-integrity-risks.md
+      - Model Drift Impact: insights/model-drift-impact.md
       - What Works: insights/what-works.md
     - Reference:
       - EU AI Act Crosswalk: extensions/regulatory/eu-ai-act-crosswalk.md
