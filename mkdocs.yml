@@ -208,5 +208,6 @@ nav:
       - Judge Prompt Examples: extensions/templates/judge-prompt-examples.md
       - Worked Examples: extensions/examples/README.md
     - Downloads: downloads.md
+    - News: news.md
     - FAQ: FAQ.md
     - About: ABOUT.md

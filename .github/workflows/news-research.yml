@@ -1,0 +1,71 @@
+name: Biweekly News Research
+
+on:
+  schedule:
+    # Runs every other Monday at 09:00 UTC (weeks 1, 3, 5, ...)
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    # Skip even-numbered weeks so this runs biweekly
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'schedule' && (github.run_number % 2 == 1))
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set branch name
+        id: branch
+        run: echo "name=news/roundup-$(date +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+
+      - name: Create working branch
+        run: |
+          git checkout -b "${{ steps.branch.outputs.name }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Install Claude Code
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Run news research
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          claude -p "$(cat .claude/news-research.md)" \
+            --allowedTools "WebSearch,WebFetch,Read,Edit,Write,Bash(git commit:*),Bash(git push:*),Bash(git add:*),Bash(git status),Bash(git diff),Bash(git log:*)" \
+            --model claude-sonnet-4-6
+
+      - name: Push and create PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git diff --quiet HEAD origin/main; then
+            echo "No changes to push"
+            exit 0
+          fi
+          git push -u origin "${{ steps.branch.outputs.name }}"
+          gh pr create \
+            --title "News: biweekly AI runtime security roundup $(date +%Y-%m-%d)" \
+            --body "$(cat <<'EOF'
+          ## Summary
+
+          - Automated biweekly news research run
+          - Adds recent AI runtime security news items to `docs/news.md`
+          - Each item is mapped to relevant AIRS framework controls
+
+          ## Review checklist
+
+          - [ ] News items are accurate and sourced
+          - [ ] Framework tags and links are correct
+          - [ ] Writing tone matches the site
+
+          EOF
+          )" \
+            --base main
