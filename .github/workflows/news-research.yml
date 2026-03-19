@@ -53,7 +53,7 @@ jobs:
       - name: Run news research
         if: steps.biweekly.outputs.should_run == 'true'
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.Anthropic }}
         run: |
           claude -p "$(cat .claude/news-research.md)" \
             --allowedTools "WebSearch" \
