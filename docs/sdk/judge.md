@@ -205,3 +205,5 @@ The framework recommends deploying the judge in phases:
 3. **Operational**: Judge verdicts drive blocking and escalation.
 
 Use the rule-based judge or FLAG mode guardrails to implement shadow mode without any judge infrastructure.
+
+For latency-critical deployments, shadow mode is also the recommended first step when introducing a [distilled Small Language Model](../../extensions/technical/distill-judge-slm.md) as an inline judge. Run it in shadow alongside the full LLM Judge to validate accuracy before switching to enforcement.

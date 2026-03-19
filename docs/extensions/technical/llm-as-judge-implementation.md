@@ -49,6 +49,8 @@ For high-volume systems, use a two-tier approach:
 
 ![Two-Tier Judge Architecture](../../images/two-tier-judge.svg)
 
+For agentic systems where even the two-tier async approach is too slow, a [distilled Small Language Model](distill-judge-slm.md) can move the fast tier inline, screening every action in milliseconds before it reaches the network or database.
+
 ## What the Judge Evaluates
 
 | Evaluation Type | Question Answered | Example |

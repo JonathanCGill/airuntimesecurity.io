@@ -129,6 +129,8 @@ Big models like Llama 3.1-405b handle tricky tasks but cost a fortune and have h
 
 This gives you speed where volume is high and nuance where it matters.
 
+For agentic systems that need inline, real-time evaluation, you can go further by [distilling the large Judge's reasoning into a purpose-built SLM](distill-judge-slm.md) that runs locally as a sidecar, screening every action in under 50ms.
+
 ### Speed vs. Accuracy Trade-offs
 
 | Model Size | Speed | Nuance | Cost | Best For |

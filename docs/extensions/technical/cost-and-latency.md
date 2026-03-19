@@ -114,6 +114,8 @@ Request → Human review (most expensive)
 
 This reduces cost by 60–80% compared to running the large model on everything.
 
+For even greater savings, consider [distilling the large Judge into a Small Language Model](distill-judge-slm.md) that runs locally. A distilled SLM can screen 100% of actions inline at near-zero marginal cost, with the large model reserved for sampled verification.
+
 ### Caching
 
 Judge evaluations on identical or near-identical inputs can be cached:
