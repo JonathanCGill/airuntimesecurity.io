@@ -38,7 +38,7 @@ Each layer in the three-layer pattern operates independently. When one layer mis
 | Layer | Effectiveness | What This Means | Scope |
 |---|---|---|---|
 | **Guardrails** | ~90% | Catches 90% of issues that reach it - known patterns, policy violations, format errors | Every transaction, real-time |
-| **LLM-as-Judge** | ~95% | Catches 95% of issues in the transactions it evaluates - semantic violations, subtle policy breaches, quality failures | Sampled or full coverage depending on tier |
+| **Model-as-Judge** | ~95% | Catches 95% of issues in the transactions it evaluates - semantic violations, subtle policy breaches, quality failures | Sampled or full coverage depending on tier |
 | **Human Oversight** | ~98% | Catches 98% of issues surfaced to reviewers - edge cases, nuanced judgement calls, novel threats | Flagged transactions + sampling |
 
 ### How Layers Compound

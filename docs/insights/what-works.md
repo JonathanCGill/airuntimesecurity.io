@@ -32,7 +32,7 @@ The three-layer pattern this framework describes (guardrails → judge → human
 
 These are guardrails doing what guardrails do: blocking known patterns at speed. They are not perfect, but they are reducing the blast radius of the most common attacks.
 
-### LLM-as-Judge Detecting Unknown-Bad
+### Model-as-Judge Detecting Unknown-Bad
 
 - **Galileo's eval-to-guardrail lifecycle** demonstrates the feedback loop: evaluation metrics from production identify new failure modes, which are then converted into guardrail rules.
 - **Confident AI / DeepEval** provides async LLM-as-judge evaluation that catches hallucination, toxicity, and coherence failures that static rules miss.

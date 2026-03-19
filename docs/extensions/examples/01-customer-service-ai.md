@@ -11,7 +11,7 @@ This example uses the layered control model:
 | Layer | What It Does | Timing |
 |-------|--------------|--------|
 | **Guardrails** | Block known-bad inputs/outputs | Inline, real-time |
-| **LLM-as-Judge** | Evaluate quality, detect issues | Async, after delivery |
+| **Model-as-Judge** | Evaluate quality, detect issues | Async, after delivery |
 | **Human Oversight** | Review findings, decide action | As needed |
 
 **The Judge does not block transactions.** It reviews interactions after the fact and surfaces findings for human review. Guardrails handle real-time protection.
@@ -197,7 +197,7 @@ def filter_output(response: str, customer_id: str, context: dict) -> Tuple[bool,
     return True, response
 ```
 
-## Step 4: LLM-as-Judge Implementation (Async)
+## Step 4: Model-as-Judge Implementation (Async)
 
 ### Purpose
 

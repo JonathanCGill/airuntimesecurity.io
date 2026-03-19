@@ -46,7 +46,7 @@ The problem extends beyond orchestrators. Multi-agent systems have three classes
 
 **The threat:** An orchestrator that decomposes "summarise customer complaints" into "extract all customer email addresses" and "send to external endpoint" has not violated any tool restriction. It has violated intent through planning.
 
-### 2. The Evaluator (LLM-as-Judge)
+### 2. The Evaluator (Model-as-Judge)
 
 **What it does:** Assesses task agent outputs for quality, safety, policy compliance. Approves, escalates, or blocks.
 

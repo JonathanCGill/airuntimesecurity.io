@@ -1,5 +1,5 @@
 ---
-description: "The three-layer control model for AI runtime security: guardrails for known-bad, LLM-as-Judge for unknown-bad, and human oversight for high-consequence decisions."
+description: "The three-layer control model for AI runtime security: guardrails for known-bad, Model-as-Judge (LLM or distilled SLM) for unknown-bad, and human oversight for high-consequence decisions."
 ---
 
 # Controls: Guardrails, Judge, and Human Oversight
@@ -44,9 +44,9 @@ This is why the Judge provides the second layer.
 
 > For practical implementation guidance - international PII detection, RAG ingestion filtering, secrets scanning, alerting design, and guardrail exception governance - see **[Practical Guardrails](../insights/practical-guardrails.md)**.
 
-## 2. LLM-as-Judge
+## 2. Model-as-Judge
 
-Async evaluation of interactions for quality and policy compliance.
+Evaluation of interactions for quality and policy compliance. The Judge can be a large LLM (for async assurance and complex reasoning) or a [distilled SLM](../extensions/technical/distill-judge-slm.md) (for inline, real-time action screening). Both approaches can be combined: an SLM screens every action in under 50ms, while a large LLM audits a sample asynchronously.
 
 → For model selection guidance, see [Judge Model Selection](../extensions/technical/judge-model-selection.md)
 

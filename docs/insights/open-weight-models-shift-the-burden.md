@@ -35,7 +35,7 @@ With open-weight models, **your guardrails are the only guardrails.** There is n
 
 Fine-tuned or quantised variants add another complication. Safety training applied during the model's original post-training can degrade or disappear entirely after fine-tuning. A model that refused harmful requests in its base form may comply after domain-specific fine-tuning - not because you intended it to, but because the safety behavior wasn't robust to the training process.
 
-### LLM-as-Judge
+### Model-as-Judge
 
 The Judge layer is less affected by deployment model, since the evaluating LLM can be a separate hosted service regardless of what the primary model is. This is actually a useful architectural pattern: run your primary workload on a self-hosted model for sovereignty or cost, but route evaluation through a hosted Judge with its own provider-maintained safeguards.
 

@@ -1,10 +1,10 @@
 ---
-description: "Principles for selecting the right LLM-as-Judge model: prioritising model diversity, conservative bias, and throughput to match transaction volume."
+description: "Principles for selecting the right Judge model (LLM or distilled SLM): prioritising model diversity, conservative bias, and throughput to match transaction volume."
 ---
 
 # Judge Model Selection
 
-Principles for choosing the right model to evaluate your AI system.
+Principles for choosing the right model to evaluate your AI system. These principles apply whether the Judge is a large LLM for async assurance or a [distilled SLM](distill-judge-slm.md) for inline evaluation.
 
 ## The Core Principles
 

@@ -39,7 +39,7 @@ This is useful for:
 - Low-risk deployments where basic checks suffice
 - Testing and development environments
 
-## LLM-as-Judge
+## Model-as-Judge
 
 For production use. Works with any OpenAI-compatible API:
 

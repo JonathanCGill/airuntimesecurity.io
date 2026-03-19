@@ -6,14 +6,14 @@ description: "AIRS Framework architecture: risk-proportionate, layered runtime c
 
 The goal of this architecture is to reduce harm caused by AI systems in production through layered controls that are proportionate to risk. Not every AI use case needs every control. The architecture provides risk-oriented paths so that AI product owners can quickly identify the controls they need and apply them, or consciously deselect the ones they do not need. Everything described here serves that goal.
 
-![Three-layer runtime security: Guardrails, LLM-as-Judge, Human Oversight](images/three-layer-simple.svg){ .arch-diagram }
+![Three-layer runtime security: Guardrails, Model-as-Judge, Human Oversight](images/three-layer-simple.svg){ .arch-diagram }
 
 The industry is converging on the same answer independently. NVIDIA NeMo, AWS Bedrock, Azure AI, LangChain, Guardrails AI - all implement variants of the same pattern:
 
 | Layer | What It Does | Speed |
 | --- | --- | --- |
 | **Guardrails** | Block known-bad inputs and outputs - PII, injection patterns, policy violations | Real-time (~10ms) |
-| **LLM-as-Judge** | Detect unknown-bad - an independent model evaluating whether responses are appropriate | Async (~500ms–5s) |
+| **Model-as-Judge** | Detect unknown-bad: an independent model (LLM or [distilled SLM](extensions/technical/distill-judge-slm.md)) evaluating whether responses are appropriate | Async (500ms–5s) or inline (10–50ms for SLM) |
 | **Human Oversight** | Decide genuinely ambiguous cases that automated layers can't resolve | As needed |
 | **Circuit Breaker** | Stop all AI traffic and activate a safe fallback when controls themselves fail | Immediate |
 
@@ -28,7 +28,7 @@ Each layer catches what the others miss. Remove any layer and you have a gap. To
 For a single AI model - a chatbot, a document processor, an assistant - the three layers wrap the model's input and output. Each layer is specifically designed to catch what the previous layer misses (compound defence by design, not by coincidence):
 
 - **Guardrails** (containment boundaries) run synchronously on every request. Deterministic pattern matching: content filters, PII detection, topic restrictions, rate limits. Permissions derive from **business intent** - what the use case requires - not from evaluation of the model's capabilities. This is a [constrain-regardless](insights/why-containment-beats-evaluation.md) architecture: action-space constraints that leave the model's reasoning unconstrained. Fast and necessary, but insufficient alone - you cannot write a regex for every possible failure of a system that generates natural language.
-- **LLM-as-Judge** runs asynchronously, evaluating whether the response is appropriate, safe, within scope, and consistent with purpose. Different model, different provider if possible - **enterprise-owned and configured**, not vendor-side safeguards. If the primary model is compromised, the Judge must not be compromised with it. Catches within-bounds adversarial behavior that containment cannot address.
+- **Model-as-Judge** evaluates whether the response is appropriate, safe, within scope, and consistent with purpose. The Judge can be a large LLM running asynchronously, or a [distilled SLM](extensions/technical/distill-judge-slm.md) running inline as a sidecar for real-time screening. Either way: different model, different provider if possible, **enterprise-owned and configured**, not vendor-side safeguards. If the primary model is compromised, the Judge must not be compromised with it. Catches within-bounds adversarial behavior that containment cannot address.
 - **Human Oversight** scales with risk. Low-risk systems get spot checks. High-risk systems get human approval before execution. Only genuinely ambiguous cases reach human reviewers. Handles what neither containment nor the Judge can resolve autonomously.
 
 Controls scale to risk tier. A low-risk internal tool needs minimal guardrails and self-certification ([Fast Lane](FAST-LANE.md)). A customer-facing agent handling regulated data needs the full architecture with mandatory human approval. The framework respects that every organisation has its own way of working, and lets you match controls to your context rather than imposing a single mandate.

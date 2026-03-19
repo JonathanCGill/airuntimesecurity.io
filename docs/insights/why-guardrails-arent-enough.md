@@ -83,7 +83,7 @@ Effective AI security combines three layers:
 | Layer | Function | Timing |
 |-------|----------|--------|
 | **Guardrails** | Block known-bad inputs and outputs | Real-time, inline |
-| **LLM-as-Judge** | Detect issues, surface findings | Async, after-the-fact |
+| **Model-as-Judge** | Detect issues, surface findings | Async, after-the-fact |
 | **Human Oversight** | Decide, act, remain accountable | As needed |
 
 **Guardrails** are your first line. Fast, deterministic, blocking obvious attacks and policy violations. They catch 80% of problems with minimal latency.

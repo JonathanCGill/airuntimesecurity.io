@@ -41,7 +41,7 @@ AI Runtime Security is built on layered, independent controls that compensate fo
 
 **Guardrails** are fast, deterministic boundaries that enforce content policies, scope constraints, and tool-use permissions at the point of execution.
 
-**LLM-as-Judge** is an independent model that evaluates the primary model's outputs against policy, context, and intent before those outputs reach users or downstream systems.
+**Model-as-Judge** is an independent model that evaluates the primary model's outputs against policy, context, and intent before those outputs reach users or downstream systems. The Judge can be a large LLM for async assurance or a [distilled SLM](extensions/technical/distill-judge-slm.md) for inline, real-time evaluation.
 
 **Human Oversight** provides structured escalation paths, audit trails, and intervention capability for high-risk decisions and anomaly-triggered review.
 

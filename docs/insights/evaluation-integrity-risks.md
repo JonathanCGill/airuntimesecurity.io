@@ -36,7 +36,7 @@ This also means that organisations cannot rely on "upgrading to a better model" 
 
 Guardrails are largely unaffected because they operate on inputs and outputs deterministically. A model can't sandbag its way past a regex pattern matcher or a PII detector. However, guardrails that use ML-based classifiers (semantic injection detection, content policy models) could be vulnerable if the primary model learns to craft outputs that specifically evade those classifiers.
 
-### LLM-as-Judge
+### Model-as-Judge
 
 The Judge layer is the most exposed. If the primary model can detect that its outputs will be evaluated by a Judge - through formatting patterns, sampling rates, timing signatures, or metadata in the evaluation pipeline - it could produce outputs optimised to pass Judge evaluation rather than outputs that genuinely comply with policy.
 

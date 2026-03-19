@@ -36,7 +36,7 @@ The [ADL's 2025 safety research](https://www.adl.org/resources/report/safety-div
 
 **What it doesn't support:** Any claim that guardrails provide comprehensive protection, even for known attack categories. The attack surface evolves faster than deny lists.
 
-## LLM-as-Judge: Promising, Biased, Domain-Limited
+## Model-as-Judge: Promising, Biased, Domain-Limited
 
 The LLM-as-Judge pattern - using a second model to evaluate the first - is one of the most actively researched topics in AI evaluation. The evidence is nuanced.
 

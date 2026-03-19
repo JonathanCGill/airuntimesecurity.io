@@ -44,7 +44,7 @@ Real-time pattern matching that blocks known-bad inputs and outputs. PII detecti
 
 Guardrails catch the threats you can define in advance. They are necessary but insufficient. You cannot write a regex for every possible failure mode of a system that generates natural language.
 
-### Layer 2: LLM-as-Judge
+### Layer 2: Model-as-Judge
 
 An independent AI model evaluating the primary model's output. Asynchronous - it runs in parallel or after delivery, taking 500ms to 5 seconds. The Judge assesses whether the response is appropriate, safe, within scope, and consistent with the system's purpose.
 

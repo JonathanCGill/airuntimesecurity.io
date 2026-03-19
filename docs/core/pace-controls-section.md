@@ -30,7 +30,7 @@ Guardrails are the Primary layer: deterministic, fast, always-on. When they degr
 | C → E | Evidence of configuration tampering; known vulnerability actively exploited; guardrail logs show signs of adversarial manipulation |
 | Recovery: C/E → P | Engine restored, all filters validated with test suite, monitoring confirms normal operation for >15 min (Tier 1) / >1 hour (Tier 2/3) |
 
-## LLM-as-Judge - Internal PACE
+## Model-as-Judge - Internal PACE
 
 The Judge is the Alternate layer: probabilistic, asynchronous, catches what guardrails miss. Its failure modes are different from guardrails - it can be slow, wrong, or manipulated - and the fallback response differs by tier.
 

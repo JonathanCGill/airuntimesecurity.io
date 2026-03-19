@@ -1,5 +1,5 @@
 ---
-description: Get from zero to working AI security controls in 30 minutes. Classify risk, deploy guardrails, configure LLM-as-Judge, and set up human oversight.
+description: Get from zero to working AI security controls in 30 minutes. Classify risk, deploy guardrails, configure a Judge model (LLM or distilled SLM), and set up human oversight.
 ---
 
 # Quick Start: Implementing Behavioral Controls for AI
@@ -143,7 +143,7 @@ The Judge reviews interactions after they happen, catching what guardrails miss.
 ### How It Works
 
 1. Pull recent interactions from logs
-2. Evaluate against criteria using an LLM
+2. Evaluate against criteria using a Judge model (LLM or [distilled SLM](extensions/technical/distill-judge-slm.md))
 3. Flag concerning interactions
 4. Route flags to human review queue
 

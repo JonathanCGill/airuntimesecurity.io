@@ -13,7 +13,7 @@ The mapping below covers the CSF 2.0 "Secure" focus area as described in NIST IR
 | Framework Layer | Primary CSF Function | Role |
 | --- | --- | --- |
 | **Guardrails** | PROTECT (PR) | Preventive controls - block known-bad inputs and outputs |
-| **LLM-as-Judge** | DETECT (DE) | Detective controls - evaluate outputs against policy |
+| **Model-as-Judge** | DETECT (DE) | Detective controls - evaluate outputs against policy |
 | **Human Oversight** | GOVERN (GV) | Decision authority - humans accountable for high-risk outcomes |
 
 The infrastructure controls that enforce these layers map across all six CSF Functions.
@@ -191,7 +191,7 @@ The RECOVER Function covers recovery plan execution and communication. This fram
 | Layer | CSF Functions | Key Subcategories |
 | --- | --- | --- |
 | **Guardrails** | PROTECT | PR.DS-10 (data-in-use), PR.AA-05 (access control), PR.PS-05 (unauthorised execution prevention) |
-| **LLM-as-Judge** | DETECT | DE.CM-09 (runtime monitoring), DE.AE-02 (event analysis), DE.AE-03 (correlation) |
+| **Model-as-Judge** | DETECT | DE.CM-09 (runtime monitoring), DE.AE-02 (event analysis), DE.AE-03 (correlation) |
 | **Human Oversight** | GOVERN, RESPOND | GV.RR-01 (accountability), GV.RR-02 (roles/authorities), RS.MA-04 (escalation) |
 
 ## Subcategories Not Mapped

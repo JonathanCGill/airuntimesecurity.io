@@ -1,5 +1,5 @@
 ---
-description: "How to validate LLM-as-Judge accuracy against human ground truth, detect Judge drift, and prevent evaluation collapse in AI safety systems."
+description: "How to validate Model-as-Judge accuracy against human ground truth, detect Judge drift, and prevent evaluation collapse in AI safety systems."
 ---
 
 # Judge Assurance
@@ -8,9 +8,9 @@ description: "How to validate LLM-as-Judge accuracy against human ground truth, 
 
 ## The Problem
 
-The three-layer pattern depends on the LLM-as-Judge to detect "unknown-bad" outputs that guardrails miss. But the Judge is itself an LLM. It hallucinates. It drifts. It can be manipulated.
+The three-layer pattern depends on the Model-as-Judge to detect "unknown-bad" outputs that guardrails miss. The Judge may be a large LLM running asynchronously, a [distilled SLM](../extensions/technical/distill-judge-slm.md) running inline as a sidecar, or both in a tiered arrangement. Regardless of size, the Judge is itself a model. It hallucinates. It drifts. It can be manipulated.
 
-If you deploy a Judge without evaluating its accuracy, you've added cost and latency without knowing whether you've added safety.
+If you deploy a Judge without evaluating its accuracy, you have added cost and latency without knowing whether you have added safety.
 
 ## What Can Go Wrong
 

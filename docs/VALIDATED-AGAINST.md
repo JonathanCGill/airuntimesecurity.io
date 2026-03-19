@@ -123,7 +123,7 @@ The single most broadly validated control. Addresses the widest range of attack 
 |----------|----------------------|
 | INC-04: LangChain Experimental | Code execution occurs in an isolated sandbox with no access to the host system. Even if code execution is triggered, blast radius is contained |
 
-### LLM-as-Judge Gate (Various Specialisations)
+### Model-as-Judge Gate (Various Specialisations)
 
 **Incident alignment: Strong (6 incidents) · Confidence: High (injection incidents), Moderate (hallucination incidents)**
 

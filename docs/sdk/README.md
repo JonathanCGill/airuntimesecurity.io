@@ -43,7 +43,7 @@ The one exception is the optional **LLM-as-Judge**, which does call an OpenAI-co
 | Component | What It Does |
 |-----------|-------------|
 | **Guardrails** | Regex-based prompt injection detection, PII filtering, content policy (extensible) |
-| **LLM-as-Judge** | Rule-based (no API key) or LLM-based (OpenAI-compatible) output evaluation |
+| **Model-as-Judge** | Rule-based (no API key) or LLM-based (OpenAI-compatible) output evaluation |
 | **Circuit Breaker** | Sliding-window failure tracking, auto-trip, manual emergency stop, recovery |
 | **PACE Controller** | State machine for structured degradation (Primary → Alternate → Contingency → Emergency) |
 | **Security Pipeline** | Orchestrates all layers with configurable behavior per PACE state |

@@ -50,7 +50,7 @@ The [Judge layer](ARCHITECTURE.md) exists because guardrails will be bypassed. T
 | Layer | What it catches | Why the previous layer can't |
 |-------|----------------|------------------------------|
 | **Guardrails** | Known-bad patterns (PII, injection signatures, policy violations) | N/A - first line |
-| **LLM-as-Judge** | Unknown-bad - semantically inappropriate outputs that pass pattern matching | Guardrails can't reason about meaning |
+| **Model-as-Judge** | Unknown-bad - semantically inappropriate outputs that pass pattern matching | Guardrails can't reason about meaning |
 | **Human Oversight** | Genuinely ambiguous cases, novel situations, edge cases | Neither automated layer can handle true ambiguity |
 | **Circuit Breaker** | Systemic failure of controls themselves | Previous layers can't detect their own compromise |
 

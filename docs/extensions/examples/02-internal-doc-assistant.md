@@ -11,7 +11,7 @@ For MEDIUM-risk internal tools, the control model simplifies:
 | Layer | Approach |
 |-------|----------|
 | **Guardrails** | Rules-based validation (no LLM needed) |
-| **LLM-as-Judge** | Recommended-sampling for quality assurance |
+| **Model-as-Judge** | Recommended-sampling for quality assurance |
 | **Human Oversight** | Periodic batch review, not real-time |
 
 This example uses **guardrails only** for inline protection, with optional Judge sampling for quality monitoring. This is appropriate because:

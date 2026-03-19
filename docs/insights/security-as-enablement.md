@@ -83,7 +83,7 @@ For this framework, that means:
 | Framework Component | Heckling Version | Enablement Version |
 |---|---|---|
 | **Guardrails** | A document describing what guardrails a team should implement | A platform service that applies guardrails automatically when a team deploys on approved infrastructure |
-| **LLM-as-Judge** | A requirement that teams build and operate their own evaluation pipeline | A shared service that evaluates transactions and routes findings to the owning team's workflow |
+| **Model-as-Judge** | A requirement that teams build and operate their own evaluation pipeline | A shared service that evaluates transactions and routes findings to the owning team's workflow |
 | **Risk classification** | A questionnaire that requires a meeting with the security team to complete | A self-service form that returns a tier and auto-applies the corresponding controls |
 | **Logging** | A policy requiring teams to implement comprehensive logging | A platform that captures all AI interactions by default because teams deploy on infrastructure that logs |
 | **PACE resilience** | A template that teams must fill in and submit for approval | A platform capability where circuit breakers, fallback routes, and kill switches are pre-configured per tier |

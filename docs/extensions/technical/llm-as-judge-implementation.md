@@ -1,18 +1,16 @@
 ---
-description: "LLM-as-Judge implementation guide: configuring the Judge as a continuous assurance mechanism for reviewing AI outputs, not a real-time gatekeeper."
+description: "Model-as-Judge implementation guide: configuring the Judge as a continuous assurance mechanism for reviewing AI outputs, with options for large LLMs (async) or distilled SLMs (inline)."
 ---
 
-# LLM-as-Judge: An Assurance Mechanism
+# Model-as-Judge: An Assurance Mechanism
 
 ## What the Judge Is
 
-The LLM-as-Judge is a **continuous assurance tool**, not a real-time control.
+The Model-as-Judge is a **continuous assurance tool**. In its traditional form, it runs asynchronously as a large LLM, reviewing outputs after the fact. For agentic systems that need real-time screening, the Judge can also be a [distilled Small Language Model](distill-judge-slm.md) running inline as a sidecar.
 
-It reviews AI system outputs after the fact to identify red flags, quality issues, policy violations, and emerging patterns. It does not block, prevent, or make decisions. It surfaces findings for humans to act on.
+This page covers the async LLM Judge pattern. It reviews AI system outputs to identify red flags, quality issues, policy violations, and emerging patterns. It surfaces findings for humans to act on. Think of it as an auditor. For the inline SLM pattern that acts as a real-time gate, see [Distilling the Judge into an SLM](distill-judge-slm.md).
 
-Think of it as an auditor, not a gatekeeper.
-
-→ For model selection guidance, see [Judge Model Selection](judge-model-selection.md)
+> For model selection guidance, see [Judge Model Selection](judge-model-selection.md)
 
 ![Assurance Model](../../images/assurance-model-diagram.svg)
 
@@ -150,15 +148,15 @@ The Judge is itself an AI system. It requires:
 
 ## Comparison: Guardrails vs Judge vs HITL
 
-| Aspect | Guardrails | LLM Judge | Human Oversight |
-|--------|------------|-----------|-----------------|
-| **Timing** | Inline | Async | As needed |
-| **Speed** | Milliseconds | Seconds | Minutes to hours |
-| **Function** | Block known-bad | Detect unknown-bad | Decide and account |
-| **Reasoning** | None (rules) | Contextual | Full judgement |
-| **Cost** | Low | Medium-high | High |
-| **Scales** | Yes | Yes (with sampling) | No |
-| **Accountable** | No | No | Yes |
+| Aspect | Guardrails | LLM Judge (async) | SLM Judge (inline) | Human Oversight |
+|--------|------------|-----------|-----------|-----------------|
+| **Timing** | Inline | Async | Inline | As needed |
+| **Speed** | Milliseconds | Seconds | 10-50ms | Minutes to hours |
+| **Function** | Block known-bad | Detect unknown-bad | Screen actions in real-time | Decide and account |
+| **Reasoning** | None (rules) | Contextual | Trained patterns | Full judgement |
+| **Cost** | Low | Medium-high | Low (compute only) | High |
+| **Scales** | Yes | Yes (with sampling) | Yes (local) | No |
+| **Accountable** | No | No | No | Yes |
 
 ### Choosing a Judge Approach
 

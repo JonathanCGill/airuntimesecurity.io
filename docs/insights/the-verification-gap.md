@@ -133,7 +133,7 @@ Not all verification is equal. Approaches vary in their independence from the LL
 
 **Risk rating**: ⬤⬤○○○ (Catches some errors, misses confident ones)
 
-### LLM-as-Judge
+### Model-as-Judge
 
 **What it does**: Uses a second (often larger) model to evaluate outputs.
 

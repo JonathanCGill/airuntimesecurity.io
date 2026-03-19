@@ -125,7 +125,7 @@ These framework proposals are directly confirmed by recent threat intelligence. 
 
 These framework proposals are directionally correct but need updates based on new threat intelligence.
 
-### 2.1 LLM-as-Judge Assurance Needs More Aggressive Adversarial Hardening
+### 2.1 Model-as-Judge Assurance Needs More Aggressive Adversarial Hardening
 
 **Framework proposal:** LLM-as-Judge operates asynchronously, surfaces findings for human review, and uses model diversity to reduce manipulation risk. Judge assurance includes accuracy measurement and calibration.
 

@@ -28,7 +28,7 @@ description: One-page AI security reference. Classify systems, select controls, 
 | Control | Fast Lane | Tier 1 | Tier 2 | Tier 3 |
 |---|---|---|---|---|
 | **Guardrails** | Basic filter | Standard | Full suite + injection detection | Hardened, multi-layer |
-| **LLM-as-Judge** | - | 10–20% sample | 100% async | 100% dual-model, pre+post action |
+| **Model-as-Judge** | - | 10–20% sample | 100% async | 100% dual-model, pre+post action |
 | **Human Oversight** | - | - | Dedicated reviewers, SLA-bound | Domain experts, dual approval |
 | **Circuit Breaker** | Feature flag | Feature flag | Automated health-check | Automated + staffed fallback |
 | **Usage Logging** | Yes | Yes | Yes | Yes |
@@ -77,7 +77,7 @@ If deploying **multiple agents** that communicate, delegate, or act across trust
 | **Prompt, Goal & Epistemic Integrity** | Injection propagation across agents, goal drift, hallucination amplification, groupthink |
 | **Identity & Access** | Non-Human Identity per agent, no shared credentials, no transitive authority |
 | **Data Protection** | Cross-agent data fencing, DLP on the message bus, memory isolation |
-| **Execution Control** | Sandboxed execution, blast radius caps, LLM-as-Judge gate, interaction timeouts |
+| **Execution Control** | Sandboxed execution, blast radius caps, Model-as-Judge gate, interaction timeouts |
 | **Observability** | Decision chain audit, anomaly scoring, drift detection, independent kill switch |
 | **Supply Chain** | AIBOM per agent, signed tool manifests, MCP server vetting |
 | **Privileged Agent Governance** | Elevated controls for orchestrators, planners, and meta-agents with disproportionate authority |

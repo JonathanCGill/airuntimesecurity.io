@@ -13,7 +13,7 @@ This example uses the layered control model:
 | **Guardrails** | Validate data, block malformed input | Inline |
 | **Primary AI** | Generate risk assessment | Inline |
 | **100% HITL** | Underwriter reviews and decides | Inline (human) |
-| **LLM-as-Judge** | Quality assurance, bias detection | Async, after decision |
+| **Model-as-Judge** | Quality assurance, bias detection | Async, after decision |
 
 **Critical distinction:** The underwriter (HITL) is the decision-maker. The AI provides recommendations. The Judge evaluates the entire process after the fact for quality assurance, bias monitoring, and compliance evidence.
 
@@ -276,7 +276,7 @@ _______________________________________________________________
 
 **Override rate is a key metric.** Too low suggests rubber-stamping. Too high suggests poor AI quality. Target: 10-20%.
 
-## Step 5: LLM-as-Judge Implementation (Async)
+## Step 5: Model-as-Judge Implementation (Async)
 
 ### Purpose
 

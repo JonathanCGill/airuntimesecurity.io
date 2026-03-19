@@ -11,7 +11,7 @@ AI security controls operate across three layers:
 | Layer | Function | Timing | Can Block? |
 |-------|----------|--------|------------|
 | **Guardrails** | Block known-bad patterns | Inline, real-time | Yes |
-| **LLM-as-Judge** | Detect issues, surface findings | Async, after-the-fact | No |
+| **Model-as-Judge** | Detect issues, surface findings | Async, after-the-fact | No |
 | **Human Oversight** | Review, decide, act | As needed | Yes |
 
 **Key principle:** Guardrails prevent. Judge detects. Humans decide.
@@ -526,7 +526,7 @@ In multi-user AI systems, information from one user's session must not leak into
 
 **Evidence:** Isolation architecture documentation, session management configuration, penetration test results
 
-## AI.8 Runtime Controls - LLM-as-Judge
+## AI.8 Runtime Controls - Model-as-Judge
 
 The Judge is an **async assurance mechanism** that evaluates AI interactions after the fact.
 

@@ -288,7 +288,7 @@ The AI security industry has converged on a common pattern: **layered runtime co
 
 **Documentation:** [OpenAI Moderation](https://platform.openai.com/docs/guides/moderation)
 
-## Evaluation Frameworks (LLM-as-Judge)
+## Evaluation Frameworks (Model-as-Judge)
 
 ### DeepEval / Confident AI
 

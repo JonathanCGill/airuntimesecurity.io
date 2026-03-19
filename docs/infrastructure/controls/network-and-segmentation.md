@@ -17,7 +17,7 @@ Traditional application network security segments by tier: web, application, dat
 | **Model endpoints** | Receive prompts, return responses. May call external APIs for tool use. | Prompt injection payloads traverse the network as legitimate traffic |
 | **Vector stores** | Queried by models at inference time with embedding similarity searches | Data exfiltration via crafted embeddings or retrieval manipulation |
 | **Agent tool APIs** | Called dynamically by agents - destination determined at runtime by the model | Agents can be manipulated to call unintended endpoints |
-| **LLM-as-Judge** | Evaluates primary model output - must be independent | If Judge shares infrastructure with primary model, compromise of one affects both |
+| **Model-as-Judge** | Evaluates primary model output - must be independent | If Judge shares infrastructure with primary model, compromise of one affects both |
 | **Guardrail services** | Inline on the request/response path - must be un-bypassable | If guardrails can be routed around at the network level, they provide zero value |
 | **Embedding pipelines** | Ingest documents, generate embeddings, write to vector stores | Poisoned documents enter via ingestion - separate from runtime |
 

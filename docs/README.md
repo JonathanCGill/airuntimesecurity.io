@@ -69,7 +69,7 @@ Four core control patterns, each independent, each compensating for the others:
 
 **Guardrails** enforce hard boundaries. Content policies, scope constraints, tool-use permissions. They are fast, deterministic, and limited. They catch the obvious failures.
 
-**LLM-as-Judge evaluation** uses a separate model to assess the primary model's outputs against policy, context, and intent before those outputs reach users or downstream systems. It catches the subtle failures. The response that is technically within policy but contextually inappropriate. The tool call that is technically permitted but operationally dangerous.
+**Model-as-Judge evaluation** uses a separate model to assess the primary model's outputs against policy, context, and intent before those outputs reach users or downstream systems. The Judge can be a large LLM (for async assurance) or a [distilled Small Language Model](extensions/technical/distill-judge-slm.md) (for inline, real-time screening). It catches the subtle failures. The response that is technically within policy but contextually inappropriate. The tool call that is technically permitted but operationally dangerous.
 
 **Human oversight** provides escalation paths, audit trails, and intervention capability. This is not human-in-the-loop for every transaction. That does not scale. It is structured checkpoints for high-risk decisions and anomaly-triggered review.
 

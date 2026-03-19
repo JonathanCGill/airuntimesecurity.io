@@ -31,7 +31,7 @@ Three layers, one principle: **you can't fully test a non-deterministic system b
 
 **Layer 1 - Guardrails** (containment boundaries) block known-bad inputs and outputs at machine speed (~10ms). Deterministic pattern matching: content filters, PII detection, topic restrictions, rate limits. Permissions derive from business intent - what the use case requires - not from evaluation of the model's capabilities. These are **action-space constraints** that leave the model's reasoning unconstrained. Every request passes through. No exceptions.
 
-**Layer 2 - LLM-as-Judge** catches unknown-bad through independent model evaluation (~500ms–5s). A separate LLM, **enterprise-owned and configured**, evaluates task agent outputs against policy, factual grounding, tone, and safety criteria. Catches what guardrails can't pattern-match - including within-bounds adversarial behavior that containment alone cannot address.
+**Layer 2 - Model-as-Judge** catches unknown-bad through independent model evaluation. The Judge can be a large LLM running asynchronously (500ms to 5s) or a [distilled SLM](../extensions/technical/distill-judge-slm.md) running inline as a sidecar (10ms to 50ms). Either way, **enterprise-owned and configured**, evaluating task agent outputs against policy, factual grounding, tone, and safety criteria. Catches what guardrails cannot pattern-match, including within-bounds adversarial behavior that containment alone cannot address.
 
 **Layer 3 - Human Oversight** provides the accountability backstop. Scope scales with risk: low-risk systems get spot checks, high-risk systems get human approval before commit. Humans decide edge cases. Humans own outcomes. Handles what neither containment nor the Judge can resolve autonomously.
 
