@@ -60,7 +60,7 @@ The Judge needs to evaluate outputs in context of the input modality.
 | Audio generation | Transcribe output + text evaluation |
 | Document generation | Extract text from generated document + text evaluation |
 
-**Limitation:** Image and audio evaluation by an LLM-as-Judge is less reliable than text evaluation. The judge may not "see" subtle content in generated images the way a human would.
+**Limitation:** Image and audio evaluation by an Model-as-Judge is less reliable than text evaluation. The judge may not "see" subtle content in generated images the way a human would.
 
 **Compensating control:** Increase human review sample rate for multimodal outputs. If your text-only human review rate is 5%, consider 15–20% for multimodal.
 

@@ -1,5 +1,5 @@
 ---
-description: "Why AI guardrails alone are insufficient for production safety, introducing the three-layer control model of guardrails, LLM-as-Judge, and human oversight."
+description: "Why AI guardrails alone are insufficient for production safety, introducing the three-layer control model of guardrails, Model-as-Judge, and human oversight."
 ---
 
 # Why Your AI Guardrails Aren't Enough
@@ -148,7 +148,7 @@ The three-layer model isn't theoretical. It's already being implemented:
 | [LangChain](https://docs.langchain.com/) | Middleware + human-in-the-loop |
 | [Guardrails AI](https://www.guardrailsai.com/) | Validator framework |
 | [Galileo](https://www.rungalileo.io/) | Eval-to-guardrail lifecycle |
-| [DeepEval](https://github.com/confident-ai/deepeval) | LLM-as-judge evaluation |
+| [DeepEval](https://github.com/confident-ai/deepeval) | Model-as-Judge evaluation |
 
 What's been missing: a clear explanation of *why* this pattern is necessary and *how* to implement it proportionate to risk.
 

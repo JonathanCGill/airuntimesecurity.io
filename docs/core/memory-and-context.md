@@ -48,7 +48,7 @@ Every user session must be isolated. No shared state between users unless explic
 | **System prompt anchoring** | Re-inject system instructions at intervals in long conversations, not just at the start |
 | **Context summarisation** | Periodically summarise old turns and replace verbose history with summaries |
 | **Turn limits** | Maximum number of turns per conversation before requiring a new session |
-| **Token budget monitoring** | Alert when context window approaches capacity, because model behavior degrades near limits. This is a security control, not just a performance concern: attention dilution weakens system prompt adherence, increases hallucination rates, and degrades instruction-following. In multi-agent systems, this becomes a dual failure path when the LLM-as-Judge's context also fills (see [MASO OP-04](../maso/controls/risk-register.md) for the full risk treatment). Recommended thresholds: 70% (info), 85% (warning), 95% (critical/fail-closed) |
+| **Token budget monitoring** | Alert when context window approaches capacity, because model behavior degrades near limits. This is a security control, not just a performance concern: attention dilution weakens system prompt adherence, increases hallucination rates, and degrades instruction-following. In multi-agent systems, this becomes a dual failure path when the Model-as-Judge's context also fills (see [MASO OP-04](../maso/controls/risk-register.md) for the full risk treatment). Recommended thresholds: 70% (info), 85% (warning), 95% (critical/fail-closed) |
 
 #### Context Rotation (Tier 2+)
 
@@ -60,7 +60,7 @@ When token budget monitoring (above) indicates an agent is approaching context l
 
 The critical design decision: **use structured state, not natural language summaries.** Summarisation introduces semantic drift: "must" becomes "should," "never exceed 5%" becomes "keep low," qualifiers vanish. Requirements soften through each summarisation cycle. Typed fields preserve constraint precision.
 
-In multi-agent systems, context rotation must be coordinated with the LLM-as-Judge. If the Judge is also approaching its context limit, rotate the Judge independently, since correlated exhaustion (agent and Judge both degraded) is a PACE escalation trigger. See [MASO Execution Control EC-2.16, EC-2.17](../maso/controls/execution-control.md) for the full control specification.
+In multi-agent systems, context rotation must be coordinated with the Model-as-Judge. If the Judge is also approaching its context limit, rotate the Judge independently, since correlated exhaustion (agent and Judge both degraded) is a PACE escalation trigger. See [MASO Execution Control EC-2.16, EC-2.17](../maso/controls/execution-control.md) for the full control specification.
 
 ### 3. Persistent Memory Controls
 

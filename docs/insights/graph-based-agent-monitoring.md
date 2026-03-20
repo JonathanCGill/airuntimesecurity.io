@@ -60,7 +60,7 @@ In-memory graph databases like [Memgraph](https://memgraph.com/) are designed fo
 | Alert evaluation + PACE trigger | ~10ms | Threshold comparison |
 | **Total** | **~80ms typical, &lt;200ms worst case** | |
 
-This is well within the framework's near real-time requirements. For comparison, the LLM-as-Judge layer adds 500ms to 5 seconds of latency per evaluation. The graph monitoring layer is an order of magnitude faster.
+This is well within the framework's near real-time requirements. For comparison, the Model-as-Judge layer adds 500ms to 5 seconds of latency per evaluation. The graph monitoring layer is an order of magnitude faster.
 
 ## Four Detection Patterns That Only Graphs Can See
 
@@ -275,7 +275,7 @@ One query. Milliseconds. The entire blast radius is visible.
 
 1. **Multi-agent observability is a graph problem.** The most important signals are structural: who talks to whom, through what paths, with what frequency, and how that topology changes over time. Graph databases model this natively. Tabular databases reconstruct it expensively.
 
-2. **Near real-time is achievable.** In-memory graph databases with stream connectors (Memgraph + Kafka) deliver sub-200ms end-to-end latency from agent event to anomaly alert. This is faster than the LLM-as-Judge layer and well within the framework's requirements.
+2. **Near real-time is achievable.** In-memory graph databases with stream connectors (Memgraph + Kafka) deliver sub-200ms end-to-end latency from agent event to anomaly alert. This is faster than the Model-as-Judge layer and well within the framework's requirements.
 
 3. **Four detection patterns emerge from graph structure.** New edges to unknown targets, edge weight spikes, centrality shifts, and community fragmentation catch behavioral anomalies that per-agent metric monitoring cannot see, because they exist in the relationships, not in the individual agents.
 

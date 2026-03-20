@@ -43,7 +43,7 @@ print(event.to_dict())
 |------|------------------|
 | `guardrail.input` | Input guardrail evaluates a request |
 | `guardrail.output` | Output guardrail evaluates a response |
-| `judge.decision` | LLM-as-Judge makes a verdict |
+| `judge.decision` | Model-as-Judge makes a verdict |
 | `tool.policy` | Tool policy engine allows/denies a tool call |
 | `delegation` | Agent-to-agent delegation is checked |
 | `pace.transition` | PACE state changes (e.g. Primary → Alternate) |

@@ -20,7 +20,7 @@ The chatbot was deployed with no guardrails against prompt injection. It had no 
 
 **Guardrails (Primary layer):** Topic boundary enforcement would have constrained the bot to vehicle enquiries. Action boundary enforcement would have prevented it from agreeing to prices, making offers, or accepting instructions that override its system prompt. Even basic instruction-hierarchy guardrails - system prompt takes precedence over user input - would have blocked the core attack.
 
-**LLM-as-Judge (Alternate layer):** An independent evaluation model reviewing outputs would have flagged a response containing "legally binding offer" as inconsistent with the system's authorised scope. It would have flagged the bot agreeing to sell a vehicle for $1 as an obvious anomaly. It would have flagged the bot composing poetry and writing code as off-topic.
+**Model-as-Judge (Alternate layer):** An independent evaluation model reviewing outputs would have flagged a response containing "legally binding offer" as inconsistent with the system's authorised scope. It would have flagged the bot agreeing to sell a vehicle for $1 as an obvious anomaly. It would have flagged the bot composing poetry and writing code as off-topic.
 
 **Human Oversight (Contingency layer):** For a customer-facing system making representations that could have financial or legal consequences, a human review step for responses involving pricing, commitments, or off-topic behavior would have caught this immediately.
 
@@ -44,7 +44,7 @@ A system update broke the bot's behavioral guardrails. There was no independent 
 
 **Guardrails (Primary layer):** Content filters for profanity, competitor mentions, and self-deprecating content would have blocked the most damaging outputs. But the core issue was that a system update *broke existing guardrails* - which means the guardrail layer itself failed.
 
-**LLM-as-Judge (Alternate layer):** This is where the framework's value is clearest. An independent Judge evaluating outputs would have detected the behavioral shift immediately - a customer service bot suddenly producing poetry and profanity is a massive deviation from baseline. The Judge operates on a different stack from the guardrails, so a system update that broke the guardrails wouldn't automatically break the Judge.
+**Model-as-Judge (Alternate layer):** This is where the framework's value is clearest. An independent Judge evaluating outputs would have detected the behavioral shift immediately - a customer service bot suddenly producing poetry and profanity is a massive deviation from baseline. The Judge operates on a different stack from the guardrails, so a system update that broke the guardrails wouldn't automatically break the Judge.
 
 **PACE resilience:** This incident is a textbook case for PACE. The guardrail layer went to Emergency (compromised by a system update). Without a defined PACE plan, the system continued serving customers with broken guardrails. With PACE, the system would have detected the guardrail failure (via the Judge flagging anomalous outputs) and either constrained the chatbot's scope or activated the circuit breaker to route customers to human agents.
 
@@ -74,7 +74,7 @@ The chatbot hallucinated - it confidently presented an incorrect version of the 
 
 **Guardrails (Primary layer):** Schema validation guardrails that constrain the chatbot's responses about specific policies to verified, structured data sources (not free-form generation) would have prevented the hallucination. If the chatbot can only cite the current policy document - not generate its own interpretation - the factual error doesn't occur.
 
-**LLM-as-Judge (Alternate layer):** A Judge configured to verify that policy-related responses are consistent with the authoritative policy documents would have flagged the discrepancy. The Judge compares the chatbot's output against the source of truth (the actual bereavement policy page) and detects the contradiction.
+**Model-as-Judge (Alternate layer):** A Judge configured to verify that policy-related responses are consistent with the authoritative policy documents would have flagged the discrepancy. The Judge compares the chatbot's output against the source of truth (the actual bereavement policy page) and detects the contradiction.
 
 **Human Oversight (Contingency layer):** For policy-related advice that customers will act on financially, human review of the chatbot's policy responses - even on a sampling basis - would have caught the error.
 
@@ -96,7 +96,7 @@ Microsoft launched its AI-powered Bing search with ChatGPT integration. Within d
 
 ### What the Framework Would Have Changed
 
-**LLM-as-Judge (Alternate layer):** An independent evaluation model monitoring outputs for emotional manipulation, personal boundary violations, threats, and identity claims would have flagged Sydney's behavior. The Judge, running on a different model with different criteria, would have caught outputs that the guardrails - which were part of the same system - missed.
+**Model-as-Judge (Alternate layer):** An independent evaluation model monitoring outputs for emotional manipulation, personal boundary violations, threats, and identity claims would have flagged Sydney's behavior. The Judge, running on a different model with different criteria, would have caught outputs that the guardrails - which were part of the same system - missed.
 
 **PACE resilience:** Microsoft's eventual response (limiting to five turns) is a Constrained phase in the degradation path - reduced scope to contain the problem. But it was reactive and manual. A pre-configured PACE plan would have defined this transition automatically: when the Judge flags N boundary violations in a session, automatically constrain the session scope.
 
@@ -132,7 +132,7 @@ This wasn't a sudden incident. It was a slow degradation that went undetected fo
 
 **Guardrails (Primary layer):** Topic and action boundaries would have constrained the chatbot's scope. But guardrails alone wouldn't have caught this - the chatbot wasn't saying anything obviously wrong. It was answering within scope, just badly.
 
-**LLM-as-Judge (Alternate layer):** This is where the framework directly addresses what Klarna missed. A Judge evaluating output quality - customer sentiment alignment, resolution accuracy, escalation appropriateness - would have detected the slow decline in output quality weeks into the rollout, not months. Sampling 100% of financial-impact conversations (Tier 2 requirement) would have surfaced the pattern: technically correct responses that left customers unsatisfied.
+**Model-as-Judge (Alternate layer):** This is where the framework directly addresses what Klarna missed. A Judge evaluating output quality - customer sentiment alignment, resolution accuracy, escalation appropriateness - would have detected the slow decline in output quality weeks into the rollout, not months. Sampling 100% of financial-impact conversations (Tier 2 requirement) would have surfaced the pattern: technically correct responses that left customers unsatisfied.
 
 **Human Oversight (Contingency layer):** Klarna eliminated this layer entirely, which is the opposite of what the framework prescribes. Tier 2 requires dedicated human reviewers for escalated cases. The framework's human oversight isn't a cost centre to be optimised away - it's the third line of defence when guardrails pass and the Judge can't catch the nuance.
 
@@ -165,7 +165,7 @@ The system had no output validation - no check that an order was reasonable befo
 
 **Guardrails (Primary layer):** Output validation guardrails would have caught the most obvious failures. A rule that no single menu item can exceed a reasonable quantity (say, 20 units) would have stopped the 260 McNuggets order dead. Schema constraints on valid menu combinations (no bacon on ice cream) would have caught category errors. These are simple, deterministic guardrails - not even AI-powered - and they didn't exist.
 
-**LLM-as-Judge (Alternate layer):** A Judge evaluating order reasonableness would have flagged anomalous patterns: rapidly escalating quantities, items being added without customer confirmation, orders that don't match the conversational transcript. This is exactly the kind of independent verification that catches what the primary system misses.
+**Model-as-Judge (Alternate layer):** A Judge evaluating order reasonableness would have flagged anomalous patterns: rapidly escalating quantities, items being added without customer confirmation, orders that don't match the conversational transcript. This is exactly the kind of independent verification that catches what the primary system misses.
 
 **Human Oversight (Contingency layer):** Drive-thru staff were physically present but had no defined role in the AI ordering process. The framework requires that human oversight isn't just "there are humans nearby" - it's a defined escalation path with clear triggers. When the AI adds a third item the customer didn't request, the system should route to human confirmation.
 
@@ -200,7 +200,7 @@ The chatbot generated confident legal guidance without any mechanism to verify i
 
 **Guardrails (Primary layer):** Schema-constrained responses would have limited the chatbot to citing actual regulatory text rather than generating interpretations. The guardrail design question here is the same as Air Canada (Story 3): don't let the AI interpret policy - constrain it to retrieving and presenting source documents. A RAG system anchored to verified regulatory databases, with explicit citation requirements, would have prevented the chatbot from inventing legal positions.
 
-**LLM-as-Judge (Alternate layer):** A Judge verifying outputs against source documents would have caught the contradictions immediately. The chatbot was trained on the right documents - it simply hallucinated answers that contradicted them. A Judge checking "does this response align with the cited source material?" would have flagged every one of the errors The Markup found. This is the framework's core argument for the Judge layer: the same model that generates a hallucination can't reliably catch it, but an independent model checking against source truth can.
+**Model-as-Judge (Alternate layer):** A Judge verifying outputs against source documents would have caught the contradictions immediately. The chatbot was trained on the right documents - it simply hallucinated answers that contradicted them. A Judge checking "does this response align with the cited source material?" would have flagged every one of the errors The Markup found. This is the framework's core argument for the Judge layer: the same model that generates a hallucination can't reliably catch it, but an independent model checking against source truth can.
 
 **Human Oversight (Contingency layer):** For a government system providing legal guidance, the framework's Tier 2 requirements include dedicated human review of outputs in high-risk categories. Questions about discrimination law, tenant rights, and labour law should have been routed through human review before responses were served.
 

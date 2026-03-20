@@ -18,7 +18,7 @@ PACE applies to AI security controls on two axes simultaneously:
 
 ![Two-Axis PACE Model](images/pace-two-axis-model.svg)
 
-**Horizontal PACE** operates across the three control layers. If Guardrails fail, the LLM-as-Judge becomes the primary defence. If the Judge fails, Human Oversight absorbs more. If Human Oversight is overwhelmed, the Circuit Breaker activates and routes to a non-AI path. This is the architecture-level resilience plan.
+**Horizontal PACE** operates across the three control layers. If Guardrails fail, the Model-as-Judge becomes the primary defence. If the Judge fails, Human Oversight absorbs more. If Human Oversight is overwhelmed, the Circuit Breaker activates and routes to a non-AI path. This is the architecture-level resilience plan.
 
 **Vertical PACE** operates within each control layer. If the guardrail engine is slow, it falls back to a stricter, simpler rule set. If it's down entirely, the system adopts its configured fail posture (open or closed, depending on tier). If it's compromised, the system isolates and escalates. This is the component-level resilience plan.
 
@@ -31,7 +31,7 @@ The critical rule that makes PACE effective: **each layer must depend on a diffe
 | Layer | Mechanism Type | Dependency | Why It's Independent |
 |---|---|---|---|
 | Guardrails | Deterministic rules engine | Pattern database, API gateway | Different from probabilistic model inference |
-| LLM-as-Judge | Probabilistic model inference | Separate LLM, evaluation prompts | Different model, different evaluation criteria |
+| Model-as-Judge | Probabilistic model inference | Separate LLM, evaluation prompts | Different model, different evaluation criteria |
 | Human Oversight | Cognitive judgment | Trained personnel, review interface | Not affected by model or engine failures |
 | Circuit Breaker | Infrastructure control | Network routing, feature flags | Operates at infrastructure layer, independent of AI stack |
 

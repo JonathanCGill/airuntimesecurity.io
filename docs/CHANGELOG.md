@@ -145,7 +145,7 @@ The framework is comprehensive but has no production deployments. Rather than ig
 - **IMPLEMENTATION_GUIDE.md** - New practical guide with working code
   - Input guardrails (regex + Bedrock + NeMo examples)
   - Output guardrails (PII, forbidden phrases, structured validation)
-  - LLM-as-Judge (prompts, sampling strategies, async processing)
+  - Model-as-Judge (prompts, sampling strategies, async processing)
   - Human-in-the-loop queue (Redis implementation, FastAPI endpoints)
   - Telemetry and logging (structured logs, Prometheus metrics)
   - Complete request flow example
@@ -274,7 +274,7 @@ Framework had grown to 48 files. Core + Extensions model provides clear "start h
 - Three-layer control model (Guardrails, Judge, HITL)
 - AI control families AI.1-AI.16
 - Risk tiering framework (CRITICAL/HIGH/MEDIUM/LOW)
-- LLM-as-Judge pattern and operating model
+- Model-as-Judge pattern and operating model
 - HITL operating model
 - ISO 27001 alignment
 - OWASP LLM Top 10 threat mapping

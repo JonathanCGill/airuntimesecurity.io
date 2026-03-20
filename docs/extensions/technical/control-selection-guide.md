@@ -97,7 +97,7 @@ Not every AI system needs every control. Controls should be proportionate to the
 | AI.7.2 Output guardrails | ✅ Required | ✅ Required | ✅ Required | ⚠️ Recommended |
 | AI.7.3 Guardrail maintenance | Monthly adversarial test | Quarterly | Biannually | Annually |
 | AI.7.4 Context isolation | Dedicated instances | Strict isolation | Session isolation | Standard |
-| **AI.8 LLM-as-Judge** | | | | |
+| **AI.8 Model-as-Judge** | | | | |
 | AI.8.1 Judge evaluation | ✅ Required | ✅ Required | ✅ Required | ⚠️ Recommended |
 | AI.8.2 Sampling strategy | 100% | 20-50% | 5-10% | 1-5% |
 | AI.8.3 Finding management | 1-hour SLA (critical) | 24-hour SLA | 1-week SLA | Monthly batch |

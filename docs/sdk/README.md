@@ -67,7 +67,7 @@ That's it. You now have the core SDK (guardrails, circuit breaker, PACE, telemet
 # With FastAPI middleware
 pip install "airs[fastapi]"
 
-# With LLM-as-Judge (requires OpenAI-compatible API)
+# With Model-as-Judge (requires OpenAI-compatible API)
 pip install "airs[judge]"
 
 # Everything (includes all provider packages)
@@ -190,7 +190,7 @@ The SDK is model-agnostic. It wraps security controls around your existing model
 # Test guardrails against a live model
 airs assess --provider openai --model gpt-4o --non-interactive
 
-# Test guardrails + LLM-as-Judge (catches what guardrails miss)
+# Test guardrails + Model-as-Judge (catches what guardrails miss)
 airs assess --provider anthropic --model claude-sonnet-4-20250514 --judge-model gpt-4o-mini --non-interactive
 ```
 
@@ -232,7 +232,7 @@ The live test has two parts:
 # Guardrail tests only (rule-based, no judge model needed)
 airs assess --provider openai --model gpt-4o --non-interactive
 
-# Guardrail tests + LLM-as-Judge tests
+# Guardrail tests + Model-as-Judge tests
 airs assess --provider openai --model gpt-4o --judge-model gpt-4o-mini --non-interactive
 
 # Anthropic model with OpenAI judge

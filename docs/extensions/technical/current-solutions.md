@@ -12,7 +12,7 @@ A reference guide to production-ready guardrail, evaluation, and safety solution
 | **Guardrails AI** | Framework | Output validation, structured output enforcement, retry logic | Guardrails | Yes | Output-focused; less input validation |
 | **Llama Guard 3/4** | Model | LLM-based content classification (safe/unsafe + category) | Guardrails/Judge | Yes | ~33% attack bypass rate; English-optimized |
 | **OpenAI Moderation API** | API | Harm classification across categories | Guardrails | No | OpenAI models only; limited customization |
-| **DeepEval** | Framework | LLM-as-judge evaluation, 50+ metrics, CI/CD integration | Judge | Yes | LLM calls add cost/latency at scale |
+| **DeepEval** | Framework | Model-as-Judge evaluation, 50+ metrics, CI/CD integration | Judge | Yes | LLM calls add cost/latency at scale |
 | **Galileo** | Platform | Eval-to-guardrail lifecycle, Luna models for monitoring | Judge | No | Platform dependency |
 | **Prompt Guard (Meta)** | Model | Prompt injection and jailbreak detection | Guardrails | Yes | Needs fine-tuning for best results |
 | **LlamaFirewall (Meta)** | Tool | Security guardrail for AI systems | Guardrails | Yes | Early stage |
@@ -54,7 +54,7 @@ A reference guide to production-ready guardrail, evaluation, and safety solution
 
 ## Industry Context
 
-The AI security industry has converged on a common pattern: **layered runtime controls** combining fast filtering (guardrails), deeper evaluation (LLM-as-judge), and human oversight. This guide catalogs the major solutions implementing this pattern, with honest assessments of capabilities, limitations, and appropriate use cases.
+The AI security industry has converged on a common pattern: **layered runtime controls** combining fast filtering (guardrails), deeper evaluation (Model-as-Judge), and human oversight. This guide catalogs the major solutions implementing this pattern, with honest assessments of capabilities, limitations, and appropriate use cases.
 
 > This page exists to give credit where it's due and help practitioners select appropriate tools. The Framework synthesizes and explains the pattern these solutions implement.
 
@@ -297,7 +297,7 @@ The AI security industry has converged on a common pattern: **layered runtime co
 **How It Works:**
 - Define test cases with inputs, outputs, and expected behaviors
 - Run metrics (G-Eval, hallucination, relevancy, etc.) against outputs
-- LLM-as-judge approach for most metrics
+- Model-as-Judge approach for most metrics
 - Integrates with CI/CD pipelines
 - Confident AI cloud platform for collaboration and monitoring
 
@@ -442,7 +442,7 @@ Model-agnostic security gateway providing guardrails across any AI platform.
 
 4. **Plan for false positives:** Overly aggressive guardrails harm user experience. Build in human override paths.
 
-5. **Budget for evaluation:** LLM-as-judge has real costs. Factor into architecture decisions.
+5. **Budget for evaluation:** Model-as-Judge has real costs. Factor into architecture decisions.
 
 6. **Update continuously:** Attacks evolve. Guardrails need regular updates.
 

@@ -2,7 +2,7 @@
 
 *Where the science supports the controls - and where it doesn't yet*
 
-Every framework makes a promise. This one promises that three-layer runtime behavioral security - guardrails, LLM-as-Judge, human oversight - is the answer to AI's non-determinism problem. The argument is intuitive, the architecture is clean, and the control domains map neatly to emerging standards.
+Every framework makes a promise. This one promises that three-layer runtime behavioral security - guardrails, Model-as-Judge, human oversight - is the answer to AI's non-determinism problem. The argument is intuitive, the architecture is clean, and the control domains map neatly to emerging standards.
 
 But what does the research actually say?
 
@@ -38,7 +38,7 @@ The [ADL's 2025 safety research](https://www.adl.org/resources/report/safety-div
 
 ## Model-as-Judge: Promising, Biased, Domain-Limited
 
-The LLM-as-Judge pattern - using a second model to evaluate the first - is one of the most actively researched topics in AI evaluation. The evidence is nuanced.
+The Model-as-Judge pattern - using a second model to evaluate the first - is one of the most actively researched topics in AI evaluation. The evidence is nuanced.
 
 A [comprehensive 2024 survey on LLM-as-a-Judge](https://arxiv.org/abs/2411.15594) examined strategies to enhance reliability, including consistency improvements, bias mitigation, and adaptation to diverse scenarios. The researchers found that while LLM judges can achieve high agreement with human evaluators on general tasks, reliability degrades significantly in specific conditions.
 
@@ -51,11 +51,11 @@ The bias catalogue is extensive and empirically documented:
 | **Self-preference** | [CALM framework, 2024](https://arxiv.org/html/2410.02736v1) | Judges assign higher scores to outputs similar to their own generations (lower perplexity = higher rating) |
 | **Expert domain gap** | [Szymanski et al., IUI 2025](https://dl.acm.org/doi/10.1145/3708359.3712091) | Agreement between LLM judges and domain experts ranges from 60–68% in specialised fields |
 
-The domain limitation is particularly important for enterprise security. If an LLM-as-Judge evaluating financial advice agrees with human experts only 60–68% of the time, the assurance layer has a measurable, significant error floor. The [EMNLP 2025 findings on multilingual reliability](https://aclanthology.org/2025.findings-emnlp.587.pdf) add another dimension: LLM judges fail to maintain consistency across languages, which matters for global enterprise deployments.
+The domain limitation is particularly important for enterprise security. If an Model-as-Judge evaluating financial advice agrees with human experts only 60–68% of the time, the assurance layer has a measurable, significant error floor. The [EMNLP 2025 findings on multilingual reliability](https://aclanthology.org/2025.findings-emnlp.587.pdf) add another dimension: LLM judges fail to maintain consistency across languages, which matters for global enterprise deployments.
 
 Mitigation strategies exist - randomised response ordering, majority voting across multiple runs, chain-of-thought prompting - and [research shows](https://arxiv.org/abs/2411.15594) they measurably improve alignment. But they add latency and cost, and none eliminate the biases entirely.
 
-**What the evidence supports:** LLM-as-Judge catches categories of failures that guardrails miss, particularly semantic policy violations and subtle behavioral drift. It is a meaningful assurance layer.
+**What the evidence supports:** Model-as-Judge catches categories of failures that guardrails miss, particularly semantic policy violations and subtle behavioral drift. It is a meaningful assurance layer.
 
 **What it doesn't support:** Treating Judge findings as authoritative without human review. The measured bias and domain gap mean the Judge is a signal source, not a decision-maker - which is precisely how this framework positions it, and the research validates that design choice.
 
@@ -150,7 +150,7 @@ The evidence supports this framework's core architecture more than it undermines
 
 **The research cautions:**
 - Guardrails are demonstrably brittle against adaptive adversaries and novel attacks
-- LLM-as-Judge carries measurable biases (position, verbosity, self-preference) and a 32–40% disagreement rate with domain experts in specialised fields
+- Model-as-Judge carries measurable biases (position, verbosity, self-preference) and a 32–40% disagreement rate with domain experts in specialised fields
 - Human oversight suffers from automation bias, organisational pressure, and fundamental scalability limits
 - Prompt injection remains architecturally unsolved - all current defences are mitigations, not solutions
 - Multi-agent security controls are theoretically grounded but empirically unvalidated at scale
@@ -162,7 +162,7 @@ The evidence supports this framework's core architecture more than it undermines
 
 1. **The case for runtime monitoring over design-time-only testing is empirically strong.** Non-determinism, flexible correctness, and emergent behavior make pre-deployment validation insufficient. This is well-established in the literature.
 
-2. **Each control layer has measured limitations.** Guardrails miss novel attacks. LLM-as-Judge carries systematic biases. Human oversight doesn't scale. No single layer is sufficient - but the combination is stronger than any alternative documented in the research.
+2. **Each control layer has measured limitations.** Guardrails miss novel attacks. Model-as-Judge carries systematic biases. Human oversight doesn't scale. No single layer is sufficient - but the combination is stronger than any alternative documented in the research.
 
 3. **Prompt injection remains the bedrock unsolved problem.** All runtime controls operate on a foundation where the instruction-data boundary doesn't exist. Defence-in-depth reduces probability and blast radius, but cannot prevent exploitation entirely.
 

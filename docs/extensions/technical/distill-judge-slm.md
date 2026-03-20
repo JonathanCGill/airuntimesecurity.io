@@ -12,7 +12,7 @@ This page describes a decentralized security architecture using Small Language M
 
 ## The Runtime Security Gap
 
-In a bank, security cannot be a post-hoc audit. It must be a real-time gate. The existing [Judge architecture](llm-as-judge-implementation.md) works well as an async assurance mechanism, but for agentic systems that execute tool calls, database queries, and API requests at machine speed, async review is not fast enough to prevent harm.
+In a bank, security cannot be a post-hoc audit. It must be a real-time gate. The existing [Judge architecture](model-as-judge-implementation.md) works well as an async assurance mechanism, but for agentic systems that execute tool calls, database queries, and API requests at machine speed, async review is not fast enough to prevent harm.
 
 Large Judge architectures create a trilemma:
 
@@ -165,7 +165,7 @@ The answer is the **100/1 strategy**: check everything fast, then verify a sampl
 6. Human-reviewed cases feed back into the next training cycle as new labeled examples.
 7. If the SLM's agreement rate with the Teacher drops below a threshold (e.g., 99.5%), trigger an automatic retraining cycle.
 
-This is the same principle as the [sampling strategy](llm-as-judge-implementation.md#sampling-strategy) described in the Judge implementation guide, applied to the SLM rather than to the primary AI's output.
+This is the same principle as the [sampling strategy](model-as-judge-implementation.md#sampling-strategy) described in the Judge implementation guide, applied to the SLM rather than to the primary AI's output.
 
 !!! tip "Start in shadow mode"
     When first deploying a distilled SLM, run it in shadow mode: let it evaluate every action, but do not let it block anything. Compare its verdicts against the large Judge for two to four weeks. Only switch to enforcement mode once you have confidence in its accuracy on your production traffic.
@@ -218,7 +218,7 @@ Distillation is powerful, but it is not a silver bullet. Be honest about what th
 
 ## Integration with the AIRS Control Stack
 
-The distilled SLM slots into the existing [control layers](llm-as-judge-implementation.md#integration-with-controls) as a fast, inline evaluation tier:
+The distilled SLM slots into the existing [control layers](model-as-judge-implementation.md#integration-with-controls) as a fast, inline evaluation tier:
 
 | Layer | Function | Timing | Model |
 |-------|----------|--------|-------|
@@ -260,5 +260,5 @@ For agentic systems that take real-world actions at machine speed, this is often
     - [DORA: Digital Operational Resilience Act](https://www.digital-operational-resilience-act.com/)
     - [NIST AI RMF 1.0](https://www.nist.gov/artificial-intelligence/risk-management-framework)
     - [Judge Model Selection](judge-model-selection.md), AI Runtime Security
-    - [LLM-as-Judge Implementation](llm-as-judge-implementation.md), AI Runtime Security
+    - [Model-as-Judge Implementation](model-as-judge-implementation.md), AI Runtime Security
     - [Cost and Latency](cost-and-latency.md), AI Runtime Security

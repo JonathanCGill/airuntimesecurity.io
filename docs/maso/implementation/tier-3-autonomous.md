@@ -87,7 +87,7 @@ Key architectural changes from Tier 2:
 
 - **Infrastructure-enforced blast radius caps.** At Tier 2, blast radius caps are defined and monitored. At Tier 3, they are enforced at the infrastructure level - the underlying platform (not the agent or orchestrator) prevents any single agent from exceeding its defined impact scope. This is analogous to operating system-level resource limits that a process cannot override regardless of what code it runs.
 - **Autonomous circuit breaker with self-healing.** When a circuit breaker engages at Tier 3, the system doesn't just pause the agent - it initiates the PACE P→A transition automatically, activates the backup agent, and returns to Primary once the backup demonstrates stable behavior. This self-healing loop can repeat up to a configured maximum (recommended: 3 cycles in 24 hours) before automatic escalation to Contingency.
-- **Multi-model cross-validation for high-consequence actions.** For actions classified as high-consequence (based on the action classification engine), the output is validated by both the LLM-as-Judge AND a second independent model before execution. Disagreement between the validators triggers human escalation.
+- **Multi-model cross-validation for high-consequence actions.** For actions classified as high-consequence (based on the action classification engine), the output is validated by both the Model-as-Judge AND a second independent model before execution. Disagreement between the validators triggers human escalation.
 - **Time-boxing on all autonomous operations.** Every autonomous task has a maximum execution time. If the task is not completed within the time box, the agent is paused, the state is captured, and the task is either reassigned or escalated. This prevents indefinite autonomous operation on tasks that may have drifted from their original objective.
 
 **Implementation checklist:**
@@ -148,7 +148,7 @@ All agents active and operating autonomously within pre-approved task categories
 
 ### Alternate (A) - Autonomous Self-Healing
 
-**Trigger:** Same as Tier 2 (drift score > 60, circuit breaker, LLM-as-Judge blocks).
+**Trigger:** Same as Tier 2 (drift score > 60, circuit breaker, Model-as-Judge blocks).
 
 **Autonomous response (no human involvement for P→A or A→P):**
 
@@ -264,7 +264,7 @@ All Tier 1 and Tier 2 tests remain valid and should be re-executed. Additional T
 **Cross-validation tests:**
 
 9. **Multi-model disagreement test:** Submit an action that one validator approves and the other rejects. Confirm human escalation is triggered.
-10. **Both validators compromised test:** Simulate a scenario where both the LLM-as-Judge and the cross-validation model agree on a harmful output (e.g., by poisoning the evaluation criteria). Confirm the independent observability agent detects the anomaly.
+10. **Both validators compromised test:** Simulate a scenario where both the Model-as-Judge and the cross-validation model agree on a harmful output (e.g., by poisoning the evaluation criteria). Confirm the independent observability agent detects the anomaly.
 
 ## Regression Prevention
 
@@ -295,7 +295,7 @@ After any regression, the system must re-meet the graduation criteria for the ta
 
 - All four agents have NHIs with 15-minute credential rotation (high-privilege due to access to customer financial data and the ability to block transactions).
 - Delegation contracts: The Monitoring Agent can delegate enrichment requests to the Investigation Agent (read-only scope, maximum 10,000 lookups/hour). The Investigation Agent can delegate classification requests to the Decision Agent (read-only scope). The Decision Agent can delegate responses to the Action Agent (write scope limited to: block card, hold funds < $50,000, or flag for human review).
-- Actions above $50,000 require multi-model cross-validation. The LLM-as-Judge and a second independent model must both approve. Disagreement routes to the human fraud team.
+- Actions above $50,000 require multi-model cross-validation. The Model-as-Judge and a second independent model must both approve. Disagreement routes to the human fraud team.
 - Blast radius caps: The Action Agent can block a maximum of 50 cards per hour and hold funds on a maximum of 100 accounts per hour. Exceeding these caps triggers automatic PACE escalation regardless of decision quality.
 - The independent observability agent monitors all four agents from separate infrastructure. It has its own kill switch authority.
 - Memory decay: Agent persistent memory expires after 72 hours. Longer-term patterns are maintained in the bank's existing fraud analytics platform, not in agent memory.

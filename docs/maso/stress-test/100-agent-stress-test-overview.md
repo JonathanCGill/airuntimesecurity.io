@@ -191,7 +191,7 @@ At 100 agents, the message volume changes the problem:
 | OB-2.1 Anomaly scoring | Per-agent anomaly detection | 100 baselines + interaction pattern baselines |
 | OB-2.2 Drift detection | Behavioral change detection | Drift thresholds harder to calibrate at scale |
 | OB-2.3 Communication profiling | Inter-agent traffic analysis | Volume may require sampling rather than full inspection |
-| EC-2.5 LLM-as-Judge | Per-action evaluation | Cost scales linearly with message count |
+| EC-2.5 Model-as-Judge | Per-action evaluation | Cost scales linearly with message count |
 
 ## Stress Dimension 5: Provider Concentration
 

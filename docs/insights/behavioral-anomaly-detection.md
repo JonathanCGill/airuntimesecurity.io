@@ -9,7 +9,7 @@ Every safety layer generates signals:
 | Layer | Signal Type | What It Catches |
 |-------|-------------|-----------------|
 | Guardrails | Block events | Known-bad patterns |
-| LLM-as-Judge | Flag events | Policy violations, quality issues |
+| Model-as-Judge | Flag events | Policy violations, quality issues |
 | Formal Verification | Validation failures | Rule non-compliance |
 | Knowledge Graph | Fact mismatches | Factual errors |
 | Token Detection | Uncertainty scores | Low-confidence claims |

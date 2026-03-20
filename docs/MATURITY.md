@@ -72,7 +72,7 @@ The architectural patterns used in this framework exist independently in product
 | Pattern | Production Evidence |
 |---------|-------------------|
 | Input/output guardrails | NVIDIA NeMo, AWS Bedrock, Azure AI, Guardrails AI |
-| LLM-as-Judge evaluation | DeepEval, Galileo, LangSmith, custom implementations |
+| Model-as-Judge evaluation | DeepEval, Galileo, LangSmith, custom implementations |
 | Human-in-the-loop review | LangChain HITL, custom queue systems |
 | Circuit breaker / kill switch | Standard resilience pattern (Netflix Hystrix lineage) |
 | Agent sandboxing | Docker/gVisor patterns in LangGraph, CrewAI |
@@ -115,7 +115,7 @@ If you're an AI security practitioner, red teamer, or compliance professional - 
 
 Specific areas where expert review would be most valuable:
 
-- **Judge accuracy** - Have you measured LLM-as-Judge performance in production? What accuracy ranges are realistic?
+- **Judge accuracy** - Have you measured Model-as-Judge performance in production? What accuracy ranges are realistic?
 - **Epistemic controls** - Are the six epistemic risk categories we've identified complete? Are there others?
 - **PACE resilience** - Have you implemented structured failover for AI systems? What worked?
 - **Multi-agent security** - Are the MASO control domains the right decomposition? What's missing?

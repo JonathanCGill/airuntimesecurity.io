@@ -1,10 +1,10 @@
 ---
-description: "Example prompts for LLM-as-Judge evaluation: policy compliance, safety, quality, hallucination detection, and prompt injection identification templates."
+description: "Example prompts for Model-as-Judge evaluation: policy compliance, safety, quality, hallucination detection, and prompt injection identification templates."
 ---
 
 # Judge Prompt Examples
 
-Example prompts for implementing LLM-as-Judge evaluation. Adapt these to your specific use cases and policies.
+Example prompts for implementing Model-as-Judge evaluation. Adapt these to your specific use cases and policies.
 
 ## Overview
 

@@ -27,7 +27,7 @@ The guide does not endorse any framework. It provides the security architect wit
 | **DP-2.1** DLP on message bus | Custom channel interceptor | Custom middleware | N/A - custom needed | N/A - custom needed |
 | **EC-1.1** Human approval for writes | `interrupt_before` (native) | `HumanInputMode` (native) | `human_input=True` (native) | Return control (native) |
 | **EC-1.2** Tool allow-lists | Per-node tool binding | Per-agent tool list | Per-agent tool list | Action group definitions (native) |
-| **EC-2.5** LLM-as-Judge gate | Custom node in graph | Custom agent role | Custom agent role | Custom Lambda function |
+| **EC-2.5** Model-as-Judge gate | Custom node in graph | Custom agent role | Custom agent role | Custom Lambda function |
 | **OB-1.1** Action audit logging | LangSmith integration | Custom logging | Custom logging | CloudTrail + CloudWatch (native) |
 | **OB-3.2** Circuit breaker / kill switch | Custom graph termination | Custom termination | Custom termination | Step Functions abort (native) |
 | **SC-2.1** AIBOM | External tooling | External tooling | External tooling | External tooling |
@@ -54,7 +54,7 @@ LangGraph's graph-based execution model maps well to MASO's control architecture
 
 **Human approval for writes (EC-1.1):** Use `interrupt_before` on any node that executes write operations. LangGraph natively suspends execution and waits for human input before proceeding.
 
-**LLM-as-Judge (EC-2.5):** Implement as a dedicated node in the graph that evaluates agent outputs before they reach the output node. The Judge node uses a different model instance than the task agents. Configure conditional edges: pass → output, fail → human review, critical fail → terminate.
+**Model-as-Judge (EC-2.5):** Implement as a dedicated node in the graph that evaluates agent outputs before they reach the output node. The Judge node uses a different model instance than the task agents. Configure conditional edges: pass → output, fail → human review, critical fail → terminate.
 
 **Goal integrity monitoring (PG-2.2):** Use LangGraph's checkpointing to snapshot the original task specification at graph entry. At each subsequent node, compare the current task context against the original checkpoint. Significant deviation triggers an alert or graph termination.
 
@@ -80,7 +80,7 @@ AutoGen's conversation-based multi-agent model provides flexible agent-to-agent 
 
 **Human approval for writes (EC-1.1):** Configure `HumanInputMode.ALWAYS` for any agent that executes write operations. AutoGen natively pauses and requests human input before the agent proceeds.
 
-**LLM-as-Judge (EC-2.5):** Add a Judge agent to the `GroupChat` with a different model configuration. Configure speaker selection to route all outputs through the Judge agent before they are returned to the user or passed to execution agents. The Judge agent's system prompt contains evaluation criteria aligned with MASO requirements.
+**Model-as-Judge (EC-2.5):** Add a Judge agent to the `GroupChat` with a different model configuration. Configure speaker selection to route all outputs through the Judge agent before they are returned to the user or passed to execution agents. The Judge agent's system prompt contains evaluation criteria aligned with MASO requirements.
 
 **Scoped permissions (IA-1.4):** Define tool functions per agent. Each agent's `function_map` contains only the tools it is authorised to use. Do not share tool functions across agents. Validate that delegation between agents does not implicitly share tool access.
 
@@ -104,7 +104,7 @@ CrewAI's task-based model with explicit agent roles and delegation maps naturall
 
 **Scoped permissions (IA-1.4):** Assign tools to agents explicitly in the agent definition. Each agent receives only the tools required for its role. Use the `allow_delegation` parameter to control whether an agent can delegate tasks to other agents - set to `False` for high-privilege agents to prevent transitive authority.
 
-**LLM-as-Judge (EC-2.5):** Create a dedicated "Quality Assurance" agent with its own model configuration. Add it as the final step in the task chain. The QA agent reviews all outputs against MASO criteria before they are returned. Use the hierarchical process model to enforce that the QA agent has authority over task agents.
+**Model-as-Judge (EC-2.5):** Create a dedicated "Quality Assurance" agent with its own model configuration. Add it as the final step in the task chain. The QA agent reviews all outputs against MASO criteria before they are returned. Use the hierarchical process model to enforce that the QA agent has authority over task agents.
 
 **Goal integrity (PG-2.2):** Define expected outcomes in the task `expected_output` field. After task execution, compare the actual output against the expected outcome. Significant deviation triggers re-execution or escalation.
 
@@ -130,7 +130,7 @@ AWS Bedrock Agents provides a managed infrastructure for agent orchestration wit
 
 **Human approval (EC-1.1):** Use the `RETURN_CONTROL` invocation type. When an agent needs to execute a write operation, it returns control to the calling application with the proposed action. The application presents the action to a human for approval before executing.
 
-**LLM-as-Judge (EC-2.5):** Implement as a Lambda function invoked after each agent action. The Lambda calls a separate Bedrock model (different from the task agent's model) with evaluation criteria. The Lambda returns pass/fail, which determines whether the Step Functions workflow proceeds or routes to human review.
+**Model-as-Judge (EC-2.5):** Implement as a Lambda function invoked after each agent action. The Lambda calls a separate Bedrock model (different from the task agent's model) with evaluation criteria. The Lambda returns pass/fail, which determines whether the Step Functions workflow proceeds or routes to human review.
 
 **Kill switch (OB-3.2):** Use Step Functions to orchestrate the multi-agent workflow. The kill switch triggers a Step Functions abort, which terminates all active agent executions. Use SNS notifications to alert the security team. CloudTrail captures the full execution history for forensics.
 
@@ -147,7 +147,7 @@ Regardless of framework, implement these controls first:
 4. Input guardrails - filter known-bad patterns at each agent's input boundary
 
 **Priority 2 (Tier 2 minimum):**
-5. LLM-as-Judge evaluation - add an independent evaluation agent using a different model
+5. Model-as-Judge evaluation - add an independent evaluation agent using a different model
 6. Message source tagging - distinguish data from instruction in all inter-agent communication
 7. Inter-agent injection detection - evaluate messages for injection patterns at the bus level
 8. DLP on inter-agent messages - detect sensitive data in agent-to-agent communication

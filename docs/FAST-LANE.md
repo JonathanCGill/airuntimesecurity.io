@@ -84,7 +84,7 @@ Being explicit about what's not required is as important as what is. For a quali
 
 | Control | Required? | Why Not |
 |---|---|---|
-| LLM-as-Judge evaluation | No | The human reviewer serves as the quality layer. Adding a Judge adds latency and cost without proportionate risk reduction. |
+| Model-as-Judge evaluation | No | The human reviewer serves as the quality layer. Adding a Judge adds latency and cost without proportionate risk reduction. |
 | Dedicated human review queue | No | Users review their own outputs as part of their normal workflow. No separate review function needed. |
 | Formal PACE resilience document | No | The PACE plan is: "Feature flag off. Users do it manually. Contact [name]." That's it. |
 | Quarterly control testing | No | Annual check that the feature flag works and someone knows the fallback process. |

@@ -202,7 +202,7 @@ def assess_cmd(
     judge_model: str = typer.Option(
         "",
         "--judge-model",
-        help="LLM judge model (e.g. gpt-4o-mini or claude-sonnet-4-20250514). Enables LLM-as-Judge evaluation.",
+        help="LLM judge model (e.g. gpt-4o-mini or claude-sonnet-4-20250514). Enables Model-as-Judge evaluation.",
     ),
     judge_provider: str = typer.Option(
         "",
@@ -369,7 +369,7 @@ def assess_cmd(
             if provider and not judge_model:
                 console.print()
                 use_judge = _ask_bool(
-                    "  Also run LLM-as-Judge tests?"
+                    "  Also run Model-as-Judge tests?"
                 )
                 if use_judge:
                     judge_provider = _ask_choice(
@@ -867,7 +867,7 @@ async def _run_live_test(
         if not output_json:
             console.print()
             console.print(
-                f"[bold]Layer 2: LLM-as-Judge Tests[/bold]  (judge model: {judge_model})\n"
+                f"[bold]Layer 2: Model-as-Judge Tests[/bold]  (judge model: {judge_model})\n"
                 f"  [dim]The Judge is a separate AI model that reviews your model's outputs\n"
                 f"  for problems guardrails cannot catch: hallucinated facts, inappropriate\n"
                 f"  advice, policy violations in otherwise fluent text, or fabricated data.\n"
@@ -1094,7 +1094,7 @@ def _print_live_summary(
 
     # ── Judge summary ──
     if judge_results:
-        lines.append("[bold]LLM-as-Judge evaluation:[/bold]\n")
+        lines.append("[bold]Model-as-Judge evaluation:[/bold]\n")
         review_count = sum(1 for r in judge_results if r["judge_verdict"] == "review")
         escalate_count = sum(1 for r in judge_results if r["judge_verdict"] == "escalate")
         pass_count = sum(1 for r in judge_results if r["judge_verdict"] == "pass")

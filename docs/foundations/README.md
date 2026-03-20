@@ -143,7 +143,7 @@ When AI agents collaborate, delegate tasks, and take autonomous actions across t
 | --- | --- |
 | [MASO Overview](../maso/) | Architecture, PACE integration, OWASP dual mapping, 7 control domains |
 | [Tier 1 - Supervised](../maso/implementation/tier-1-supervised.md) | Low autonomy: human approves all writes |
-| [Tier 2 - Managed](../maso/implementation/tier-2-managed.md) | Medium autonomy: NHI, signed bus, LLM-as-Judge, continuous monitoring |
+| [Tier 2 - Managed](../maso/implementation/tier-2-managed.md) | Medium autonomy: NHI, signed bus, Model-as-Judge, continuous monitoring |
 | [Tier 3 - Autonomous](../maso/implementation/tier-3-autonomous.md) | High autonomy: self-healing PACE, adversarial testing, isolated kill switch |
 | [Red Team Playbook](../maso/red-team/red-team-playbook.md) | 13 adversarial test scenarios for multi-agent systems |
 | [Integration Guide](../maso/integration/integration-guide.md) | LangGraph, AutoGen, CrewAI, AWS Bedrock implementation patterns |
@@ -196,7 +196,7 @@ This isn't a theoretical proposal. These platforms already implement variants of
 | [LangChain](https://docs.langchain.com/) | Middleware chains with human-in-the-loop |
 | [Guardrails AI](https://www.guardrailsai.com/) | Open-source validator framework |
 | [Galileo](https://www.rungalileo.io/) | Eval-to-guardrail lifecycle |
-| [DeepEval](https://github.com/confident-ai/deepeval) | LLM-as-judge evaluation framework |
+| [DeepEval](https://github.com/confident-ai/deepeval) | Model-as-Judge evaluation framework |
 | AWS Bedrock Guardrails | Managed input/output filtering |
 | Azure AI Content Safety | Content filtering and moderation |
 

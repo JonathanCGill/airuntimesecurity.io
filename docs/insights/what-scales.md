@@ -120,7 +120,7 @@ For completeness and honesty:
 
 **Per-agent content guardrails in multi-agent communication** - O(N²). Each agent pair needs bidirectional inspection. Impractical beyond ~10 agents.
 
-**LLM-as-Judge evaluating every agent output** - O(N) in cost, but each evaluation adds 500ms-5s latency *per agent hop*. In a 10-agent pipeline, you've added 5-50 seconds. Also, each judge evaluation costs tokens - at scale, the cost of judging exceeds the cost of the agents doing the work. [Distilling the Judge into a local SLM](../extensions/technical/distill-judge-slm.md) reduces this to 10-50ms per hop, making action-by-action evaluation feasible even in multi-agent pipelines.
+**Model-as-Judge evaluating every agent output** - O(N) in cost, but each evaluation adds 500ms-5s latency *per agent hop*. In a 10-agent pipeline, you've added 5-50 seconds. Also, each judge evaluation costs tokens - at scale, the cost of judging exceeds the cost of the agents doing the work. [Distilling the Judge into a local SLM](../extensions/technical/distill-judge-slm.md) reduces this to 10-50ms per hop, making action-by-action evaluation feasible even in multi-agent pipelines.
 
 **Human review of edge cases** - O(human). Human throughput is fixed at roughly 50-200 decisions per hour for complex cases. A system generating 10,000 flagged interactions per hour requires 50-200 human reviewers. This is a staffing problem that grows linearly with system throughput and doesn't compress.
 

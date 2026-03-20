@@ -21,7 +21,7 @@ He contributes to the [AI Runtime Security (AIRS)](what-is-ai-runtime-security.m
 ## Expertise
 
 - **Agentic AI risk modelling**: threat models for multi-agent systems, long-horizon agentic behavior, orchestrator compromise, tool-use escalation, and loss-of-control scenarios
-- **AI security controls design**: three-layer architecture (guardrails, LLM-as-Judge, human oversight) with defined failure modes and escalation paths
+- **AI security controls design**: three-layer architecture (guardrails, Model-as-Judge, human oversight) with defined failure modes and escalation paths
 - **Multi-Agent Security Operations (MASO)**: identity, execution control, observability, privileged agent governance, and emergent risk in autonomous agent systems
 - **Threat-driven security assessment**: penetration testing across large enterprise portfolios, aligned to realistic adversary behavior
 - **Regulatory and standards alignment**: ISO 42001, ISO 27001, NIST AI RMF, NIST CSF 2.0, NIST SP 800-218A, EU AI Act, OWASP LLM Top 10

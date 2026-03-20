@@ -6,7 +6,7 @@ description: "Infrastructure controls for AI logging and observability: capturin
 
 > **Control Domain:** Behavioral Controls  
 > **Purpose:** Capture, correlate, and analyse AI system behavior to detect drift, anomalies, misuse, and control failures in production.  
-> **Relationship:** Enables the LLM-as-Judge layer (by providing the data the Judge evaluates) and the Human Oversight layer (by surfacing the signals humans need to make decisions).
+> **Relationship:** Enables the Model-as-Judge layer (by providing the data the Judge evaluates) and the Human Oversight layer (by surfacing the signals humans need to make decisions).
 
 ## Why AI Logging Is Different
 
@@ -97,7 +97,7 @@ Guardrail logs enable:
 
 ## LOG-03: Judge Evaluation Logging
 
-The LLM-as-Judge layer produces evaluations that are themselves AI outputs. These must be logged with the same rigour as primary model outputs.
+The Model-as-Judge layer produces evaluations that are themselves AI outputs. These must be logged with the same rigour as primary model outputs.
 
 ### Required Fields
 
@@ -273,7 +273,7 @@ AI system logs should flow to the enterprise SIEM/SOAR with:
 
 ## Three-Layer Mapping
 
-| Control | Guardrails | LLM-as-Judge | Human Oversight |
+| Control | Guardrails | Model-as-Judge | Human Oversight |
 |---------|-----------|--------------|-----------------|
 | LOG-01 Model I/O | Captures what guardrails processed | Provides data for Judge evaluation | Enables human review of interactions |
 | LOG-02 Guardrail decisions | Enables guardrail effectiveness analysis | Judge compares its findings to guardrail decisions | Humans tune guardrails based on log data |

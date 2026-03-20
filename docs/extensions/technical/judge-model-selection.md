@@ -141,7 +141,7 @@ For agentic systems that need inline, real-time evaluation, you can go further b
 
 ## Known Biases to Mitigate
 
-Research has identified several biases in LLM-as-Judge that affect reliability:
+Research has identified several biases in Model-as-Judge that affect reliability:
 
 ### Position Bias
 
@@ -239,7 +239,7 @@ The Judge is an assurance mechanism, not a gatekeeper. Its job is to surface con
 
 Key research informing these recommendations:
 
-- MT-Bench and Chatbot Arena (Zheng et al., 2023) - Established LLM-as-Judge methodology
+- MT-Bench and Chatbot Arena (Zheng et al., 2023) - Established Model-as-Judge methodology
 - CALM Framework - Systematic bias quantification
 - Multiple practitioner sources on self-enhancement and position bias
 - Industry guidance from Arize, Evidently, Patronus AI, and others

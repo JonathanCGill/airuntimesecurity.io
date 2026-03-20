@@ -14,7 +14,7 @@ Every mainstream approach to AI safety relies on one of three methods:
 |--------|--------------|------------------|
 | **Ask the model** | Constitutional AI, Model Spec, system prompts | Model can still violate instructions |
 | **Pattern matching** | Guardrails, keyword filters, regex | Novel attacks bypass known patterns |
-| **Ask another model** | LLM-as-judge, evaluation frameworks | Second LLM has same vulnerabilities |
+| **Ask another model** | Model-as-Judge, evaluation frameworks | Second LLM has same vulnerabilities |
 
 None of these independently verify whether an output is *actually true*.
 
@@ -50,7 +50,7 @@ Not all verification is equal. Approaches vary in their independence from the LL
 
 ### Fully Dependent (No Independent Verification)
 - **Self-assessment**: Model evaluates its own output
-- **LLM-as-judge**: Another LLM evaluates output
+- **Model-as-Judge**: Another LLM evaluates output
 - *Risk: Same failure modes, correlated errors*
 
 ### Partially Independent
@@ -172,7 +172,7 @@ No single verification approach covers everything:
 - **Knowledge graphs** only cover what's in them
 - **Token detection** only works with RAG context
 - **Self-consistency** misses confident errors
-- **LLM-as-judge** shares LLM vulnerabilities
+- **Model-as-Judge** shares LLM vulnerabilities
 
 ### Defense in Depth Isn't Enough
 
@@ -200,12 +200,12 @@ Better: Guardrails → LLM → Formal Verify → KG Check → Human Sample
 - Sampling-based human review
 
 **For Tier 2 (Moderate) applications**:
-- LLM-as-judge is acceptable for most checks
+- Model-as-Judge is acceptable for most checks
 - Consider formal verification for high-stakes subsets
 
 **For Tier 1 (Minimal) applications**:
 - Standard guardrails sufficient
-- LLM-as-judge for quality monitoring
+- Model-as-Judge for quality monitoring
 
 ## The Path Forward
 

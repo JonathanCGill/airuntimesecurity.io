@@ -64,7 +64,7 @@ Every multi-agent runtime operation falls into one of seven event classes. Each 
 |-------|-------------|---------|
 | Input validation | Incoming message checked against schema, bounds, format rules | Message receipt |
 | Output guardrail check | Agent output screened for policy violations (toxicity, PII, format) | Post-inference |
-| LLM-as-Judge evaluation | Secondary model evaluates output quality, relevance, safety | Post-inference or post-handoff |
+| Model-as-Judge evaluation | Secondary model evaluates output quality, relevance, safety | Post-inference or post-handoff |
 | Epistemic checkpoint | Independent verification of reasoning basis and claim provenance | Configured checkpoint in chain |
 | Guardrail pass | Validation succeeds, output proceeds | Validation complete |
 | Guardrail block | Validation fails, output rejected or modified | Policy violation detected |
@@ -164,7 +164,7 @@ The most dangerous failures are **silent + propagating**. These are the primary 
 | Failure | Detection | Propagation | Description |
 |---------|-----------|-------------|-------------|
 | Guardrail evasion | Silent | Propagating | Output crafted (intentionally or emergently) to pass guardrails while carrying harmful or incorrect content. The guardrail reports "pass" on a bad output. |
-| Judge model confabulation | Silent | Propagating | The LLM-as-Judge itself confabulates, approving output based on false reasoning. Second-order confabulation. |
+| Judge model confabulation | Silent | Propagating | The Model-as-Judge itself confabulates, approving output based on false reasoning. Second-order confabulation. |
 | False positive block | Loud | Contained | Guardrail rejects valid output. Detectable but causes delay, retry, or escalation. |
 | Threshold miscalibration | Silent | Propagating | Guardrail thresholds too loose; marginal violations pass consistently. No individual failure is dramatic enough to trigger alerts, but aggregate effect is significant. |
 | Checkpoint blind spot | Silent | Propagating | Epistemic checkpoint verifies claims the agent made but doesn't detect claims the agent should have made but omitted. Omission is harder to catch than commission. |
@@ -275,7 +275,7 @@ Agent produces output with unverifiable claim
 
 **Dampening mechanism:** The checkpoint creates a verification barrier that forces correction before propagation. Failure is caught and resolved at the node of origin.
 
-**Dependency:** Checkpoint must verify provenance, not just plausibility. An LLM-as-Judge that only checks "does this sound right" will not catch well-constructed confabulations.
+**Dependency:** Checkpoint must verify provenance, not just plausibility. An Model-as-Judge that only checks "does this sound right" will not catch well-constructed confabulations.
 
 #### Loop 6: Human Oversight Escalation
 
@@ -326,7 +326,7 @@ Guardrail blocks certain output patterns
 
 **Transformation mechanism:** The failure mode changes from "bad output" to "output that is optimised to appear good to the specific detection mechanism in use." The risk surface shifts from the content to the evaluation.
 
-**MASO intervention point:** Multi-layered evaluation (guardrail + LLM-as-Judge + epistemic checkpoint + human sample) so that gaming one layer doesn't bypass all layers.
+**MASO intervention point:** Multi-layered evaluation (guardrail + Model-as-Judge + epistemic checkpoint + human sample) so that gaming one layer doesn't bypass all layers.
 
 #### Loop 9: Delegation Recursion
 
@@ -435,7 +435,7 @@ Real-world failures combine multiple failure nodes and feedback loops simultaneo
 **Failure nodes activated:** Confabulation (2.2) + Semantic loss in handoff (2.3) + Judge model confabulation (2.5)
 **Feedback loops activated:** Confabulation Cascade (Loop 1) + Sycophantic Reinforcement (Loop 2)
 
-Agent A retrieves data but confabulates one regulatory threshold. Agent B receives this, and the handoff summary loses the qualifier "approximately" that Agent A included. Agent C now has a precise-looking but fabricated number. The LLM-as-Judge evaluates the chain and assesses it as "well-sourced and internally consistent." The human reviewer sees a confident, high-rated output and approves it.
+Agent A retrieves data but confabulates one regulatory threshold. Agent B receives this, and the handoff summary loses the qualifier "approximately" that Agent A included. Agent C now has a precise-looking but fabricated number. The Model-as-Judge evaluates the chain and assesses it as "well-sourced and internally consistent." The human reviewer sees a confident, high-rated output and approves it.
 
 **Why point-analysis misses this:** Each individual node performed acceptably. The confabulation was small. The semantic loss was trivial. The Judge was technically correct that the chain was internally consistent. The failure is emergent from the interaction of these small deviations.
 

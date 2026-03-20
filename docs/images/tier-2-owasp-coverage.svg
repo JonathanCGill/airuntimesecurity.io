@@ -8,7 +8,7 @@
   <rect width="1100" height="790" fill="url(#bg)"/>
 
   <text x="550" y="30" text-anchor="middle" fill="#fff" font-size="15" font-weight="700" letter-spacing="1">TIER 2 - OWASP RISK COVERAGE</text>
-  <text x="550" y="46" text-anchor="middle" fill="#ff6b35" font-size="9" letter-spacing="1">MANAGED MULTI-AGENT · NHI · SIGNED BUS · LLM-AS-JUDGE · CONTINUOUS MONITORING</text>
+  <text x="550" y="46" text-anchor="middle" fill="#ff6b35" font-size="9" letter-spacing="1">MANAGED MULTI-AGENT · NHI · SIGNED BUS · MODEL-AS-JUDGE · CONTINUOUS MONITORING</text>
 
   <circle cx="320" cy="62" r="5" fill="#92fe9d"/>
   <text x="330" y="66" fill="#8899aa" font-size="9">Covered</text>
@@ -48,7 +48,7 @@
   <text x="50" y="256" fill="#00c9ff" font-size="9" font-weight="600">LLM05</text>
   <circle cx="380" cy="252" r="5" fill="#92fe9d"/>
   <text x="395" y="256" fill="#92fe9d" font-size="9">Covered</text>
-  <text x="470" y="256" fill="#c0c8d8" font-size="8">EC-2.5 LLM-as-Judge gate · EC-2.1 Action classification engine</text>
+  <text x="470" y="256" fill="#c0c8d8" font-size="8">EC-2.5 Model-as-Judge gate · EC-2.1 Action classification engine</text>
   <rect x="30" y="266" width="1040" height="28" rx="0" fill="#0f1325"/>
   <text x="50" y="284" fill="#00c9ff" font-size="9" font-weight="600">LLM06</text>
   <circle cx="380" cy="280" r="5" fill="#92fe9d"/>

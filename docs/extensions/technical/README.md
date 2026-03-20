@@ -22,7 +22,7 @@ Deep dives on controls, infrastructure, and metrics.
 | [ai-endpoint-hardening.md](ai-endpoint-hardening.md) | Model endpoint, gateway, and tool server hardening |
 | [Control Families](control-families.md) | Detailed control family definitions |
 | [Agentic Controls (Extended)](agentic-controls-extended.md) | Extended agentic control guidance |
-| [LLM-as-Judge Implementation](llm-as-judge-implementation.md) | Detailed Judge implementation |
+| [Model-as-Judge Implementation](model-as-judge-implementation.md) | Detailed Judge implementation |
 | [operational-metrics.md](operational-metrics.md) | Comprehensive metrics catalogue |
 | [control-selection-guide.md](control-selection-guide.md) | Control selection methodology |
 | [ai-specific-risks.md](novel-ai-risks.md) | AI-specific risk categories |

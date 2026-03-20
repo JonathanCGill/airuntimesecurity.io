@@ -187,7 +187,7 @@ AI incident response must integrate with the existing enterprise IR process, not
 
 ## Three-Layer Mapping
 
-| Control | Guardrails | LLM-as-Judge | Human Oversight |
+| Control | Guardrails | Model-as-Judge | Human Oversight |
 |---------|-----------|--------------|-----------------|
 | IR-01 Categories | Guardrail failure as incident category | Judge failure as incident category | Humans classify and prioritise |
 | IR-02 Detection | Guardrail log anomalies trigger detection | Judge flag rate triggers detection | Humans review escalated alerts |

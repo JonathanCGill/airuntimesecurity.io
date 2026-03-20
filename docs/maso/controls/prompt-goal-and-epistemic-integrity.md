@@ -67,7 +67,7 @@ All Tier 1 controls remain active, plus:
 
 | Control | Requirement | Implementation Notes |
 |---------|-------------|---------------------|
-| **PG-2.1** Inter-agent injection detection | LLM-as-Judge evaluates inter-agent messages for embedded instructions, goal manipulation, and injection patterns | Judge operates on the message bus, not just on final outputs. |
+| **PG-2.1** Inter-agent injection detection | Model-as-Judge evaluates inter-agent messages for embedded instructions, goal manipulation, and injection patterns | Judge operates on the message bus, not just on final outputs. |
 | **PG-2.2** Goal integrity monitoring | Continuous comparison of agent actions against the immutable task specification | Judge compares current working goal against original objective at each decision point. Drift triggers escalation. |
 | **PG-2.3** System prompt boundary enforcement | Infrastructure-level isolation prevents system prompts from appearing in agent outputs or inter-agent messages | DLP pattern matching for system prompt fragments in all outputs. |
 | **PG-2.4** Consensus diversity gate | Unanimous agent agreement with shared evidence sources triggers escalation, not approval | Judge refuses consensus if evidence diversity is below configured minimum. At least two independent evidence sources required for material claims. |
@@ -78,7 +78,7 @@ All Tier 1 controls remain active, plus:
 | **PG-2.9** Model diversity policy | Single-provider agent architectures flagged as concentration risk | AIBOM review identifies model homogeneity. Different models (ideally different providers) required for agents contributing to the same decision. |
 | **PG-2.10** Inter-agent clarification protocol | Agents may issue structured clarification requests when delegated tasks are ambiguous | Clarification requests are logged, routed to the delegating agent or human operator, and must be resolved before execution begins. Prevents agents from guessing at ambiguous delegations. |
 
-**What you're building at Tier 2:** The LLM-as-Judge now operates on inter-agent messages (not just outputs), enforcing goal integrity, injection detection, and epistemic quality. The message bus schema becomes a control surface with mandatory provenance, uncertainty, and assumption fields. Agents can request clarification rather than silently interpreting ambiguous instructions.
+**What you're building at Tier 2:** The Model-as-Judge now operates on inter-agent messages (not just outputs), enforcing goal integrity, injection detection, and epistemic quality. The message bus schema becomes a control surface with mandatory provenance, uncertainty, and assumption fields. Agents can request clarification rather than silently interpreting ambiguous instructions.
 
 ### Tier 3 - Autonomous
 

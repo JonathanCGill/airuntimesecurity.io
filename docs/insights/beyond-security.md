@@ -45,7 +45,7 @@ The problem: a model's accuracy degrades over time as the world changes. The inp
 | Layer | Security Version | Drift Version |
 |---|---|---|
 | Layer 1 (Detection) | Pattern-matching guardrails catch known-bad inputs | Statistical monitors catch distribution shift beyond threshold |
-| Layer 2 (Evaluation) | LLM-as-Judge evaluates outputs for policy compliance | Validation pipeline evaluates predictions against labelled holdout set |
+| Layer 2 (Evaluation) | Model-as-Judge evaluates outputs for policy compliance | Validation pipeline evaluates predictions against labelled holdout set |
 | Layer 3 (Judgment) | Human reviews escalated cases | Domain expert reviews flagged performance degradation and decides: retrain, adjust, or accept |
 
 **PACE, applied:**

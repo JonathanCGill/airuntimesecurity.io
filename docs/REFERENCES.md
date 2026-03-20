@@ -329,7 +329,7 @@ These incidents are referenced throughout the framework to ground controls in de
 
 Air Canada's chatbot gave incorrect bereavement fare information. The airline argued the chatbot was "a separate legal entity responsible for its own actions." The BC Civil Resolution Tribunal ruled against Air Canada: *"It makes no difference whether the information comes from a static page or a chatbot."* Ordered to pay $812.02.
 
-Established legal precedent that organisations are liable for AI-generated misinformation. Maps to: Guardrails, Human Oversight, LLM-as-Judge.
+Established legal precedent that organisations are liable for AI-generated misinformation. Maps to: Guardrails, Human Oversight, Model-as-Judge.
 
 - [CBC News](https://www.cbc.ca/news/canada/british-columbia/air-canada-chatbot-lawsuit-1.7116416)
 - [American Bar Association](https://www.americanbar.org/groups/business_law/resources/business-law-today/2024-february/bc-tribunal-confirms-companies-remain-liable-information-provided-ai-chatbot/)
@@ -494,7 +494,7 @@ This framework is not a repackaging of the sources above. It is an original synt
 
 What the sources provide is:
 
-- **Validation.** The three-layer runtime monitoring pattern (guardrails + LLM-as-Judge + human oversight) is not our invention - it's an emerging industry consensus reflected in NIST, OWASP, Google SAIF, and commercial implementations.
+- **Validation.** The three-layer runtime monitoring pattern (guardrails + Model-as-Judge + human oversight) is not our invention - it's an emerging industry consensus reflected in NIST, OWASP, Google SAIF, and commercial implementations.
 - **Evidence.** Every control in this framework maps to a documented incident, a published attack technique, or both. The incidents section above provides the evidence base.
 - **Context.** No framework exists in isolation. Citing what came before helps readers understand where this work sits in the broader landscape and what it adds to the conversation.
 

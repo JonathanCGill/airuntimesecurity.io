@@ -104,7 +104,7 @@ Wire these as **health checks and circuit breakers** in your service mesh or orc
 
 1. **Map your existing infrastructure** against the [Infrastructure Controls](../infrastructure/) to identify what you already cover and where the AI-specific gaps are.
 
-2. **Add the Judge layer to your architecture.** Pick one HIGH or CRITICAL tier system. Add an independent LLM evaluation step - even async, even sampled. The [LLM-as-Judge Implementation](../extensions/technical/llm-as-judge-implementation.md) guide has the implementation patterns.
+2. **Add the Judge layer to your architecture.** Pick one HIGH or CRITICAL tier system. Add an independent LLM evaluation step - even async, even sampled. The [Model-as-Judge Implementation](../extensions/technical/model-as-judge-implementation.md) guide has the implementation patterns.
 
 3. **Wire PACE health checks.** Add circuit breakers for your guardrail and Judge services. Define what the system does when each is unavailable. Test the failover path.
 

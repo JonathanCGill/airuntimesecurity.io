@@ -68,7 +68,7 @@ When summarising, stick to the facts. Do not editorialize or inflate the signifi
 The AIRS framework has four core layers:
 
 1. **Guardrails**: containment boundaries that block known-bad inputs/outputs (~10ms)
-2. **Judge**: LLM-as-Judge evaluation for unknown-bad detection (~500ms to 5s)
+2. **Judge**: Model-as-Judge evaluation for unknown-bad detection (~500ms to 5s)
 3. **Human Oversight**: escalation paths for ambiguous cases
 4. **Circuit Breaker**: stops all AI traffic on control failure (PACE methodology)
 

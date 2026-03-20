@@ -13,7 +13,7 @@ type: software
 keywords:
   - ai-security
   - llm-guardrails
-  - llm-as-judge
+  - model-as-judge
   - enterprise-ai
   - ai-governance
   - iso-42001
@@ -22,6 +22,6 @@ keywords:
 abstract: >-
   A practical, open-source framework for implementing runtime behavioral
   security controls across generative and agentic AI systems. Defines a
-  three-layer architecture — guardrails, LLM-as-Judge evaluation, and
+  three-layer architecture — guardrails, Model-as-Judge evaluation, and
   human oversight — with risk-tiered implementation guidance, regulatory
   mapping, and worked examples.

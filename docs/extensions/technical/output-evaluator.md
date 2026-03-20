@@ -165,7 +165,7 @@ This layer maps directly to existing User and Entity Behavior Analytics. The age
 **Effort:** High | **Value:** Catches sophisticated, novel campaigns
 
 - Everything in Tier 2
-- LLM-as-Judge evaluates full session trajectory at checkpoints and close
+- Model-as-Judge evaluates full session trajectory at checkpoints and close
 - ML-based anomaly detection on session trajectories
 - Cross-session pattern clustering
 - Peer group deviation analysis

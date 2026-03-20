@@ -110,7 +110,7 @@ The PROTECT Function covers identity management, access control, awareness and t
 
 ### DETECT (DE)
 
-The DETECT Function covers continuous monitoring and adverse event analysis. This framework's Logging & Observability controls and the LLM-as-Judge layer map directly here.
+The DETECT Function covers continuous monitoring and adverse event analysis. This framework's Logging & Observability controls and the Model-as-Judge layer map directly here.
 
 | CSF Subcategory | Description | Framework Domain | AI-Specific Notes |
 | --- | --- | --- | --- |
@@ -170,7 +170,7 @@ The RECOVER Function covers recovery plan execution and communication. This fram
 | **GOVERN** | 23 | Risk Tiers, Supply Chain, Human Oversight, Delegation Chains, Incident Response, Logging & Observability |
 | **IDENTIFY** | 19 | Risk Tiers, Supply Chain, Logging & Observability, Data Protection, Network & Segmentation, Incident Response |
 | **PROTECT** | 21 | Identity & Access Management, Data Protection, Network & Segmentation, Secrets & Credentials, Tool Access, Session & Scope, Sandbox Patterns, Supply Chain, Logging & Observability |
-| **DETECT** | 11 | Logging & Observability, LLM-as-Judge layer, Network & Segmentation, Supply Chain, Incident Response |
+| **DETECT** | 11 | Logging & Observability, Model-as-Judge layer, Network & Segmentation, Supply Chain, Incident Response |
 | **RESPOND** | 13 | Incident Response, Logging & Observability, Network & Segmentation, Tool Access, Human Oversight |
 | **RECOVER** | 8 | Incident Response, Supply Chain, Data Protection, Logging & Observability, Risk Tiers |
 

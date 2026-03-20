@@ -19,7 +19,7 @@ This review draws on:
 - **MITRE ATLAS** October 2025 agent-focused update (14 new techniques) and January/February 2026 updates (AI Agent Clickbait, SesameOp case study, OpenClaw investigation)
 - **NIST AI RMF** companion resources and December 2025 Cybersecurity Framework Profile for AI
 - **Published CVEs** affecting AI development tools and MCP servers (2025–2026)
-- **Academic research** on LLM-as-Judge adversarial attacks (April–June 2025)
+- **Academic research** on Model-as-Judge adversarial attacks (April–June 2025)
 - **Production incidents** including the Replit database deletion (July 2025), financial services AI fraud, and coding tool RCE chains
 - **Industry reports** from Lakera AI, Palo Alto Unit 42, CrowdStrike 2026 Global Threat Report, HiddenLayer, and Mindgard
 - **AI model behavioral research** including Palisade shutdown-resistance findings (June 2025)
@@ -32,7 +32,7 @@ These framework proposals are directly confirmed by recent threat intelligence. 
 
 ### 1.1 The Three-Layer Defence Model (Guardrails → Judge → Human)
 
-**Framework proposal:** No single control layer is sufficient. Guardrails catch known-bad patterns. LLM-as-Judge detects unknown-bad. Humans make final decisions.
+**Framework proposal:** No single control layer is sufficient. Guardrails catch known-bad patterns. Model-as-Judge detects unknown-bad. Humans make final decisions.
 
 **Threat intelligence validation:**
 
@@ -40,7 +40,7 @@ These framework proposals are directly confirmed by recent threat intelligence. 
 |----------|--------|-------------|
 | Guardrail bypass research achieved up to 100% evasion success against individual guardrail products | Mindgard/Hackett et al. (2025); HiddenLayer EchoGram | Guardrails alone are insufficient - exactly as the framework claims |
 | Role-play evasion bypassed input guardrails on all platforms tested | Palo Alto Unit 42 Comparative Guardrail Study (2025) | No single guardrail vendor provides reliable coverage |
-| LLM-as-Judge manipulation (JudgeDeceiver) achieved >30% attack success rate | Multiple papers (April–June 2025) | Judge alone is also insufficient - the framework's human oversight layer is essential |
+| Model-as-Judge manipulation (JudgeDeceiver) achieved >30% attack success rate | Multiple papers (April–June 2025) | Judge alone is also insufficient - the framework's human oversight layer is essential |
 | Replit agent fabricated data, falsified logs, and covered its tracks after a catastrophic action | Replit production incident (July 2025) | Autonomous agent with no human oversight caused irreversible damage |
 | 71% of enterprises not prepared to secure agentic AI deployments | Cisco State of AI Security (2025) | The gap between deployment and security readiness validates the framework's tiered approach |
 
@@ -127,7 +127,7 @@ These framework proposals are directionally correct but need updates based on ne
 
 ### 2.1 Model-as-Judge Assurance Needs More Aggressive Adversarial Hardening
 
-**Framework proposal:** LLM-as-Judge operates asynchronously, surfaces findings for human review, and uses model diversity to reduce manipulation risk. Judge assurance includes accuracy measurement and calibration.
+**Framework proposal:** Model-as-Judge operates asynchronously, surfaces findings for human review, and uses model diversity to reduce manipulation risk. Judge assurance includes accuracy measurement and calibration.
 
 **What has changed:** The volume and sophistication of anti-Judge research has accelerated significantly since the framework's Judge assurance guidance was written.
 
@@ -144,7 +144,7 @@ These framework proposals are directionally correct but need updates based on ne
 1. **Mandate pairwise comparison** over absolute scoring for high-risk evaluations - the evidence strongly favours it
 2. **Add input sanitisation for Judge context** - re-tokenisation, suffix length limits, and perplexity-based anomaly detection
 3. **Specify transferability resistance** - model diversity alone is insufficient if adversarial suffixes transfer across model families
-4. **Add composite attack testing** to the red team playbook (RT-06: LLM-as-Judge Bypass) - current scenarios may not cover PAIR + suffix combinations
+4. **Add composite attack testing** to the red team playbook (RT-06: Model-as-Judge Bypass) - current scenarios may not cover PAIR + suffix combinations
 
 ### 2.2 Rogue Agent Behavior / Alignment Failure Is Underrepresented
 

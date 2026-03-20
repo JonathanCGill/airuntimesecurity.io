@@ -73,7 +73,7 @@ The data supports a clear prioritization:
 4. Implement human review for high-stakes outputs (addresses hallucination in consequential decisions)
 
 **Second priority (addresses emerging and escalating threats):**
-5. Async behavioral monitoring / LLM-as-Judge (detects novel failures guardrails miss)
+5. Async behavioral monitoring / Model-as-Judge (detects novel failures guardrails miss)
 6. Agentic controls - scope limitation, tool-call validation, least-privilege (severity scales with autonomy)
 7. Supply chain verification for AI components
 

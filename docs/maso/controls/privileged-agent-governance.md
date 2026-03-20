@@ -18,7 +18,7 @@ The controls in other MASO domains secure task agents against each other and aga
 
 **Orchestrators influence outcomes through decisions, not tools.** A compromised orchestrator doesn't need tool access to cause harm. It causes harm through task decomposition, agent selection, and result interpretation. Existing controls (IA-2.5, tool scoping) don't address this class of threat because the orchestrator's power is in planning, not execution.
 
-**Evaluators are single points of trust.** The LLM-as-Judge approves or blocks every task agent output. If Judge criteria drift, or the Judge model is compromised, Layer 2 collapses silently - every output passes because the standard has shifted. The system reports healthy while the controls are effectively disabled.
+**Evaluators are single points of trust.** The Model-as-Judge approves or blocks every task agent output. If Judge criteria drift, or the Judge model is compromised, Layer 2 collapses silently - every output passes because the standard has shifted. The system reports healthy while the controls are effectively disabled.
 
 **Observers with kill switch authority can be weaponised.** An over-sensitive observer repeatedly triggers emergency shutdowns, degrading the system into permanent contingency. Operators disable it to restore service. The system now runs without its safety net - and nobody formally accepted that risk.
 
@@ -32,7 +32,7 @@ Before applying controls, classify each agent in the orchestration by its govern
 |------|-----------|----------|----------------|
 | **Task agent** | Executes scoped actions using tools | Analyst, writer, code executor, retriever | Tool misuse, data leakage, injection |
 | **Orchestrator** | Plans, selects agents, sequences execution, interprets results | Planner, coordinator, router, aggregator | Goal subversion, malicious decomposition, selective suppression |
-| **Evaluator** | Approves, blocks, or escalates other agents' outputs | LLM-as-Judge, critic, reviewer, quality gate | Criteria drift, adversarial bypass, calibration decay |
+| **Evaluator** | Approves, blocks, or escalates other agents' outputs | Model-as-Judge, critic, reviewer, quality gate | Criteria drift, adversarial bypass, calibration decay |
 | **Observer** | Monitors, scores anomalies, triggers escalation or kill switch | Monitoring agent, anomaly detector, safety agent | Miscalibration, over/under-sensitivity, weaponised shutdown |
 
 An agent may hold multiple roles. An orchestrator that also evaluates intermediate outputs is both orchestrator and evaluator - and requires controls from both categories.
@@ -146,7 +146,7 @@ All Tier 2 controls remain active, plus:
 | Domain | Relationship |
 |--------|-------------|
 | [Identity & Access](identity-and-access.md) | PA extends IA-2.5 (orchestrator privilege separation) to cover orchestrator decision-making, not just tool access. PA-3.2 extends IA-2.4 (no transitive permissions) to nested orchestration levels. |
-| [Execution Control](execution-control.md) | PA extends EC-2.5 (LLM-as-Judge gate) with Judge governance - calibration, criteria versioning, disagreement procedures. PA-3.3 extends EC-2.3 (blast radius caps) to orchestration sub-trees. |
+| [Execution Control](execution-control.md) | PA extends EC-2.5 (Model-as-Judge gate) with Judge governance - calibration, criteria versioning, disagreement procedures. PA-3.3 extends EC-2.3 (blast radius caps) to orchestration sub-trees. |
 | [Observability](observability.md) | PA extends OB-3.3 (independent observability agent) with observer self-test, precision monitoring, and kill switch dual authorisation. |
 | [Prompt, Goal & Epistemic Integrity](prompt-goal-and-epistemic-integrity.md) | PA-2.1 (orchestrator intent verification) complements PG-2.2 (goal integrity monitoring) by applying intent verification to the orchestrator's own decisions, not just task agents. |
 

@@ -121,7 +121,7 @@ These are not speculative - they are extrapolations from demonstrated attack pri
 
 **Status:** Active research; JudgeDeceiver is the first production-relevant example
 
-**Threat:** Attackers use AI systems to generate adversarial inputs specifically optimised to bypass AI-based defences. This includes gradient-based attacks against guardrail models, adversarial prompts optimised to manipulate LLM-as-Judge evaluation, and automated red-teaming tools that discover novel bypass techniques faster than defenders can patch them.
+**Threat:** Attackers use AI systems to generate adversarial inputs specifically optimised to bypass AI-based defences. This includes gradient-based attacks against guardrail models, adversarial prompts optimised to manipulate Model-as-Judge evaluation, and automated red-teaming tools that discover novel bypass techniques faster than defenders can patch them.
 
 **Why it's getting worse:** The same AI capabilities that enable defence (pattern recognition, semantic understanding, anomaly detection) are available to attackers. The attacker-defender asymmetry is amplified by AI - automated attack generation scales faster than manual defence development.
 

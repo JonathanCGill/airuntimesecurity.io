@@ -18,7 +18,7 @@ Traditional IAM governs humans accessing applications. AI systems introduce four
 | **Human users** | Analysts using a chatbot | Prompt injection, data exfiltration via conversation |
 | **Application identities** | Backend service calling an LLM API | Credential theft, over-provisioned API keys |
 | **AI agents** | Autonomous agent invoking tools | Privilege escalation, unauthorised tool invocation |
-| **Model-to-model** | LLM-as-Judge evaluating primary model output | Trust boundary confusion, evaluation bypass |
+| **Model-to-model** | Model-as-Judge evaluating primary model output | Trust boundary confusion, evaluation bypass |
 
 The core problem: **an AI agent that can call tools is an identity that can take actions, but it doesn't authenticate the way a human or service account does.** IAM must extend to cover what an agent is *permitted to do*, not just who launched it.
 
@@ -129,7 +129,7 @@ Define these per deployment, but common examples:
 - Outbound communications (emails, messages, API calls to external parties)
 - Access to sensitive data categories (PII, health records, financial data)
 - Changes to the agent's own configuration or permissions
-- Any action flagged by the LLM-as-Judge as anomalous
+- Any action flagged by the Model-as-Judge as anomalous
 
 ### Approval Flow
 
@@ -186,7 +186,7 @@ This audit trail must be append-only and stored separately from the systems it m
 
 ## Three-Layer Mapping
 
-| Control | Guardrails | LLM-as-Judge | Human Oversight |
+| Control | Guardrails | Model-as-Judge | Human Oversight |
 |---------|-----------|--------------|-----------------|
 | IAM-01 Authentication | Ensures only authenticated requests reach guardrails | Judge receives verified identity context | Oversight dashboards show real identities |
 | IAM-02 Least privilege | Limits what can bypass guardrails | Judge can't be reconfigured by evaluated model | Humans retain exclusive control plane access |

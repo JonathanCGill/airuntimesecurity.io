@@ -19,7 +19,7 @@ Framework tags use these categories:
 | Tag | Framework area |
 |-----|---------------|
 | **Guardrails** | Input/output containment boundaries |
-| **Judge** | LLM-as-Judge evaluation layer |
+| **Judge** | Model-as-Judge evaluation layer |
 | **Human Oversight** | Escalation and human-in-the-loop controls |
 | **Circuit Breaker** | Safe failure and PACE resilience |
 | **Risk Tiers** | Risk classification and proportionate controls |

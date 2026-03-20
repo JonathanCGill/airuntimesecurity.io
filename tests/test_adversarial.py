@@ -8,7 +8,7 @@ They are organised into two categories:
 
 Every test in the BYPASSED section is a known gap. This is not a bug list.
 Regex guardrails are Layer 1: they catch obvious, low-effort attacks.
-Subtle attacks are the job of Layer 2 (LLM-as-Judge) and Layer 3 (human review).
+Subtle attacks are the job of Layer 2 (Model-as-Judge) and Layer 3 (human review).
 
 The value of these tests is honesty. Anyone evaluating this SDK can see
 exactly where the detection boundary is, rather than guessing.

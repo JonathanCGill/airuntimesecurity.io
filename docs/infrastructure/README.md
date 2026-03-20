@@ -6,7 +6,7 @@ description: Infrastructure controls that enforce AI behavioral security across 
 
 **The infrastructure layer that makes behavioral AI security enforceable.**
 
-Companion to [AI Runtime Security](https://github.com/JonathanCGill/airuntimesecurity.io), which defines the three-layer behavioral security pattern (Guardrails, LLM-as-Judge, Human Oversight). This section defines 80 technical infrastructure controls that underpin that pattern. Each control specifies which risk tiers it applies to, so you can quickly identify what you need and deselect what you do not.
+Companion to [AI Runtime Security](https://github.com/JonathanCGill/airuntimesecurity.io), which defines the three-layer behavioral security pattern (Guardrails, Model-as-Judge, Human Oversight). This section defines 80 technical infrastructure controls that underpin that pattern. Each control specifies which risk tiers it applies to, so you can quickly identify what you need and deselect what you do not.
 
 ## The Problem
 

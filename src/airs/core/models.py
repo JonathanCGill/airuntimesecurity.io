@@ -64,7 +64,7 @@ class GuardrailVerdict(str, Enum):
 
 
 class JudgeVerdict(str, Enum):
-    """Outcome of an LLM-as-Judge (Layer 2) evaluation."""
+    """Outcome of an Model-as-Judge (Layer 2) evaluation."""
 
     PASS = "pass"
     REVIEW = "review"  # queue for human review

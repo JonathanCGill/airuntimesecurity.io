@@ -94,7 +94,7 @@ The pattern above applies to single-model deployments. For systems where **multi
 |---|---|---|
 | Inter-agent message bus security | Signed messages, source tagging, injection detection between agents | [Integration Guide](maso/integration/integration-guide.md) |
 | Non-Human Identity per agent | Unique credentials, scoped permissions, no transitive authority | [Identity & Access Controls](maso/controls/identity-and-access.md) |
-| LLM-as-Judge for agent outputs | Independent evaluation before cross-agent actions | [Execution Control](maso/controls/execution-control.md) |
+| Model-as-Judge for agent outputs | Independent evaluation before cross-agent actions | [Execution Control](maso/controls/execution-control.md) |
 | Epistemic integrity | Hallucination chain detection, provenance tagging, uncertainty preservation | [Prompt, Goal & Epistemic Integrity](maso/controls/prompt-goal-and-epistemic-integrity.md) |
 | Kill switch architecture | Independent observability agent with system-wide emergency stop | [Observability Controls](maso/controls/observability.md) |
 

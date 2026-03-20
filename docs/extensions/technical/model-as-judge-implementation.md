@@ -164,7 +164,7 @@ The Judge is itself an AI system. It requires:
 
 ## Summary
 
-The LLM-as-Judge is a powerful assurance mechanism when used correctly:
+The Model-as-Judge is a powerful assurance mechanism when used correctly:
 
 **Do:**
 - Use it for continuous quality monitoring

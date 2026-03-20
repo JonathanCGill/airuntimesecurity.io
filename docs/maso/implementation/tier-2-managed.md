@@ -18,7 +18,7 @@ Tier 2 is appropriate when:
 
 - The organisation has completed at least 90 days of Tier 1 operations and established behavioral baselines for all agents.
 - Tier 1 graduation criteria have been formally met and documented.
-- The organisation has the technical capacity to implement per-agent Non-Human Identities, signed message bus, LLM-as-Judge evaluation, and continuous anomaly scoring.
+- The organisation has the technical capacity to implement per-agent Non-Human Identities, signed message bus, Model-as-Judge evaluation, and continuous anomaly scoring.
 - The AI security maturity is at CMMI Level 2–3 (managed or defined) for AI-specific controls.
 - The cost of per-action human approval is becoming a bottleneck to operational value.
 
@@ -34,13 +34,13 @@ Key architectural changes from Tier 1:
 
 **Non-Human Identity (NHI) per agent:** Each agent has a certificate-based identity with short-lived credentials (recommended rotation: 1–24 hours depending on risk). The NHI is bound to the agent's permission scope and is used for mutual authentication on the message bus and tool access.
 
-**LLM-as-Judge (Layer 2) is mandatory:** A dedicated evaluation model (distinct from the task agents, ideally from a different model provider) reviews agent outputs and proposed actions against policy, quality, and safety criteria before they are committed. The judge model does not execute actions - it evaluates and either approves, flags for human review, or blocks.
+**Model-as-Judge (Layer 2) is mandatory:** A dedicated evaluation model (distinct from the task agents, ideally from a different model provider) reviews agent outputs and proposed actions against policy, quality, and safety criteria before they are committed. The judge model does not execute actions - it evaluates and either approves, flags for human review, or blocks.
 
 **Continuous monitoring layer:** Automated anomaly detection replaces periodic manual log review. Behavioral baselines established during Tier 1 are used as reference. Deviations trigger alerts and, if thresholds are exceeded, automatic PACE phase transitions.
 
 **Action classification:** Every agent action is classified as either:
-- **Auto-approve:** Read operations, low-consequence writes within pre-approved categories. Proceeds without human intervention. LLM-as-Judge reviews but does not block unless policy violation is detected.
-- **Escalate:** High-consequence writes, actions involving external parties, irreversible operations, actions flagged by the LLM-as-Judge. Routed to human supervisor for approval.
+- **Auto-approve:** Read operations, low-consequence writes within pre-approved categories. Proceeds without human intervention. Model-as-Judge reviews but does not block unless policy violation is detected.
+- **Escalate:** High-consequence writes, actions involving external parties, irreversible operations, actions flagged by the Model-as-Judge. Routed to human supervisor for approval.
 - **Block:** Actions outside the agent's scope, guardrail violations, actions on the deny-list. Blocked automatically, logged, and flagged for review.
 
 ## Control Implementation by MASO Domain
@@ -85,11 +85,11 @@ Key architectural changes from Tier 1:
 
 **All Tier 1 controls remain active, plus:**
 
-- **Action classification engine.** Every proposed action is classified as auto-approve, escalate, or block based on predefined rules. The classification considers: the action type (read/write/delete/execute), the target system (internal/external), the data classification involved, the agent's historical behavior, and the LLM-as-Judge evaluation.
+- **Action classification engine.** Every proposed action is classified as auto-approve, escalate, or block based on predefined rules. The classification considers: the action type (read/write/delete/execute), the target system (internal/external), the data classification involved, the agent's historical behavior, and the Model-as-Judge evaluation.
 - **Sandboxed execution.** Agents that generate and execute code do so in isolated environments. Each agent's execution sandbox has defined filesystem, network, and process scope boundaries. The sandbox is destroyed and recreated after each execution.
 - **Blast radius caps.** Each agent has a defined maximum impact scope: maximum number of records it can modify per execution, maximum financial value of transactions, maximum number of external API calls. Exceeding any cap triggers automatic PACE escalation to Alternate.
 - **Circuit breakers.** If an agent's error rate exceeds a defined threshold within a time window (e.g., 3 guardrail blocks in 10 minutes), the circuit breaker engages: the agent is paused, the event is logged, and the monitoring layer evaluates whether to resume or escalate.
-- **LLM-as-Judge gate.** The evaluation model reviews all agent outputs before they reach external systems or other agents. The judge evaluates against: factual accuracy (where verifiable), policy compliance, goal integrity (is the agent still pursuing its assigned objective?), output safety, and data leakage indicators.
+- **Model-as-Judge gate.** The evaluation model reviews all agent outputs before they reach external systems or other agents. The judge evaluates against: factual accuracy (where verifiable), policy compliance, goal integrity (is the agent still pursuing its assigned objective?), output safety, and data leakage indicators.
 
 **Implementation checklist:**
 
@@ -98,7 +98,7 @@ Key architectural changes from Tier 1:
 - [ ] Sandboxed execution environments provisioned per agent (isolation tested).
 - [ ] Blast radius caps defined per agent (documented with rationale).
 - [ ] Circuit breaker thresholds configured and tested.
-- [ ] LLM-as-Judge operational with evaluation criteria documented.
+- [ ] Model-as-Judge operational with evaluation criteria documented.
 - [ ] Judge model is from a different provider than the task agents (recommended, not mandatory).
 
 ### 4. Observability - Tier 2 Requirements
@@ -145,13 +145,13 @@ All four PACE phases are configured and operational at Tier 2. Alternate and Con
 
 ### Primary (P) - Full Operations
 
-All agents active. Action classification engine operational. LLM-as-Judge active. Continuous monitoring active. Drift scores within normal range.
+All agents active. Action classification engine operational. Model-as-Judge active. Continuous monitoring active. Drift scores within normal range.
 
 Human supervisor monitors dashboards and handles escalated actions but does not review every action.
 
 ### Alternate (A) - Agent Failover
 
-**Trigger:** Drift score > 60 for any agent, OR circuit breaker engaged for any agent, OR LLM-as-Judge blocks >3 actions from the same agent in 10 minutes.
+**Trigger:** Drift score > 60 for any agent, OR circuit breaker engaged for any agent, OR Model-as-Judge blocks >3 actions from the same agent in 10 minutes.
 
 **Automated response (no human approval required for P→A):**
 
@@ -208,7 +208,7 @@ Requires a formal post-incident review confirming:
 
 ## OWASP Risk Coverage at Tier 2
 
-Tier 2 provides technical controls for the majority of OWASP risks. The combination of NHI, signed message bus, LLM-as-Judge, and continuous monitoring closes most of the gaps left open at Tier 1.
+Tier 2 provides technical controls for the majority of OWASP risks. The combination of NHI, signed message bus, Model-as-Judge, and continuous monitoring closes most of the gaps left open at Tier 1.
 
 ![Tier 2 OWASP Coverage](../../images/tier-2-owasp-coverage.svg)
 
@@ -223,10 +223,10 @@ Tier 2 shifts the human role from gatekeeper to supervisor, reducing per-action 
 
 **Minimum roles:**
 
-- **Agent Supervisor** (1 per active agent system during operating hours, but can oversee higher volume than a Tier 1 operator): Handles escalated actions, monitors dashboards, responds to alerts. Requires domain expertise plus understanding of the LLM-as-Judge evaluation criteria and PACE procedures.
+- **Agent Supervisor** (1 per active agent system during operating hours, but can oversee higher volume than a Tier 1 operator): Handles escalated actions, monitors dashboards, responds to alerts. Requires domain expertise plus understanding of the Model-as-Judge evaluation criteria and PACE procedures.
 - **AI Security Engineer** (0.5–1 FTE): Manages drift detection baselines, tunes anomaly scoring, conducts security reviews of new MCP servers and tools, owns the PACE configuration, and leads incident response for agent-related events.
 - **Platform Engineer** (0.5 FTE): Manages NHI lifecycle, credential rotation, sandbox environments, message bus infrastructure, and runtime integrity monitoring.
-- **LLM-as-Judge Administrator** (0.25 FTE): Maintains the judge model's evaluation criteria, reviews judge performance (false positive/negative rates), and updates judge policies as the agent system evolves. This can be combined with the AI Security Engineer role.
+- **Model-as-Judge Administrator** (0.25 FTE): Maintains the judge model's evaluation criteria, reviews judge performance (false positive/negative rates), and updates judge policies as the agent system evolves. This can be combined with the AI Security Engineer role.
 
 **For a financial services context:** Add a dedicated compliance reviewer (0.25 FTE) who audits the immutable decision chain logs against regulatory requirements on a defined schedule. The SIEM/SOAR integration should generate automated compliance evidence reports.
 
@@ -258,7 +258,7 @@ All Tier 1 tests remain valid and should be re-executed. Additional Tier 2 tests
 6. **Action classification test:** Submit a range of actions (reads, low-consequence writes, high-consequence writes, out-of-scope actions) and confirm correct classification for each.
 7. **Blast radius cap test:** Attempt to exceed a defined blast radius cap and confirm the system blocks the excess and triggers PACE escalation.
 8. **Circuit breaker test:** Trigger the circuit breaker by exceeding the error threshold and confirm the agent is paused and the event is logged.
-9. **LLM-as-Judge test:** Submit known-bad outputs (policy violations, goal drift, data leakage) through the judge and measure detection rate.
+9. **Model-as-Judge test:** Submit known-bad outputs (policy violations, goal drift, data leakage) through the judge and measure detection rate.
 
 **PACE tests:**
 
@@ -272,7 +272,7 @@ Tier 3 (Autonomous Multi-Agent) requires a high bar of demonstrated maturity. Mo
 
 1. **Extended stable operations:** The agent system has been running at Tier 2 for at least 180 days with continuous monitoring and no security-triggered PACE escalations (operational escalations for testing or maintenance do not count).
 
-2. **Demonstrated LLM-as-Judge reliability:** The judge model's false negative rate (policy violations it missed) is below 2% on the most recent 90-day evaluation. The false positive rate (correct actions it flagged) is below 10%.
+2. **Demonstrated Model-as-Judge reliability:** The judge model's false negative rate (policy violations it missed) is below 2% on the most recent 90-day evaluation. The false positive rate (correct actions it flagged) is below 10%.
 
 3. **Drift detection validated:** The anomaly detection system has been tested against adversarial scenarios (deliberately injected anomalous behavior) and demonstrated detection of all HIGH and CRITICAL severity test cases.
 
@@ -294,7 +294,7 @@ Tier 3 (Autonomous Multi-Agent) requires a high bar of demonstrated maturity. Mo
 - The Intake Agent has read access to the claims portal and write access to the internal claims database (auto-approved for claim registration - a low-consequence, reversible write).
 - The Analysis Agent has read access to the policy database and the claims database. Its coverage assessments are auto-approved as internal working documents. Its preliminary amount calculations are escalated to a human supervisor if above a configured threshold (e.g., $50,000).
 - The Communication Agent has read access to the Analysis Agent's outputs (via the message bus). Its draft correspondence is auto-approved for internal staging but escalated to a human supervisor before external send.
-- The LLM-as-Judge reviews all three agents' outputs. It is specifically trained to flag: coverage assessments that reference policy clauses that don't exist (hallucination), preliminary amounts that deviate >20% from historical norms for similar claims (anomaly), and correspondence that makes commitments not supported by the coverage assessment (goal drift).
+- The Model-as-Judge reviews all three agents' outputs. It is specifically trained to flag: coverage assessments that reference policy clauses that don't exist (hallucination), preliminary amounts that deviate >20% from historical norms for similar claims (anomaly), and correspondence that makes commitments not supported by the coverage assessment (goal drift).
 - Blast radius caps: Intake Agent can register max 500 claims/hour. Analysis Agent can process max 200 assessments/hour. Communication Agent can stage max 200 letters/hour.
 - Circuit breakers engage if any agent's guardrail block rate exceeds 5% in any 30-minute window.
 

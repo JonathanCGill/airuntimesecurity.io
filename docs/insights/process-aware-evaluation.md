@@ -91,7 +91,7 @@ These pattern checks run against the immutable decision chain ([OB-2.1](../maso/
 
 ### Tier 3 - Judge-on-Trace
 
-At Tier 3, deploy an LLM-as-Judge against the trace itself - not just the final output. The Judge evaluates:
+At Tier 3, deploy an Model-as-Judge against the trace itself - not just the final output. The Judge evaluates:
 
 - Whether the reasoning chain supports the conclusion
 - Whether tool selection was appropriate for the stated goal

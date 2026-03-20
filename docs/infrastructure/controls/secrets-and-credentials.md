@@ -165,7 +165,7 @@ AI projects are prone to embedded credentials - API keys in notebooks, tokens in
 
 ## Three-Layer Mapping
 
-| Control | Guardrails | LLM-as-Judge | Human Oversight |
+| Control | Guardrails | Model-as-Judge | Human Oversight |
 |---------|-----------|--------------|-----------------|
 | SEC-01 Context isolation | Guardrails never see credentials | Judge never receives credentials in evaluation data | Humans review architecture for credential exposure paths |
 | SEC-02 Short-lived tokens | Guardrail services use scoped tokens | Judge uses independent short-lived tokens | Humans define token lifetime policies |

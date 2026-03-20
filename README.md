@@ -27,7 +27,7 @@ The industry is converging on the same answer independently. NVIDIA NeMo, AWS Be
 | Layer | What It Does | Speed |
 | --- | --- | --- |
 | **Guardrails** | Block known-bad inputs and outputs — PII, injection patterns, policy violations | Real-time (~10ms) |
-| **LLM-as-Judge** | Detect unknown-bad — an independent model evaluating whether responses are appropriate | Async (~500ms–5s) |
+| **Model-as-Judge** | Detect unknown-bad — an independent model evaluating whether responses are appropriate | Async (~500ms–5s) |
 | **Human Oversight** | Decide genuinely ambiguous cases that automated layers can't resolve | As needed |
 | **Circuit Breaker** | Stop all AI traffic and activate a safe fallback when controls themselves fail | Immediate |
 

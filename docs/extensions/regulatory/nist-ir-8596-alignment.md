@@ -103,7 +103,7 @@ IR 8596 addresses monitoring AI systems for adversarial behaviours and anomalies
 | IR 8596 Emphasis | AIRS Coverage | Assessment |
 |---|---|---|
 | Runtime monitoring for adversarial inputs | Guardrail layer (Layer 1), real-time pattern matching, ~10ms | **Strong** |
-| AI output evaluation against policy | LLM-as-Judge layer (Layer 2), independent model evaluation, ~500ms-5s | **Strong** |
+| AI output evaluation against policy | Model-as-Judge layer (Layer 2), independent model evaluation, ~500ms-5s | **Strong** |
 | Behavioural anomaly detection | [Observability controls](../../maso/controls/observability.md), behavioral drift detection | **Strong** |
 | Correlation across multiple AI telemetry sources | LO controls correlate guardrail + Judge + human override + model telemetry | **Strong** |
 | Adversarial input pattern detection | RegexGuardrail (30+ default patterns), extensible guardrail chain | **Strong** |

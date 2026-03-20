@@ -51,7 +51,7 @@ All Tier 2 controls remain active, plus:
 | Control | Requirement | Implementation Notes |
 |---------|-------------|---------------------|
 | **SC-3.1** Model version pinning | Each agent pinned to a specific model version; automatic rollback if provider changes the model without notice | Requires model version detection and comparison with expected version. |
-| **SC-3.2** Automated rollback | If a model provider change causes quality degradation (detected by LLM-as-Judge baseline comparison), the system rolls back to the previous known-good version | Rollback is automated within the PACE Alternate phase. |
+| **SC-3.2** Automated rollback | If a model provider change causes quality degradation (detected by Model-as-Judge baseline comparison), the system rolls back to the previous known-good version | Rollback is automated within the PACE Alternate phase. |
 | **SC-3.3** Continuous dependency scanning | Automated scanning of all agent dependencies for known vulnerabilities and indicators of tampering | Minimum: daily scan. Results feed into the observability layer and trigger alerts on findings. |
 | **SC-3.4** A2A trust chain validation | Agent-to-agent protocol endpoints (A2A, MCP, custom) validated against a trust chain before interaction | Prevents a compromised external service from injecting itself into the agent orchestration. |
 
@@ -67,7 +67,7 @@ The AI Bill of Materials is the supply chain equivalent of an SBOM (Software Bil
 | NHI Reference | Link to agent's NHI record | `NHI-A-2026-0142` |
 | Primary Model | Provider, model name, version, API endpoint | `Anthropic / claude-sonnet-4-5-20250929 / messages/v1` |
 | Fallback Model | Backup model for PACE Alternate phase | `Google / gemini-2.0-flash / v1` |
-| Judge Model | LLM-as-Judge model (must differ from task model) | `OpenAI / gpt-4o / chat/completions` |
+| Judge Model | Model-as-Judge model (must differ from task model) | `OpenAI / gpt-4o / chat/completions` |
 | Tools | List of tools with versions and manifest hashes | `[{name: "document-reader", version: "2.1.3", hash: "sha256:abc..."}]` |
 | MCP Servers | Connected MCP servers with endpoint and manifest hash | `[{name: "internal-search", endpoint: "https://...", hash: "sha256:def..."}]` |
 | RAG Sources | Knowledge bases with integrity checksums | `[{name: "policy-docs", checksum: "sha256:ghi...", last_verified: "2026-02-14"}]` |
@@ -123,7 +123,7 @@ MCP (Model Context Protocol) servers extend agent capabilities by providing tool
 | Test ID | Test | Pass Criteria |
 |---------|------|---------------|
 | SC-T3.1 | Model version change detection | Simulate a model provider updating their model (change the version identifier). System detects the change and pins to the previous version. |
-| SC-T3.2 | Automated rollback | Deploy a model version that produces lower LLM-as-Judge scores than baseline. System triggers rollback within the PACE Alternate phase. |
+| SC-T3.2 | Automated rollback | Deploy a model version that produces lower Model-as-Judge scores than baseline. System triggers rollback within the PACE Alternate phase. |
 | SC-T3.3 | Dependency vulnerability detection | Introduce a dependency with a known CVE into the agent's environment. Continuous scanning detects it within 24 hours. |
 | SC-T3.4 | A2A trust chain | Introduce a new A2A endpoint not in the trust chain. Agent rejects the connection. |
 

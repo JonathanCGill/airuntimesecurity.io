@@ -253,7 +253,7 @@ class ControlRegistry:
                 "and system prompt. Block if similarity > threshold.",
             ),
 
-            # --- LLM-as-Judge ---
+            # --- Model-as-Judge ---
             Control(
                 id="JG-01",
                 name="Policy Adherence Judge",

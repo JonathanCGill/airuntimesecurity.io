@@ -174,7 +174,7 @@ Session-level intent analysis detects what per-interaction controls cannot: **ag
 |-------|----------|------|
 | **Basic** | Track action sequences per session; alert on known-bad combinations (e.g., read sensitive data + call external API) | Low |
 | **Intermediate** | Build session-level behavioral baselines; flag sessions whose action-type distribution deviates from cohort | Medium |
-| **Advanced** | LLM-as-Judge evaluates the full session trajectory against declared intent at session close or at periodic checkpoints | High |
+| **Advanced** | Model-as-Judge evaluates the full session trajectory against declared intent at session close or at periodic checkpoints | High |
 
 ### Session-Level Circuit Breakers
 

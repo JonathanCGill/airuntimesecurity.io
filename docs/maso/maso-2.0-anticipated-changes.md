@@ -16,7 +16,7 @@ Six capability trajectories will reshape the framework's operating environment. 
 
 **Where the framework breaks:**
 
-The framework's second layer depends on LLM-as-Judge providing independent evaluation. The current mitigation (use a different model family) rests on the assumption that different families have different blind spots. But model families are converging on similar architectures and training approaches. As this convergence continues, "model independence" provides diminishing assurance.
+The framework's second layer depends on Model-as-Judge providing independent evaluation. The current mitigation (use a different model family) rests on the assumption that different families have different blind spots. But model families are converging on similar architectures and training approaches. As this convergence continues, "model independence" provides diminishing assurance.
 
 | Timeline | What Happens | Framework Impact |
 |----------|-------------|-----------------|

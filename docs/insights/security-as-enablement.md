@@ -52,7 +52,7 @@ If a checklist requires sign-off from a function that did not participate in the
 
 ### 3. Judge Findings as a Spreadsheet of Issues
 
-The [LLM-as-Judge](../core/controls.md) evaluates AI outputs and surfaces findings: PASS, REVIEW, ESCALATE. If those findings go to a security team's dashboard where they are compiled into a quarterly report and presented to the delivery team as evidence of deficiency, the Judge has become a backlog generator.
+The [Model-as-Judge](../core/controls.md) evaluates AI outputs and surfaces findings: PASS, REVIEW, ESCALATE. If those findings go to a security team's dashboard where they are compiled into a quarterly report and presented to the delivery team as evidence of deficiency, the Judge has become a backlog generator.
 
 Judge findings must go to the owning team, in their existing workflow tools, with actionable context. A finding without context is not a finding - it is an interruption. A finding that arrives in Jira with reproduction steps, severity, and a suggested remediation is a tool. A finding that arrives in a governance deck as "42 ESCALATE findings in Q3" is heckling.
 

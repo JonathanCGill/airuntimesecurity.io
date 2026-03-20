@@ -29,7 +29,7 @@ The core problem: **AI agents make runtime decisions about which network endpoin
 |----|-----------|------------|
 | NET-01 | Segment AI components into defined network zones | All |
 | NET-02 | Enforce guardrail bypass prevention at the network layer | All |
-| NET-03 | Isolate the LLM-as-Judge from the primary model | Tier 2+ |
+| NET-03 | Isolate the Model-as-Judge from the primary model | Tier 2+ |
 | NET-04 | Restrict agent egress to declared tool endpoints | Tier 2+ (agentic) |
 | NET-05 | Separate ingestion pipelines from runtime inference | Tier 2+ |
 | NET-06 | Protect the control plane network path | Tier 2+ |
@@ -48,7 +48,7 @@ AI system components must be deployed into defined network zones with explicit t
 
 **Zone 2 - Runtime:** Model endpoints, guardrail services, vector stores (read). These components serve inference requests. They receive traffic only from the API gateway and from each other within defined flows.
 
-**Zone 3 - Evaluation:** LLM-as-Judge, evaluation pipelines, drift detection. Physically or logically separated from Zone 2 to ensure independence. Receives copies of model I/O for async evaluation - does not sit inline on the request path.
+**Zone 3 - Evaluation:** Model-as-Judge, evaluation pipelines, drift detection. Physically or logically separated from Zone 2 to ensure independence. Receives copies of model I/O for async evaluation - does not sit inline on the request path.
 
 **Zone 4 - Ingestion:** Embedding pipelines, document processors, vector store (write). Handles data ingestion. Separated from runtime to prevent poisoned ingestion traffic from reaching inference components.
 
@@ -94,7 +94,7 @@ Periodically test that direct access to the model endpoint from outside Zone 2 i
 
 ## NET-03: Judge Isolation
 
-The LLM-as-Judge must be independent of the primary model. If they share infrastructure, a compromise of the primary model (via prompt injection, jailbreak, or configuration tampering) could also compromise the Judge's evaluation.
+The Model-as-Judge must be independent of the primary model. If they share infrastructure, a compromise of the primary model (via prompt injection, jailbreak, or configuration tampering) could also compromise the Judge's evaluation.
 
 ### Isolation Requirements
 
@@ -244,7 +244,7 @@ Cross-zone traffic logs feed into the enterprise SIEM alongside AI application l
 
 - [ ] AI components deployed into defined network zones with explicit traffic rules
 - [ ] Model endpoint unreachable without traversing guardrails (network-enforced)
-- [ ] LLM-as-Judge runs in a separate zone with one-way data flow from runtime
+- [ ] Model-as-Judge runs in a separate zone with one-way data flow from runtime
 - [ ] Agent egress passes through a proxy with destination allowlist enforcement
 - [ ] Ingestion pipeline network-isolated from runtime inference
 - [ ] Control plane accessible only via privileged network path with MFA

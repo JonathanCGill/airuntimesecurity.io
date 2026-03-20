@@ -195,7 +195,7 @@ Decision flows to execution:
 
 ### Stage 7: Post-Event Assurance (Nearline)
 
-LLM-as-Judge + ML analyse completed cases:
+Model-as-Judge + ML analyse completed cases:
 - AI reasoning quality
 - Override patterns
 - Signal correlation drift

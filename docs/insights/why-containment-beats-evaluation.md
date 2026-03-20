@@ -44,14 +44,14 @@ The difference between these paradigms can be expressed in control systems terms
 
 **Open-loop control** (evaluate-then-permit): Measure the system's state once during evaluation. Set control parameters based on that measurement. Operate without further verification. If the initial measurement is wrong - whether due to sandbagging, evaluation limitations, or capability changes after deployment - the control parameters remain miscalibrated indefinitely.
 
-**Closed-loop control** (this framework): Define the desired operating state (containment boundaries). Continuously measure actual operating state (LLM-as-Judge). Compute the error between desired and actual (behavioral drift detection). Apply corrective action (escalation to human oversight). The accuracy of initial evaluation is useful but not load-bearing. The system self-corrects.
+**Closed-loop control** (this framework): Define the desired operating state (containment boundaries). Continuously measure actual operating state (Model-as-Judge). Compute the error between desired and actual (behavioral drift detection). Apply corrective action (escalation to human oversight). The accuracy of initial evaluation is useful but not load-bearing. The system self-corrects.
 
 The three-layer architecture is explicitly a closed-loop control system:
 
 | Control Element | Framework Implementation |
 |---|---|
 | **Setpoint** (desired state) | [Declared intent specification](containment-through-intent.md) |
-| **Sensor** (measurement) | [LLM-as-Judge](../core/judge-assurance.md) + [Observability](../maso/controls/observability.md) |
+| **Sensor** (measurement) | [Model-as-Judge](../core/judge-assurance.md) + [Observability](../maso/controls/observability.md) |
 | **Comparator** (error detection) | [Behavioral drift detection](behavioral-anomaly-detection.md) |
 | **Actuator** (correction) | [Human oversight escalation](humans-remain-accountable.md) + [PACE degradation](../PACE-RESILIENCE.md) |
 
@@ -67,7 +67,7 @@ The three layers are not just defence-in-depth by coincidence. Each layer is spe
 
 **What Layer 1 does not catch:** Adversarial behavior *within* permitted bounds. An agent that subtly degrades output quality, optimises for unintended objectives, or produces technically compliant but strategically misaligned results.
 
-**Layer 2 - Enterprise-Owned LLM-as-Judge:** A separate model, configured with an enterprise-defined behavioral constitution, continuously evaluates outputs against expected patterns. Behavioral degradation manifests as a change in the statistical distribution of outputs over time. The Judge detects this drift **regardless of its cause**. The agent does not need to be "caught sandbagging"; it needs to be caught behaving differently from baseline.
+**Layer 2 - Enterprise-Owned Model-as-Judge:** A separate model, configured with an enterprise-defined behavioral constitution, continuously evaluates outputs against expected patterns. Behavioral degradation manifests as a change in the statistical distribution of outputs over time. The Judge detects this drift **regardless of its cause**. The agent does not need to be "caught sandbagging"; it needs to be caught behaving differently from baseline.
 
 The Judge must be **owned, configured, and governed by the deploying organisation** - not vendor-side safeguards. Vendor safeguards prevent the model from producing harmful outputs. Enterprise-owned judges verify the model is producing the **correct outputs for a specific business context**. These are different objectives with different threat models. See [Judge Model Selection](../extensions/technical/judge-model-selection.md).
 

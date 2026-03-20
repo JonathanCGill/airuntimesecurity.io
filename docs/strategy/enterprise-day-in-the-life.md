@@ -37,7 +37,7 @@ The shared Judge infrastructure runs overnight batch evaluations on the previous
 
 | Layer | Action | Reference |
 |---|---|---|
-| **Judge** (Layer 2) | Batch evaluation flags 23 outputs with grounding score below 0.7 | [Judge Evaluation](../core/controls.md#2-llm-as-judge) - MEDIUM tier: batch daily, basic quality |
+| **Judge** (Layer 2) | Batch evaluation flags 23 outputs with grounding score below 0.7 | [Judge Evaluation](../core/controls.md#2-model-as-judge) - MEDIUM tier: batch daily, basic quality |
 | **Alerting** | Alert sent to Compliance AI operator and the shared AI operations team | [Observability](../infrastructure/controls/logging-and-observability.md) |
 | **PACE** | System remains in **Primary** state - the Judge is detecting, not blocking | [PACE Resilience](../PACE-RESILIENCE.md) - Tier 1 systems fail-open |
 

@@ -21,7 +21,7 @@ AI systems produce security-relevant events that don't map cleanly to existing S
 | Alert Category | Source | Severity Baseline | Examples |
 |---------------|--------|-------------------|----------|
 | **Guardrail Block** | Input/output guardrails | Low–Medium | PII detected, toxicity blocked, off-topic rejected |
-| **Judge Flag** | LLM-as-Judge | Medium–High | Policy violation detected, hallucination scored high, unsafe reasoning |
+| **Judge Flag** | Model-as-Judge | Medium–High | Policy violation detected, hallucination scored high, unsafe reasoning |
 | **Anomaly** | Behavioral monitoring | Medium | Usage pattern deviation, output distribution shift, latency spike |
 | **Prompt Attack** | Guardrails + Judge | High | Prompt injection detected, jailbreak attempt, system prompt extraction |
 | **Data Exfiltration Signal** | Output monitoring | High | Bulk data in response, structured data extraction pattern |

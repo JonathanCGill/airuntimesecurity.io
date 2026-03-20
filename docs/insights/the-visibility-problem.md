@@ -165,7 +165,7 @@ These metrics answer: *Are our AI systems performing as expected?*
 | **Hallucination rate** | Percentage of outputs containing fabricated information | Measured and trending downward |
 | **Guardrail activation rate** | Frequency of guardrail interventions | Stable or context-appropriate |
 | **Escalation rate** | Percentage of AI outputs requiring human review | Within staffing capacity |
-| **Judge agreement rate** | LLM-as-Judge alignment with human evaluation | >80% for domain |
+| **Judge agreement rate** | Model-as-Judge alignment with human evaluation | >80% for domain |
 
 ### 4. Security Posture
 

@@ -22,7 +22,7 @@
   <rect width="900" height="280" fill="#f8fafc"/>
   
   <!-- Title -->
-  <text x="450" y="30" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1e293b" text-anchor="middle">LLM as a Judge - Request Flow</text>
+  <text x="450" y="30" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1e293b" text-anchor="middle">Model-as-Judge - Request Flow</text>
   
   <!-- User Input -->
   <g>

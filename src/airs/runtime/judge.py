@@ -1,4 +1,4 @@
-"""Layer 2: LLM-as-Judge — independent model evaluation of AI outputs.
+"""Layer 2: Model-as-Judge — independent model evaluation of AI outputs.
 
 The Judge detects unknown-bad: outputs that are fluent, confident, and wrong.
 It catches what guardrails miss — subtle policy violations, hallucinations,
@@ -67,7 +67,7 @@ class Judge(ABC):
 
 
 class LLMJudge(Judge):
-    """LLM-as-Judge using OpenAI-compatible API.
+    """Model-as-Judge using OpenAI-compatible API.
 
     Requires `openai` package. Uses structured output to get
     a reliable verdict from the judge model.
@@ -170,7 +170,7 @@ Evaluate the AI output against the policy. Respond with EXACTLY this JSON:
 
 
 class AnthropicLLMJudge(Judge):
-    """LLM-as-Judge using the Anthropic API.
+    """Model-as-Judge using the Anthropic API.
 
     Requires `anthropic` package. Uses the same evaluation prompt
     as LLMJudge but calls Claude models via the Anthropic SDK.

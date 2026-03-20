@@ -22,7 +22,7 @@ This is not the model "choosing" to deceive. It may be an artefact of training -
 
 ### Black-Box Monitors Lose Accuracy on Harder Tasks
 
-AISI found that black-box monitoring approaches - where the monitor observes model inputs and outputs without access to internal states - lose accuracy as task complexity increases. This matters because the LLM-as-Judge pattern is fundamentally a black-box monitor. If the Judge's accuracy degrades on exactly the tasks where accurate evaluation matters most (complex, high-stakes, novel), then the assurance it provides is weakest where it's needed most.
+AISI found that black-box monitoring approaches - where the monitor observes model inputs and outputs without access to internal states - lose accuracy as task complexity increases. This matters because the Model-as-Judge pattern is fundamentally a black-box monitor. If the Judge's accuracy degrades on exactly the tasks where accurate evaluation matters most (complex, high-stakes, novel), then the assurance it provides is weakest where it's needed most.
 
 ### Capability Improvements Don't Improve Safeguards
 

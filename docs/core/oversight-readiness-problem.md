@@ -22,7 +22,7 @@ In aviation, the degraded states are finite and can be enumerated. A pilot can t
 
 AI system failures are different in three critical ways:
 
-**Failure modes are novel and context-dependent.** A guardrail triggering on a prompt injection attempt looks different every time. An LLM-as-Judge scoring a borderline case relies on context that may be unlike anything in the training distribution. The human reviewer is not being asked to fly a known aircraft in a known degraded state - they are being asked to make a judgement call about something they may never have seen before.
+**Failure modes are novel and context-dependent.** A guardrail triggering on a prompt injection attempt looks different every time. An Model-as-Judge scoring a borderline case relies on context that may be unlike anything in the training distribution. The human reviewer is not being asked to fly a known aircraft in a known degraded state - they are being asked to make a judgement call about something they may never have seen before.
 
 **The tempo creates a vigilance trap.** An aircraft pilot might fly for hours before an event requiring intervention. An AI system might escalate thousands of decisions per day to human review (creating alert fatigue) or escalate nothing for weeks (creating complacency). Both states destroy readiness, but through opposite mechanisms.
 
@@ -39,7 +39,7 @@ Air France Flight 447 is the canonical case study for oversight readiness failur
 
 The gap was not in the technology. It was in the **handover** - the assumption that awareness and competence would be present at the moment they were needed.
 
-In an AI context, the equivalent scenario is: your guardrails and LLM-as-Judge have been catching problems effectively for months. A novel attack pattern or edge case exceeds their capability and gets escalated to human review. The reviewer, accustomed to the system handling everything, either rubber-stamps the approval or lacks the contextual skill to evaluate the case correctly. The harm propagates.
+In an AI context, the equivalent scenario is: your guardrails and Model-as-Judge have been catching problems effectively for months. A novel attack pattern or edge case exceeds their capability and gets escalated to human review. The reviewer, accustomed to the system handling everything, either rubber-stamps the approval or lacks the contextual skill to evaluate the case correctly. The harm propagates.
 
 ## When to Require Active Human Oversight vs. Automatic Degradation
 
@@ -69,7 +69,7 @@ This pattern avoids blocking the system on human response time while still provi
 ### Active Human Oversight Is Required When:
 
 - The consequence is **severe and irreversible** - regulatory breach, reputational damage, customer harm, financial loss.
-- The failure mode is **novel or ambiguous** - the system's confidence score is low, the LLM-as-Judge cannot classify the case, or the input pattern has no precedent in the training distribution.
+- The failure mode is **novel or ambiguous** - the system's confidence score is low, the Model-as-Judge cannot classify the case, or the input pattern has no precedent in the training distribution.
 - The decision involves **cross-system implications** - approving this output affects downstream systems, other customers, or creates precedent.
 - **Regulatory or contractual obligations mandate it.** The EU AI Act requires human oversight for high-risk AI systems. Certain financial services regulations require human approval for specific decision categories regardless of automation capability.
 
@@ -100,7 +100,7 @@ Probe detection rate is the single most important leading indicator of oversight
 If the human action is clicking "approve" or "reject," you have built a rubber stamp. The interface must require the reviewer to articulate reasoning before their decision is accepted:
 
 - **Classify the risk type** - what category does this escalation fall into?
-- **Identify the trigger** - what did the LLM-as-Judge or guardrail flag, and why?
+- **Identify the trigger** - what did the Model-as-Judge or guardrail flag, and why?
 - **State the expected correct output** - what should the system have produced? The reviewer should formulate this *before* seeing the system's actual output to prevent anchoring bias.
 - **Record the decision rationale** - why approve, reject, or modify?
 
@@ -252,7 +252,7 @@ For organisations building or operating AI systems with human oversight requirem
 
 Human oversight of AI systems is not a checkbox. It is an engineered control that requires the same rigour as the automated controls it backstops. The aviation industry learned this through catastrophic failures - the AI industry has the opportunity to learn it through deliberate design.
 
-The core principle is simple: **if your system is only safe when the human performs perfectly, it is not safe.** The guardrails and LLM-as-Judge layers must be strong enough that human oversight is defence-in-depth, not the primary safety mechanism. And the human oversight layer must be actively maintained, continuously measured, and deliberately designed to force the engagement that passive monitoring cannot sustain.
+The core principle is simple: **if your system is only safe when the human performs perfectly, it is not safe.** The guardrails and Model-as-Judge layers must be strong enough that human oversight is defence-in-depth, not the primary safety mechanism. And the human oversight layer must be actively maintained, continuously measured, and deliberately designed to force the engagement that passive monitoring cannot sustain.
 
 The ironies of automation guarantee that the moment you most need human judgement is the moment it is least likely to be available. Design accordingly.
 

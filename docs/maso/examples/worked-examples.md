@@ -51,7 +51,7 @@ A multi-agent system that produces investment research reports for portfolio man
 | Epistemic cascade | PG-2.5 (claim provenance), PG-2.7 (uncertainty preservation), PG-3.5 (challenger agent) | Tier 2 min, Tier 3 recommended |
 | Correlated hallucination | PG-2.4 (consensus diversity gate), PG-2.9 (model diversity - note Analyst and Risk Assessor share Provider A), PG-2.6 (self-referential evidence prohibition) | Tier 2 |
 | Data boundary violation | DP-1.1 (data classification), DP-2.1 (DLP on message bus), DP-1.3 (memory isolation) | Tier 2 |
-| Regulatory compliance | EC-2.5 (LLM-as-Judge - evaluate regulatory compliance), EC-2.7 (aggregate harm assessment), OB-3.5 (decision traceability for regulatory explanation) | Tier 2 |
+| Regulatory compliance | EC-2.5 (Model-as-Judge - evaluate regulatory compliance), EC-2.7 (aggregate harm assessment), OB-3.5 (decision traceability for regulatory explanation) | Tier 2 |
 
 ### Model Diversity Issue
 
@@ -105,7 +105,7 @@ A multi-agent system that assists clinicians with treatment planning for oncolog
 |------|-----------------|------|
 | Patient data exposure | DP-1.1 (data classification - PHI tagged), DP-2.1 (DLP on message bus - PHI patterns), DP-1.3 (memory isolation), IA-2.6 (secrets/PHI exclusion from external model context) | Tier 2 |
 | Evidence quality | PG-2.5 (claim provenance - every claim traced to source study), PG-2.7 (uncertainty preservation - study quality grades propagated), PG-3.5 (challenger agent - questions evidence interpretations) | Tier 3 |
-| Hallucinated interactions | EC-2.5 (LLM-as-Judge - verify interactions against authoritative database), PG-2.6 (self-referential evidence prohibition - Protocol Agent must cite database, not its own reasoning) | Tier 2 |
+| Hallucinated interactions | EC-2.5 (Model-as-Judge - verify interactions against authoritative database), PG-2.6 (self-referential evidence prohibition - Protocol Agent must cite database, not its own reasoning) | Tier 2 |
 | Explainability | OB-3.5 (decision traceability - full trace for regulatory explanation), OB-2.7 (accountable human - clinician designated as decision owner) | Tier 2 |
 
 ### Critical Architecture Decision: PHI Containment

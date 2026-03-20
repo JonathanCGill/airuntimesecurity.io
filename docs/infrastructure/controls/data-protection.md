@@ -186,7 +186,7 @@ Persistent conversation history accumulates sensitive data over time. A conversa
 
 ## DAT-08: Evaluation Data Protection
 
-Model I/O sent to the LLM-as-Judge for evaluation contains all the sensitive data from the original interaction. The evaluation pipeline must protect this data with the same rigour as the primary pipeline.
+Model I/O sent to the Model-as-Judge for evaluation contains all the sensitive data from the original interaction. The evaluation pipeline must protect this data with the same rigour as the primary pipeline.
 
 ### Requirements
 
@@ -198,7 +198,7 @@ Model I/O sent to the LLM-as-Judge for evaluation contains all the sensitive dat
 
 ## Three-Layer Mapping
 
-| Control | Guardrails | LLM-as-Judge | Human Oversight |
+| Control | Guardrails | Model-as-Judge | Human Oversight |
 |---------|-----------|--------------|-----------------|
 | DAT-01 Classification | Guardrails use classification to determine handling | Judge evaluates whether classification was appropriate | Humans define classification policies |
 | DAT-02 Minimisation | Guardrails enforce context window limits | Judge evaluates data relevance in responses | Humans review data inclusion patterns |

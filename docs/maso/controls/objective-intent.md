@@ -19,7 +19,7 @@ Without declared intent, the framework catches faults where it can (injection, t
 The existing MASO framework provides:
 
 - **Guardrails** that block known-bad patterns (mechanical)
-- **LLM-as-Judge** that evaluates quality and safety (semantic, but reactive)
+- **Model-as-Judge** that evaluates quality and safety (semantic, but reactive)
 - **Observability** that detects drift from behavioral baselines (statistical)
 - **The Intent Layer** that evaluates workflow-level outcomes post-execution (strategic, but coarse)
 

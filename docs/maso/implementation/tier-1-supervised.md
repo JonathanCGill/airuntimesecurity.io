@@ -32,7 +32,7 @@ Key architectural constraints at Tier 1:
 
 **Guardrails (Layer 1)** are mandatory on every agent. Input validation, output sanitisation, tool permission scoping, and rate limiting are active. These are deterministic controls that operate at machine speed regardless of human availability.
 
-**LLM-as-Judge (Layer 2)** is optional at Tier 1. Organisations that already have an evaluation model can deploy it, but it is not a gating requirement. The primary quality gate is human review.
+**Model-as-Judge (Layer 2)** is optional at Tier 1. Organisations that already have an evaluation model can deploy it, but it is not a gating requirement. The primary quality gate is human review.
 
 **Human Oversight (Layer 3)** is the dominant control. Every action that modifies external state - write operations, API calls, data mutations, file modifications, message sends - requires explicit human approval before execution.
 
@@ -247,7 +247,7 @@ Tier 1 is the foundation. An organisation should progress to Tier 2 when the fol
 
 3. **No uncontrolled incidents:** No Emergency shutdowns have been triggered due to security incidents (as opposed to operational issues or testing) in the most recent 60 days.
 
-4. **Staffing capacity confirmed:** The organisation has the AI security and platform engineering capacity to implement Tier 2 controls (NHI, signed message bus, LLM-as-Judge, continuous monitoring).
+4. **Staffing capacity confirmed:** The organisation has the AI security and platform engineering capacity to implement Tier 2 controls (NHI, signed message bus, Model-as-Judge, continuous monitoring).
 
 5. **Organisational approval:** The risk owner (CISO, CTO, or equivalent) has formally approved the transition to Tier 2 based on the operational evidence from Tier 1.
 

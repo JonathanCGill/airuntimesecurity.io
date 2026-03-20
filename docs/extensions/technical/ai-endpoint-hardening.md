@@ -194,7 +194,7 @@ Endpoint-specific signals to feed into the [SOC Content Pack](soc-content-pack.m
 
 ## Three-Layer Mapping
 
-| Hardening Area | Guardrails | LLM-as-Judge | Human Oversight |
+| Hardening Area | Guardrails | Model-as-Judge | Human Oversight |
 |---|---|---|---|
 | **Gateway** | Guardrails enforced at gateway - cannot be bypassed | Gateway logs feed Judge evaluation | Humans configure gateway policies |
 | **Rate limiting** | Token-aware limits prevent resource abuse | Judge detects cost anomalies that bypass rate limits | Humans set per-consumer quotas |

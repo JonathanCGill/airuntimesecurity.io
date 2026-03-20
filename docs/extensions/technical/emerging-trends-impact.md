@@ -112,7 +112,7 @@ The core architecture principle - **Guardrails prevent, Judge detects, Humans de
 **Impact: LOW - Already addressed**
 
 The architecture already accommodates reasoning models:
-- [Judge Model Selection Guide](llm-as-judge-implementation.md) covers tiered Judge with reasoning models
+- [Judge Model Selection Guide](model-as-judge-implementation.md) covers tiered Judge with reasoning models
 - Reasoning models are well-suited to the Judge role
 - Extended thinking provides audit trail
 

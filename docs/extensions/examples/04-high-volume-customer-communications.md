@@ -136,14 +136,14 @@ Events flow through EventBridge to Kinesis, then to an aggregator that feeds ale
 
 | Analysis | Purpose | Frequency |
 |----------|---------|-----------|
-| LLM-as-Judge scoring | QA sample evaluation | Every 15 min |
+| Model-as-Judge scoring | QA sample evaluation | Every 15 min |
 | Drift analysis | Population-level patterns | Hourly |
 | Failure clustering | New failure modes | Daily |
 | Human calibration | Judge accuracy check | Weekly |
 
 **Implementation:**
 
-Message logs are sampled, evaluated by LLM-as-Judge, and stored in a findings database. QA dashboards and anomaly jobs drive policy updates - guardrail rules, prompt improvements, and training data refinements.
+Message logs are sampled, evaluated by Model-as-Judge, and stored in a findings database. QA dashboards and anomaly jobs drive policy updates - guardrail rules, prompt improvements, and training data refinements.
 
 **Why delays don't break safety:** These controls don't stop individual messages. They improve the system over time.
 
@@ -320,7 +320,7 @@ rules:
 | Output guardrails | Async | Inline | Inline |
 | DLP/PII check | Async | Inline | Inline |
 | Retrieval validation | Skip | Inline | Inline |
-| LLM-as-Judge | Sample (1%) | Sample (10%) | All (async) |
+| Model-as-Judge | Sample (1%) | Sample (10%) | All (async) |
 | Human review | Escalation only | High-risk intents | All drafts |
 | Circuit breakers | Manual | Threshold | Aggressive |
 | Drift detection | Daily | Hourly | Real-time |

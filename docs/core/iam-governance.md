@@ -217,7 +217,7 @@ Every agent action is observed, logged, and evaluated - continuously, not after 
 | **Action logging** | Every tool invocation, data access, delegation event, and response logged with full context |
 | **Behavioral baseline** | Establish normal patterns per agent; flag deviations |
 | **Permission usage tracking** | Identify permissions granted but never used (candidates for removal) |
-| **Judge evaluation** | LLM-as-Judge evaluates access patterns for anomalies that rule-based systems miss |
+| **Judge evaluation** | Model-as-Judge evaluates access patterns for anomalies that rule-based systems miss |
 | **Credential access monitoring** | Track who accesses agent credentials, from where, and when |
 
 **Standards:** IAM-08 (Audit), LOG-01-10 (Logging Controls), OWASP ASI10 (Logging Gaps)

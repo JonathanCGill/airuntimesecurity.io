@@ -39,7 +39,7 @@
   <path d="M450,175 L450,195 M444,189 L450,195 L456,189" stroke="#94a3b8" stroke-width="1.5" fill="none"/>
   <text x="470" y="189" font-size="9" fill="#94a3b8">pass</text>
 
-  <!-- === LAYER 2: LLM-AS-JUDGE === -->
+  <!-- === LAYER 2: MODEL-AS-JUDGE === -->
   <rect x="80" y="200" width="740" height="80" rx="8" fill="#ffffff" filter="url(#shadow)" stroke="#f59e0b" stroke-width="2"/>
   <rect x="80" y="200" width="6" height="80" rx="3" fill="#f59e0b"/>
 

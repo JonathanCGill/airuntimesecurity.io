@@ -36,7 +36,7 @@
   <!-- LAYER 2: Model-as-Judge -->
   <rect x="70" y="135" width="1060" height="720" rx="12" fill="none" stroke="#92fe9d" stroke-width="2" stroke-dasharray="6,3" opacity="0.6"/>
   <rect x="72" y="137" width="200" height="28" rx="4" fill="#00c853" opacity="0.15"/>
-  <text x="82" y="156" fill="#92fe9d" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.5">LAYER 2: LLM-AS-JUDGE EVAL</text>
+  <text x="82" y="156" fill="#92fe9d" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.5">LAYER 2: MODEL-AS-JUDGE EVAL</text>
 
   <!-- LAYER 1: Guardrails -->
   <rect x="100" y="175" width="1000" height="650" rx="10" fill="none" stroke="#00c9ff" stroke-width="2" opacity="0.5"/>

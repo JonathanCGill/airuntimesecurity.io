@@ -199,7 +199,7 @@ nav:
       - EU AI Act Crosswalk: extensions/regulatory/eu-ai-act-crosswalk.md
       - ISO 42001 Clause Mapping: extensions/regulatory/iso-42001-clause-mapping.md
       - ISO 42001 Alignment: extensions/regulatory/iso-42001-alignment.md
-      - Model-as-Judge Implementation: extensions/technical/llm-as-judge-implementation.md
+      - Model-as-Judge Implementation: extensions/technical/model-as-judge-implementation.md
       - Judge Model Selection: extensions/technical/judge-model-selection.md
       - Distilling the Judge into an SLM: extensions/technical/distill-judge-slm.md
       - Agentic Controls Catalogue: extensions/technical/agentic-controls-catalogue.md

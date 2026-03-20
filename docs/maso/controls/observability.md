@@ -72,7 +72,7 @@ The anomaly score is a composite metric that drives PACE escalation decisions. I
 | Signal | Weight (example) | Description |
 |--------|------------------|-------------|
 | Tool usage pattern | 0.15 | Deviation from baseline tool invocation distribution |
-| Output quality | 0.20 | LLM-as-Judge scores vs. baseline |
+| Output quality | 0.20 | Model-as-Judge scores vs. baseline |
 | Response latency | 0.05 | Significant changes in processing time |
 | Message volume | 0.10 | Inter-agent message frequency vs. baseline |
 | Error rate | 0.10 | Guardrail blocks, tool failures, timeouts |
@@ -170,7 +170,7 @@ This format enables: full chain reconstruction, per-agent performance trending, 
 
 **Logging everything but monitoring nothing.** A comprehensive audit log that nobody reviews and no automated system analyses is compliance theatre. Logs must feed into active monitoring and alerting, not just exist for post-incident forensics.
 
-**Anomaly detection based solely on error rates.** The most dangerous agent behaviors don't generate errors - they produce plausible-looking outputs that are subtly wrong. Anomaly scoring must include output quality metrics (LLM-as-Judge scores, semantic similarity to baseline), not just error counts and rate limits.
+**Anomaly detection based solely on error rates.** The most dangerous agent behaviors don't generate errors - they produce plausible-looking outputs that are subtly wrong. Anomaly scoring must include output quality metrics (Model-as-Judge scores, semantic similarity to baseline), not just error counts and rate limits.
 
 **Trusting the observability system that runs on the same infrastructure as the agents.** At Tier 3, the observability agent must be on separate infrastructure. If a compromised agent can influence the monitoring system - by flooding it with noise, modifying its inputs, or degrading its resources - the monitoring is compromised. Independence requires infrastructure isolation, not just logical separation.
 

@@ -44,7 +44,7 @@ When customers are harmed by AI decisions, regulators ask: who was responsible? 
 
 ## The Judge Supports, Not Replaces
 
-This is why the LLM-as-Judge pattern positions the Judge as assurance, not control.
+This is why the Model-as-Judge pattern positions the Judge as assurance, not control.
 
 The Judge doesn't decide. It detects.
 

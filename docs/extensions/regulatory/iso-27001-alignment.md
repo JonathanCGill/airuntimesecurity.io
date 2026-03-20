@@ -357,7 +357,7 @@ Physical controls (A.7.1 - A.7.14) apply to AI systems as they do to any informa
 | AI.5 | Data Governance | Data quality, privacy, protection |
 | AI.6 | Model Security | Model protection, validation, monitoring |
 | AI.7 | Runtime Controls - Guardrails | Inline input/output validation |
-| AI.8 | Runtime Controls - LLM-as-Judge | Async assurance and monitoring |
+| AI.8 | Runtime Controls - Model-as-Judge | Async assurance and monitoring |
 | AI.9 | Human Oversight | HITL, escalation, accountability |
 | AI.10 | Agentic Controls | Agent-specific safeguards |
 | AI.11 | Logging & Monitoring | Observability, alerting, audit |

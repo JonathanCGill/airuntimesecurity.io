@@ -126,7 +126,7 @@ Level 2: Instance-level investigation (triggered)
 
 ### The 5-Agent Reality
 
-MASO's LLM-as-Judge evaluates agent actions before they are committed. At 5 agents, evaluating every action is feasible. The cost and latency are manageable.
+MASO's Model-as-Judge evaluates agent actions before they are committed. At 5 agents, evaluating every action is feasible. The cost and latency are manageable.
 
 ### The 10,000-Customer Reality
 
@@ -157,7 +157,7 @@ The solution is **risk-tiered Judge sampling**:
 
 | Control | Designed For | Adaptation Required |
 |---------|-------------|-------------------|
-| EC-2.5 LLM-as-Judge | Per-action evaluation | Risk-tiered sampling strategy |
+| EC-2.5 Model-as-Judge | Per-action evaluation | Risk-tiered sampling strategy |
 | Guardrails (Layer 1) | Hard boundary enforcement | Must compensate for reduced Judge coverage on lower-risk actions |
 | OB-2.2 Drift detection | Behavioral change detection | Aggregate sampling results to detect systematic quality shifts |
 
@@ -359,7 +359,7 @@ The scale introduces attack vectors that do not exist at small scale:
 
 | Control | Designed For | Adaptation Required |
 |---------|-------------|-------------------|
-| EC-2.5 LLM-as-Judge | Per-action evaluation | Sampling creates statistical blind spots; compensate with aggregate anomaly detection |
+| EC-2.5 Model-as-Judge | Per-action evaluation | Sampling creates statistical blind spots; compensate with aggregate anomaly detection |
 | DP-2.3 RAG integrity | Data source validation | Shared knowledge base is single point of failure at scale; content signing and verification required |
 | PG-2.5 Claim provenance | Source tracking | Must trace across agent type boundaries, not just agent instances |
 | OB-2.1 Anomaly scoring | Per-agent detection | Population-level anomaly detection catches coordinated attacks across instances |
@@ -508,7 +508,7 @@ The stress test reveals whether the organisation's economic governance is robust
 
 | Control | Normal Operation | Under +40% Cost Pressure |
 |---------|-----------------|--------------------------|
-| EC-2.5 LLM-as-Judge | 100% on CRITICAL, risk-tiered sampling on others | Pressure to reduce all sampling rates. CRITICAL must remain at 100%. |
+| EC-2.5 Model-as-Judge | 100% on CRITICAL, risk-tiered sampling on others | Pressure to reduce all sampling rates. CRITICAL must remain at 100%. |
 | OB-2.5 Cost monitoring | Tracking and alerting | Active enforcement; graduated response triggered |
 | Economic circuit breaker | Dormant | Approaching or triggered. Must not cascade into security control suspension. |
 | EC-2.13 Output schema enforcement | Validates every output | Contributes to retry cost when outputs fail validation. But removing it would *increase* downstream costs from cascading data integrity failures. |

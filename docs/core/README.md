@@ -71,7 +71,7 @@ This isn't theoretical. Production implementations include:
 | [LangChain](https://docs.langchain.com/) | Middleware + human-in-the-loop |
 | [Guardrails AI](https://www.guardrailsai.com/) | Open-source validator framework |
 | [Galileo](https://www.rungalileo.io/) | Eval-to-guardrail lifecycle |
-| [DeepEval](https://github.com/confident-ai/deepeval) | LLM-as-judge evaluation |
+| [DeepEval](https://github.com/confident-ai/deepeval) | Model-as-Judge evaluation |
 | AWS Bedrock Guardrails | Managed filtering |
 | Azure AI Content Safety | Content moderation |
 

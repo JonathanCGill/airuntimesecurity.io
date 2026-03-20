@@ -81,7 +81,7 @@ After the workflow completes (or after a defined phase), an LLM judge receives:
 
 ## Why This Works Where Inline Judging Doesn't
 
-The per-agent LLM-as-Judge in the original three-layer pattern fails at multi-agent scale because:
+The per-agent Model-as-Judge in the original three-layer pattern fails at multi-agent scale because:
 
 | Problem | Inline Judge | Post-Execution Judge |
 | --- | --- | --- |

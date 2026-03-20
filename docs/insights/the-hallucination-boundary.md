@@ -112,9 +112,9 @@ The [verification gap](the-verification-gap.md) analysis identifies a structural
 | Knowledge graph grounding | ~92% | Domain-specific factual claims | Claims outside the knowledge graph |
 | Formal verification | ~99% | Policy compliance | Factual accuracy beyond policy scope |
 | Self-consistency checking | ~80% | Contradictory responses | Consistently wrong responses |
-| LLM-as-Judge | ~80% | Style, safety, appropriateness | Factual accuracy |
+| Model-as-Judge | ~80% | Style, safety, appropriateness | Factual accuracy |
 
-The critical finding: **LLM-as-Judge evaluation, which is the second layer of the framework's architecture, is not effective at detecting factual hallucinations.** It catches policy violations, harmful content, and style issues. It does not independently verify whether claims are true.
+The critical finding: **Model-as-Judge evaluation, which is the second layer of the framework's architecture, is not effective at detecting factual hallucinations.** It catches policy violations, harmful content, and style issues. It does not independently verify whether claims are true.
 
 This means hallucination detection for HIGH and CRITICAL tier systems cannot rely on the judge layer alone. It requires independent verification against authoritative sources: knowledge graphs, database lookups, document retrieval with citation matching, or human domain expertise.
 
@@ -149,7 +149,7 @@ The progression is deliberate. Each phase removes a degree of freedom from the m
 
 2. **Multi-agent systems amplify hallucinations structurally.** Hallucination amplification, synthetic corroboration, and uncertainty stripping produce outputs that look more reliable than single-agent errors. No attacker is required.
 
-3. **The judge layer does not catch factual hallucinations.** LLM-as-Judge evaluation achieves approximately 80% accuracy on style and safety but is not designed for factual verification. HIGH and CRITICAL systems need independent grounding against authoritative sources.
+3. **The judge layer does not catch factual hallucinations.** Model-as-Judge evaluation achieves approximately 80% accuracy on style and safety but is not designed for factual verification. HIGH and CRITICAL systems need independent grounding against authoritative sources.
 
 4. **Tolerance is conditional, not categorical.** A hallucination is tolerable when a competent human reviews it, the blast radius is bounded, the consequence is reversible, the system is not the source of record, and no downstream system consumes it without verification. Remove any one condition and tolerance drops.
 

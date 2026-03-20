@@ -32,7 +32,7 @@ What you're implementing:
 - Latency budget: ~10-20ms total
 - Libraries: NVIDIA NeMo Guardrails, Guardrails AI, LangChain output parsers, AWS Bedrock Guardrails, Azure AI Content Safety
 
-**2. LLM-as-Judge** - an independent LLM that evaluates your task agent's output.
+**2. Model-as-Judge** - an independent LLM that evaluates your task agent's output.
 
 What you're implementing:
 - A separate model (different from your task agent) that receives the input, output, and context
@@ -42,7 +42,7 @@ What you're implementing:
 
 Key constraint: **the Judge must use a different model than your task agent**. Same-model evaluation has correlated failure modes. If GPT-4 hallucinates a fact, GPT-4 evaluating that fact has a higher chance of missing it than Claude evaluating it, and vice versa.
 
-- Implementation guide: [LLM-as-Judge Implementation](../extensions/technical/llm-as-judge-implementation.md)
+- Implementation guide: [Model-as-Judge Implementation](../extensions/technical/model-as-judge-implementation.md)
 - Prompt examples: [Judge Prompt Examples](../extensions/templates/judge-prompt-examples.md)
 - Model selection: [Judge Model Selection](../extensions/technical/judge-model-selection.md)
 - Calibration: [Judge Assurance](../core/judge-assurance.md)
@@ -92,7 +92,7 @@ Controls that aren't tested don't work. The framework provides:
 |---|---|---|
 | 1 | [Controls](../core/controls.md) | Three-layer implementation reference - what to build |
 | 2 | [Quick Start](../QUICK_START.md) | Zero to working controls in 30 minutes |
-| 3 | [LLM-as-Judge Implementation](../extensions/technical/llm-as-judge-implementation.md) | Judge layer patterns, prompts, routing logic |
+| 3 | [Model-as-Judge Implementation](../extensions/technical/model-as-judge-implementation.md) | Judge layer patterns, prompts, routing logic |
 | 4 | [Judge Assurance](../core/judge-assurance.md) | How to measure and calibrate Judge accuracy |
 | 5 | [Checklist](../core/checklist.md) | Track what you've implemented |
 

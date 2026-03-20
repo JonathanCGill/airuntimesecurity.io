@@ -35,7 +35,7 @@ These are guardrails doing what guardrails do: blocking known patterns at speed.
 ### Model-as-Judge Detecting Unknown-Bad
 
 - **Galileo's eval-to-guardrail lifecycle** demonstrates the feedback loop: evaluation metrics from production identify new failure modes, which are then converted into guardrail rules.
-- **Confident AI / DeepEval** provides async LLM-as-judge evaluation that catches hallucination, toxicity, and coherence failures that static rules miss.
+- **Confident AI / DeepEval** provides async Model-as-Judge evaluation that catches hallucination, toxicity, and coherence failures that static rules miss.
 - Red teaming tools (Promptfoo, Adversa AI's platform) are enabling continuous adversarial testing - not just pre-deployment, but as ongoing runtime verification.
 
 ### Human Oversight Preventing Harm
@@ -69,7 +69,7 @@ The organizations avoiding major incidents are not the ones with the largest bud
 Controls reduce risk. They do not eliminate it.
 
 - Guardrails with 95% effectiveness still fail 1 in 20 times. At enterprise scale (millions of interactions), this means thousands of failures.
-- LLM-as-Judge evaluation is itself a probabilistic system - it will have false negatives.
+- Model-as-Judge evaluation is itself a probabilistic system - it will have false negatives.
 - Human oversight only works if the humans are trained, resourced, and empowered to override the system.
 
 The framework's value is not in promising zero risk. It is in making the residual risk **visible, measurable, and manageable**. That is worth doing, and the data shows it works.
