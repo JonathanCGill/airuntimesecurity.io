@@ -1,17 +1,17 @@
 ---
-description: "Mapping infrastructure controls to all 51 NIST AI RMF 1.0 subcategories across Govern, Map, Measure, and Manage functions."
+description: "Mapping infrastructure controls to NIST AI RMF 1.0 subcategories across Govern, Map, Measure, and Manage functions, covering 51 of the framework's 72 subcategories."
 ---
 
 # NIST AI Risk Management Framework (AI RMF 1.0) Mapping
 
-> Maps infrastructure controls to the NIST AI RMF 1.0 subcategories across all four functions: Govern, Map, Measure, and Manage.
+> Maps infrastructure controls to NIST AI RMF 1.0 subcategories across all four functions: Govern, Map, Measure, and Manage.
 >
 > Part of the [AI Security Infrastructure Controls](../README.md) framework.
 > Companion to [AI Runtime Security](https://github.com/JonathanCGill/airuntimesecurity.io).
 
 ## Scope and Limitations
 
-This mapping covers 51 subcategories across the four NIST AI RMF functions. The mapping focuses on **technical infrastructure** contributions. Many NIST AI RMF subcategories require organisational processes, policies, and governance structures that are beyond the scope of infrastructure controls. Where a subcategory is primarily organisational, the mapping identifies supporting infrastructure controls and notes the organisational gap.
+The NIST AI RMF 1.0 contains **72 subcategories** across 19 categories and four functions. This mapping covers **51 of those 72 subcategories**, focusing on the subcategories where **technical infrastructure** controls make a direct contribution. The remaining 21 subcategories are primarily organisational in nature (workforce diversity, stakeholder engagement, environmental sustainability, decommissioning processes) and fall outside the scope of infrastructure controls. Many mapped subcategories also require organisational processes, policies, and governance structures beyond what infrastructure controls alone provide. Where a subcategory is primarily organisational, the mapping identifies supporting infrastructure controls and notes the organisational gap.
 
 ## GOVERN Function (14 subcategories)
 
@@ -94,13 +94,15 @@ The Manage function addresses risk treatment and response. Infrastructure contro
 
 ## Coverage Summary
 
-| Function | Subcategories Mapped | Primary Infrastructure Coverage |
-|----------|---------------------|-------------------------------|
-| **Govern** | 14 | IAM, logging, supply chain, incident response, network controls |
-| **Map** | 12 | Supply chain, session/delegation, logging, incident response |
-| **Measure** | 13 | All logging controls, data protection, supply chain, agentic controls |
-| **Manage** | 12 | Incident response, supply chain, logging, agentic controls |
-| **Total** | **51** | |
+| Function | Total Subcategories | Mapped Here | Primary Infrastructure Coverage |
+|----------|--------------------|--------------------|-------------------------------|
+| **Govern** | 21 | 14 | IAM, logging, supply chain, incident response, network controls |
+| **Map** | 16 | 12 | Supply chain, session/delegation, logging, incident response |
+| **Measure** | 22 | 13 | All logging controls, data protection, supply chain, agentic controls |
+| **Manage** | 13 | 12 | Incident response, supply chain, logging, agentic controls |
+| **Total** | **72** | **51** | |
 
-**Note:** Many NIST AI RMF subcategories are primarily organisational in nature (governance structures, policy creation, stakeholder engagement, training programmes). This mapping identifies the infrastructure controls that support these subcategories technically, but organisational implementation is required for full framework alignment.
+**Unmapped subcategories** fall into categories that are primarily organisational: workforce diversity and equity (GOVERN 3, GOVERN 5), stakeholder engagement and feedback (MAP 4, MAP 5, MEASURE 4), environmental sustainability (MEASURE 2.12), decommissioning processes (GOVERN 1.7), and human subject protection (MEASURE 2.2). These require organisational processes, not infrastructure controls.
+
+**Note:** Many mapped subcategories also have organisational dimensions beyond what infrastructure controls address. This mapping identifies the infrastructure controls that support these subcategories technically, but organisational implementation is required for full framework alignment.
 

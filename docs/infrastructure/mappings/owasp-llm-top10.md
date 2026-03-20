@@ -104,97 +104,100 @@ Resource exhaustion attacks where model or agent systems consume excessive compu
 | **Primary** | TOOL-05, SESS-01, SAND-04, NET-07 | Rate limiting per agent and per tool (TOOL-05) prevents invocation-based resource exhaustion. Session boundaries (SESS-01) limit total resource consumption per session. Resource limits on execution (SAND-04) cap compute and memory. API gateway (NET-07) provides a single throttling point. |
 | **Secondary** | LOG-01, IR-02, IR-03 | I/O logging tracks consumption patterns. Detection triggers identify abnormal resource usage. Containment procedures include service isolation for resource exhaustion incidents. |
 
-## OWASP Agentic AI Top 10
+## OWASP Top 10 for Agentic Applications (2026)
 
-### AGT-01 - Agent Hijacking
+!!! info "Version note"
+    Updated March 2026 to align with the official OWASP Top 10 for Agentic Applications released December 2025 at Black Hat Europe. Risk IDs use the **ASI** (Agentic Security Issue) prefix as published by OWASP.
 
-Attacker takes control of an AI agent through prompt injection, system prompt manipulation, or context poisoning, redirecting the agent to serve the attacker's goals.
+### ASI01 - Agent Goal Hijack
 
-| Control Type | Controls | How It Mitigates |
-|-------------|----------|-----------------|
-| **Primary** | LOG-06, TOOL-02, IAM-03, NET-02, SEC-01 | Injection detection (LOG-06) identifies hijack attempts. Gateway enforcement (TOOL-02) limits what a hijacked agent can do. Control plane separation (IAM-03) prevents runtime prompt modification. Bypass prevention (NET-02) ensures guardrails are always in the path. Credential isolation (SEC-01) removes high-value targets from context. |
-| **Secondary** | SESS-01, TOOL-05, TOOL-01, SAND-03 | Session limits bound the duration of a hijacked session. Rate limits constrain the speed of malicious actions. Manifests limit available tools. Network-restricted sandboxes prevent exfiltration. |
-
-### AGT-02 - Tool Misuse
-
-Agent uses available tools in ways that were technically permitted but not intended, including chaining multiple tools to achieve unintended outcomes.
+Attackers redirect agent objectives by manipulating instructions, tool outputs, or external content, causing agents to pursue unintended or malicious objectives. This includes direct goal manipulation through prompt injection, indirect instruction injection via documents or RAG content, and recursive hijacking where goal modifications propagate through agent reasoning chains.
 
 | Control Type | Controls | How It Mitigates |
 |-------------|----------|-----------------|
-| **Primary** | TOOL-01, TOOL-02, TOOL-03, TOOL-04, TOOL-06 | Manifests define intended use. Gateway enforces boundaries. Parameter constraints limit scope. Action classification routes risky operations to review. Full logging enables detection of misuse patterns. |
-| **Secondary** | LOG-04, SESS-03, TOOL-05 | Agent chain logging captures multi-tool sequences. Task scope limits purpose. Rate limiting prevents high-volume misuse. |
+| **Primary** | LOG-06, TOOL-02, IAM-03, NET-02, SEC-01 | Injection detection (LOG-06) identifies hijack attempts including indirect injection via tool outputs. Gateway enforcement (TOOL-02) limits what a hijacked agent can do. Control plane separation (IAM-03) prevents runtime goal modification. Bypass prevention (NET-02) ensures guardrails are always in the path. Credential isolation (SEC-01) removes high-value targets from context. |
+| **Secondary** | SESS-01, TOOL-05, TOOL-01, SAND-03, DAT-02 | Session limits bound the duration of a hijacked session. Rate limits constrain the speed of malicious actions. Manifests limit available tools. Network-restricted sandboxes prevent exfiltration. Data minimisation reduces what a hijacked agent can access. |
 
-### AGT-03 - Privilege Escalation
+### ASI02 - Tool Misuse and Exploitation
 
-Agent gains access to resources or capabilities beyond its authorised scope, either by exploiting delegation chains, impersonating other agents, or manipulating authorisation systems.
-
-| Control Type | Controls | How It Mitigates |
-|-------------|----------|-----------------|
-| **Primary** | DEL-01, DEL-05, IAM-02, IAM-04, TOOL-02 | Permission intersection (DEL-01) prevents escalation through delegation. User identity propagation (DEL-05) constrains all actions to user permissions. Least privilege (IAM-02) minimises starting permissions. Tool constraints (IAM-04) limit agent capabilities. Gateway enforcement (TOOL-02) prevents self-authorisation. |
-| **Secondary** | DEL-03, DEL-04, IAM-06, IAM-08 | Depth limits reduce escalation paths. Explicit delegation authorisation prevents ad-hoc trust. Session-scoped credentials expire. Access auditing detects escalation. |
-
-### AGT-04 - Insecure Tool Implementation
-
-Tools available to agents have security vulnerabilities, including injection flaws, missing authentication, excessive permissions, or insecure defaults.
+Agents misuse legitimate tools due to ambiguous prompts, over-privilege, or poisoned inputs, staying within granted permissions but performing harmful actions such as deleting data, exfiltrating records, or running destructive commands. Includes tool poisoning and tool shadowing where attackers corrupt tool interfaces.
 
 | Control Type | Controls | How It Mitigates |
 |-------------|----------|-----------------|
-| **Primary** | SUP-05, TOOL-02, TOOL-03, SEC-01, SEC-07 | Tool supply chain auditing (SUP-05) identifies insecure tools before deployment. Gateway enforcement (TOOL-02) mediates all tool calls. Parameter constraints (TOOL-03) prevent exploitation of vulnerable parameters. Credential isolation (SEC-01) and endpoint protection (SEC-07) secure tool authentication. |
-| **Secondary** | SUP-08, TOOL-01, SEC-04 | Vulnerability monitoring tracks tool security issues. Manifests limit tool surface area. Credential scanning catches exposed tool credentials. |
+| **Primary** | TOOL-01, TOOL-02, TOOL-03, TOOL-04, TOOL-06, IAM-04 | Manifests define intended use and permitted tool combinations. Gateway enforces boundaries. Parameter constraints limit scope. Action classification routes risky operations to review. Full logging enables detection of misuse patterns. Agent tool constraints (IAM-04) enforce least privilege per tool. |
+| **Secondary** | LOG-04, SESS-03, TOOL-05, NET-04, DAT-06 | Agent chain logging captures multi-tool sequences that may constitute exfiltration paths. Task scope limits purpose. Rate limiting prevents high-volume misuse. Egress proxy controls where agents can send data. Response leakage prevention scans outbound data. |
 
-### AGT-05 - Data Exfiltration Through Agents
+### ASI03 - Identity and Privilege Abuse
 
-Attacker uses agent tool access to extract sensitive data through permitted channels - reading files, querying databases, or calling APIs and routing results to external destinations.
-
-| Control Type | Controls | How It Mitigates |
-|-------------|----------|-----------------|
-| **Primary** | NET-04, DAT-06, TOOL-05, SAND-03, DAT-02 | Egress proxy (NET-04) controls where agents can send data. Response leakage prevention (DAT-06) scans outbound data. Rate limiting (TOOL-05) slows extraction. Network restrictions on sandboxes (SAND-03) prevent code-based exfiltration. Data minimisation (DAT-02) reduces what is available. |
-| **Secondary** | TOOL-06, LOG-04, DAT-04, SAND-02 | Invocation logging captures extraction patterns. Agent chain logs reveal multi-step exfiltration. RAG access control limits document access. File system restrictions limit file access. |
-
-### AGT-06 - Uncontrolled Delegation
-
-Agent delegates tasks to other agents without proper authorisation, permission scoping, or audit trails, creating opaque chains of trust that bypass intended controls.
+Attackers exploit inherited credentials, cached tokens, delegated permissions, or agent-to-agent trust boundaries. Agents inherit user sessions, reuse secrets, or rely on implicit cross-agent trust, leading to privilege escalation and actions that cannot be cleanly attributed to a distinct agent identity.
 
 | Control Type | Controls | How It Mitigates |
 |-------------|----------|-----------------|
-| **Primary** | DEL-01, DEL-02, DEL-03, DEL-04, DEL-05 | The entire delegation chain control domain directly addresses this risk. Permission intersection (DEL-01), audit trails (DEL-02), depth limits (DEL-03), explicit authorisation (DEL-04), and identity propagation (DEL-05). |
-| **Secondary** | TOOL-02, IAM-04, LOG-04 | Gateway enforcement applies to delegation requests. Tool constraints carry through chains. Agent chain logging captures delegation events. |
+| **Primary** | DEL-01, DEL-05, IAM-02, IAM-04, TOOL-02, IAM-06 | Permission intersection (DEL-01) prevents escalation through delegation. User identity propagation (DEL-05) constrains all actions to user permissions. Least privilege (IAM-02) minimises starting permissions. Tool constraints (IAM-04) limit agent capabilities. Gateway enforcement (TOOL-02) prevents self-authorisation. Session-scoped credentials (IAM-06) limit token lifetime. |
+| **Secondary** | DEL-03, DEL-04, IAM-08, SEC-01, IAM-01 | Depth limits reduce escalation paths. Explicit delegation authorisation prevents ad-hoc trust. Access auditing detects escalation. Credential isolation prevents credential leakage to context. Authentication ensures agent identity verification. |
 
-### AGT-07 - Persistent Memory Poisoning
+### ASI04 - Agentic Supply Chain Compromise
 
-Attacker injects malicious content into agent memory, conversation history, or persistent state that influences future agent behavior across sessions.
-
-| Control Type | Controls | How It Mitigates |
-|-------------|----------|-----------------|
-| **Primary** | SAND-05, SESS-02, SESS-05, DAT-07 | Ephemeral environments (SAND-05) prevent persistent state. Session isolation (SESS-02) prevents cross-session contamination. Session cleanup (SESS-05) removes state on termination. Conversation history management (DAT-07) controls what persists. |
-| **Secondary** | LOG-06, SUP-03, DAT-01 | Injection detection identifies poisoning attempts. RAG integrity prevents poisoning through knowledge bases. Data classification at boundaries identifies suspicious persistent content. |
-
-### AGT-08 - Autonomous Action Without Oversight
-
-Agent takes consequential real-world actions (financial transactions, communications, data modifications) without appropriate human review, either because oversight was not configured or was bypassed.
+Compromised tools, descriptors, models, or agent personas influence agent behaviour at runtime. Unlike LLM03 (static pre-deployment supply chain), ASI04 addresses dynamic runtime composition where agents discover and integrate components during execution, such as through MCP and A2A ecosystems.
 
 | Control Type | Controls | How It Mitigates |
 |-------------|----------|-----------------|
-| **Primary** | IAM-05, TOOL-04, SESS-04 | Human approval routing (IAM-05) for high-impact actions. Action classification by reversibility (TOOL-04) determines which actions need human approval. Progressive trust (SESS-04) starts with restrictive permissions. |
-| **Secondary** | TOOL-01, TOOL-02, SESS-01, DEL-03 | Manifests define the scope of autonomous action. Gateway enforces approval requirements. Session limits bound autonomous runtime. Delegation depth limits prevent deep autonomous chains. |
+| **Primary** | SUP-01, SUP-02, SUP-05, SUP-06, SUP-07, SUP-08 | Provenance verification (SUP-01) detects tampered components. Risk assessment (SUP-02) evaluates runtime-discovered tools before use. Tool supply chain auditing (SUP-05) identifies insecure tools. Safety model integrity (SUP-06) protects guardrails from compromise. AI-BOM (SUP-07) tracks all components. Vulnerability monitoring (SUP-08) covers dynamically loaded dependencies. |
+| **Secondary** | TOOL-01, TOOL-02, TOOL-03, SEC-07, NET-05 | Manifests validate tool identity and capabilities. Gateway enforcement mediates all tool calls. Parameter constraints limit exploitation surface. Endpoint protection secures tool authentication. Ingestion/runtime separation isolates data pipelines. |
 
-### AGT-09 - Inadequate Sandboxing
+### ASI05 - Unexpected Code Execution
 
-Agent-generated code executes with access to the host system, network, or persistent state, enabling system compromise, lateral movement, or persistent backdoors.
+Agents generate or execute untrusted or attacker-controlled code through code generation tools, dynamic evaluation, or injection into executable contexts. Natural-language execution paths unlock dangerous avenues for remote code execution that bypass traditional security controls.
 
 | Control Type | Controls | How It Mitigates |
 |-------------|----------|-----------------|
 | **Primary** | SAND-01, SAND-02, SAND-03, SAND-04, SAND-05, SAND-06 | The entire sandbox control domain directly addresses this risk. Isolation levels (SAND-01), file system restrictions (SAND-02), network restrictions (SAND-03), resource limits (SAND-04), ephemeral state (SAND-05), and pre-execution scanning (SAND-06). |
-| **Secondary** | NET-01, LOG-04, TOOL-06 | Zone architecture places sandboxes in appropriate zones. Agent chain logs link code execution to agent reasoning. Tool invocation logs capture code execution context. |
+| **Secondary** | NET-01, LOG-04, TOOL-06, SEC-08 | Zone architecture places sandboxes in appropriate zones. Agent chain logs link code execution to agent reasoning. Tool invocation logs capture execution context. Code scanning catches embedded malicious content. |
 
-### AGT-10 - Insufficient Logging and Monitoring
+### ASI06 - Memory and Context Poisoning
 
-Agent actions, decisions, and tool invocations are not logged with sufficient detail to detect, investigate, or attribute incidents.
+Persistent corruption of agent memory, RAG stores, embeddings, or contextual knowledge that reshapes agent behaviour long after the initial interaction. Poisoned memory can propagate across sessions and influence decisions made by other agents that share knowledge stores.
 
 | Control Type | Controls | How It Mitigates |
 |-------------|----------|-----------------|
-| **Primary** | TOOL-06, LOG-04, DEL-02, LOG-01, LOG-07 | Full tool invocation logging (TOOL-06). Agent chain reconstruction (LOG-04). Delegation chain audit trails (DEL-02). Model I/O logging (LOG-01). Log integrity protection (LOG-07). |
-| **Secondary** | LOG-02, LOG-03, LOG-08, LOG-09, LOG-10 | Guardrail decision logging. Judge evaluation logging. Retention policies. PII redaction. SIEM correlation. |
+| **Primary** | SAND-05, SESS-02, SESS-05, DAT-07, SUP-03 | Ephemeral environments (SAND-05) prevent persistent state. Session isolation (SESS-02) prevents cross-session contamination. Session cleanup (SESS-05) removes state on termination. Conversation history management (DAT-07) controls what persists. RAG data source integrity (SUP-03) prevents poisoning through knowledge bases. |
+| **Secondary** | LOG-06, DAT-01, LOG-05, DAT-04 | Injection detection identifies poisoning attempts. Data classification at boundaries identifies suspicious persistent content. Drift detection identifies behavioural changes that may indicate poisoning effects. Access-controlled RAG enforces document-level permissions. |
+
+### ASI07 - Insecure Inter-Agent Communication
+
+Spoofed, intercepted, or manipulated messages between agents in multi-agent systems. When agents communicate, messages can be intercepted, spoofed, or manipulated if communication channels lack authentication, encryption, or message integrity verification. Spoofed inter-agent messages can misdirect entire agent clusters.
+
+| Control Type | Controls | How It Mitigates |
+|-------------|----------|-----------------|
+| **Primary** | DEL-01, DEL-02, DEL-04, DEL-05, NET-01, IAM-01 | Permission intersection (DEL-01) governs what agents can request of each other. Delegation audit trails (DEL-02) track all inter-agent communication. Explicit delegation authorisation (DEL-04) prevents ad-hoc agent-to-agent trust. User identity propagation (DEL-05) ensures messages carry verifiable origin. Zone architecture (NET-01) segments agent communication paths. Authentication (IAM-01) verifies agent identity at each hop. |
+| **Secondary** | LOG-04, IAM-03, DAT-05, NET-06 | Agent chain logging captures inter-agent message sequences. Control plane separation prevents runtime manipulation of communication policies. Encryption protects messages in transit. Control plane network protection restricts access to agent coordination infrastructure. |
+
+### ASI08 - Cascading Agent Failures
+
+Small missteps or faults propagate through multi-agent workflows, amplifying impact as they cascade. A failure in one component (the LLM provider, a downstream API, or a tool) propagates through the agent system, causing widespread outages, degraded behaviour, or compounding incorrect decisions across dependent agents.
+
+| Control Type | Controls | How It Mitigates |
+|-------------|----------|-----------------|
+| **Primary** | DEL-03, SESS-01, IR-03, IR-04, TOOL-05 | Delegation depth limits (DEL-03) bound the propagation distance of failures. Session boundaries (SESS-01) limit the scope of cascading effects. Containment procedures (IR-03) isolate affected agent chains. Rollback capability (IR-04) enables recovery from cascading state corruption. Rate limiting (TOOL-05) prevents runaway failure loops. |
+| **Secondary** | LOG-04, IR-02, LOG-10, NET-08, SAND-04 | Agent chain logging enables reconstruction of failure propagation paths. Detection triggers identify abnormal patterns indicative of cascading failures. SIEM correlation identifies cross-system impact. Cross-zone monitoring detects failures spanning trust boundaries. Resource limits prevent resource exhaustion from cascading load. |
+
+### ASI09 - Human-Agent Trust Exploitation
+
+Confident, polished agent explanations mislead human operators into approving harmful actions. Humans overly rely on agent recommendations, rubber-stamping decisions without meaningful review due to automation bias, information asymmetry, or the persuasive quality of AI-generated justifications.
+
+| Control Type | Controls | How It Mitigates |
+|-------------|----------|-----------------|
+| **Primary** | IAM-05, TOOL-04, SESS-04, LOG-03 | Human approval routing (IAM-05) for high-impact actions ensures humans are in the loop. Action classification by reversibility (TOOL-04) determines which actions need human approval. Progressive trust (SESS-04) starts with restrictive permissions rather than defaulting to trust. Judge evaluation (LOG-03) provides independent assessment alongside agent explanations, giving humans a second opinion. |
+| **Secondary** | TOOL-01, TOOL-02, SESS-01, DEL-03, LOG-01 | Manifests define the scope of autonomous action. Gateway enforces approval requirements. Session limits bound autonomous runtime. Delegation depth limits prevent deep autonomous chains. I/O logging provides audit trail for post-hoc review of human-approved actions. |
+
+### ASI10 - Rogue Agents
+
+Misaligned or compromised agents diverge from intended behaviour, exhibiting concealment, self-directed action, or persistent misalignment that is difficult to detect. Unlike ASI01 (external hijacking), rogue agents may arise from emergent misalignment, fine-tuning corruption, or sophisticated compromise that evades standard detection.
+
+| Control Type | Controls | How It Mitigates |
+|-------------|----------|-----------------|
+| **Primary** | LOG-03, LOG-05, TOOL-02, TOOL-04, IR-02, NET-02 | Judge evaluation (LOG-03) provides independent behavioural assessment that can detect deviation from expected patterns. Drift detection (LOG-05) identifies gradual behavioural changes. Gateway enforcement (TOOL-02) limits what any agent can do regardless of intent. Action classification (TOOL-04) routes high-impact actions through human review. Detection triggers (IR-02) fire on anomalous behaviour patterns. Bypass prevention (NET-02) ensures even rogue agents cannot circumvent guardrails. |
+| **Secondary** | LOG-04, LOG-01, SESS-01, IR-03, SAND-01, IAM-08 | Agent chain logging enables forensic analysis of rogue behaviour. I/O logging captures all agent interactions for review. Session boundaries limit the duration and scope of rogue activity. Containment procedures isolate compromised agents. Sandbox isolation prevents escape. Access auditing detects anomalous access patterns. |
 
 ## Control Coverage Summary
 
@@ -213,18 +216,18 @@ Agent actions, decisions, and tool invocations are not logged with sufficient de
 | LLM09 Misinformation | LOG-03, LOG-05, SUP-03 |
 | LLM10 Unbounded Consumption | TOOL-05, SESS-01, SAND-04, NET-07 |
 
-### OWASP Agentic Top 10 - Primary Control Distribution
+### OWASP Agentic Top 10 (2026) - Primary Control Distribution
 
 | Risk | Primary Controls |
 |------|-----------------|
-| AGT-01 Agent Hijacking | LOG-06, TOOL-02, IAM-03, NET-02, SEC-01 |
-| AGT-02 Tool Misuse | TOOL-01 through TOOL-04, TOOL-06 |
-| AGT-03 Privilege Escalation | DEL-01, DEL-05, IAM-02, IAM-04, TOOL-02 |
-| AGT-04 Insecure Tool Implementation | SUP-05, TOOL-02, TOOL-03, SEC-01, SEC-07 |
-| AGT-05 Data Exfiltration | NET-04, DAT-06, TOOL-05, SAND-03, DAT-02 |
-| AGT-06 Uncontrolled Delegation | DEL-01 through DEL-05 |
-| AGT-07 Persistent Memory Poisoning | SAND-05, SESS-02, SESS-05, DAT-07 |
-| AGT-08 Autonomous Action Without Oversight | IAM-05, TOOL-04, SESS-04 |
-| AGT-09 Inadequate Sandboxing | SAND-01 through SAND-06 |
-| AGT-10 Insufficient Logging | TOOL-06, LOG-04, DEL-02, LOG-01, LOG-07 |
+| ASI01 Agent Goal Hijack | LOG-06, TOOL-02, IAM-03, NET-02, SEC-01 |
+| ASI02 Tool Misuse and Exploitation | TOOL-01 through TOOL-04, TOOL-06, IAM-04 |
+| ASI03 Identity and Privilege Abuse | DEL-01, DEL-05, IAM-02, IAM-04, TOOL-02, IAM-06 |
+| ASI04 Agentic Supply Chain Compromise | SUP-01, SUP-02, SUP-05, SUP-06, SUP-07, SUP-08 |
+| ASI05 Unexpected Code Execution | SAND-01 through SAND-06 |
+| ASI06 Memory and Context Poisoning | SAND-05, SESS-02, SESS-05, DAT-07, SUP-03 |
+| ASI07 Insecure Inter-Agent Communication | DEL-01, DEL-02, DEL-04, DEL-05, NET-01, IAM-01 |
+| ASI08 Cascading Agent Failures | DEL-03, SESS-01, IR-03, IR-04, TOOL-05 |
+| ASI09 Human-Agent Trust Exploitation | IAM-05, TOOL-04, SESS-04, LOG-03 |
+| ASI10 Rogue Agents | LOG-03, LOG-05, TOOL-02, TOOL-04, IR-02, NET-02 |
 

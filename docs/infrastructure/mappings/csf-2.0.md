@@ -1,3 +1,7 @@
+---
+description: "Mapping 80 infrastructure controls to NIST Cybersecurity Framework 2.0 Functions, Categories, and Subcategories with three-layer pattern alignment."
+---
+
 # NIST Cybersecurity Framework 2.0 Mapping
 
 **How the framework's 80 infrastructure controls map to NIST CSF 2.0 Functions, Categories, and Subcategories.**

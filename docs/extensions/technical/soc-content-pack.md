@@ -138,7 +138,7 @@ AISecurity_CL
 | Field | Value |
 |---|---|
 | **Severity** | High (single event is significant) |
-| **OWASP Agentic** | AGT-02 (Tool Misuse), AGT-03 (Privilege Escalation) |
+| **OWASP Agentic** | ASI02 (Tool Misuse and Exploitation), ASI03 (Identity and Privilege Abuse) |
 | **Framework Control** | IAM-04, TOOL-01, TOOL-02 |
 | **Response** | Halt agent immediately. Determine if prompt injection triggered the tool call. Review full conversation context. |
 

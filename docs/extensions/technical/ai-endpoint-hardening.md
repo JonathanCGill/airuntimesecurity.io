@@ -208,13 +208,13 @@ Endpoint-specific signals to feed into the [SOC Content Pack](soc-content-pack.m
 | Hardening Area | OWASP LLM Risk | OWASP Agentic Risk |
 |---|---|---|
 | Gateway rate limiting | LLM10: Unbounded Consumption | - |
-| Input validation | LLM01: Prompt Injection | AGT-01: Agent Hijacking |
-| Output scanning | LLM02: Insecure Output Handling | AGT-05: Data Exfiltration |
+| Input validation | LLM01: Prompt Injection | ASI01: Agent Goal Hijack |
+| Output scanning | LLM02: Sensitive Information Disclosure | ASI02: Tool Misuse and Exploitation |
 | Token limiting | LLM10: Unbounded Consumption | - |
-| Model version pinning | LLM03: Training Data Poisoning | AGT-04: Insecure Tool Implementation |
-| Tool server hardening | LLM07: Insecure Plugin Design | AGT-02: Tool Misuse |
-| Private endpoints | LLM06: Excessive Agency | AGT-09: Inadequate Sandboxing |
-| Kill switch | - | AGT-08: Autonomous Action Without Oversight |
+| Model version pinning | LLM04: Data and Model Poisoning | ASI04: Agentic Supply Chain Compromise |
+| Tool server hardening | LLM07: System Prompt Leakage | ASI02: Tool Misuse and Exploitation |
+| Private endpoints | LLM06: Excessive Agency | ASI05: Unexpected Code Execution |
+| Kill switch | - | ASI08: Cascading Agent Failures |
 
 ## Related
 

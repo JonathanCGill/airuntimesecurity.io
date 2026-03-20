@@ -295,27 +295,23 @@ ISO 42001 Annex A provides reference control objectives. Here's how the framewor
 | A.8.1 Information about AI | Transparency controls; HITL explanations |
 | A.8.2 User information | HITL provides human explanation |
 
-### A.9 AI System Documentation
+### A.9 Use of AI Systems
 
 | Control | Framework Implementation |
 |---------|-------------------------|
-| A.9.1 Technical documentation | System documentation per tier |
-| A.9.2 AI system instructions | Guardrail configuration; Judge criteria |
+| A.9.1 Policies and objectives for AI use | AI policy in governance framework; approval processes |
+| A.9.2 Intended use and misuse prevention | Guardrail scope limits; HITL for consequential actions |
+| A.9.3 Responsible use | Ethics policy; bias monitoring (Judge) |
+| A.9.4 Human oversight | HITL model; human accountability |
 
-### A.10 Responsible Use of AI
-
-| Control | Framework Implementation |
-|---------|-------------------------|
-| A.10.1 Responsible AI | Ethics policy; bias monitoring (Judge) |
-| A.10.2 Human oversight | HITL model; human accountability |
-| A.10.3 AI system autonomy | Guardrail scope limits; HITL for consequential actions |
-
-### A.11 Third-Party Relationships
+### A.10 Third-Party and Customer Relationships
 
 | Control | Framework Implementation |
 |---------|-------------------------|
-| A.11.1 Supply chain | Vendor assessment; platform security |
-| A.11.2 Customer relationships | Customer-facing guardrails; complaint handling |
+| A.10.1 Supply chain management | Vendor assessment; platform security |
+| A.10.2 Contractual requirements | AI-specific terms in vendor agreements |
+| A.10.3 Third-party monitoring | Ongoing supplier risk monitoring |
+| A.10.4 Customers | Customer-facing guardrails; complaint handling |
 
 ## Certification Readiness Checklist
 

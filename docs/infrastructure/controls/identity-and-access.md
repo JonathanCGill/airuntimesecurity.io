@@ -203,10 +203,10 @@ This audit trail must be append-only and stored separately from the systems it m
 |---------|----------------|
 | IAM-01, IAM-02 | LLM06: Excessive Agency |
 | IAM-03 | LLM01: Prompt Injection (limiting control plane exposure) |
-| IAM-04, IAM-05 | LLM06: Excessive Agency, LLM08: Excessive Permissions |
+| IAM-04, IAM-05 | LLM06: Excessive Agency |
 | IAM-06 | LLM06: Excessive Agency (blast radius containment) |
-| IAM-07 | LLM02: Insecure Output Handling, LLM07: Insecure Plugin Design |
-| IAM-08 | LLM09: Overreliance (supports detection) |
+| IAM-07 | LLM05: Improper Output Handling, LLM07: System Prompt Leakage |
+| IAM-08 | LLM09: Misinformation (supports detection) |
 
 ## Platform-Neutral Implementation Checklist
 

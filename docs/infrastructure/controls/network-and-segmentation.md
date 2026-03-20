@@ -233,12 +233,12 @@ Cross-zone traffic logs feed into the enterprise SIEM alongside AI application l
 | Control | OWASP LLM Risk |
 |---------|----------------|
 | NET-01, NET-02 | LLM01: Prompt Injection (limiting bypass paths) |
-| NET-03 | LLM09: Overreliance (ensuring independent evaluation) |
-| NET-04 | LLM06: Excessive Agency, LLM07: Insecure Plugin Design |
-| NET-05 | LLM03: Training Data Poisoning (ingestion isolation) |
+| NET-03 | LLM09: Misinformation (ensuring independent evaluation) |
+| NET-04 | LLM06: Excessive Agency, LLM07: System Prompt Leakage |
+| NET-05 | LLM04: Data and Model Poisoning (ingestion isolation) |
 | NET-06 | LLM01: Prompt Injection (control plane protection) |
 | NET-07 | LLM06: Excessive Agency (single entry point) |
-| NET-08 | LLM08: Excessive Permissions (network-level detection) |
+| NET-08 | LLM08: Vector and Embedding Weaknesses (network-level detection) |
 
 ## Platform-Neutral Implementation Checklist
 
