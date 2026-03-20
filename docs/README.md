@@ -31,6 +31,9 @@ A risk-proportionate framework of control patterns that you select, adapt, or co
 
 This is not a vendor product or a proprietary methodology. It is a field of practice, comparable to how disciplines like Zero Trust, DevSecOps, and Security Chaos Engineering emerged to address gaps that existing security models did not cover.
 
+!!! abstract "Vendor-neutral by design"
+    This framework does not advocate, endorse, or recommend any specific vendor, product, or platform. You will almost certainly need vendor products to implement runtime controls, and you should use them. But which products fit your organisation depends on factors this framework cannot decide for you: budget, existing technology landscape, team capability, integration requirements, procurement constraints, and the organisational dynamics that shape every technology decision. The framework's job is to help you structure a response to AI runtime security risks. Tooling decisions are yours.
+
 The framework is built around a core principle: **controls should be proportionate to risk**. Not every AI use case carries the same risk. A summarisation tool for internal meeting notes does not need the same controls as a customer-facing advisory agent handling regulated financial data. The framework gives you risk-oriented paths and control patterns so you can apply the right level of control to each situation, at the right time, for the right purposes.
 
 Critically, the framework is designed around how organisations actually work. Every organisation has its own structures, processes, risk tolerances, and ways of getting things done. The framework respects this. Rather than imposing a single way of working, it provides a menu of controls that AI product owners and business owners can quickly navigate to identify what they need and apply it, or consciously deselect what they do not need. The goal is to make it easy to do the right thing for your context.
