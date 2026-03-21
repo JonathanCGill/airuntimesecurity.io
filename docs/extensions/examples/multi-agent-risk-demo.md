@@ -25,14 +25,7 @@ A dedicated classification model examines the prompt. It draws on two sources:
 
 The classifier outputs a **risk tier** (LOW, MEDIUM, HIGH, or CRITICAL) along with a rationale. This tier shapes how aggressively the orchestrator and judges operate.
 
-```text
-Risk Tier    | Orchestrator behaviour          | Judge depth
-─────────────┼─────────────────────────────────┼──────────────────
-LOW          | Minimal decomposition           | SLM fast-pass
-MEDIUM       | Standard task split             | SLM with sampling
-HIGH         | Full decomposition + isolation  | SLM all tasks
-CRITICAL     | Full decomposition + sandbox    | LLM deep review
-```
+![Risk tier table showing orchestrator behaviour and judge depth per tier](../../images/risk-tier-table.svg){ .arch-diagram }
 
 ### Step 3: Orchestrator decomposes and assigns
 

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="260" viewBox="0 0 780 260" font-family="Inter, Arial, Helvetica, sans-serif">
+  <defs>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="106%">
+      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="780" height="260" fill="#f8f9fa" rx="8"/>
+
+  <!-- Header row -->
+  <rect x="20" y="20" width="740" height="40" rx="6" fill="#2c3e50"/>
+  <text x="130" y="45" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">Risk Tier</text>
+  <text x="390" y="45" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">Orchestrator behaviour</text>
+  <text x="660" y="45" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">Judge depth</text>
+
+  <!-- Column dividers in header -->
+  <line x1="240" y1="26" x2="240" y2="54" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <line x1="540" y1="26" x2="540" y2="54" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+
+  <!-- Row 1: LOW -->
+  <rect x="20" y="64" width="740" height="44" rx="0" fill="#d5f5e3"/>
+  <rect x="20" y="64" width="6" height="44" fill="#27ae60"/>
+  <text x="130" y="91" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e8449">LOW</text>
+  <text x="390" y="91" text-anchor="middle" font-size="12" fill="#2c3e50">Minimal decomposition</text>
+  <text x="660" y="91" text-anchor="middle" font-size="12" fill="#2c3e50">SLM fast-pass</text>
+  <line x1="240" y1="68" x2="240" y2="104" stroke="rgba(0,0,0,0.08)" stroke-width="1"/>
+  <line x1="540" y1="68" x2="540" y2="104" stroke="rgba(0,0,0,0.08)" stroke-width="1"/>
+
+  <!-- Row 2: MEDIUM -->
+  <rect x="20" y="112" width="740" height="44" rx="0" fill="#fef9e7"/>
+  <rect x="20" y="112" width="6" height="44" fill="#f39c12"/>
+  <text x="130" y="139" text-anchor="middle" font-size="13" font-weight="bold" fill="#b7950b">MEDIUM</text>
+  <text x="390" y="139" text-anchor="middle" font-size="12" fill="#2c3e50">Standard task split</text>
+  <text x="660" y="139" text-anchor="middle" font-size="12" fill="#2c3e50">SLM with sampling</text>
+  <line x1="240" y1="116" x2="240" y2="152" stroke="rgba(0,0,0,0.08)" stroke-width="1"/>
+  <line x1="540" y1="116" x2="540" y2="152" stroke="rgba(0,0,0,0.08)" stroke-width="1"/>
+
+  <!-- Row 3: HIGH -->
+  <rect x="20" y="160" width="740" height="44" rx="0" fill="#fdedec"/>
+  <rect x="20" y="160" width="6" height="44" fill="#e67e22"/>
+  <text x="130" y="187" text-anchor="middle" font-size="13" font-weight="bold" fill="#c0392b">HIGH</text>
+  <text x="390" y="187" text-anchor="middle" font-size="12" fill="#2c3e50">Full decomposition + isolation</text>
+  <text x="660" y="187" text-anchor="middle" font-size="12" fill="#2c3e50">SLM all tasks</text>
+  <line x1="240" y1="164" x2="240" y2="200" stroke="rgba(0,0,0,0.08)" stroke-width="1"/>
+  <line x1="540" y1="164" x2="540" y2="200" stroke="rgba(0,0,0,0.08)" stroke-width="1"/>
+
+  <!-- Row 4: CRITICAL -->
+  <rect x="20" y="208" width="740" height="44" rx="0" fill="#f9ebea"/>
+  <rect x="20" y="208" width="6" height="44" fill="#e74c3c"/>
+  <text x="130" y="235" text-anchor="middle" font-size="13" font-weight="bold" fill="#922b21">CRITICAL</text>
+  <text x="390" y="235" text-anchor="middle" font-size="12" fill="#2c3e50">Full decomposition + sandbox</text>
+  <text x="660" y="235" text-anchor="middle" font-size="12" fill="#2c3e50">LLM deep review</text>
+  <line x1="240" y1="212" x2="240" y2="248" stroke="rgba(0,0,0,0.08)" stroke-width="1"/>
+  <line x1="540" y1="212" x2="540" y2="248" stroke="rgba(0,0,0,0.08)" stroke-width="1"/>
+
+  <!-- Bottom rounded corners -->
+  <rect x="20" y="240" width="740" height="12" rx="0" ry="0" fill="transparent"/>
+  <rect x="20" y="246" width="740" height="6" rx="6" fill="transparent"/>
+</svg>
