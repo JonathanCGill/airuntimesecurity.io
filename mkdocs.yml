@@ -211,6 +211,7 @@ nav:
       - Threat Model Template: extensions/templates/threat-model-template.md
       - Judge Prompt Examples: extensions/templates/judge-prompt-examples.md
       - Worked Examples: extensions/examples/README.md
+      - Multi-Agent Risk Demo: extensions/examples/multi-agent-risk-demo.md
     - Downloads: downloads.md
     - News: news.md
     - News Archive: news-archive.md
