@@ -40,6 +40,54 @@ Framework tags use these categories:
 
 <!-- NEWS_START -->
 
+### 2026-03-20: Zero-Trust Architecture for Autonomous AI Agents Validated in 90-Day Healthcare Deployment
+
+**Tags**: Agentic, IAM, Data Protection
+
+*Saikat Maiti* (VP of Trust at Commure) reports findings from a 90-day production deployment of autonomous LLM agents processing protected health information. An automated security audit agent discovered four high-severity findings, all involving credential exposure: API keys stored in `.bashrc` files, world-readable configuration files, and exposed AWS Bedrock keys. The paper proposes a four-layer zero-trust architecture covering gVisor-sandboxed containers for kernel isolation, sidecar credential proxies, Kubernetes NetworkPolicy egress restriction, and a prompt integrity framework that labels untrusted external content using trusted metadata envelopes.
+
+**Framework relevance**: The credential exposure findings reinforce [IAM Governance](core/iam-governance.md) controls against least-privilege violations in agentic deployments. The trusted metadata envelope approach maps directly to [Memory and Context](core/memory-and-context.md) isolation principles, and the four-layer architecture overall reflects the layered containment model in [Agentic AI Controls](core/agentic.md). The real-world PHI context also demonstrates [Data Protection](maso/controls/data-protection.md) requirements in regulated environments.
+
+**Source**: [Caging the Agents: A Zero Trust Security Architecture for Autonomous AI in Healthcare (arXiv:2603.17419)](https://arxiv.org/html/2603.17419)
+
+---
+
+### 2026-03-18: Microsoft AI Security Publishes Behavioral Baselining Guidance for Production AI Systems
+
+**Tags**: Observability, Agentic
+
+*Angela Argentati, Matthew Dressman, and Habiba Mohamed* from Microsoft AI Security argue that observability should be a release gate for AI systems: if an organization cannot reconstruct an agent run or detect trust-boundary violations from logs and traces, the system is not production-ready. The guidance recommends establishing behavioral baselines for agent activity covering tool call frequencies, retrieval volumes, token consumption, and evaluation score distributions, then alerting on meaningful deviations from those baselines rather than relying on static error thresholds. The post specifically identifies malicious AI extensions stealing LLM chat history as a concrete monitoring target requiring dedicated telemetry.
+
+**Framework relevance**: This operationalizes the [Observability](maso/controls/observability.md) domain, framing behavioral telemetry as a security control rather than a performance tool. The emphasis on reconstructibility of agent runs and trust-boundary detection aligns with audit trail requirements in [Agentic AI Controls](core/agentic.md), and the baseline-deviation approach supports the anomaly detection posture the AIRS framework recommends.
+
+**Source**: [Observability for AI Systems: Strengthening Visibility for Proactive Risk Detection](https://www.microsoft.com/en-us/security/blog/2026/03/18/observability-ai-systems-strengthening-visibility-proactive-risk-detection/)
+
+---
+
+### 2026-03-17: Unit 42 Finds Genetic Algorithm Fuzzing Evades LLM Guardrails at 97-99% Rates
+
+**Tags**: Guardrails, Observability
+
+Researchers *Yu Fu, May Wang, Royce Lu, and Shengming Xu* from Palo Alto Networks Unit 42 built a genetic algorithm-based prompt fuzzer that generates meaning-preserving variants of disallowed requests. Testing across multiple open and closed-source models found that a standalone content filter achieved 97-99% evasion rates under mutation. One closed-source model showed 90% evasion for one weapon-related keyword but only 5% for another, exposing keyword-level inconsistency within the same model. The core finding is that even small guardrail failure rates become reliably exploitable when an adversary can automate mutation at scale.
+
+**Framework relevance**: Automated fuzzing confirms that static pattern-matching in the [Guardrails](core/controls.md) layer is brittle against adversaries with scripted probing tools. The keyword inconsistency result reinforces the case for a semantic-evaluation [Judge](core/judge-assurance.md) layer as a second line of defence, and the automation threat makes [Observability](maso/controls/observability.md) of anomalous query-rate patterns a necessary complement to content filtering.
+
+**Source**: [Open, Closed and Broken: Prompt Fuzzing Finds LLMs Still Fragile Across Open and Closed Models](https://unit42.paloaltonetworks.com/genai-llm-prompt-fuzzing/)
+
+---
+
+### 2026-03-09: Survey Finds No Current Security Framework Covers a Majority of Multi-Agent Threat Categories
+
+**Tags**: Agentic, MASO
+
+Researchers *Tam Nguyen, Moses Ndebugre, and Dheeraj Arremsetty* catalogued 193 distinct threat items across nine risk categories specific to multi-agent AI systems, then evaluated 16 current security frameworks including OWASP and CDAO toolkits against this catalogue. No framework achieved majority coverage of any single category. Non-determinism and data leakage scored the lowest across all evaluated frameworks, with average scores of 1.231 and 1.340 on a 3-point scale; the OWASP Agentic Security Initiative led overall at 65.3% coverage.
+
+**Framework relevance**: The coverage gaps identified map directly to areas the AIRS [Multi-Agent Controls](core/multi-agent-controls.md) and [MASO](maso/README.md) domains address, particularly delegated authority abuse and inter-agent communication manipulation. The finding that non-determinism is the least-covered threat category reinforces why the [Judge](core/judge-assurance.md) layer must account for output variance, not just known-bad surface patterns.
+
+**Source**: [Security Considerations for Multi-Agent Systems (arXiv:2603.09002)](https://arxiv.org/abs/2603.09002)
+
+---
+
 ### 2026-03-18: Meta Internal AI Agent Triggers Unauthorized Access Breach
 
 **Tags**: Agentic, Human Oversight
