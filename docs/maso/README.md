@@ -20,6 +20,16 @@ For AI you consume as a service (copilots, productivity tools, SaaS with embedde
 
 ![MASO Architecture](../images/maso-architecture.svg)
 
+### Evaluation Architecture: Inline vs. Offline
+
+![MASO Evaluation Architecture](../images/maso-evaluation-architecture.svg)
+
+The evaluation architecture separates two fundamentally different types of judgment. **Inline evaluation** (left) runs at agent speed using SLMs with measurable criteria: security, privacy, compliance, and business intent. These domains have clear thresholds. When they conflict, security and privacy override business intent. A **Flight Recorder** captures every action, verdict, and reasoning chain.
+
+**Offline evaluation** (right) handles ethics, bias, and fairness. These are policy-driven domains where criteria are set by organisational values, not technical measurement, and where the most important evidence (customer complaints, appeal outcomes, demographic distributions) accumulates over time and is invisible to inline judges. An LLM evaluates sampled decisions retrospectively, statistical monitoring detects portfolio-level patterns, and findings route to human governance for review, investigation, and policy updates that feed back into MASO as guardrail tuning and OISpec revisions.
+
+### Three-Layer Defence
+
 MASO operates on a **three-layer defence model** adapted for multi-agent dynamics:
 
 **Layer 1 - Guardrails** enforce hard boundaries: input validation, output sanitisation, tool permission scoping, and rate limiting. Deterministic, non-negotiable, machine-speed.
@@ -29,6 +39,8 @@ MASO operates on a **three-layer defence model** adapted for multi-agent dynamic
 **Layer 3 - Human Oversight** provides the governance backstop. Scope scales inversely with demonstrated trustworthiness and directly with consequence severity. Write operations, external API calls, and irreversible actions escalate based on risk classification.
 
 The critical addition for multi-agent systems is the **Secure Inter-Agent Message Bus** - a validated, signed, rate-limited communication channel through which all agent-to-agent interaction must pass. No direct agent-to-agent communication is permitted outside this bus.
+
+The **Flight Recorder** captures every agent action, judge verdict, tool invocation, inter-agent message, conflict resolution, and PACE state transition in an immutable, tamper-evident log. This serves two purposes: forensic investigation when things go wrong, and feeding the offline evaluation pipeline with the evidence it needs for portfolio-level analysis of ethics, bias, and fairness.
 
 ## Visual Navigation
 
@@ -225,6 +237,7 @@ These questions come up in every MASO deployment. The answers sit across the fra
 | How do we evaluate whether agents are doing what they were designed to do? | [Objective Intent](controls/objective-intent.md) - developer-declared OISpecs for every agent, judge, and workflow. Tactical judges evaluate individual compliance, strategic evaluators assess aggregate behavior, judge meta-evaluators close the watchmen loop |
 | Won't multiple judges create "judge hell"? How many evaluation agents do I actually need? | [Privileged Agent Governance](controls/privileged-agent-governance.md#recognising-judge-proliferation) - evaluation roles vs. services, judge necessity decision framework, deployment topology. [Judge Assurance](../core/judge-assurance.md#when-you-need-a-judge-and-when-you-do-not) - the judge necessity test and ROI assessment. [Execution Control](controls/execution-control.md#deployment-topology-evaluation-roles-vs-services) - how the conceptual architecture maps to actual services |
 | What happens when judges disagree? (e.g. fraud says flag, security says approve) | [Privileged Agent Governance](controls/privileged-agent-governance.md#inter-judge-conflict-resolution) - precedence orders, most-restrictive-wins default, conflict logging, pattern tracking |
+| What about ethics, bias, and fairness evaluation? | [Privileged Agent Governance](controls/privileged-agent-governance.md#policy-driven-evaluation-domains-ethics-bias-and-fairness) - offline policy-driven evaluation outside the inline architecture. Statistical portfolio monitoring, external signals (complaints, appeals, demographics), findings feed back as guardrail tuning. See [Evaluation Architecture diagram](#evaluation-architecture-inline-vs-offline) |
 | What does the full evaluation stack cost, not just one judge? | [Cost & Latency](../extensions/technical/cost-and-latency.md#total-cost-of-evaluation-multi-agent-workflows) - compound cost model for cloud judge vs. SLM scenarios, with fraud detection worked example |
 | How much latency does multi-layer evaluation add to time-sensitive workflows? | [Cost & Latency](../extensions/technical/cost-and-latency.md#critical-path-latency-for-time-sensitive-workflows) - sync vs. async breakdown, critical-path analysis for fraud detection and trading compliance |
 | How do I get a single audit view of a multi-agent decision? | [Observability](controls/observability.md#decision-trace-consolidated-audit-view) - Decision Trace format collapsing the full evaluation chain into one auditable document per decision |

@@ -1,0 +1,280 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820" viewBox="0 0 1200 820">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0e1a"/>
+      <stop offset="100%" stop-color="#1a1e3a"/>
+    </linearGradient>
+    <linearGradient id="paceGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff6b35"/>
+      <stop offset="100%" stop-color="#ff9a5c"/>
+    </linearGradient>
+    <linearGradient id="ethicsGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <marker id="arrowCyan" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="8" markerHeight="6" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#00c9ff"/>
+    </marker>
+    <marker id="arrowOrange" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="8" markerHeight="6" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#ff6b35"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="8" markerHeight="6" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a855f7"/>
+    </marker>
+    <marker id="arrowPink" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="8" markerHeight="6" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#f093fb"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="8" markerHeight="6" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#92fe9d"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="820" fill="url(#bgGrad)"/>
+
+  <!-- Grid -->
+  <g opacity="0.03" stroke="#ffffff" stroke-width="0.5">
+    <line x1="0" y1="100" x2="1200" y2="100"/><line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/><line x1="0" y1="400" x2="1200" y2="400"/>
+    <line x1="0" y1="500" x2="1200" y2="500"/><line x1="0" y1="600" x2="1200" y2="600"/>
+    <line x1="0" y1="700" x2="1200" y2="700"/>
+    <line x1="200" y1="0" x2="200" y2="820"/><line x1="400" y1="0" x2="400" y2="820"/>
+    <line x1="600" y1="0" x2="600" y2="820"/><line x1="800" y1="0" x2="800" y2="820"/>
+    <line x1="1000" y1="0" x2="1000" y2="820"/>
+  </g>
+
+  <!-- Title -->
+  <text x="600" y="38" text-anchor="middle" fill="#ffffff" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="2">MASO EVALUATION ARCHITECTURE</text>
+  <text x="600" y="58" text-anchor="middle" fill="#ff6b35" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="500" letter-spacing="3">INLINE OPERATIONAL EVALUATION + OFFLINE POLICY-DRIVEN MONITORING</text>
+  <line x1="200" y1="70" x2="1000" y2="70" stroke="#ff6b35" stroke-width="1" opacity="0.4"/>
+
+  <!-- ============================================================ -->
+  <!-- LEFT SIDE: MASO INLINE BOX -->
+  <!-- ============================================================ -->
+  <rect x="30" y="85" width="680" height="570" rx="12" fill="none" stroke="#00c9ff" stroke-width="2.5"/>
+  <rect x="32" y="87" width="300" height="26" rx="4" fill="#0078d4" opacity="0.2"/>
+  <text x="42" y="105" fill="#00c9ff" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.5">MASO INLINE ARCHITECTURE (FAST PATH)</text>
+
+  <!-- Timing label -->
+  <rect x="540" y="87" width="160" height="26" rx="13" fill="#00c9ff" opacity="0.15"/>
+  <text x="620" y="105" text-anchor="middle" fill="#00c9ff" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="10" font-weight="600">MILLISECONDS TO SECONDS</text>
+
+  <!-- Agent action input -->
+  <rect x="55" y="130" width="200" height="55" rx="6" fill="#1a1e3a" stroke="#4facfe" stroke-width="1.5"/>
+  <rect x="55" y="130" width="200" height="3" rx="1" fill="#4facfe"/>
+  <text x="155" y="155" text-anchor="middle" fill="#4facfe" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="700">AGENT ACTION</text>
+  <text x="155" y="173" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="9">Task output, tool call, API request</text>
+
+  <!-- Arrow from agent to guardrails -->
+  <line x1="255" y1="158" x2="290" y2="158" stroke="#00c9ff" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+
+  <!-- L1 Guardrails -->
+  <rect x="300" y="125" width="180" height="65" rx="6" fill="#0d1225" stroke="#00c9ff" stroke-width="1.5"/>
+  <rect x="300" y="125" width="180" height="3" rx="1" fill="#00c9ff"/>
+  <text x="390" y="148" text-anchor="middle" fill="#00c9ff" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700">L1: GUARDRAILS</text>
+  <text x="390" y="163" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">Input validation, output sanitisation</text>
+  <text x="390" y="178" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">Tool scoping, rate limiting</text>
+
+  <!-- Arrow from guardrails to SLM judges -->
+  <line x1="390" y1="190" x2="390" y2="210" stroke="#00c9ff" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+
+  <!-- SLM Evaluation Block -->
+  <rect x="55" y="220" width="640" height="160" rx="8" fill="#0d1225" stroke="#92fe9d" stroke-width="2" stroke-dasharray="6,3"/>
+  <rect x="57" y="222" width="270" height="24" rx="4" fill="#00c853" opacity="0.15"/>
+  <text x="67" y="239" fill="#92fe9d" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700" letter-spacing="1">L2: SLM JUDGE EVALUATION (INLINE)</text>
+
+  <!-- SLM Judge boxes -->
+  <rect x="75" y="258" width="135" height="100" rx="6" fill="#1a1e3a" stroke="#f5576c" stroke-width="1.5"/>
+  <rect x="75" y="258" width="135" height="3" rx="1" fill="#f5576c"/>
+  <text x="142" y="281" text-anchor="middle" fill="#f5576c" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700">SECURITY</text>
+  <text x="142" y="297" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">Policy violation?</text>
+  <text x="142" y="310" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">Injection attempt?</text>
+  <rect x="85" y="320" width="115" height="18" rx="3" fill="#f5576c" opacity="0.2"/>
+  <text x="142" y="333" text-anchor="middle" fill="#f5576c" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8" font-weight="700">PRECEDENCE: 1</text>
+
+  <rect x="230" y="258" width="135" height="100" rx="6" fill="#1a1e3a" stroke="#f093fb" stroke-width="1.5"/>
+  <rect x="230" y="258" width="135" height="3" rx="1" fill="#f093fb"/>
+  <text x="297" y="281" text-anchor="middle" fill="#f093fb" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700">PRIVACY</text>
+  <text x="297" y="297" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">Data exposure?</text>
+  <text x="297" y="310" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">PII leakage?</text>
+  <rect x="240" y="320" width="115" height="18" rx="3" fill="#f093fb" opacity="0.2"/>
+  <text x="297" y="333" text-anchor="middle" fill="#f093fb" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8" font-weight="700">PRECEDENCE: 2</text>
+
+  <rect x="385" y="258" width="135" height="100" rx="6" fill="#1a1e3a" stroke="#ffd700" stroke-width="1.5"/>
+  <rect x="385" y="258" width="135" height="3" rx="1" fill="#ffd700"/>
+  <text x="452" y="281" text-anchor="middle" fill="#ffd700" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700">COMPLIANCE</text>
+  <text x="452" y="297" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">Regulatory check?</text>
+  <text x="452" y="310" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">Documentation?</text>
+  <rect x="395" y="320" width="115" height="18" rx="3" fill="#ffd700" opacity="0.15"/>
+  <text x="452" y="333" text-anchor="middle" fill="#ffd700" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8" font-weight="700">PRECEDENCE: 3</text>
+
+  <rect x="540" y="258" width="135" height="100" rx="6" fill="#1a1e3a" stroke="#ff6b35" stroke-width="1.5"/>
+  <rect x="540" y="258" width="135" height="3" rx="1" fill="#ff6b35"/>
+  <text x="607" y="281" text-anchor="middle" fill="#ff6b35" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700">INTENT</text>
+  <text x="607" y="297" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">Matches OISpec?</text>
+  <text x="607" y="310" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">Business action valid?</text>
+  <rect x="550" y="320" width="115" height="18" rx="3" fill="#ff6b35" opacity="0.15"/>
+  <text x="607" y="333" text-anchor="middle" fill="#ff6b35" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8" font-weight="700">PRECEDENCE: 4</text>
+
+  <!-- Conflict resolution -->
+  <rect x="55" y="395" width="375" height="65" rx="6" fill="#1a1e3a" stroke="#f5576c" stroke-width="1.5"/>
+  <text x="242" y="418" text-anchor="middle" fill="#ffffff" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700">CONFLICT RESOLUTION</text>
+  <text x="242" y="435" text-anchor="middle" fill="#f5576c" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="9" font-weight="600">Security or Privacy violation overrides Business Intent</text>
+  <text x="242" y="449" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">Most-restrictive-wins default. Conflicts logged for pattern analysis.</text>
+
+  <!-- Arrow from SLM judges to conflict resolution -->
+  <line x1="370" y1="380" x2="242" y2="395" stroke="#92fe9d" stroke-width="1" opacity="0.5"/>
+
+  <!-- Verdict output -->
+  <rect x="460" y="395" width="235" height="65" rx="6" fill="#1a1e3a" stroke="#92fe9d" stroke-width="1.5"/>
+  <text x="577" y="418" text-anchor="middle" fill="#92fe9d" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700">INLINE VERDICT</text>
+  <text x="577" y="435" text-anchor="middle" fill="#92fe9d" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="9">APPROVE · FLAG · BLOCK · ESCALATE</text>
+  <text x="577" y="449" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">Immediate action on measurable criteria</text>
+
+  <!-- Arrow from conflict to verdict -->
+  <line x1="430" y1="427" x2="455" y2="427" stroke="#92fe9d" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+
+  <!-- FLIGHT RECORDER -->
+  <rect x="55" y="485" width="640" height="70" rx="8" fill="#1a0e1a" stroke="#ff6b35" stroke-width="2"/>
+  <text x="80" y="510" fill="#ff6b35" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="9" font-weight="700" letter-spacing="1">REC</text>
+  <circle cx="71" cy="506" r="4" fill="#f5576c" opacity="0.9">
+    <animate attributeName="opacity" values="0.9;0.3;0.9" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <text x="375" y="510" text-anchor="middle" fill="#ff6b35" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="14" font-weight="700">FLIGHT RECORDER</text>
+  <text x="375" y="530" text-anchor="middle" fill="#aaaabb" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="9">Every agent action, judge verdict, tool invocation, inter-agent message, conflict resolution, PACE transition</text>
+  <text x="375" y="545" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="9">Immutable · Tamper-evident · Timestamped · Full decision chain with reasoning</text>
+
+  <!-- Arrow from verdict to flight recorder -->
+  <line x1="375" y1="460" x2="375" y2="480" stroke="#ff6b35" stroke-width="1.5" marker-end="url(#arrowOrange)"/>
+
+  <!-- L3 Human escalation from inline -->
+  <rect x="500" y="130" width="195" height="55" rx="6" fill="#1a1e3a" stroke="#f093fb" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="597" y="153" text-anchor="middle" fill="#f093fb" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700">L3: HUMAN ESCALATION</text>
+  <text x="597" y="170" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">BLOCK or high-risk verdicts routed here</text>
+
+  <!-- Arrow from guardrails to human -->
+  <line x1="480" y1="150" x2="495" y2="150" stroke="#f093fb" stroke-width="1" opacity="0.4" marker-end="url(#arrowPink)"/>
+
+  <!-- ============================================================ -->
+  <!-- RIGHT SIDE: OFFLINE ETHICS/BIAS/FAIRNESS BOX -->
+  <!-- ============================================================ -->
+  <rect x="745" y="85" width="430" height="570" rx="12" fill="none" stroke="#a855f7" stroke-width="2.5"/>
+  <rect x="747" y="87" width="340" height="26" rx="4" fill="#7c3aed" opacity="0.2"/>
+  <text x="757" y="105" fill="#a855f7" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.5">OFFLINE POLICY-DRIVEN EVALUATION (SLOW PATH)</text>
+
+  <!-- Timing label -->
+  <rect x="1025" y="87" width="140" height="26" rx="13" fill="#a855f7" opacity="0.15"/>
+  <text x="1095" y="105" text-anchor="middle" fill="#a855f7" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="10" font-weight="600">HOURS TO WEEKS</text>
+
+  <!-- Flight recorder feed arrow -->
+  <path d="M 695 520 Q 720 520 720 400 Q 720 180 770 180" stroke="#ff6b35" stroke-width="2" fill="none" stroke-dasharray="6,3" marker-end="url(#arrowOrange)"/>
+  <text x="726" y="350" fill="#ff6b35" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8" font-weight="600" transform="rotate(-90,726,350)">FLIGHT RECORDER FEED</text>
+
+  <!-- Data sources into the offline box -->
+  <rect x="770" y="130" width="385" height="100" rx="6" fill="#0d1225" stroke="#a855f7" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="962" y="150" text-anchor="middle" fill="#a855f7" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700">DATA SOURCES</text>
+
+  <!-- Source items -->
+  <rect x="785" y="160" width="115" height="55" rx="4" fill="#1a1e3a" stroke="#555555" stroke-width="1"/>
+  <text x="842" y="180" text-anchor="middle" fill="#aaaabb" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="9" font-weight="600">Flight Recorder</text>
+  <text x="842" y="195" text-anchor="middle" fill="#667777" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="7">Decision chains</text>
+  <text x="842" y="206" text-anchor="middle" fill="#667777" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="7">Agent outputs</text>
+
+  <rect x="910" y="160" width="115" height="55" rx="4" fill="#1a1e3a" stroke="#555555" stroke-width="1"/>
+  <text x="967" y="180" text-anchor="middle" fill="#aaaabb" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="9" font-weight="600">External Signals</text>
+  <text x="967" y="195" text-anchor="middle" fill="#667777" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="7">Complaints, appeals</text>
+  <text x="967" y="206" text-anchor="middle" fill="#667777" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="7">Regulatory findings</text>
+
+  <rect x="1035" y="160" width="110" height="55" rx="4" fill="#1a1e3a" stroke="#555555" stroke-width="1"/>
+  <text x="1090" y="180" text-anchor="middle" fill="#aaaabb" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="9" font-weight="600">Outcome Data</text>
+  <text x="1090" y="195" text-anchor="middle" fill="#667777" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="7">Demographic dist.</text>
+  <text x="1090" y="206" text-anchor="middle" fill="#667777" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="7">Market benchmarks</text>
+
+  <!-- LLM Evaluation -->
+  <rect x="770" y="248" width="385" height="85" rx="8" fill="#0d1225" stroke="#a855f7" stroke-width="1.5"/>
+  <rect x="770" y="248" width="385" height="3" rx="1" fill="#a855f7"/>
+  <text x="962" y="272" text-anchor="middle" fill="#a855f7" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="700">LLM EVALUATION (SAMPLED, RETROSPECTIVE)</text>
+  <text x="962" y="292" text-anchor="middle" fill="#aaaabb" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="9">Larger model with broader context than inline SLMs can access</text>
+  <text x="962" y="308" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">Produces advisory verdicts, not blocks. Cannot override committed actions.</text>
+  <text x="962" y="322" text-anchor="middle" fill="#667777" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">Supplementary to statistical monitoring. Not the primary detection mechanism.</text>
+
+  <!-- Arrow from data sources to LLM eval -->
+  <line x1="962" y1="230" x2="962" y2="243" stroke="#a855f7" stroke-width="1.5" marker-end="url(#arrowPurple)"/>
+
+  <!-- Three evaluation domains -->
+  <rect x="770" y="350" width="120" height="75" rx="6" fill="#1a1e3a" stroke="#a855f7" stroke-width="1.5"/>
+  <rect x="770" y="350" width="120" height="3" rx="1" fill="#a855f7"/>
+  <text x="830" y="374" text-anchor="middle" fill="#a855f7" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700">ETHICS</text>
+  <text x="830" y="392" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">Values alignment?</text>
+  <text x="830" y="405" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">Harm potential?</text>
+  <text x="830" y="418" text-anchor="middle" fill="#667777" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="7">Org policy defines criteria</text>
+
+  <rect x="900" y="350" width="120" height="75" rx="6" fill="#1a1e3a" stroke="#a855f7" stroke-width="1.5"/>
+  <rect x="900" y="350" width="120" height="3" rx="1" fill="#a855f7"/>
+  <text x="960" y="374" text-anchor="middle" fill="#a855f7" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700">BIAS</text>
+  <text x="960" y="392" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">Outcome disparity?</text>
+  <text x="960" y="405" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">Protected class?</text>
+  <text x="960" y="418" text-anchor="middle" fill="#667777" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="7">Statistical, not per-action</text>
+
+  <rect x="1030" y="350" width="120" height="75" rx="6" fill="#1a1e3a" stroke="#a855f7" stroke-width="1.5"/>
+  <rect x="1030" y="350" width="120" height="3" rx="1" fill="#a855f7"/>
+  <text x="1090" y="374" text-anchor="middle" fill="#a855f7" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700">FAIRNESS</text>
+  <text x="1090" y="392" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">Equal treatment?</text>
+  <text x="1090" y="405" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">Equal outcomes?</text>
+  <text x="1090" y="418" text-anchor="middle" fill="#667777" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="7">Jurisdiction-specific</text>
+
+  <!-- Statistical monitoring -->
+  <rect x="770" y="445" width="385" height="55" rx="6" fill="#0d1225" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="962" y="468" text-anchor="middle" fill="#a855f7" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700">STATISTICAL PORTFOLIO MONITORING</text>
+  <text x="962" y="485" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">Outcome distributions across protected classes. Disparity alerting. Trend analysis.</text>
+  <text x="962" y="495" text-anchor="middle" fill="#667777" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="7">Primary detection mechanism: catches patterns invisible to per-action evaluation</text>
+
+  <!-- Arrows from eval domains to statistical monitoring -->
+  <line x1="830" y1="425" x2="870" y2="442" stroke="#a855f7" stroke-width="0.8" opacity="0.4"/>
+  <line x1="960" y1="425" x2="960" y2="442" stroke="#a855f7" stroke-width="0.8" opacity="0.4"/>
+  <line x1="1090" y1="425" x2="1050" y2="442" stroke="#a855f7" stroke-width="0.8" opacity="0.4"/>
+
+  <!-- Output: Advisory to humans -->
+  <rect x="770" y="520" width="385" height="75" rx="8" fill="#1a1e3a" stroke="#f093fb" stroke-width="2"/>
+  <rect x="770" y="520" width="385" height="3" rx="1" fill="#f093fb"/>
+  <text x="962" y="546" text-anchor="middle" fill="#f093fb" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="700">HUMAN REVIEW AND GOVERNANCE</text>
+  <text x="962" y="564" text-anchor="middle" fill="#aaaabb" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="9">Ethics board · Diversity committee · Legal counsel · Organisational leadership</text>
+  <text x="962" y="580" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">Periodic review of advisories. Investigation of portfolio patterns. Policy updates.</text>
+
+  <!-- Arrow from statistical to human -->
+  <line x1="962" y1="500" x2="962" y2="515" stroke="#f093fb" stroke-width="1.5" marker-end="url(#arrowPink)"/>
+
+  <!-- ============================================================ -->
+  <!-- FEEDBACK ARROWS: Human governance back to MASO -->
+  <!-- ============================================================ -->
+
+  <!-- Arrow from human review back to MASO guardrails (policy tuning) -->
+  <path d="M 770 575 Q 730 575 730 610 Q 730 640 500 640 Q 270 640 270 615 Q 270 585 270 560" stroke="#f093fb" stroke-width="1.5" fill="none" stroke-dasharray="6,3" marker-end="url(#arrowPink)"/>
+
+  <!-- Label on feedback arrow -->
+  <rect x="340" y="630" width="320" height="24" rx="4" fill="#0a0e1a" stroke="#f093fb" stroke-width="0.5" opacity="0.9"/>
+  <text x="500" y="646" text-anchor="middle" fill="#f093fb" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="9" font-weight="600">FEEDBACK: OISpec revisions, guardrail tuning, policy updates</text>
+
+  <!-- ============================================================ -->
+  <!-- BOTTOM: KEY DISTINCTIONS -->
+  <!-- ============================================================ -->
+  <rect x="30" y="675" width="1145" height="115" rx="8" fill="#0d1225" stroke="#333333" stroke-width="1"/>
+
+  <!-- Inline column -->
+  <rect x="45" y="690" width="530" height="88" rx="6" fill="#1a1e3a" stroke="#00c9ff" stroke-width="1" opacity="0.6"/>
+  <text x="310" y="710" text-anchor="middle" fill="#00c9ff" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700">INLINE (MASO): OPERATIONAL EVALUATION</text>
+  <text x="310" y="726" text-anchor="middle" fill="#aaaabb" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="9">Measurable criteria · Real-time verdicts · SLM judges · Approve/Block</text>
+  <text x="310" y="742" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">Security and Privacy override Business Intent on conflict</text>
+  <text x="310" y="756" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">Fraud, security, compliance, data protection, intent alignment</text>
+  <text x="310" y="770" text-anchor="middle" fill="#667777" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="7">Flight Recorder captures everything for offline analysis</text>
+
+  <!-- Offline column -->
+  <rect x="600" y="690" width="560" height="88" rx="6" fill="#1a1e3a" stroke="#a855f7" stroke-width="1" opacity="0.6"/>
+  <text x="880" y="710" text-anchor="middle" fill="#a855f7" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="700">OFFLINE: POLICY-DRIVEN EVALUATION</text>
+  <text x="880" y="726" text-anchor="middle" fill="#aaaabb" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="9">Subjective criteria · Evidence over time · LLM + statistics · Advisory only</text>
+  <text x="880" y="742" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">Ethics, bias, fairness: defined by organisation policy, not technical thresholds</text>
+  <text x="880" y="756" text-anchor="middle" fill="#889999" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">Portfolio-level patterns, external signals, demographic distributions</text>
+  <text x="880" y="770" text-anchor="middle" fill="#667777" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="7">Findings feed back to MASO as guardrail tuning and OISpec revisions</text>
+
+  <!-- Version -->
+  <text x="1100" y="810" text-anchor="end" fill="#555555" font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="8">v1.0 · Jonathan Gill · 2026</text>
+</svg>
