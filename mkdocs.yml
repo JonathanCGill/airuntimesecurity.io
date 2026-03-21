@@ -125,6 +125,7 @@ nav:
     - Red Team Playbook: maso/red-team/red-team-playbook.md
     - Integration Guide: maso/integration/integration-guide.md
     - Worked Examples: maso/examples/worked-examples.md
+    - Interactive Demo: maso/demo.md
 
   - Implementation:
     - Stakeholders:
