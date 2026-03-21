@@ -166,18 +166,6 @@ nav:
       - Enterprise Day in the Life: strategy/enterprise-day-in-the-life.md
       - Framework Tensions: strategy/framework-tensions.md
 
-  - SDK:
-    - sdk/README.md
-    - Guardrails: sdk/guardrails.md
-    - Judge: sdk/judge.md
-    - Circuit Breaker & PACE: sdk/resilience.md
-    - Pipeline: sdk/pipeline.md
-    - Agent Security: sdk/agents.md
-    - Telemetry & Audit: sdk/telemetry.md
-    - FastAPI Integration: sdk/fastapi.md
-    - Examples: sdk/examples.md
-    - What the Tests Prove: sdk/tests.md
-
   - Insights:
     - insights/README.md
     - Foundations:
