@@ -333,6 +333,12 @@ img[src$=".svg"] {
   display: none;
 }
 
+/* Highlight the Interactive Demo link in the MASO sidebar */
+.md-nav__link[href*="demo"] {
+  color: #4051b5 !important;
+  font-weight: 600;
+}
+
 /* Mobile drawer: remove accent colour, use black throughout */
 .md-nav--primary {
   --md-accent-fg-color: var(--md-default-fg-color);

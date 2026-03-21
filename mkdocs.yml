@@ -110,6 +110,7 @@ nav:
 
   - MASO:
     - maso/README.md
+    - "▶ Interactive Demo": maso/demo.md
     - Prompt, Goal & Epistemic Integrity: maso/controls/prompt-goal-and-epistemic-integrity.md
     - Identity & Access: maso/controls/identity-and-access.md
     - Data Protection: maso/controls/data-protection.md
@@ -125,7 +126,6 @@ nav:
     - Red Team Playbook: maso/red-team/red-team-playbook.md
     - Integration Guide: maso/integration/integration-guide.md
     - Worked Examples: maso/examples/worked-examples.md
-    - Interactive Demo: maso/demo.md
 
   - Implementation:
     - Stakeholders:
