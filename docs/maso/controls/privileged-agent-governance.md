@@ -93,15 +93,18 @@ Without a defined resolution protocol, teams either ignore conflicts (the loudes
 
 Multi-domain evaluation is different from multi-model cross-validation (EC-3.3). Cross-validation asks two models the same question and flags when they disagree. Multi-domain evaluation asks different questions about the same action:
 
-| Evaluation Domain | Question Being Asked |
-|-------------------|---------------------|
-| **Fraud** | Is this transaction fraudulent? |
-| **Security** | Does this action violate security policy? |
-| **Compliance** | Does this action satisfy regulatory requirements? |
-| **Data protection** | Does this action expose or mishandle sensitive data? |
-| **Intent alignment** | Does this action satisfy the agent's declared OISpec? |
+| Evaluation Domain | Question Being Asked | Evaluation Timing |
+|-------------------|---------------------|-------------------|
+| **Fraud** | Is this transaction fraudulent? | Synchronous (operational) |
+| **Security** | Does this action violate security policy? | Synchronous (operational) |
+| **Compliance** | Does this action satisfy regulatory requirements? | Synchronous (operational) |
+| **Data protection** | Does this action expose or mishandle sensitive data? | Synchronous (operational) |
+| **Intent alignment** | Does this action satisfy the agent's declared OISpec? | Synchronous (operational) |
+| **Ethics / bias / fairness** | Does this action align with organisational values and fairness standards? | Asynchronous (policy-driven, see [below](#policy-driven-evaluation-domains-ethics-bias-and-fairness)) |
 
 These are not redundant checks. They evaluate orthogonal concerns. A transaction can be non-fraudulent but non-compliant. An action can be policy-compliant but misaligned with intent. Conflict between domain judges is meaningful signal, not noise.
+
+The operational domains (fraud through intent alignment) participate in the real-time conflict resolution protocol below. The policy-driven domains (ethics, bias, fairness) run post-action and produce advisories, not blocks. See [Policy-Driven Evaluation Domains](#policy-driven-evaluation-domains-ethics-bias-and-fairness) for the rationale and implementation pattern.
 
 ### Resolution Protocol
 
@@ -228,6 +231,103 @@ Persistent disagreement between two judges on the same class of action indicates
 | Two judges consistently contradict on edge cases | Ambiguous evaluation criteria | Sharpen the OISpec for both judges |
 
 Conflict rate is a judge health metric. A conflict rate above 15% between any two judges indicates a criteria alignment problem, not a healthy diversity of opinion.
+
+### Policy-Driven Evaluation Domains: Ethics, Bias, and Fairness
+
+Not all evaluation domains belong on the same decision path. Fraud, security, and compliance are **operational domains**: they have measurable criteria, they require real-time verdicts, and their thresholds are set by regulation or technical standards. A transaction either exceeds the velocity threshold or it does not. A credential is either compromised or it is not.
+
+Ethics, bias, and fairness are different. They are **policy-driven evaluation domains** where:
+
+- Criteria are set by organisational values, not by regulation or technical measurement
+- Reasonable people disagree on what constitutes a violation
+- Context changes the evaluation (the same output may be appropriate in one jurisdiction and inappropriate in another)
+- An LLM evaluating "is this biased?" is applying its own training biases to detect bias, a circular problem that operational domains do not face
+
+These domains still need evaluation. But the evaluation mechanism is different from real-time operational judging.
+
+#### How Policy-Driven Evaluation Works
+
+| Characteristic | Operational Domains (fraud, security, compliance) | Policy-Driven Domains (ethics, bias, fairness) |
+|---------------|--------------------------------------------------|------------------------------------------------|
+| **Criteria source** | Regulation, technical standards, measurable thresholds | Organisational policy, values statements, jurisdiction-specific norms |
+| **Evaluation timing** | Real-time (synchronous or near-synchronous) | Post-action (asynchronous), with alert to HITL |
+| **Verdict type** | Approve/flag/block (actionable immediately) | Warning/advisory (informs human review) |
+| **Who defines the rules** | Regulators, security teams, compliance officers | Ethics boards, diversity committees, legal counsel, organisational leadership |
+| **LLM reliability** | High for measurable criteria (velocity, credential status, documentation presence) | Low for subjective judgments (fairness, cultural sensitivity, implicit bias) |
+| **Failure mode** | False negatives: missed fraud, missed breach | Systematic bias: the evaluator reproduces the biases it is supposed to detect |
+
+#### Implementation Pattern
+
+Policy-driven evaluation is an **offline monitoring and evaluation process**, not an inline judge. It sits outside the direct agent architecture, consuming signals from the runtime system alongside external sources that the agent architecture has no visibility into.
+
+```
+Agent architecture (runtime):
+  → Operational judges (sync): fraud, security, compliance → approve/flag/block
+  → Action committed (or blocked by operational judges)
+  → Decision chain log captures full audit trail
+
+Offline monitoring and evaluation (separate process):
+  → Consumes: decision chain logs, agent outputs, outcome data
+  → Consumes: external signals (customer feedback, complaints, appeal outcomes,
+     regulatory correspondence, demographic outcome distributions)
+  → Produces: advisory reports, pattern alerts, portfolio-level analysis
+  → Surfaces: warnings to human reviewers, ethics board, compliance
+  → Feeds: organisational policy updates, OISpec revisions, guardrail tuning
+```
+
+**Why offline, not inline?**
+
+1. **Blocking on subjective criteria creates unpredictable friction.** A bias evaluator that blocks 5% of legitimate transactions based on ambiguous criteria will be disabled within a week. Offline evaluation with human review preserves the evaluation without creating operational friction.
+2. **The most important signals come from outside the agent architecture.** Customer complaints, appeal outcomes, regulatory feedback, demographic outcome data, and adverse action challenges are external signals that no inline judge can access. A customer who was denied credit and successfully appeals provides ground truth that no amount of LLM self-evaluation can replicate.
+3. **Portfolio-level detection is more reliable than per-transaction detection.** A single decision may not be detectably biased. A pattern of 10,000 decisions that systematically disadvantages a protected class is detectable through statistical analysis. Offline evaluation enables this portfolio view.
+4. **LLMs are unreliable evaluators of their own biases.** An LLM asked "is this output biased?" may say no, because the bias is in the model's own training data. Statistical monitoring of outcomes across protected classes is more reliable than per-output LLM evaluation.
+
+#### External Signal Sources
+
+Policy-driven evaluation is only as good as the data it consumes. The runtime decision chain provides the agent's view. External sources provide the world's view:
+
+| Signal Source | What It Reveals | How It Integrates |
+|--------------|----------------|-------------------|
+| **Customer feedback and complaints** | Outcomes perceived as unfair, unexplained, or harmful by the affected party | Complaint categorisation feeds into the policy evaluation pipeline. Spikes in specific complaint categories trigger investigation. |
+| **Appeal and dispute outcomes** | Ground truth on whether automated decisions were correct | Appeal overturn rates per demographic group, per decision category. Systematic overturn patterns indicate bias the inline judges missed. |
+| **Regulatory correspondence** | Regulator concerns, examination findings, enforcement signals | Mapped to specific agent workflows and evaluation criteria. Triggers OISpec or guardrail revision. |
+| **Demographic outcome distributions** | Statistical fairness across protected classes | Approval/denial rates, risk scores, pricing outcomes segmented by protected class. Disparity above threshold triggers investigation (not automated action). |
+| **Employee and operator feedback** | Concerns from humans working with the agent system | Operators who notice patterns (e.g. "the system seems to flag these cases more often") provide early warning before statistical evidence accumulates. |
+| **Ombudsman or mediator findings** | Independent third-party assessment of disputed decisions | External validation of whether the agent system's reasoning is defensible. |
+| **Market and peer benchmarking** | Whether the organisation's outcomes are outliers relative to industry norms | If the organisation's denial rate for a demographic group is 3x the industry average, that is a signal regardless of whether the agent's per-decision reasoning appears sound. |
+
+These signals are not available to inline judges. They accumulate over time. They require human interpretation. They are the foundation of meaningful ethics and fairness evaluation, and they belong in a broader monitoring process, not in a synchronous evaluation gate.
+
+#### What Organisations Must Define
+
+The framework provides the monitoring mechanism and the integration points for external signals. The organisation provides the policy and the governance structure. This means:
+
+| Organisation Responsibility | What It Covers |
+|----------------------------|----------------|
+| **Ethics policy** | What constitutes an ethical violation in the organisation's context. Which outputs require ethics review. What the response is when a violation is detected. This is an organisational document, not a technical specification. |
+| **Bias detection criteria** | Which protected classes are monitored. What statistical thresholds trigger investigation (e.g. approval rate disparity >5% between groups). What external data sources feed the monitoring pipeline (complaints, appeals, demographic outcome data). |
+| **Fairness standards** | What "fair" means for the organisation's specific use case. Whether fairness is measured by equal treatment, equal outcomes, or another standard. This varies by jurisdiction (EU AI Act vs. US civil rights law vs. other frameworks). |
+| **External signal integration** | Which external sources are connected to the monitoring pipeline (customer feedback systems, complaint management, ombudsman findings). Who is responsible for feeding these signals into the evaluation process. What the SLA is for incorporating new external evidence. |
+| **Review cadence and governance** | How often monitoring reports are reviewed. Who reviews them (ethics board, diversity committee, legal counsel, organisational leadership). What triggers an immediate review (regulatory correspondence, complaint spike, appeal overturn rate breach) vs. periodic aggregate review. |
+| **Remediation process** | What happens when systematic bias is detected. Whether affected decisions are reversed or compensated. Who is notified (affected customers, regulators, board). What changes to the agent configuration, OISpecs, or guardrails. How the remediation is verified. |
+
+#### Integration with the Evaluation Stack
+
+Policy-driven evaluation does not replace operational evaluation. It runs outside the agent architecture as a broader monitoring process:
+
+| Layer | Operational (inline, sync) | Policy-driven (offline, async) |
+|-------|-------------------|----------------------|
+| **Guardrails** | Input/output validation, tool scoping | Protected-class keyword detection as a flagging signal (not a block) |
+| **SLM sidecar** | Tactical evaluation against OISpec, fraud/security/compliance domain criteria | Not used. LLMs are unreliable for subjective policy evaluation at the per-action level. |
+| **Cloud Judge** | High-risk action evaluation (CRITICAL tier, synchronous) | Not used inline. May be used offline for sampled retrospective evaluation, but external signals (complaints, appeals) are more reliable ground truth. |
+| **Human review** | Escalated operational decisions | Periodic review of monitoring reports. Investigation of patterns surfaced by statistical analysis and external signals. |
+| **Statistical monitoring** | Anomaly scoring, drift detection | Outcome distribution analysis across protected classes. Disparity alerting. The primary detection mechanism. |
+| **External signal pipeline** | Not applicable (inline architecture has no visibility) | Customer feedback, complaints, appeals, regulatory correspondence, demographic outcome data, ombudsman findings. The ground truth that the inline architecture cannot access. |
+
+The statistical monitoring component combined with external signals is the most effective layer for bias and fairness detection. It does not evaluate individual outputs. It monitors the aggregate distribution of outcomes, correlates with external feedback, and alerts when patterns emerge that no per-action evaluator could detect.
+
+!!! warning "Do not make ethics evaluation a synchronous gate"
+    The temptation to add an "ethics judge" to the synchronous evaluation path is understandable. Resist it. An LLM-based ethics evaluator running synchronously will produce false positives on ambiguous cases, creating operational friction that leads teams to disable it. It will produce false negatives on systematic biases, because it shares the same training biases as the task agent. Post-action statistical monitoring with human review is more reliable and more durable than per-action LLM-based ethics evaluation.
 
 ### What This Does Not Solve
 

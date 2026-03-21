@@ -181,6 +181,20 @@ For **Compliance**: the Decision Trace format now includes an `inter_judge_confl
 
 For **Fraud Operations**: the "most restrictive wins" default means fraud flags are never overridden by another domain's approval without human intervention. This protects the fraud team's detection capability while giving compliance and security their own voice.
 
+## Policy-Driven Evaluation: Ethics, Bias, and Fairness
+
+Not every evaluation domain belongs in the synchronous judge stack. Fraud, security, and compliance have measurable criteria and require real-time verdicts. Ethics, bias, and fairness are different: they are defined by organisational policy, they vary by jurisdiction and context, and an LLM evaluating "is this biased?" is applying its own training biases to detect bias.
+
+[Privileged Agent Governance](../controls/privileged-agent-governance.md#policy-driven-evaluation-domains-ethics-bias-and-fairness) now distinguishes **operational domains** (synchronous, measurable, regulatory) from **policy-driven domains** (offline, advisory, organisational):
+
+- Ethics/bias/fairness evaluation runs as an **offline monitoring and evaluation process**, outside the direct agent architecture, not as an inline judge
+- The monitoring pipeline consumes **signals from both the runtime system and external sources** that the agent architecture has no visibility into: customer feedback, complaints, appeal outcomes, regulatory correspondence, demographic outcome distributions, ombudsman findings, market benchmarking
+- **Portfolio-level statistical monitoring** combined with external signals is more reliable than per-action LLM evaluation. A single decision may not be detectably biased. A pattern of 10,000 decisions with a 3x denial rate disparity across protected classes is detectable, especially when correlated with a spike in customer complaints
+- **Organisations define the policy**: what constitutes an ethical violation, which protected classes are monitored, what statistical thresholds trigger investigation, what fairness standard applies (equal treatment, equal outcomes, jurisdiction-specific), which external signal sources feed the monitoring pipeline
+- The framework provides the monitoring mechanism and the integration points. It does not prescribe ethics policy, because that is an organisational decision, not a technical one.
+
+The key insight: making an "ethics judge" a synchronous inline gate will fail. It will produce false positives on ambiguous cases (teams disable it) and false negatives on systematic biases (it shares the task agent's training biases). Offline monitoring with external signals and human governance is more reliable and more durable, because the most important evidence (customer complaints, appeal outcomes, regulatory findings) is not available to any inline judge.
+
 ## How MASO Addresses Judge Hell
 
 MASO has five mechanisms that prevent evaluation from becoming an unbounded recursion:
@@ -224,6 +238,7 @@ The strategic evaluator can be a single LLM call at phase boundaries. The meta-e
 | No judge necessity criteria | [Judge Assurance: Judge Necessity Test](../../core/judge-assurance.md#when-you-need-a-judge-and-when-you-do-not) | Prevents unnecessary judges on low-risk workflows |
 | No inter-judge conflict resolution | [Privileged Agent Governance: Inter-Judge Conflict Resolution](../controls/privileged-agent-governance.md#inter-judge-conflict-resolution) | Defined precedence, most-restrictive-wins default, conflict logging |
 | No judge proliferation recognition | [Privileged Agent Governance: Recognising Judge Proliferation](../controls/privileged-agent-governance.md#recognising-judge-proliferation) | Teams distinguish evaluation roles from services before panicking |
+| No guidance on ethics/bias/fairness evaluation | [Privileged Agent Governance: Policy-Driven Evaluation Domains](../controls/privileged-agent-governance.md#policy-driven-evaluation-domains-ethics-bias-and-fairness) | Async post-action evaluation with portfolio monitoring, not a synchronous "ethics judge" |
 
 ## The Honest Answer
 
