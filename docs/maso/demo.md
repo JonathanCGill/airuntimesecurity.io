@@ -11,7 +11,7 @@ This demo plays back pre-recorded scenarios through a seven-stage evaluation pip
 - **Clean request (allowed)**: a routine data query that passes every judge.
 - **Data exfiltration (blocked)**: a prompt that tries to email bulk customer PII to a personal address. The tool-call judge denies it and the pipeline halts.
 
-<iframe src="../../demo/multi-agent-risk.html" style="width: 100%; height: 80vh; border: 1px solid var(--md-default-fg-color--lightest); border-radius: 8px;" loading="lazy" title="Multi-Agent Pipeline Demo"></iframe>
+<iframe src="multi-agent-risk-demo.html" style="width: 100%; height: 80vh; border: 1px solid var(--md-default-fg-color--lightest); border-radius: 8px;" loading="lazy" title="Multi-Agent Pipeline Demo"></iframe>
 
 ## What each stage does
 

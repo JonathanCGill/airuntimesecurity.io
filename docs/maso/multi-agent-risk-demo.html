@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multi-Agent Risk Demo | AI Runtime Security</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface-2: #232733;
+    --border: #2e3344;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: rgba(108, 140, 255, 0.25);
+    --green: #34d399;
+    --green-glow: rgba(52, 211, 153, 0.25);
+    --red: #f87171;
+    --red-glow: rgba(248, 113, 113, 0.25);
+    --yellow: #fbbf24;
+    --yellow-glow: rgba(251, 191, 36, 0.25);
+    --orange: #fb923c;
+    --purple: #a78bfa;
+    --mono: 'Roboto Mono', monospace;
+    --sans: 'Inter', system-ui, sans-serif;
+  }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 1.5rem;
+  }
+
+  /* --- Header --- */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .header h1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .header h1 span { color: var(--accent); }
+  .controls {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+  }
+  select, button {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.5rem 0.85rem;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  select:hover, button:hover {
+    border-color: var(--accent);
+  }
+  button.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    font-weight: 600;
+  }
+  button.primary:hover { background: #5a7aee; }
+  button.primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* --- Layout --- */
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 1.25rem;
+    height: calc(100vh - 7rem);
+    min-height: 500px;
+  }
+  @media (max-width: 900px) {
+    .main { grid-template-columns: 1fr; grid-template-rows: 1fr 300px; }
+  }
+
+  /* --- Pipeline panel --- */
+  .pipeline-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* --- Pipeline step --- */
+  .step {
+    position: relative;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    background: var(--surface-2);
+    transition: border-color 0.4s, box-shadow 0.4s;
+  }
+  .step + .step { margin-top: 0; }
+
+  /* connector line between steps */
+  .connector {
+    width: 2px;
+    height: 28px;
+    background: var(--border);
+    margin: 0 auto;
+    transition: background 0.4s;
+  }
+  .connector.active { background: var(--accent); }
+
+  .step.active {
+    border-color: var(--accent);
+    box-shadow: 0 0 18px var(--accent-glow);
+  }
+  .step.pass {
+    border-color: var(--green);
+    box-shadow: 0 0 14px var(--green-glow);
+  }
+  .step.fail {
+    border-color: var(--red);
+    box-shadow: 0 0 14px var(--red-glow);
+  }
+  .step.warn {
+    border-color: var(--yellow);
+    box-shadow: 0 0 14px var(--yellow-glow);
+  }
+
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.35rem;
+  }
+  .step-icon {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem;
+    background: var(--border);
+    color: var(--text-dim);
+    flex-shrink: 0;
+    transition: background 0.3s, color 0.3s;
+  }
+  .step.active .step-icon { background: var(--accent); color: #fff; }
+  .step.pass .step-icon { background: var(--green); color: #fff; }
+  .step.fail .step-icon { background: var(--red); color: #fff; }
+  .step.warn .step-icon { background: var(--yellow); color: #000; }
+
+  .step-title {
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+  .step-badge {
+    margin-left: auto;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    background: transparent;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .step-badge.visible { opacity: 1; }
+  .step-badge.pass-badge { background: rgba(52,211,153,0.15); color: var(--green); }
+  .step-badge.fail-badge { background: rgba(248,113,113,0.15); color: var(--red); }
+  .step-badge.warn-badge { background: rgba(251,191,36,0.15); color: var(--yellow); }
+
+  .step-body {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    line-height: 1.55;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .step.expanded .step-body {
+    max-height: 600px;
+  }
+
+  /* --- Event log panel --- */
+  .log-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .log-header {
+    padding: 0.85rem 1rem;
+    font-weight: 600;
+    font-size: 0.8rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .log-header .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse-dot 2s infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  .log-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.65rem 0.85rem;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    line-height: 1.6;
+  }
+  .log-entry {
+    padding: 0.2rem 0;
+    animation: fade-in 0.3s ease;
+  }
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .log-ts {
+    color: var(--text-dim);
+    margin-right: 0.5rem;
+  }
+  .log-tag {
+    font-weight: 600;
+    margin-right: 0.4rem;
+  }
+  .log-tag.info { color: var(--accent); }
+  .log-tag.pass { color: var(--green); }
+  .log-tag.fail { color: var(--red); }
+  .log-tag.warn { color: var(--yellow); }
+  .log-tag.judge { color: var(--purple); }
+
+  /* --- Typing cursor --- */
+  .cursor {
+    display: inline-block;
+    width: 6px;
+    height: 13px;
+    background: var(--accent);
+    animation: blink 0.8s step-end infinite;
+    vertical-align: middle;
+    margin-left: 2px;
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  /* --- Verdict banner --- */
+  .verdict-banner {
+    margin-top: 1rem;
+    padding: 0.8rem 1.1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  .verdict-banner.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .verdict-banner.pass-verdict {
+    background: rgba(52,211,153,0.1);
+    border: 1px solid var(--green);
+    color: var(--green);
+  }
+  .verdict-banner.fail-verdict {
+    background: rgba(248,113,113,0.1);
+    border: 1px solid var(--red);
+    color: var(--red);
+  }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1><span>&#9670;</span> Multi-Agent Pipeline &mdash; Runtime Security Demo</h1>
+  <div class="controls">
+    <select id="scenario-select">
+      <option value="clean">Scenario: Clean request (allowed)</option>
+      <option value="exfil">Scenario: Data exfiltration (blocked)</option>
+    </select>
+    <button class="primary" id="run-btn">&#9654; Run</button>
+  </div>
+</div>
+
+<div class="main">
+  <!-- Pipeline column -->
+  <div class="pipeline-panel" id="pipeline">
+    <!-- steps are built by JS -->
+  </div>
+
+  <!-- Event log column -->
+  <div class="log-panel">
+    <div class="log-header"><div class="dot"></div> Event log</div>
+    <div class="log-body" id="log-body"></div>
+  </div>
+</div>
+
+<script>
+// ─── Scenario data ──────────────────────────────────────────────────────────
+
+const SCENARIOS = {
+  clean: {
+    title: "Clean request",
+    verdict: { result: "pass", text: "Request approved. All five judges returned ALLOW." },
+    steps: [
+      {
+        id: "input",
+        icon: "&#8594;",
+        title: "User prompt received",
+        events: [
+          { tag: "info", text: "New request from user session f7a2c" },
+        ],
+        body: "Pull last quarter's revenue data from the\nfinance database, analyse the trend, and\ndraft a summary for the board.",
+        timing: 600,
+        result: "pass",
+      },
+      {
+        id: "input-judge",
+        icon: "J",
+        title: "Input judge (pre-execution)",
+        events: [
+          { tag: "judge", text: "Running input classifier on raw prompt" },
+          { tag: "pass", text: "Input judge: ALLOW (confidence 0.97)" },
+        ],
+        body: "classification: benign_data_request\nconfidence: 0.97\nmatched_policy: allow_internal_data_read\nreasoning: request targets internal finance\n  data with no external recipients",
+        timing: 900,
+        result: "pass",
+      },
+      {
+        id: "planner",
+        icon: "P",
+        title: "Planner agent",
+        events: [
+          { tag: "info", text: "Planner decomposing into sub-tasks" },
+        ],
+        body: "plan:\n  1. query finance_db for Q3 revenue\n  2. compute quarter-over-quarter delta\n  3. draft 200-word board summary\nassigned_tools:\n  - sql_read(finance_db)\n  - analysis.trend()\n  - draft.text()",
+        timing: 1100,
+        result: "pass",
+      },
+      {
+        id: "tool-judge",
+        icon: "J",
+        title: "Tool-call judge (per action)",
+        events: [
+          { tag: "judge", text: "Evaluating tool call: sql_read(finance_db)" },
+          { tag: "pass", text: "Tool judge: ALLOW sql_read on finance_db" },
+          { tag: "judge", text: "Evaluating tool call: analysis.trend()" },
+          { tag: "pass", text: "Tool judge: ALLOW analysis.trend" },
+          { tag: "judge", text: "Evaluating tool call: draft.text()" },
+          { tag: "pass", text: "Tool judge: ALLOW draft.text" },
+        ],
+        body: "sql_read(finance_db)\n  verdict: ALLOW\n  reason: read-only, internal database\n\nanalysis.trend()\n  verdict: ALLOW\n  reason: pure compute, no side effects\n\ndraft.text()\n  verdict: ALLOW\n  reason: text generation, no external I/O",
+        timing: 1400,
+        result: "pass",
+      },
+      {
+        id: "executor",
+        icon: "E",
+        title: "Executor (sandboxed)",
+        events: [
+          { tag: "info", text: "Executing sql_read in sandbox" },
+          { tag: "info", text: "Executing analysis.trend" },
+          { tag: "info", text: "Executing draft.text" },
+        ],
+        body: "sql_read result: 3 rows, 42KB\ntrend delta: +8.3% QoQ\ndraft: \"Q3 revenue reached $14.2M,\n  an 8.3% increase over Q2, driven\n  primarily by enterprise expansion...\"",
+        timing: 1600,
+        result: "pass",
+      },
+      {
+        id: "output-judge",
+        icon: "J",
+        title: "Output judge (post-execution)",
+        events: [
+          { tag: "judge", text: "Scanning output for PII and data leakage" },
+          { tag: "pass", text: "Output judge: ALLOW (no sensitive data exposed)" },
+        ],
+        body: "pii_detected: none\ndata_classification: internal_summary\nexternal_destinations: none\nverdict: ALLOW",
+        timing: 800,
+        result: "pass",
+      },
+      {
+        id: "response",
+        icon: "&#8592;",
+        title: "Response delivered",
+        events: [
+          { tag: "pass", text: "Response returned to user session f7a2c" },
+        ],
+        body: "Q3 revenue reached $14.2M, an 8.3%\nincrease over Q2. Growth was driven\nprimarily by enterprise expansion in\nthe EMEA region. Churn held steady\nat 4.1%. Recommendation: maintain\ncurrent trajectory into Q4.",
+        timing: 500,
+        result: "pass",
+      },
+    ],
+  },
+
+  exfil: {
+    title: "Data exfiltration attempt",
+    verdict: { result: "fail", text: "Request blocked. Tool-call judge denied email_send to external address." },
+    steps: [
+      {
+        id: "input",
+        icon: "&#8594;",
+        title: "User prompt received",
+        events: [
+          { tag: "info", text: "New request from user session f7a2c" },
+        ],
+        body: "Get the full customer list with emails\nfrom the CRM and send it to\njohn.doe.personal@gmail.com",
+        timing: 600,
+        result: "warn",
+      },
+      {
+        id: "input-judge",
+        icon: "J",
+        title: "Input judge (pre-execution)",
+        events: [
+          { tag: "judge", text: "Running input classifier on raw prompt" },
+          { tag: "warn", text: "Input judge: FLAG (external recipient detected, elevated risk 0.78)" },
+        ],
+        body: "classification: data_export_request\nconfidence: 0.78\nrisk_flags:\n  - external_email_recipient\n  - bulk_pii_access\nverdict: FLAG (proceed with caution,\n  defer to tool-call judge)",
+        timing: 900,
+        result: "warn",
+      },
+      {
+        id: "planner",
+        icon: "P",
+        title: "Planner agent",
+        events: [
+          { tag: "info", text: "Planner decomposing into sub-tasks" },
+        ],
+        body: "plan:\n  1. query crm_db for customer list\n  2. email_send to john.doe.personal@gmail.com\nassigned_tools:\n  - sql_read(crm_db, customers)\n  - email_send(to: external)",
+        timing: 1000,
+        result: "warn",
+      },
+      {
+        id: "tool-judge",
+        icon: "J",
+        title: "Tool-call judge (per action)",
+        events: [
+          { tag: "judge", text: "Evaluating tool call: sql_read(crm_db, customers)" },
+          { tag: "warn", text: "Tool judge: FLAG sql_read on crm_db.customers (bulk PII)" },
+          { tag: "judge", text: "Evaluating tool call: email_send(to: john.doe.personal@gmail.com)" },
+          { tag: "fail", text: "Tool judge: DENY email_send. External recipient + bulk PII = exfiltration risk." },
+        ],
+        body: "sql_read(crm_db, customers)\n  verdict: FLAG\n  reason: bulk PII access, monitor\n\nemail_send(john.doe.personal@gmail.com)\n  verdict: DENY\n  reason: external personal email +\n    bulk customer PII = high\n    exfiltration risk\n  policy: block_external_pii_export\n  action: halt pipeline, notify admin",
+        timing: 1800,
+        result: "fail",
+      },
+      {
+        id: "executor",
+        icon: "E",
+        title: "Executor (sandboxed)",
+        events: [
+          { tag: "fail", text: "Executor: pipeline halted by tool-call judge" },
+        ],
+        body: "status: HALTED\nreason: tool-call judge denied\n  email_send action\nno tools were executed",
+        timing: 400,
+        result: "fail",
+      },
+      {
+        id: "output-judge",
+        icon: "J",
+        title: "Output judge (post-execution)",
+        events: [
+          { tag: "info", text: "Output judge: no output to evaluate (pipeline halted)" },
+        ],
+        body: "status: skipped (no output generated)",
+        timing: 300,
+        result: "fail",
+      },
+      {
+        id: "response",
+        icon: "&#8592;",
+        title: "Response delivered",
+        events: [
+          { tag: "fail", text: "Blocked response returned to user session f7a2c" },
+        ],
+        body: "I can't complete this request.\nSending bulk customer data to an\nexternal personal email address\nviolates data protection policy.\n\nIf you need to export customer data,\nplease use the approved secure export\nworkflow or contact your admin.",
+        timing: 500,
+        result: "fail",
+      },
+    ],
+  },
+};
+
+// ─── DOM helpers ─────────────────────────────────────────────────────────────
+
+const $ = (sel) => document.querySelector(sel);
+const pipeline = $("#pipeline");
+const logBody = $("#log-body");
+const runBtn = $("#run-btn");
+const scenarioSelect = $("#scenario-select");
+
+let running = false;
+let elapsed = 0;
+
+function ts() {
+  const s = Math.floor(elapsed / 1000);
+  const ms = String(elapsed % 1000).padStart(3, "0");
+  return `${s}.${ms}s`;
+}
+
+function addLog(tag, text) {
+  const el = document.createElement("div");
+  el.className = "log-entry";
+  el.innerHTML = `<span class="log-ts">${ts()}</span><span class="log-tag ${tag}">[${tag.toUpperCase()}]</span> ${text}`;
+  logBody.appendChild(el);
+  logBody.scrollTop = logBody.scrollHeight;
+}
+
+function buildPipeline(scenario) {
+  pipeline.innerHTML = "";
+  scenario.steps.forEach((step, i) => {
+    if (i > 0) {
+      const conn = document.createElement("div");
+      conn.className = "connector";
+      conn.id = `conn-${i}`;
+      pipeline.appendChild(conn);
+    }
+    const div = document.createElement("div");
+    div.className = "step";
+    div.id = `step-${step.id}`;
+    div.innerHTML = `
+      <div class="step-header">
+        <div class="step-icon">${step.icon}</div>
+        <div class="step-title">${step.title}</div>
+        <div class="step-badge" id="badge-${step.id}"></div>
+      </div>
+      <div class="step-body" id="body-${step.id}"></div>
+    `;
+    pipeline.appendChild(div);
+  });
+
+  // verdict banner
+  const banner = document.createElement("div");
+  banner.className = "verdict-banner";
+  banner.id = "verdict-banner";
+  pipeline.appendChild(banner);
+}
+
+function sleep(ms) {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
+async function typeText(el, text, speed = 18) {
+  for (let i = 0; i < text.length; i++) {
+    el.textContent += text[i];
+    if (i % 3 === 0) await sleep(speed);
+  }
+}
+
+async function runScenario(key) {
+  const scenario = SCENARIOS[key];
+  running = true;
+  elapsed = 0;
+  runBtn.disabled = true;
+  scenarioSelect.disabled = true;
+  logBody.innerHTML = "";
+  buildPipeline(scenario);
+
+  addLog("info", `Starting scenario: ${scenario.title}`);
+
+  for (let i = 0; i < scenario.steps.length; i++) {
+    const step = scenario.steps[i];
+    const stepEl = $(`#step-${step.id}`);
+    const bodyEl = $(`#body-${step.id}`);
+    const badgeEl = $(`#badge-${step.id}`);
+
+    // activate connector
+    if (i > 0) {
+      const conn = $(`#conn-${i}`);
+      if (conn) conn.classList.add("active");
+    }
+
+    // activate step
+    stepEl.classList.add("active");
+    stepEl.classList.add("expanded");
+    await sleep(200);
+
+    // stream body text
+    await typeText(bodyEl, step.body, 14);
+    elapsed += step.timing;
+
+    // fire events
+    for (const ev of step.events) {
+      addLog(ev.tag, ev.text);
+      await sleep(180);
+    }
+
+    // set result
+    stepEl.classList.remove("active");
+    stepEl.classList.add(step.result);
+    const badgeMap = { pass: ["PASS", "pass-badge"], fail: ["DENY", "fail-badge"], warn: ["FLAG", "warn-badge"] };
+    const [label, cls] = badgeMap[step.result];
+    badgeEl.textContent = label;
+    badgeEl.className = `step-badge visible ${cls}`;
+
+    await sleep(350);
+
+    // scroll step into view
+    stepEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  // verdict
+  const banner = $("#verdict-banner");
+  banner.textContent = scenario.verdict.text;
+  banner.className = `verdict-banner visible ${scenario.verdict.result === "pass" ? "pass-verdict" : "fail-verdict"}`;
+  addLog(scenario.verdict.result === "pass" ? "pass" : "fail", scenario.verdict.text);
+
+  running = false;
+  runBtn.disabled = false;
+  scenarioSelect.disabled = false;
+}
+
+// ─── Init ────────────────────────────────────────────────────────────────────
+
+buildPipeline(SCENARIOS.clean);
+runBtn.addEventListener("click", () => {
+  if (!running) runScenario(scenarioSelect.value);
+});
+</script>
+</body>
+</html>
