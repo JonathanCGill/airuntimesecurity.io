@@ -13,7 +13,7 @@ comments: false
 
 <div class="home-subtitle" markdown>
 
-**Reduce harm caused by your organisation's use of AI.**
+**Reduce harm caused by your <span style="white-space: nowrap;">organisation's</span> use of AI.**
 
 A risk-proportionate framework of control patterns that you select, adapt, or consciously deselect based on your own risk appetite and the way your organisation works.
 
