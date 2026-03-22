@@ -136,6 +136,18 @@ Securing autonomous agent coordination in multi-agent systems.
 
 </div>
 
+<div class="learning-callout" markdown>
+
+<span class="learning-callout__label">Related</span>
+
+<p class="learning-callout__title">Interested in Secure by Design for AI?</p>
+
+<p class="learning-callout__desc">Secure by Design shifts security left, embedding it into AI systems from the start rather than bolting it on after deployment. Learn how design-time decisions and runtime controls work together to reduce risk across the full AI lifecycle.</p>
+
+[Explore AI Secured by Design](https://aisecuredbydesign.io/){ .md-button }
+
+</div>
+
 ---
 
 <p style="text-align: center; font-size: 0.85rem; color: var(--md-default-fg-color--light);">
