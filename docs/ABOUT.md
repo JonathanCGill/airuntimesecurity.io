@@ -55,6 +55,8 @@ Over 30 years across infrastructure, security engineering, consulting, and leade
 
 - **GitHub**: [@JonathanCGill](https://github.com/JonathanCGill)
 - **LinkedIn**: [Jonathan Gill](https://www.linkedin.com/in/jonathancgill/)
+- **The Insect Hotel**: [theinsecthotel.co.za](https://theinsecthotel.co.za)
+- **JonoArt**: [jonoart.co.za](https://jonoart.co.za)
 
 ## Feedback
 
