@@ -161,9 +161,11 @@ Code scanning catches known dangerous patterns but is inherently incomplete - th
 
 ## Why Container Isolation Alone Is Not Enough
 
-Research from the University of Oxford and the UK AI Security Institute demonstrates that frontier LLMs can escape standard container sandboxes when common misconfigurations are present. Their **SandboxEscapeBench** benchmark tested 18 escape scenarios across orchestration, runtime, and kernel layers and found that frontier models reliably exploit exposed Docker sockets, overprivileged containers, and similar configuration weaknesses.
+Research from the University of Oxford and the UK AI Security Institute demonstrates that frontier LLMs can escape standard container sandboxes when common misconfigurations are present. Their **SandboxEscapeBench** benchmark tested 18 escape scenarios across orchestration, runtime, and kernel layers and found that top-tier models (Opus 4.5, GPT-5) solve easy misconfiguration scenarios at near-100% rates and achieve roughly 40% success on harder runtime and kernel exploits.
 
-This means the controls above are not theoretical. Without proper implementation of SAND-01 through SAND-06, a sufficiently capable model with shell access can discover and exploit weaknesses in its own sandbox. Container isolation should be treated as one layer of defence, not the only layer.
+This means the controls above are not theoretical. Without proper implementation of SAND-01 through SAND-06, a sufficiently capable model with shell access can discover and exploit weaknesses in its own sandbox. The research also found that models opportunistically discover unintended escape paths, reinforcing that agents will explore beyond intended boundaries.
+
+Container isolation should be treated as one layer of defence, not the only layer. Token budgets and retry policies are also security-relevant: inference-time compute scales escape probability roughly log-linearly, and many successful escapes cost approximately $1 per attempt.
 
 For the full analysis, see [The Sandbox Escape Problem](../../insights/the-sandbox-escape-problem.md).
 
