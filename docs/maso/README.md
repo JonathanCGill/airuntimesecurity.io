@@ -16,6 +16,18 @@ The seven control domains, three implementation tiers, and PACE resilience model
 
 For AI you consume as a service (copilots, productivity tools, SaaS with embedded AI), MASO's control domains are not directly applicable. Those systems are covered by vendor-side controls and your organisation's data governance. See [Maturity Levels](../strategy/maturity-levels.md) for how the framework addresses consumed AI differently from AI you operate.
 
+### MASO Does Not Replace Your Existing Controls
+
+MASO manages risks specific to AI agents: prompt injection propagation, hallucination amplification, transitive privilege escalation, epistemic failures, and the other threats catalogued in the [Emergent Risk Register](controls/risk-register.md). It does not manage risks in the systems agents connect to. Those systems must have their own controls in place and working.
+
+**Agents interact with APIs, databases, message queues, email services, file stores, and third-party endpoints.** If those systems have broken input validation, misconfigured access controls, overly permissive database grants, or missing DLP, MASO cannot compensate. A perfectly secured agent orchestration sending data to an API with no authentication or a database with no parameterized queries is still vulnerable. The weakness is in the connected system, not in the agent, and no amount of guardrails, Judge evaluation, or human oversight on the agent side will fix it.
+
+This is no different from ordinary software. A well-architected application with strong internal security is still compromised if it talks to a database with default credentials or an API that returns stack traces in error messages. The same principle applies to agent systems, with one critical difference: agents are non-deterministic callers. You cannot predict exactly what an agent will send to an API or query from a database. This makes the receiving system's own defences more important, not less.
+
+**Prevention and detection both matter.** Prevention means the connected systems enforce their own boundaries: strict input validation, stored procedures, row-level security, request-scoped authorization, opaque error responses. Detection means monitoring systems (DLP, fraud detection, SIEM, WAF) watch agent traffic the same way they watch human traffic, and flag anomalies regardless of origin.
+
+MASO's [Environment Containment](environment-containment.md) strategy formalises these requirements. But the principle is simple: MASO secures the agent. You secure everything the agent touches. Both are necessary. Neither is sufficient alone.
+
 ## Architecture
 
 ![MASO Architecture](../images/maso-architecture.svg)
