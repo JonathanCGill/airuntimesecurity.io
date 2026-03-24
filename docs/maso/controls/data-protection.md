@@ -104,6 +104,32 @@ All Tier 2 controls remain active, plus:
 | **Quantitatively Managed** | DLP detection rate measured and reported. RAG integrity check frequency and results tracked. Memory isolation tested regularly with documented results. |
 | **Optimising** | Real-time RAG integrity at query time. Memory decay policies with documented rationale. Independent memory analysis agent. Full data provenance chain. |
 
+## Environment Containment: Data Controls
+
+The controls above govern data flows within the agent orchestration. The controls below govern the data systems agents connect to. Both are necessary. Data-layer environment controls remain effective even when the agent is compromised, because they do not depend on the agent's cooperation.
+
+For the full strategy, see [Environment Containment](../environment-containment.md).
+
+### Database-Level Containment
+
+Agent-accessible database operations should execute through **stored procedures**, not dynamic SQL. The agent cannot construct arbitrary queries. It can only invoke pre-defined operations with validated parameters. This eliminates SQL injection as an attack class entirely, regardless of what the agent attempts.
+
+**Parameterized queries** with typed parameters prevent the agent's input from being interpreted as SQL, even where stored procedures are not feasible.
+
+**Row-level security** at the database layer enforces access boundaries independently of the application. If the application layer is compromised (through prompt injection, for example), the database still enforces that the agent cannot read or modify data outside its permitted scope.
+
+**Database constraints** (CHECK, FOREIGN KEY, UNIQUE, NOT NULL) enforce business rules at the storage layer. An agent that attempts to insert invalid data, violate referential integrity, or create duplicate records is stopped by the database itself.
+
+**Read replicas** for read-heavy agents remove write access at the infrastructure level. The agent cannot accidentally or intentionally modify production data through a read replica. This is a structural guarantee, not a policy.
+
+### Opaque Error Responses from Data Systems
+
+Database and API error responses to agents should return success or failure only. No SQL error messages, no schema details, no internal column names. Full diagnostics are logged server-side for human operators. This prevents the agent from using error messages to map the database schema or infer access control boundaries.
+
+### Kill Switch on Data Anomalies
+
+DLP alerts, fraud detection alerts, and database-level anomaly detection (unusual query volume, access to normally untouched tables, bulk data reads) should feed into an automated kill switch that terminates agent access within 30 seconds. The kill switch operates at the infrastructure level (credential revocation, network block), not through the agent's cooperation.
+
 ## DLP Beyond the Message Bus
 
 MASO's DLP controls (DP-2.1) scan inter-agent messages within the orchestration. This is necessary but not sufficient. DLP applies in both directions - inbound and outbound - and the controls outside the AI system play an equally important role.

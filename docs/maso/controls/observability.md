@@ -278,6 +278,26 @@ The Decision Trace is not a replacement for the decision chain log. It is a **vi
 | **Quantitatively Managed** | Anomaly detection accuracy measured (true positive rate, false positive rate). Drift detection latency tracked. Decision chain reconstruction time measured against SLA. |
 | **Optimising** | Long-window behavioral analysis. Independent observability agent. Cross-agent correlation. Causal chain reconstruction automated. Anomaly scoring weights tuned from operational data. |
 
+## Environment Containment: Observability Integration
+
+Observability gains significant detection power when integrated with environment containment controls. Systems the agent connects to generate signals that are invisible to model-based evaluation.
+
+For the full strategy, see [Environment Containment](../environment-containment.md).
+
+### API Rejection Rates as Anomaly Signals
+
+When hardened APIs reject agent requests (input validation failures, schema violations, authorization denials), each rejection is a signal. A sudden spike in rejection rates is a strong indicator that the agent has been compromised through prompt injection or goal hijacking. These signals should feed into the anomaly scoring model (OB-2.2) with high weight, and into the kill switch trigger logic.
+
+### Fraud and DLP as Independent Detection Layers
+
+Enterprise fraud detection and DLP systems are trained on human exfiltration and abuse patterns. Agent traffic that triggers these systems bypasses the need for model-based evaluation entirely. DLP catching PII in an agent's API call is a higher-confidence signal than a Model-as-Judge flagging the same content, because DLP uses deterministic pattern matching, not probabilistic evaluation.
+
+These external signals should be ingested into SIEM (OB-2.4) and correlated with agent-specific anomaly scores. Cross-system correlation reveals patterns invisible to either system alone: an agent accessing a database and sending an email in rapid succession may not trigger either system individually, but the combination is a classic exfiltration pattern.
+
+### Kill Switch Triggers from Environment Monitoring
+
+The kill switch should fire automatically when environment monitoring detects a breach, not when the agent reports a problem. Triggers include: DLP alert on agent-originated traffic, fraud detection alert on agent-initiated transactions, anomaly score above a defined threshold, or a combination of elevated API rejection rates and abnormal data access patterns. The kill switch operates on separate infrastructure and cannot be disabled by the agent or its orchestration.
+
 ## Common Pitfalls
 
 **Logging everything but monitoring nothing.** A comprehensive audit log that nobody reviews and no automated system analyses is compliance theatre. Logs must feed into active monitoring and alerting, not just exist for post-incident forensics.

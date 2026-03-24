@@ -94,6 +94,12 @@ Orchestrators, planners, and meta-agents hold disproportionate authority - they 
 
 *Covers: ASI03, ASI07, LLM06 (elevated controls for high-authority agents)*
 
+### [Environment Containment](environment-containment.md)
+
+Cross-cutting strategy that complements all seven control domains. Instead of relying on the agent to behave correctly, harden every system the agent connects to: strict API input validation, opaque error responses, stored procedures, no-retry enforcement, and infrastructure-level kill switches. Existing enterprise security systems (DLP, fraud detection, WAF, SIEM) apply unchanged to agent traffic. The agent proposes; the infrastructure disposes.
+
+*Cross-cuts: All Control Domains · All Implementation Tiers*
+
 ### 7. [Objective Intent](controls/objective-intent.md)
 
 Every agent, judge, and workflow operates against a developer-declared Objective Intent Specification (OISpec), a structured, version-controlled contract defining what the agent should accomplish and within what parameters. Tactical judges evaluate individual agents against their OISpecs. A strategic evaluation agent assesses whether combined agent actions satisfy the workflow's aggregated intent. Judges are themselves monitored against their own OISpecs. This is the bridge from fault detection to behavioral assurance: from catching things that go wrong to verifying that things go right.
@@ -241,7 +247,8 @@ These questions come up in every MASO deployment. The answers sit across the fra
 | What does the full evaluation stack cost, not just one judge? | [Cost & Latency](../extensions/technical/cost-and-latency.md#total-cost-of-evaluation-multi-agent-workflows) - compound cost model for cloud judge vs. SLM scenarios, with fraud detection worked example |
 | How much latency does multi-layer evaluation add to time-sensitive workflows? | [Cost & Latency](../extensions/technical/cost-and-latency.md#critical-path-latency-for-time-sensitive-workflows) - sync vs. async breakdown, critical-path analysis for fraud detection and trading compliance |
 | How do I get a single audit view of a multi-agent decision? | [Observability](controls/observability.md#decision-trace-consolidated-audit-view) - Decision Trace format collapsing the full evaluation chain into one auditable document per decision |
-| What about DLP, API validation, database controls, and existing IAM? | [Defence in Depth Beyond the AI Layer](../foundations/README.md#defence-in-depth-beyond-the-ai-layer) - MASO controls are a layer within your wider security architecture, not a replacement for it. External DLP (inbound and outbound), API gateways, database access controls, SIEM, and secure coding practices all apply |
+| What about DLP, API validation, database controls, and existing IAM? | [Environment Containment](environment-containment.md) - hardened APIs, opaque errors, stored procedures, no-retry enforcement, and kill switches. Also: [Defence in Depth Beyond the AI Layer](../foundations/README.md#defence-in-depth-beyond-the-ai-layer) |
+| What if the agent is compromised and all behavioral controls fail? | [Environment Containment](environment-containment.md) - environment controls remain effective because they do not depend on the agent's cooperation. The agent's intent is irrelevant if every connected system enforces its own boundaries |
 
 ## Relationship to Parent Framework
 
@@ -253,6 +260,7 @@ It extends into multi-agent territory by addressing multi-model orchestration se
 
 ```
 README.md                              # This document
+environment-containment.md             # Environment containment strategy
 controls/
 ├── prompt-goal-and-epistemic-integrity.md
 ├── identity-and-access.md

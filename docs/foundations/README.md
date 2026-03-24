@@ -126,6 +126,8 @@ Your existing DLP systems apply to data flowing into and out of AI systems - bot
 
 These controls are outside the scope of this reference, but they are part of your defence. When you assess your AI security posture, include them. When you threat-model, include them. When one of these controls misses something, they are your safety net.
 
+For multi-agent systems, the **[MASO Environment Containment](../maso/environment-containment.md)** strategy formalises this principle: harden every system the agent connects to (strict API validation, stored procedures, opaque errors, no-retry enforcement, kill switches) so that agent misbehavior is structurally harmless regardless of the agent's intent.
+
 ## When You Need Multi-Agent
 
 When AI agents collaborate, delegate tasks, and take autonomous actions across trust boundaries, the single-agent controls on this page are necessary but not sufficient. The **[MASO Framework](../maso/)** extends this architecture into multi-agent orchestration.

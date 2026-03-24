@@ -88,6 +88,38 @@ All Tier 2 controls remain active, plus:
 | **EC-3.5** Automated rollback scope | When integrity compromise is detected, automated rollback covers the compromised agent and all downstream actions that depended on its output | Rollback scope is determined by the decision chain (OB-2.1). Downstream agents are notified. Actions that cannot be rolled back trigger compensating actions automatically. Human is notified of the rollback scope and any irreversible residual. |
 | **EC-3.6** Transformation integrity chain | Data validated after each processing step in a multi-agent pipeline; cumulative integrity tracked end-to-end | Each agent in a pipeline attests to the structural validity of its output. The attestation chain travels with the data (analogous to DP-3.4 data provenance but for structural integrity). If any agent in the chain produces output that fails schema validation, downstream processing halts immediately - not after the malformed data has been transformed two more times. Integrity violations are correlated with the specific pipeline step that introduced the corruption. |
 
+## Environment Containment: Execution Controls
+
+The controls above govern agent behavior. The controls below govern the systems agents connect to. Both are necessary. Environment controls remain effective even when the agent is compromised, because they do not depend on the agent's cooperation.
+
+For the full strategy, see [Environment Containment](../environment-containment.md).
+
+### Hardened API Endpoints
+
+Every API endpoint the agent can reach must enforce its own security independent of the caller. Strict input validation (type, length, range, format, allowed values) on every parameter. Schema-first design where requests not conforming to the OpenAPI/JSON Schema contract are rejected before reaching business logic. Allowlist over denylist: accept only known-good values rather than blocking known-bad patterns.
+
+A prompt-injected agent attempting SQL injection, path traversal, or parameter manipulation is stopped by the API, not by the agent's good intentions. The agent's intent is irrelevant. Only the data matters, and the data is validated.
+
+### Opaque Error Responses
+
+API responses to agent callers return success with the result, or failure with no diagnostic detail. No stack traces, SQL error messages, internal paths, version numbers, or configuration details. Full error details are logged server-side for human operators.
+
+This closes the reconnaissance loop. Most attacks (human or agent) are iterative: try something, read the error message, adjust, try again. Stripping error detail to a binary pass/fail makes the agent effectively blind to the system's internals. It cannot learn from failures because failures contain no information.
+
+For use cases where self-correction is important, provide structured error codes (e.g., `INVALID_RECIPIENT`, `AMOUNT_EXCEEDS_LIMIT`) without revealing why the validation exists or how it works.
+
+### Database-Level Enforcement
+
+Agent-accessible database operations should execute through stored procedures, not dynamic SQL. This eliminates SQL injection as an attack class entirely. Where stored procedures are not feasible, parameterized queries with typed parameters prevent the agent's input from being interpreted as SQL.
+
+Row-level security at the database layer enforces access boundaries even if the application layer is compromised. Business rules enforced as database constraints (CHECK, FOREIGN KEY, UNIQUE, NOT NULL) stop invalid data regardless of what the agent attempts. Read-heavy agents should operate against read replicas, removing write access at the infrastructure level.
+
+### No-Retry Enforcement
+
+Agent system prompts include explicit no-retry directives (behavioral control, can be overridden by injection). Server-side retry blocking tracks recent failed requests per agent NHI and rejects identical or near-identical retries within a cooldown window (infrastructure control, cannot be overridden). A retry budget at the API gateway enforces a maximum retry count per agent per endpoint per time window.
+
+This prevents brute-force exploration, which is the primary remaining attack vector when error responses are opaque. Even with binary pass/fail responses, an agent could try thousands of variations and infer structure from the pattern of successes and failures. One attempt, pass or fail, no retry, eliminates that channel.
+
 ## Action Classification Rules (Tier 2+)
 
 The action classification engine is the core mechanism that replaces per-action human approval with risk-proportionate automation. Rules should be defined collaboratively between the AI security team and the business function that owns the agent system.

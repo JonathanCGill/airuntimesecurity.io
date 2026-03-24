@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 720" font-family="Arial, sans-serif">
+  <defs>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#475569"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#ef4444"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22c55e"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="720" fill="#f8fafc" rx="4"/>
+
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" font-size="20" font-weight="700" fill="#1e293b">MASO Environment Containment</text>
+  <text x="450" y="52" text-anchor="middle" font-size="12" fill="#64748b">Secure the environment, not the agent. Make misbehavior structurally harmless.</text>
+
+  <!-- ==================== KILL SWITCH (top, independent) ==================== -->
+  <rect x="320" y="68" width="260" height="40" rx="8" fill="#fee2e2" stroke="#ef4444" stroke-width="2" filter="url(#shadow)"/>
+  <text x="365" y="84" font-size="9" font-weight="700" fill="#991b1b">⬣</text>
+  <text x="380" y="84" font-size="10" font-weight="700" fill="#991b1b">KILL SWITCH</text>
+  <text x="320" y="100" font-size="9" fill="#991b1b" text-anchor="start">
+    <tspan x="334" dy="0">Separate infrastructure · Revokes NHI · Blocks network · Terminates compute</tspan>
+  </text>
+
+  <!-- Kill switch connections (dashed red lines to monitoring) -->
+  <line x1="450" y1="108" x2="450" y2="130" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arrow-red)"/>
+
+  <!-- ==================== MONITORING LAYER ==================== -->
+  <rect x="50" y="130" width="800" height="55" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="450" y="148" text-anchor="middle" font-size="11" font-weight="700" fill="#b45309">External Monitoring Systems (Independent of Agent)</text>
+  <text x="130" y="170" text-anchor="middle" font-size="9" fill="#92400e">DLP</text>
+  <text x="270" y="170" text-anchor="middle" font-size="9" fill="#92400e">Fraud Detection</text>
+  <text x="450" y="170" text-anchor="middle" font-size="9" fill="#92400e">SIEM / SOAR</text>
+  <text x="610" y="170" text-anchor="middle" font-size="9" fill="#92400e">WAF</text>
+  <text x="760" y="170" text-anchor="middle" font-size="9" fill="#92400e">Network Controls</text>
+
+  <!-- Divider lines between monitoring items -->
+  <line x1="195" y1="158" x2="195" y2="180" stroke="#fcd34d" stroke-width="1"/>
+  <line x1="355" y1="158" x2="355" y2="180" stroke="#fcd34d" stroke-width="1"/>
+  <line x1="535" y1="158" x2="535" y2="180" stroke="#fcd34d" stroke-width="1"/>
+  <line x1="685" y1="158" x2="685" y2="180" stroke="#fcd34d" stroke-width="1"/>
+
+  <!-- Arrow from monitoring to kill switch -->
+  <path d="M 580 130 Q 580 118 575 110" stroke="#ef4444" stroke-width="1.5" fill="none" stroke-dasharray="4,2" marker-end="url(#arrow-red)"/>
+  <text x="600" y="122" font-size="8" fill="#991b1b">triggers</text>
+
+  <!-- ==================== AGENT (center) ==================== -->
+  <rect x="310" y="220" width="280" height="100" rx="12" fill="#dbeafe" stroke="#3b82f6" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="310" y="220" width="280" height="28" rx="12" fill="#3b82f6"/>
+  <rect x="310" y="240" width="280" height="8" rx="0" fill="#3b82f6"/>
+  <text x="450" y="240" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">Autonomous AI Agent</text>
+  <text x="450" y="268" text-anchor="middle" font-size="10" fill="#1e40af">Unconstrained reasoning</text>
+  <text x="450" y="282" text-anchor="middle" font-size="10" fill="#1e40af">Free to decide what to do</text>
+  <text x="450" y="296" text-anchor="middle" font-size="10" fill="#1e40af">MASO guardrails + Judge + human oversight</text>
+  <text x="450" y="312" text-anchor="middle" font-size="9" fill="#64748b">Intent is irrelevant. Only validated actions execute.</text>
+
+  <!-- ==================== HARDENED API GATEWAY ==================== -->
+  <rect x="100" y="360" width="700" height="60" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="2" filter="url(#shadow)"/>
+  <text x="450" y="380" text-anchor="middle" font-size="12" font-weight="700" fill="#166534">Hardened API Gateway Layer</text>
+  <text x="155" y="405" text-anchor="middle" font-size="9" fill="#166534">Strict Schema</text>
+  <text x="155" y="414" text-anchor="middle" font-size="9" fill="#166534">Validation</text>
+  <text x="290" y="405" text-anchor="middle" font-size="9" fill="#166534">Opaque Error</text>
+  <text x="290" y="414" text-anchor="middle" font-size="9" fill="#166534">Responses</text>
+  <text x="425" y="405" text-anchor="middle" font-size="9" fill="#166534">No-Retry</text>
+  <text x="425" y="414" text-anchor="middle" font-size="9" fill="#166534">Enforcement</text>
+  <text x="560" y="405" text-anchor="middle" font-size="9" fill="#166534">Request-Scoped</text>
+  <text x="560" y="414" text-anchor="middle" font-size="9" fill="#166534">Authorization</text>
+  <text x="700" y="405" text-anchor="middle" font-size="9" fill="#166534">Rate Limits</text>
+  <text x="700" y="414" text-anchor="middle" font-size="9" fill="#166534">Per Agent</text>
+
+  <!-- Divider lines -->
+  <line x1="222" y1="392" x2="222" y2="418" stroke="#86efac" stroke-width="1"/>
+  <line x1="357" y1="392" x2="357" y2="418" stroke="#86efac" stroke-width="1"/>
+  <line x1="492" y1="392" x2="492" y2="418" stroke="#86efac" stroke-width="1"/>
+  <line x1="632" y1="392" x2="632" y2="418" stroke="#86efac" stroke-width="1"/>
+
+  <!-- Arrow: Agent to Gateway -->
+  <line x1="450" y1="320" x2="450" y2="358" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="460" y="342" font-size="8" fill="#64748b">attempts actions</text>
+
+  <!-- ==================== CONNECTED SYSTEMS ==================== -->
+
+  <!-- System 1: Database -->
+  <rect x="50" y="470" width="155" height="105" rx="8" fill="#ffffff" stroke="#6366f1" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="50" y="470" width="155" height="24" rx="8" fill="#6366f1"/>
+  <rect x="50" y="488" width="155" height="6" rx="0" fill="#6366f1"/>
+  <text x="128" y="487" text-anchor="middle" font-size="10" font-weight="700" fill="#ffffff">Database</text>
+  <text x="128" y="510" text-anchor="middle" font-size="8" fill="#4338ca">Stored procedures only</text>
+  <text x="128" y="522" text-anchor="middle" font-size="8" fill="#4338ca">Parameterized queries</text>
+  <text x="128" y="534" text-anchor="middle" font-size="8" fill="#4338ca">Row-level security</text>
+  <text x="128" y="546" text-anchor="middle" font-size="8" fill="#4338ca">CHECK/FK constraints</text>
+  <text x="128" y="558" text-anchor="middle" font-size="8" fill="#4338ca">Read replicas for reads</text>
+
+  <!-- System 2: Email / Messaging -->
+  <rect x="225" y="470" width="155" height="105" rx="8" fill="#ffffff" stroke="#0891b2" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="225" y="470" width="155" height="24" rx="8" fill="#0891b2"/>
+  <rect x="225" y="488" width="155" height="6" rx="0" fill="#0891b2"/>
+  <text x="303" y="487" text-anchor="middle" font-size="10" font-weight="700" fill="#ffffff">Email / Messaging</text>
+  <text x="303" y="510" text-anchor="middle" font-size="8" fill="#0e7490">Recipient allowlists</text>
+  <text x="303" y="522" text-anchor="middle" font-size="8" fill="#0e7490">Content DLP scanning</text>
+  <text x="303" y="534" text-anchor="middle" font-size="8" fill="#0e7490">Rate limits per agent</text>
+  <text x="303" y="546" text-anchor="middle" font-size="8" fill="#0e7490">No attachment by default</text>
+  <text x="303" y="558" text-anchor="middle" font-size="8" fill="#0e7490">Template-only sending</text>
+
+  <!-- System 3: External APIs -->
+  <rect x="400" y="470" width="155" height="105" rx="8" fill="#ffffff" stroke="#8b5cf6" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="400" y="470" width="155" height="24" rx="8" fill="#8b5cf6"/>
+  <rect x="400" y="488" width="155" height="6" rx="0" fill="#8b5cf6"/>
+  <text x="478" y="487" text-anchor="middle" font-size="10" font-weight="700" fill="#ffffff">External APIs</text>
+  <text x="478" y="510" text-anchor="middle" font-size="8" fill="#7c3aed">Endpoint allowlists</text>
+  <text x="478" y="522" text-anchor="middle" font-size="8" fill="#7c3aed">Payload size limits</text>
+  <text x="478" y="534" text-anchor="middle" font-size="8" fill="#7c3aed">Egress filtering</text>
+  <text x="478" y="546" text-anchor="middle" font-size="8" fill="#7c3aed">Mutual TLS</text>
+  <text x="478" y="558" text-anchor="middle" font-size="8" fill="#7c3aed">Response validation</text>
+
+  <!-- System 4: File Systems -->
+  <rect x="575" y="470" width="155" height="105" rx="8" fill="#ffffff" stroke="#14b8a6" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="575" y="470" width="155" height="24" rx="8" fill="#14b8a6"/>
+  <rect x="575" y="488" width="155" height="6" rx="0" fill="#14b8a6"/>
+  <text x="653" y="487" text-anchor="middle" font-size="10" font-weight="700" fill="#ffffff">File / Object Store</text>
+  <text x="653" y="510" text-anchor="middle" font-size="8" fill="#0f766e">Path allowlists</text>
+  <text x="653" y="522" text-anchor="middle" font-size="8" fill="#0f766e">No directory traversal</text>
+  <text x="653" y="534" text-anchor="middle" font-size="8" fill="#0f766e">Type validation</text>
+  <text x="653" y="546" text-anchor="middle" font-size="8" fill="#0f766e">Size limits enforced</text>
+  <text x="653" y="558" text-anchor="middle" font-size="8" fill="#0f766e">Scoped bucket access</text>
+
+  <!-- Arrows: Gateway to Systems -->
+  <line x1="200" y1="420" x2="128" y2="468" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+  <line x1="340" y1="420" x2="303" y2="468" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+  <line x1="510" y1="420" x2="478" y2="468" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+  <line x1="650" y1="420" x2="653" y2="468" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <!-- Label on arrows -->
+  <text x="450" y="448" text-anchor="middle" font-size="8" fill="#166534">validated actions only</text>
+
+  <!-- ==================== MONITORING FEEDS (dashed lines from systems to monitoring) ==================== -->
+  <line x1="128" y1="470" x2="130" y2="185" stroke="#f59e0b" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+  <line x1="303" y1="470" x2="270" y2="185" stroke="#f59e0b" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+  <line x1="478" y1="470" x2="450" y2="185" stroke="#f59e0b" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+  <line x1="653" y1="470" x2="610" y2="185" stroke="#f59e0b" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+  <!-- Gateway also feeds monitoring -->
+  <line x1="800" y1="390" x2="850" y2="185" stroke="#f59e0b" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+
+  <!-- ==================== KEY INSIGHT BOX ==================== -->
+  <rect x="100" y="610" width="700" height="55" rx="8" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="450" y="630" text-anchor="middle" font-size="11" font-weight="700" fill="#4338ca">The agent proposes. The infrastructure disposes.</text>
+  <text x="450" y="648" text-anchor="middle" font-size="9" fill="#4338ca">Every connected system enforces its own boundaries. The agent's intent, whether legitimate or compromised, is irrelevant.</text>
+  <text x="450" y="660" text-anchor="middle" font-size="9" fill="#4338ca">Monitoring detects anomalous patterns. The kill switch fires when monitoring systems detect a breach.</text>
+
+  <!-- ==================== LEGEND ==================== -->
+  <text x="50" y="698" font-size="9" fill="#64748b">
+    <tspan font-weight="700">Legend:</tspan>
+    <tspan dx="8">━━</tspan><tspan dx="4">Action flow</tspan>
+    <tspan dx="16" stroke-dasharray="4,2">╌╌</tspan><tspan dx="4">Monitoring feed</tspan>
+    <tspan dx="16" fill="#ef4444">━━</tspan><tspan dx="4" fill="#64748b">Kill switch</tspan>
+    <tspan dx="16" fill="#22c55e">━━</tspan><tspan dx="4" fill="#64748b">Validated action</tspan>
+  </text>
+  <text x="760" y="698" text-anchor="end" font-size="9" fill="#94a3b8">MASO Framework · airuntimesecurity.io</text>
+
+</svg>

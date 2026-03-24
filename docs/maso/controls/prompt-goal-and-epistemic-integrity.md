@@ -182,6 +182,28 @@ This schema enables the judge to enforce provenance checks, uncertainty preserva
 | **Quantitatively Managed** | Injection detection rate measured (target ≥ 90%). Goal drift detection latency tracked. Prompt leakage test results documented. Epistemic control effectiveness measured: false consensus rate, uncertainty preservation rate, assumption propagation rate. |
 | **Optimising** | Multi-layer injection defence with canary agents. Cryptographic goal integrity. Challenger agent for high-consequence decisions. Plan-execution conformance automated. Regular automated prompt leakage red teaming. Constraint fidelity checks on long chains. |
 
+## Environment Containment: Closing the Injection Loop
+
+Prompt injection changes the agent's intent. Once injected, the agent is functioning correctly with corrupted instructions. Behavioral controls that depend on the agent's cooperation are bypassed at the moment of injection. Environment controls are unaffected.
+
+For the full strategy, see [Environment Containment](../environment-containment.md).
+
+### Opaque Errors Prevent Adaptive Injection
+
+Most successful prompt injections are iterative. The attacker (or the injected agent) tries a technique, observes the system's response, and refines. Detailed error messages accelerate this loop. Opaque error responses (success or failure only, no diagnostic detail) deny the injected agent the feedback it needs to refine its attack. The reconnaissance loop is closed.
+
+### Hardened APIs Limit Injection Impact
+
+A successfully injected agent can change what it *wants* to do. If every system the agent connects to enforces strict input validation, schema enforcement, and request-scoped authorization, the injection's effective power is limited to selecting among valid operations. The catastrophic scenarios (data exfiltration, privilege escalation, arbitrary code execution) are structurally impossible, not because the agent chooses not to attempt them, but because the target systems reject them.
+
+### No-Retry Blocks Brute-Force Probing
+
+Even with opaque errors, an injected agent could try thousands of variations and infer structure from the pattern of successes and failures. Server-side retry blocking and retry budgets at the API gateway prevent this exploration. The injected agent gets one attempt per operation. Pass or fail, no retry.
+
+### Kill Switch on Injection Indicators
+
+A spike in API rejection rates (input validation failures, schema violations, authorization denials) is a strong indicator that the agent has been compromised. These rejection events should feed into the kill switch trigger logic. The environment does not need to understand the injection. It observes the symptom (anomalous rejection patterns) and terminates the agent.
+
 ## Common Pitfalls
 
 **Guarding the front door but not the side doors.** Most prompt injection defences focus on user-facing input. In a multi-agent system, the inter-agent message bus, RAG content, and tool outputs are equally dangerous input channels - and they're often unguarded because they're "internal."

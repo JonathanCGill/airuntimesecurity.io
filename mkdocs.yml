@@ -119,6 +119,7 @@ nav:
     - Supply Chain: maso/controls/supply-chain.md
     - Privileged Agent Governance: maso/controls/privileged-agent-governance.md
     - Emergent Risk Register: maso/controls/risk-register.md
+    - Environment Containment: maso/environment-containment.md
     - Tier 1 - Supervised: maso/implementation/tier-1-supervised.md
     - Tier 2 - Managed: maso/implementation/tier-2-managed.md
     - Tier 3 - Autonomous: maso/implementation/tier-3-autonomous.md
