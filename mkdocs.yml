@@ -205,6 +205,7 @@ nav:
     - Models & Technology:
       - When AI Thinks: insights/when-ai-thinks.md
       - The Model You Choose: insights/the-model-you-choose.md
+      - The Backbone Problem: insights/the-backbone-problem.md
       - Open-Weight Models Shift the Burden: insights/open-weight-models-shift-the-burden.md
       - Model Drift Impact: insights/model-drift-impact.md
       - You Can't Validate Unfinished: insights/you-cant-validate-unfinished.md

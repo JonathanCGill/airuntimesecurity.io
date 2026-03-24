@@ -106,6 +106,8 @@ No model will score perfectly. The point is not to find a perfect model. It is t
 
 A model that scores poorly on transparency needs stronger runtime controls. A model that scores well on instruction-following may need less aggressive guardrail coverage. The model choice and the control investment are connected decisions.
 
+The b³ benchmark (Bazinska et al., ICLR 2026) now provides empirical data for this: across 34 models and 194,331 adversarial attacks, backbone LLMs show measurably different vulnerability profiles, and those profiles vary by attack type. A model that resists indirect instruction override may be weak against tool invocation attacks. For the full analysis, see [The Backbone Problem](the-backbone-problem.md).
+
 ## What This Does Not Replace
 
 This is not a model evaluation framework. It does not tell you how to benchmark accuracy, measure latency, or compare reasoning capability. Those are capability assessments with mature tooling and methodology.
