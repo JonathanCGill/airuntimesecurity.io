@@ -193,6 +193,7 @@ nav:
       - The Hallucination Boundary: insights/the-hallucination-boundary.md
       - Evaluation Integrity Risks: insights/evaluation-integrity-risks.md
       - You Don't Know What You're Deploying: insights/you-dont-know-what-youre-deploying.md
+      - The Sandbox Escape Problem: insights/the-sandbox-escape-problem.md
     - Agentic AI:
       - When Agents Talk to Agents: insights/when-agents-talk-to-agents.md
       - The Orchestrator Problem: insights/the-orchestrator-problem.md
