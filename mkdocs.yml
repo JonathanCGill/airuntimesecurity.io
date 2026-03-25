@@ -231,6 +231,7 @@ nav:
       - NIST IR 8596 Alignment: extensions/regulatory/nist-ir-8596-alignment.md
       - AI Governance Operating Model: extensions/regulatory/ai-governance-operating-model.md
       - High-Risk Financial Services: extensions/regulatory/high-risk-financial-services.md
+      - ETSI Standards Alignment: extensions/regulatory/etsi-sai-alignment.md
       - Platform Integration Guide: extensions/regulatory/platform-integration-guide.md
     - Technical Reference:
       - Model-as-Judge Implementation: extensions/technical/model-as-judge-implementation.md
