@@ -35,6 +35,9 @@ theme:
     - navigation.top
     - navigation.footer
     - navigation.path
+    - navigation.prune
+    - navigation.instant
+    - navigation.tracking
     - search.suggest
     - search.highlight
     - content.tabs.link
@@ -85,6 +88,7 @@ copyright: >-
 nav:
   - Home: README.md
   - What is AIRS?: what-is-ai-runtime-security.md
+  - Reading Paths: reading-paths.md
 
   - Framework:
     - Anatomy of an Agent: agentic-agent-anatomy.md
