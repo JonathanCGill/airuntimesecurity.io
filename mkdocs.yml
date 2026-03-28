@@ -87,8 +87,8 @@ copyright: >-
 
 nav:
   - Home: README.md
-  - What is AIRS?: what-is-ai-runtime-security.md
-  - Reading Paths: reading-paths.md
+  - About: what-is-ai-runtime-security.md
+  - Start Here: reading-paths.md
 
   - Framework:
     - Anatomy of an Agent: agentic-agent-anatomy.md
@@ -134,7 +134,7 @@ nav:
     - Integration Guide: maso/integration/integration-guide.md
     - Worked Examples: maso/examples/worked-examples.md
 
-  - Stakeholder Views:
+  - Stakeholders:
     - stakeholders/README.md
     - Security Leaders: stakeholders/security-leaders.md
     - Risk & Governance: stakeholders/risk-and-governance.md

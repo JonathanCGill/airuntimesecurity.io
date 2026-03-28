@@ -302,9 +302,9 @@ img[src$=".svg"] {
 .md-header-tabs__link {
   color: var(--md-default-fg-color);
   font-family: var(--md-text-font);
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 500;
-  padding: 0.4rem 0.75rem;
+  padding: 0.4rem 0.6rem;
   text-decoration: none;
   white-space: nowrap;
   border-radius: 0.25rem;
