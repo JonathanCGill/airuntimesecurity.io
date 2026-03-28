@@ -1,0 +1,206 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="680" viewBox="0 0 960 680" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" role="img" aria-label="Constraining agents: from open-ended autonomy to declared intent, outcomes, and constraints evaluated by a judge before actions execute">
+  <defs>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.08"/>
+    </filter>
+    <filter id="shadowDeep" x="-3%" y="-3%" width="106%" height="106%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrowGrey" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#94a3b8"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#22c55e"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#ef4444"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#3b82f6"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#8b5cf6"/>
+    </marker>
+    <linearGradient id="declareGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.03"/>
+    </linearGradient>
+    <linearGradient id="constrainGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.03"/>
+    </linearGradient>
+    <linearGradient id="evaluateGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.03"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="680" fill="#fafbfc" rx="8"/>
+
+  <!-- Title -->
+  <text x="480" y="32" text-anchor="middle" font-size="18" font-weight="700" fill="#1e293b">Constraining Agents: Declare, Constrain, Evaluate</text>
+  <text x="480" y="50" text-anchor="middle" font-size="11" fill="#64748b">From open-ended autonomy to bounded, evaluable behaviour</text>
+
+  <!-- ============================================ -->
+  <!-- PHASE 1: DECLARE (Design Time) -->
+  <!-- ============================================ -->
+  <rect x="30" y="70" width="900" height="155" rx="10" fill="url(#declareGrad)" stroke="#3b82f6" stroke-width="1.5"/>
+  <rect x="30" y="70" width="6" height="155" rx="3" fill="#3b82f6"/>
+
+  <!-- Phase label -->
+  <rect x="50" y="78" width="90" height="22" rx="4" fill="#3b82f6"/>
+  <text x="95" y="93" text-anchor="middle" font-size="10" font-weight="700" fill="#ffffff">1. DECLARE</text>
+  <text x="155" y="93" font-size="10" fill="#64748b">Design time: define what the agent must do, must not do, and how to measure success</text>
+
+  <!-- Intent box -->
+  <rect x="50" y="108" width="260" height="105" rx="8" fill="#ffffff" filter="url(#shadow)" stroke="#3b82f6" stroke-width="1.5"/>
+  <rect x="50" y="108" width="5" height="105" rx="2.5" fill="#3b82f6"/>
+  <text x="78" y="129" font-size="12" font-weight="700" fill="#1e40af">Intent Specification</text>
+  <text x="78" y="147" font-size="9" fill="#475569">Purpose: "Process refund requests"</text>
+  <text x="78" y="162" font-size="9" fill="#475569">Role: task | orchestrator | evaluator</text>
+  <text x="78" y="177" font-size="9" fill="#475569">Authority: what it can delegate</text>
+  <text x="78" y="192" font-size="9" fill="#475569">Data scope: what it can access</text>
+  <text x="78" y="207" font-size="9" fill="#94a3b8" font-style="italic">Versioned, typed, auditable</text>
+
+  <!-- Outcomes box -->
+  <rect x="335" y="108" width="270" height="105" rx="8" fill="#ffffff" filter="url(#shadow)" stroke="#22c55e" stroke-width="1.5"/>
+  <rect x="335" y="108" width="5" height="105" rx="2.5" fill="#22c55e"/>
+  <text x="363" y="129" font-size="12" font-weight="700" fill="#15803d">Outcomes</text>
+  <text x="363" y="147" font-size="9" fill="#475569">Success: "Refund issued within policy"</text>
+  <text x="363" y="162" font-size="9" fill="#475569">Failure: "Refund exceeds authorised limit"</text>
+  <text x="363" y="177" font-size="9" fill="#475569">Quality: accuracy, latency, cost targets</text>
+  <text x="363" y="192" font-size="9" fill="#475569">Aggregate: workflow-level success criteria</text>
+  <text x="363" y="207" font-size="9" fill="#94a3b8" font-style="italic">Measurable, not aspirational</text>
+
+  <!-- Constraints box -->
+  <rect x="630" y="108" width="280" height="105" rx="8" fill="#ffffff" filter="url(#shadow)" stroke="#f59e0b" stroke-width="1.5"/>
+  <rect x="630" y="108" width="5" height="105" rx="2.5" fill="#f59e0b"/>
+  <text x="658" y="129" font-size="12" font-weight="700" fill="#b45309">Constraints</text>
+  <text x="658" y="147" font-size="9" fill="#475569">Tools: allowlist of permitted actions</text>
+  <text x="658" y="162" font-size="9" fill="#475569">Blast radius: max records, max funds</text>
+  <text x="658" y="177" font-size="9" fill="#475569">Time: execution deadline, session limits</text>
+  <text x="658" y="192" font-size="9" fill="#475569">Prohibited: explicit forbidden actions</text>
+  <text x="658" y="207" font-size="9" fill="#94a3b8" font-style="italic">Infrastructure-enforced, not instructed</text>
+
+  <!-- Down arrow from Declare to Constrain -->
+  <path d="M480,225 L480,250" stroke="#94a3b8" stroke-width="1.5" fill="none" marker-end="url(#arrowGrey)"/>
+
+  <!-- ============================================ -->
+  <!-- PHASE 2: CONSTRAIN (Build Time) -->
+  <!-- ============================================ -->
+  <rect x="30" y="255" width="900" height="145" rx="10" fill="url(#constrainGrad)" stroke="#f59e0b" stroke-width="1.5"/>
+  <rect x="30" y="255" width="6" height="145" rx="3" fill="#f59e0b"/>
+
+  <!-- Phase label -->
+  <rect x="50" y="263" width="110" height="22" rx="4" fill="#f59e0b"/>
+  <text x="105" y="278" text-anchor="middle" font-size="10" font-weight="700" fill="#ffffff">2. CONSTRAIN</text>
+  <text x="175" y="278" font-size="10" fill="#64748b">Build time: narrow the agent's capability surface to match declared intent</text>
+
+  <!-- Specialist agent pattern -->
+  <rect x="50" y="293" width="200" height="95" rx="8" fill="#ffffff" filter="url(#shadow)" stroke="#f59e0b" stroke-width="1.5"/>
+  <rect x="50" y="293" width="5" height="95" rx="2.5" fill="#f59e0b"/>
+  <text x="78" y="314" font-size="11" font-weight="700" fill="#b45309">Specialise the Agent</text>
+  <text x="78" y="332" font-size="9" fill="#475569">Single purpose, narrow scope</text>
+  <text x="78" y="347" font-size="9" fill="#475569">Minimal tool set</text>
+  <text x="78" y="362" font-size="9" fill="#475569">Role-specific system prompt</text>
+  <text x="78" y="377" font-size="9" fill="#475569">Scoped credentials</text>
+
+  <!-- Infrastructure enforcement -->
+  <rect x="270" y="293" width="200" height="95" rx="8" fill="#ffffff" filter="url(#shadow)" stroke="#f59e0b" stroke-width="1.5"/>
+  <rect x="270" y="293" width="5" height="95" rx="2.5" fill="#f59e0b"/>
+  <text x="298" y="314" font-size="11" font-weight="700" fill="#b45309">Enforce via Infrastructure</text>
+  <text x="298" y="332" font-size="9" fill="#475569">Network allowlists</text>
+  <text x="298" y="347" font-size="9" fill="#475569">Action allowlists</text>
+  <text x="298" y="362" font-size="9" fill="#475569">Data views (permitted subset)</text>
+  <text x="298" y="377" font-size="9" fill="#475569">Sandbox isolation</text>
+
+  <!-- Approval gates -->
+  <rect x="490" y="293" width="200" height="95" rx="8" fill="#ffffff" filter="url(#shadow)" stroke="#f59e0b" stroke-width="1.5"/>
+  <rect x="490" y="293" width="5" height="95" rx="2.5" fill="#f59e0b"/>
+  <text x="518" y="314" font-size="11" font-weight="700" fill="#b45309">Gate High-Risk Actions</text>
+  <text x="518" y="332" font-size="9" fill="#475569">Classify: reversible or irreversible</text>
+  <text x="518" y="347" font-size="9" fill="#475569">Auto-approve reads in scope</text>
+  <text x="518" y="362" font-size="9" fill="#475569">Escalate writes and externals</text>
+  <text x="518" y="377" font-size="9" fill="#475569">Block out-of-scope actions</text>
+
+  <!-- Blast radius -->
+  <rect x="710" y="293" width="200" height="95" rx="8" fill="#ffffff" filter="url(#shadow)" stroke="#f59e0b" stroke-width="1.5"/>
+  <rect x="710" y="293" width="5" height="95" rx="2.5" fill="#f59e0b"/>
+  <text x="738" y="314" font-size="11" font-weight="700" fill="#b45309">Cap Blast Radius</text>
+  <text x="738" y="332" font-size="9" fill="#475569">Max records per operation</text>
+  <text x="738" y="347" font-size="9" fill="#475569">Max funds per transaction</text>
+  <text x="738" y="362" font-size="9" fill="#475569">Rate limits per tool</text>
+  <text x="738" y="377" font-size="9" fill="#475569">Session time limits</text>
+
+  <!-- Down arrow from Constrain to Evaluate -->
+  <path d="M480,400 L480,425" stroke="#94a3b8" stroke-width="1.5" fill="none" marker-end="url(#arrowGrey)"/>
+
+  <!-- ============================================ -->
+  <!-- PHASE 3: EVALUATE (Runtime) -->
+  <!-- ============================================ -->
+  <rect x="30" y="430" width="900" height="175" rx="10" fill="url(#evaluateGrad)" stroke="#8b5cf6" stroke-width="1.5"/>
+  <rect x="30" y="430" width="6" height="175" rx="3" fill="#8b5cf6"/>
+
+  <!-- Phase label -->
+  <rect x="50" y="438" width="105" height="22" rx="4" fill="#8b5cf6"/>
+  <text x="102" y="453" text-anchor="middle" font-size="10" font-weight="700" fill="#ffffff">3. EVALUATE</text>
+  <text x="170" y="453" font-size="10" fill="#64748b">Runtime: judge evaluates actions against declared intent and outcomes before commitment</text>
+
+  <!-- Agent proposes -->
+  <rect x="50" y="470" width="170" height="75" rx="8" fill="#ffffff" filter="url(#shadow)" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="135" y="495" text-anchor="middle" font-size="11" font-weight="700" fill="#334155">Agent Proposes</text>
+  <text x="135" y="513" text-anchor="middle" font-size="9" fill="#475569">Action + arguments</text>
+  <text x="135" y="528" text-anchor="middle" font-size="9" fill="#475569">Reasoning trace</text>
+  <text x="135" y="543" text-anchor="middle" font-size="8" fill="#94a3b8" font-style="italic">not yet executed</text>
+
+  <!-- Arrow to judge -->
+  <path d="M220,510 L270,510" stroke="#8b5cf6" stroke-width="1.5" fill="none" marker-end="url(#arrowPurple)"/>
+
+  <!-- Judge evaluates -->
+  <rect x="275" y="468" width="310" height="125" rx="8" fill="#ffffff" filter="url(#shadowDeep)" stroke="#8b5cf6" stroke-width="2"/>
+  <rect x="275" y="468" width="6" height="125" rx="3" fill="#8b5cf6"/>
+
+  <text x="305" y="490" font-size="13" font-weight="700" fill="#6d28d9">Judge Evaluates</text>
+  <text x="565" y="490" text-anchor="end" font-size="9" fill="#8b5cf6" font-weight="600">independent model</text>
+
+  <text x="305" y="510" font-size="9" fill="#475569">Does the action match the declared intent?</text>
+  <text x="305" y="526" font-size="9" fill="#475569">Will the outcome satisfy success criteria?</text>
+  <text x="305" y="542" font-size="9" fill="#475569">Are constraints respected (scope, limits)?</text>
+  <text x="305" y="558" font-size="9" fill="#475569">Is the reasoning chain internally consistent?</text>
+  <text x="305" y="574" font-size="9" fill="#475569">Are factual claims traceable to cited sources?</text>
+  <text x="305" y="588" font-size="9" fill="#94a3b8" font-style="italic">Different model, separate trust zone, read-only access</text>
+
+  <!-- Approve path -->
+  <path d="M585,500 L640,500" stroke="#22c55e" stroke-width="1.5" fill="none" marker-end="url(#arrowGreen)"/>
+  <rect x="645" y="478" width="130" height="48" rx="8" fill="#f0fdf4" filter="url(#shadow)" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="710" y="500" text-anchor="middle" font-size="11" font-weight="700" fill="#15803d">Approve</text>
+  <text x="710" y="516" text-anchor="middle" font-size="9" fill="#64748b">Execute action</text>
+
+  <!-- Reject path -->
+  <path d="M585,550 L640,550" stroke="#ef4444" stroke-width="1.5" fill="none" marker-end="url(#arrowRed)"/>
+  <rect x="645" y="535" width="130" height="48" rx="8" fill="#fef2f2" filter="url(#shadow)" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="710" y="555" text-anchor="middle" font-size="11" font-weight="700" fill="#dc2626">Reject / Escalate</text>
+  <text x="710" y="571" text-anchor="middle" font-size="9" fill="#64748b">Block or send to human</text>
+
+  <!-- Approve to outcome check -->
+  <path d="M775,502 L830,502" stroke="#22c55e" stroke-width="1.5" fill="none" marker-end="url(#arrowGreen)"/>
+
+  <!-- Outcome verified -->
+  <rect x="835" y="470" width="85" height="85" rx="8" fill="#ffffff" filter="url(#shadow)" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="877" y="500" text-anchor="middle" font-size="10" font-weight="700" fill="#15803d">Outcome</text>
+  <text x="877" y="516" text-anchor="middle" font-size="10" font-weight="700" fill="#15803d">Verified</text>
+  <text x="877" y="537" text-anchor="middle" font-size="8" fill="#94a3b8">Commit</text>
+  <text x="877" y="548" text-anchor="middle" font-size="8" fill="#94a3b8">result</text>
+
+  <!-- ============================================ -->
+  <!-- BOTTOM: The key insight -->
+  <!-- ============================================ -->
+  <rect x="120" y="625" width="720" height="42" rx="8" fill="#1e293b"/>
+  <text x="480" y="644" text-anchor="middle" font-size="11" font-weight="600" fill="#ffffff">Declare intent. Constrain capability. Evaluate before commitment.</text>
+  <text x="480" y="660" text-anchor="middle" font-size="10" fill="#94a3b8">No money spent, no action taken, no data changed until the judge confirms alignment with declared outcomes.</text>
+
+</svg>

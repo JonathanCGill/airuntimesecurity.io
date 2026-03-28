@@ -88,6 +88,7 @@ nav:
 
   - Framework:
     - Anatomy of an Agent: agentic-agent-anatomy.md
+    - Constraining Agents: constraining-agents.md
     - Architecture: ARCHITECTURE.md
     - Quick Start: QUICK_START.md
     - foundations/README.md
