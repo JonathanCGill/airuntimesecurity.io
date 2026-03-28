@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="220" viewBox="0 0 680 220" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" role="img" aria-label="How agents connect to models: the agent framework makes API calls to a model provider">
+  <defs>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrowGrey" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#94a3b8"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#3b82f6"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="680" height="220" fill="#fafbfc" rx="8"/>
+
+  <!-- Agent Framework box -->
+  <rect x="40" y="30" width="220" height="160" rx="10" fill="#ffffff" filter="url(#shadow)" stroke="#1e293b" stroke-width="2"/>
+  <rect x="40" y="30" width="220" height="32" rx="10" fill="#1e293b"/>
+  <rect x="40" y="50" width="220" height="12" fill="#1e293b"/>
+  <text x="150" y="52" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Agent Framework</text>
+
+  <!-- Agent components -->
+  <rect x="60" y="76" width="180" height="28" rx="5" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="150" y="95" text-anchor="middle" font-size="11" font-weight="600" fill="#6d28d9">Planning</text>
+
+  <rect x="60" y="110" width="85" height="28" rx="5" fill="#fffbeb" stroke="#fcd34d" stroke-width="1"/>
+  <text x="102" y="129" text-anchor="middle" font-size="11" font-weight="600" fill="#92400e">Memory</text>
+
+  <rect x="155" y="110" width="85" height="28" rx="5" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1"/>
+  <text x="197" y="129" text-anchor="middle" font-size="11" font-weight="600" fill="#065f46">Tools</text>
+
+  <rect x="60" y="144" width="180" height="28" rx="5" fill="#fff1f2" stroke="#fecdd3" stroke-width="1"/>
+  <text x="150" y="163" text-anchor="middle" font-size="11" font-weight="600" fill="#9f1239">MCP</text>
+
+  <!-- Model Provider box -->
+  <rect x="420" y="30" width="220" height="160" rx="10" fill="#ffffff" filter="url(#shadow)" stroke="#64748b" stroke-width="1.5"/>
+  <rect x="420" y="30" width="220" height="32" rx="10" fill="#64748b"/>
+  <rect x="420" y="50" width="220" height="12" fill="#64748b"/>
+  <text x="530" y="52" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Model Provider</text>
+
+  <!-- Model components -->
+  <rect x="440" y="80" width="180" height="90" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="530" y="117" text-anchor="middle" font-size="16" font-weight="700" fill="#334155">LLM</text>
+  <text x="530" y="137" text-anchor="middle" font-size="11" fill="#64748b">Inference</text>
+  <text x="530" y="155" text-anchor="middle" font-size="9" fill="#94a3b8">OpenAI · Anthropic · Google · Local</text>
+
+  <!-- API arrow: framework to model -->
+  <line x1="260" y1="108" x2="420" y2="108" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <rect x="310" y="96" width="60" height="18" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="340" y="109" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af">API →</text>
+
+  <!-- Response arrow: model to framework -->
+  <line x1="420" y1="138" x2="260" y2="138" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrowGrey)"/>
+  <rect x="304" y="126" width="72" height="18" rx="4" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="340" y="139" text-anchor="middle" font-size="10" fill="#64748b">← Response</text>
+</svg>

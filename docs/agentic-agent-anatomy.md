@@ -83,15 +83,7 @@ This solves an integration problem. It also creates a supply chain problem. When
 
 The agent framework does not contain a language model. It makes API calls to one. This separation is important.
 
-```text
-Agent Framework           Model Provider
-┌──────────────┐          ┌──────────────┐
-│  Planning    │          │              │
-│  Memory      │ ──API──▶ │  LLM         │
-│  Tools       │ ◀──────  │  Inference   │
-│  MCP         │          │              │
-└──────────────┘          └──────────────┘
-```
+![Agent framework connecting to model provider via API](images/agent-model-connection.svg){ .arch-diagram }
 
 The framework constructs a prompt (system instructions, conversation history, tool results, retrieved context), sends it to the model, and parses the response. The model has no persistent state between calls. Every API call is independent. The framework is responsible for maintaining continuity.
 
