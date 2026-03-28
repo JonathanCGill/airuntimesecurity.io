@@ -87,6 +87,7 @@ nav:
   - What is AIRS?: what-is-ai-runtime-security.md
 
   - Framework:
+    - Anatomy of an Agent: agentic-agent-anatomy.md
     - Architecture: ARCHITECTURE.md
     - Quick Start: QUICK_START.md
     - foundations/README.md

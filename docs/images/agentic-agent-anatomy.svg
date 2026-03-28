@@ -1,0 +1,413 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="820" viewBox="0 0 960 820" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" role="img" aria-label="Anatomy of an Agentic Agent: architecture diagram showing planning, memory, tools, model, environment, data sources, MCP, and multi-agent orchestration">
+  <defs>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.08"/>
+    </filter>
+    <filter id="shadowDeep" x="-3%" y="-3%" width="106%" height="106%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrowGrey" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#94a3b8"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#ef4444"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#3b82f6"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#22c55e"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#8b5cf6"/>
+    </marker>
+    <linearGradient id="agentBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="820" fill="#fafbfc" rx="8"/>
+
+  <!-- Title -->
+  <text x="480" y="32" text-anchor="middle" font-size="18" font-weight="700" fill="#1e293b">Anatomy of an Agentic Agent</text>
+  <text x="480" y="50" text-anchor="middle" font-size="11" fill="#64748b">Autonomously performs tasks by designing workflows with available tools</text>
+
+  <!-- ============================================ -->
+  <!-- USERS / INPUT (top left) -->
+  <!-- ============================================ -->
+  <rect x="20" y="68" width="130" height="60" rx="8" fill="#ffffff" filter="url(#shadow)" stroke="#3b82f6" stroke-width="1.5"/>
+  <rect x="20" y="68" width="5" height="60" rx="2.5" fill="#3b82f6"/>
+  <text x="90" y="92" text-anchor="middle" font-size="12" font-weight="600" fill="#1e40af">Users</text>
+  <text x="90" y="108" text-anchor="middle" font-size="9" fill="#64748b">Prompts, goals,</text>
+  <text x="90" y="119" text-anchor="middle" font-size="9" fill="#64748b">instructions</text>
+
+  <!-- Arrow from Users to Agent -->
+  <path d="M150,98 L195,98" stroke="#3b82f6" stroke-width="1.5" fill="none" marker-end="url(#arrowBlue)"/>
+
+  <!-- ============================================ -->
+  <!-- ENVIRONMENT (top right) -->
+  <!-- ============================================ -->
+  <rect x="720" y="68" width="220" height="60" rx="8" fill="#ffffff" filter="url(#shadow)" stroke="#64748b" stroke-width="1.5"/>
+  <rect x="720" y="68" width="5" height="60" rx="2.5" fill="#64748b"/>
+  <text x="835" y="90" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Environment</text>
+  <text x="770" y="108" font-size="9" fill="#64748b">Internet</text>
+  <text x="830" y="108" font-size="9" fill="#64748b">APIs</text>
+  <text x="878" y="108" font-size="9" fill="#64748b">File systems</text>
+  <text x="770" y="121" font-size="9" fill="#64748b">Databases</text>
+  <text x="845" y="121" font-size="9" fill="#64748b">Services</text>
+
+  <!-- ============================================ -->
+  <!-- MAIN AGENT BOX -->
+  <!-- ============================================ -->
+  <rect x="200" y="65" width="500" height="530" rx="12" fill="url(#agentBg)" filter="url(#shadowDeep)" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Agent header bar -->
+  <rect x="200" y="65" width="500" height="36" rx="12" fill="#1e293b"/>
+  <rect x="200" y="89" width="500" height="12" fill="#1e293b"/>
+  <text x="450" y="88" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">AGENT</text>
+  <text x="295" y="88" text-anchor="middle" font-size="9" fill="#94a3b8">LangChain</text>
+  <text x="365" y="88" text-anchor="middle" font-size="9" fill="#94a3b8">CrewAI</text>
+  <text x="535" y="88" text-anchor="middle" font-size="9" fill="#94a3b8">AutoGen</text>
+  <text x="610" y="88" text-anchor="middle" font-size="9" fill="#94a3b8">Custom</text>
+
+  <!-- ============================================ -->
+  <!-- PLANNING / REASONING ENGINE -->
+  <!-- ============================================ -->
+  <rect x="220" y="112" width="460" height="90" rx="8" fill="#ffffff" filter="url(#shadow)" stroke="#8b5cf6" stroke-width="1.5"/>
+  <rect x="220" y="112" width="5" height="90" rx="2.5" fill="#8b5cf6"/>
+
+  <text x="248" y="133" font-size="13" font-weight="700" fill="#6d28d9">Planning and Reasoning</text>
+  <text x="610" y="133" text-anchor="end" font-size="9" fill="#8b5cf6" font-weight="600">cognitive core</text>
+
+  <!-- Task decomposition -->
+  <rect x="240" y="143" width="100" height="48" rx="6" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="290" y="162" text-anchor="middle" font-size="9" font-weight="600" fill="#6d28d9">Task</text>
+  <text x="290" y="174" text-anchor="middle" font-size="9" font-weight="600" fill="#6d28d9">Decomposition</text>
+  <text x="290" y="186" text-anchor="middle" font-size="8" fill="#94a3b8">break down goals</text>
+
+  <!-- Chain of thought -->
+  <rect x="352" y="143" width="100" height="48" rx="6" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="402" y="162" text-anchor="middle" font-size="9" font-weight="600" fill="#6d28d9">Chain of</text>
+  <text x="402" y="174" text-anchor="middle" font-size="9" font-weight="600" fill="#6d28d9">Thought</text>
+  <text x="402" y="186" text-anchor="middle" font-size="8" fill="#94a3b8">step-by-step</text>
+
+  <!-- Goal tracking -->
+  <rect x="464" y="143" width="100" height="48" rx="6" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="514" y="162" text-anchor="middle" font-size="9" font-weight="600" fill="#6d28d9">Goal Tracking</text>
+  <text x="514" y="174" text-anchor="middle" font-size="9" font-weight="600" fill="#6d28d9">and Reflection</text>
+  <text x="514" y="186" text-anchor="middle" font-size="8" fill="#94a3b8">self-evaluate</text>
+
+  <!-- ReAct loop indicator -->
+  <rect x="576" y="143" width="90" height="48" rx="6" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="621" y="159" text-anchor="middle" font-size="9" font-weight="600" fill="#6d28d9">ReAct Loop</text>
+  <text x="621" y="172" text-anchor="middle" font-size="8" fill="#94a3b8">Reason</text>
+  <text x="621" y="183" text-anchor="middle" font-size="8" fill="#94a3b8">Act, Observe</text>
+
+  <!-- ============================================ -->
+  <!-- MEMORY -->
+  <!-- ============================================ -->
+  <rect x="220" y="215" width="200" height="115" rx="8" fill="#ffffff" filter="url(#shadow)" stroke="#f59e0b" stroke-width="1.5"/>
+  <rect x="220" y="215" width="5" height="115" rx="2.5" fill="#f59e0b"/>
+
+  <text x="248" y="236" font-size="13" font-weight="700" fill="#b45309">Memory</text>
+
+  <!-- Working memory -->
+  <rect x="240" y="245" width="165" height="22" rx="4" fill="#fffbeb" stroke="#fcd34d" stroke-width="1"/>
+  <text x="248" y="260" font-size="9" font-weight="600" fill="#92400e">Working</text>
+  <text x="390" y="260" text-anchor="end" font-size="8" fill="#94a3b8">current context window</text>
+
+  <!-- Short-term memory -->
+  <rect x="240" y="272" width="165" height="22" rx="4" fill="#fffbeb" stroke="#fcd34d" stroke-width="1"/>
+  <text x="248" y="287" font-size="9" font-weight="600" fill="#92400e">Short-term</text>
+  <text x="390" y="287" text-anchor="end" font-size="8" fill="#94a3b8">conversation history</text>
+
+  <!-- Long-term memory -->
+  <rect x="240" y="299" width="165" height="22" rx="4" fill="#fffbeb" stroke="#fcd34d" stroke-width="1"/>
+  <text x="248" y="314" font-size="9" font-weight="600" fill="#92400e">Long-term</text>
+  <text x="390" y="314" text-anchor="end" font-size="8" fill="#94a3b8">vector store, summaries</text>
+
+  <!-- ============================================ -->
+  <!-- SYSTEM PROMPT / INSTRUCTIONS -->
+  <!-- ============================================ -->
+  <rect x="435" y="215" width="245" height="55" rx="8" fill="#ffffff" filter="url(#shadow)" stroke="#3b82f6" stroke-width="1.5"/>
+  <rect x="435" y="215" width="5" height="55" rx="2.5" fill="#3b82f6"/>
+
+  <text x="463" y="236" font-size="13" font-weight="700" fill="#1e40af">System Prompt</text>
+  <text x="463" y="252" font-size="9" fill="#64748b">Identity, role, permissions, constraints,</text>
+  <text x="463" y="264" font-size="9" fill="#64748b">behavioural boundaries, tool descriptions</text>
+
+  <!-- ============================================ -->
+  <!-- LANGUAGE MODEL -->
+  <!-- ============================================ -->
+  <rect x="435" y="282" width="245" height="110" rx="8" fill="#ffffff" filter="url(#shadow)" stroke="#1e293b" stroke-width="2"/>
+  <rect x="435" y="282" width="6" height="110" rx="3" fill="#1e293b"/>
+
+  <text x="463" y="303" font-size="13" font-weight="700" fill="#1e293b">Language Model</text>
+  <text x="665" y="303" text-anchor="end" font-size="9" fill="#64748b" font-weight="600">LLM backbone</text>
+
+  <!-- Neural network visual -->
+  <g transform="translate(455, 312)">
+    <!-- Input layer -->
+    <circle cx="15" cy="10" r="5" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1"/>
+    <circle cx="15" cy="28" r="5" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1"/>
+    <circle cx="15" cy="46" r="5" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1"/>
+    <circle cx="15" cy="64" r="5" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1"/>
+    <!-- Hidden layer 1 -->
+    <circle cx="60" cy="5" r="5" fill="#c7d2fe" stroke="#818cf8" stroke-width="1"/>
+    <circle cx="60" cy="22" r="5" fill="#c7d2fe" stroke="#818cf8" stroke-width="1"/>
+    <circle cx="60" cy="39" r="5" fill="#c7d2fe" stroke="#818cf8" stroke-width="1"/>
+    <circle cx="60" cy="56" r="5" fill="#c7d2fe" stroke="#818cf8" stroke-width="1"/>
+    <circle cx="60" cy="73" r="5" fill="#c7d2fe" stroke="#818cf8" stroke-width="1"/>
+    <!-- Hidden layer 2 -->
+    <circle cx="105" cy="5" r="5" fill="#c7d2fe" stroke="#818cf8" stroke-width="1"/>
+    <circle cx="105" cy="22" r="5" fill="#c7d2fe" stroke="#818cf8" stroke-width="1"/>
+    <circle cx="105" cy="39" r="5" fill="#c7d2fe" stroke="#818cf8" stroke-width="1"/>
+    <circle cx="105" cy="56" r="5" fill="#c7d2fe" stroke="#818cf8" stroke-width="1"/>
+    <circle cx="105" cy="73" r="5" fill="#c7d2fe" stroke="#818cf8" stroke-width="1"/>
+    <!-- Output layer -->
+    <circle cx="150" cy="10" r="5" fill="#bbf7d0" stroke="#22c55e" stroke-width="1"/>
+    <circle cx="150" cy="28" r="5" fill="#bbf7d0" stroke="#22c55e" stroke-width="1"/>
+    <circle cx="150" cy="46" r="5" fill="#bbf7d0" stroke="#22c55e" stroke-width="1"/>
+    <circle cx="150" cy="64" r="5" fill="#bbf7d0" stroke="#22c55e" stroke-width="1"/>
+    <!-- Connection lines (sparse for readability) -->
+    <g stroke="#cbd5e1" stroke-width="0.5" opacity="0.6">
+      <line x1="20" y1="10" x2="55" y2="5"/><line x1="20" y1="10" x2="55" y2="22"/><line x1="20" y1="10" x2="55" y2="39"/>
+      <line x1="20" y1="28" x2="55" y2="22"/><line x1="20" y1="28" x2="55" y2="39"/><line x1="20" y1="28" x2="55" y2="56"/>
+      <line x1="20" y1="46" x2="55" y2="39"/><line x1="20" y1="46" x2="55" y2="56"/><line x1="20" y1="46" x2="55" y2="73"/>
+      <line x1="20" y1="64" x2="55" y2="56"/><line x1="20" y1="64" x2="55" y2="73"/>
+      <line x1="65" y1="5" x2="100" y2="5"/><line x1="65" y1="5" x2="100" y2="22"/><line x1="65" y1="22" x2="100" y2="22"/>
+      <line x1="65" y1="22" x2="100" y2="39"/><line x1="65" y1="39" x2="100" y2="39"/><line x1="65" y1="39" x2="100" y2="56"/>
+      <line x1="65" y1="56" x2="100" y2="56"/><line x1="65" y1="56" x2="100" y2="73"/><line x1="65" y1="73" x2="100" y2="73"/>
+      <line x1="110" y1="5" x2="145" y2="10"/><line x1="110" y1="22" x2="145" y2="10"/><line x1="110" y1="22" x2="145" y2="28"/>
+      <line x1="110" y1="39" x2="145" y2="28"/><line x1="110" y1="39" x2="145" y2="46"/><line x1="110" y1="56" x2="145" y2="46"/>
+      <line x1="110" y1="56" x2="145" y2="64"/><line x1="110" y1="73" x2="145" y2="64"/>
+    </g>
+  </g>
+
+  <text x="463" y="387" font-size="9" fill="#94a3b8" font-style="italic">API call to hosted model or local inference</text>
+
+  <!-- Bidirectional arrow: Planning <-> Model -->
+  <path d="M450,202 L450,212" stroke="#94a3b8" stroke-width="1.2" fill="none" marker-end="url(#arrowGrey)"/>
+  <path d="M460,212 L460,202" stroke="#94a3b8" stroke-width="1.2" fill="none" marker-end="url(#arrowGrey)"/>
+
+  <!-- Arrow: Memory <-> Planning -->
+  <path d="M320,215 L320,202" stroke="#94a3b8" stroke-width="1.2" fill="none" marker-end="url(#arrowGrey)"/>
+  <path d="M330,202 L330,215" stroke="#94a3b8" stroke-width="1.2" fill="none" marker-end="url(#arrowGrey)"/>
+
+  <!-- Arrow: Memory <-> Model -->
+  <path d="M420,320 L435,320" stroke="#94a3b8" stroke-width="1.2" fill="none" marker-end="url(#arrowGrey)"/>
+
+  <!-- ============================================ -->
+  <!-- TOOLS -->
+  <!-- ============================================ -->
+  <rect x="220" y="405" width="460" height="85" rx="8" fill="#ffffff" filter="url(#shadow)" stroke="#22c55e" stroke-width="1.5"/>
+  <rect x="220" y="405" width="5" height="85" rx="2.5" fill="#22c55e"/>
+
+  <text x="248" y="426" font-size="13" font-weight="700" fill="#15803d">Tools and Actions</text>
+  <text x="610" y="426" text-anchor="end" font-size="9" fill="#22c55e" font-weight="600">execute in environment</text>
+
+  <!-- Tool items -->
+  <rect x="240" y="436" width="80" height="42" rx="5" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
+  <text x="280" y="454" text-anchor="middle" font-size="9" font-weight="600" fill="#15803d">Code</text>
+  <text x="280" y="466" text-anchor="middle" font-size="9" font-weight="600" fill="#15803d">Execution</text>
+  <text x="280" y="476" text-anchor="middle" font-size="7.5" fill="#94a3b8">sandbox, REPL</text>
+
+  <rect x="330" y="436" width="80" height="42" rx="5" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
+  <text x="370" y="454" text-anchor="middle" font-size="9" font-weight="600" fill="#15803d">API</text>
+  <text x="370" y="466" text-anchor="middle" font-size="9" font-weight="600" fill="#15803d">Calls</text>
+  <text x="370" y="476" text-anchor="middle" font-size="7.5" fill="#94a3b8">HTTP, gRPC</text>
+
+  <rect x="420" y="436" width="80" height="42" rx="5" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
+  <text x="460" y="454" text-anchor="middle" font-size="9" font-weight="600" fill="#15803d">File</text>
+  <text x="460" y="466" text-anchor="middle" font-size="9" font-weight="600" fill="#15803d">System</text>
+  <text x="460" y="476" text-anchor="middle" font-size="7.5" fill="#94a3b8">read, write</text>
+
+  <rect x="510" y="436" width="80" height="42" rx="5" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
+  <text x="550" y="454" text-anchor="middle" font-size="9" font-weight="600" fill="#15803d">Database</text>
+  <text x="550" y="466" text-anchor="middle" font-size="9" font-weight="600" fill="#15803d">Queries</text>
+  <text x="550" y="476" text-anchor="middle" font-size="7.5" fill="#94a3b8">SQL, vector</text>
+
+  <rect x="600" y="436" width="72" height="42" rx="5" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
+  <text x="636" y="454" text-anchor="middle" font-size="9" font-weight="600" fill="#15803d">Browser</text>
+  <text x="636" y="466" text-anchor="middle" font-size="9" font-weight="600" fill="#15803d">and Web</text>
+  <text x="636" y="476" text-anchor="middle" font-size="7.5" fill="#94a3b8">scrape, nav</text>
+
+  <!-- Arrow: Model -> Tools -->
+  <path d="M450,392 L450,405" stroke="#94a3b8" stroke-width="1.5" fill="none" marker-end="url(#arrowGrey)"/>
+  <text x="460" y="401" font-size="8" fill="#94a3b8">invoke</text>
+  <!-- Arrow: Tools -> Model (observation) -->
+  <path d="M470,405 L470,392" stroke="#94a3b8" stroke-width="1.5" fill="none" marker-end="url(#arrowGrey)"/>
+  <text x="480" y="401" font-size="8" fill="#94a3b8">observe</text>
+
+  <!-- ============================================ -->
+  <!-- MCP LAYER -->
+  <!-- ============================================ -->
+  <rect x="220" y="503" width="460" height="52" rx="8" fill="#ffffff" filter="url(#shadow)" stroke="#06b6d4" stroke-width="1.5"/>
+  <rect x="220" y="503" width="5" height="52" rx="2.5" fill="#06b6d4"/>
+
+  <text x="248" y="524" font-size="12" font-weight="700" fill="#0e7490">MCP</text>
+  <text x="282" y="524" font-size="10" fill="#64748b">Model Context Protocol</text>
+  <text x="248" y="542" font-size="9" fill="#64748b">Standardised tool discovery, resource access, prompt templates.</text>
+  <text x="610" y="542" text-anchor="end" font-size="9" fill="#0e7490" font-weight="600">dynamic capability surface</text>
+
+  <!-- Arrow: Tools <-> MCP -->
+  <path d="M450,490 L450,503" stroke="#06b6d4" stroke-width="1.2" fill="none" marker-end="url(#arrowGrey)"/>
+
+  <!-- Arrow: MCP -> Environment -->
+  <path d="M700,530 L715,530 L715,128 L720,128" stroke="#64748b" stroke-width="1.2" stroke-dasharray="4,3" fill="none" marker-end="url(#arrowGrey)"/>
+
+  <!-- ============================================ -->
+  <!-- FRAMEWORK API LAYER (right side of agent) -->
+  <!-- ============================================ -->
+  <text x="665" y="226" text-anchor="end" font-size="9" fill="#94a3b8" font-style="italic">API Layer</text>
+  <!-- Arrow to environment -->
+  <path d="M700,240 L750,240 L750,128 L720,128" stroke="#64748b" stroke-width="1.2" stroke-dasharray="4,3" fill="none" marker-end="url(#arrowGrey)"/>
+  <text x="755" y="185" font-size="8" fill="#94a3b8" transform="rotate(90,755,185)">model API</text>
+
+  <!-- ============================================ -->
+  <!-- DATA SOURCES (right side) -->
+  <!-- ============================================ -->
+  <rect x="720" y="155" width="220" height="115" rx="8" fill="#ffffff" filter="url(#shadow)" stroke="#f59e0b" stroke-width="1.5"/>
+  <rect x="720" y="155" width="5" height="115" rx="2.5" fill="#f59e0b"/>
+
+  <text x="748" y="176" font-size="12" font-weight="700" fill="#b45309">Data Sources</text>
+
+  <rect x="740" y="186" width="90" height="30" rx="5" fill="#fffbeb" stroke="#fcd34d" stroke-width="1"/>
+  <text x="785" y="200" text-anchor="middle" font-size="9" font-weight="600" fill="#92400e">Vector Store</text>
+  <text x="785" y="212" text-anchor="middle" font-size="8" fill="#94a3b8">RAG retrieval</text>
+
+  <rect x="840" y="186" width="90" height="30" rx="5" fill="#fffbeb" stroke="#fcd34d" stroke-width="1"/>
+  <text x="885" y="200" text-anchor="middle" font-size="9" font-weight="600" fill="#92400e">Knowledge</text>
+  <text x="885" y="212" text-anchor="middle" font-size="8" fill="#94a3b8">documents, wikis</text>
+
+  <rect x="740" y="225" width="90" height="30" rx="5" fill="#fffbeb" stroke="#fcd34d" stroke-width="1"/>
+  <text x="785" y="239" text-anchor="middle" font-size="9" font-weight="600" fill="#92400e">Structured DB</text>
+  <text x="785" y="251" text-anchor="middle" font-size="8" fill="#94a3b8">SQL, graph</text>
+
+  <rect x="840" y="225" width="90" height="30" rx="5" fill="#fffbeb" stroke="#fcd34d" stroke-width="1"/>
+  <text x="885" y="239" text-anchor="middle" font-size="9" font-weight="600" fill="#92400e">Live Feeds</text>
+  <text x="885" y="251" text-anchor="middle" font-size="8" fill="#94a3b8">APIs, streams</text>
+
+  <!-- Arrow: Agent -> Data Sources -->
+  <path d="M700,300 L730,300 L730,270 L740,260" stroke="#f59e0b" stroke-width="1.2" fill="none" marker-end="url(#arrowOrange)"/>
+
+  <!-- ============================================ -->
+  <!-- MULTI-AGENT / ORCHESTRATION (bottom) -->
+  <!-- ============================================ -->
+  <rect x="120" y="620" width="720" height="110" rx="10" fill="#ffffff" filter="url(#shadowDeep)" stroke="#8b5cf6" stroke-width="2"/>
+  <rect x="120" y="620" width="6" height="110" rx="3" fill="#8b5cf6"/>
+
+  <text x="152" y="645" font-size="14" font-weight="700" fill="#6d28d9">Multi-Agent Orchestration</text>
+  <text x="770" y="645" text-anchor="end" font-size="9" fill="#8b5cf6" font-weight="600">delegation, coordination, routing</text>
+
+  <!-- Orchestrator -->
+  <rect x="140" y="658" width="115" height="58" rx="6" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1.5"/>
+  <text x="197" y="680" text-anchor="middle" font-size="10" font-weight="700" fill="#6d28d9">Orchestrator</text>
+  <text x="197" y="694" text-anchor="middle" font-size="8" fill="#94a3b8">routes tasks,</text>
+  <text x="197" y="705" text-anchor="middle" font-size="8" fill="#94a3b8">manages workflow</text>
+
+  <!-- Sub-agents -->
+  <rect x="280" y="658" width="110" height="58" rx="6" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+  <text x="335" y="676" text-anchor="middle" font-size="10" font-weight="600" fill="#15803d">Agent</text>
+  <text x="335" y="690" text-anchor="middle" font-size="9" fill="#64748b">Research</text>
+  <text x="335" y="705" text-anchor="middle" font-size="8" fill="#94a3b8">web search, RAG</text>
+
+  <rect x="405" y="658" width="110" height="58" rx="6" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+  <text x="460" y="676" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af">Agent</text>
+  <text x="460" y="690" text-anchor="middle" font-size="9" fill="#64748b">Code</text>
+  <text x="460" y="705" text-anchor="middle" font-size="8" fill="#94a3b8">write, test, deploy</text>
+
+  <rect x="530" y="658" width="110" height="58" rx="6" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.5"/>
+  <text x="585" y="676" text-anchor="middle" font-size="10" font-weight="600" fill="#92400e">Agent</text>
+  <text x="585" y="690" text-anchor="middle" font-size="9" fill="#64748b">Analysis</text>
+  <text x="585" y="705" text-anchor="middle" font-size="8" fill="#94a3b8">data, reasoning</text>
+
+  <rect x="655" y="658" width="110" height="58" rx="6" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.5"/>
+  <text x="710" y="676" text-anchor="middle" font-size="10" font-weight="600" fill="#991b1b">Agent</text>
+  <text x="710" y="690" text-anchor="middle" font-size="9" fill="#64748b">Action</text>
+  <text x="710" y="705" text-anchor="middle" font-size="8" fill="#94a3b8">execute, transact</text>
+
+  <!-- Orchestrator arrows to sub-agents -->
+  <path d="M255,687 L280,687" stroke="#8b5cf6" stroke-width="1.2" fill="none" marker-end="url(#arrowPurple)"/>
+  <path d="M255,680 L268,680 L268,675 L405,675" stroke="#8b5cf6" stroke-width="1.2" fill="none" marker-end="url(#arrowPurple)"/>
+  <path d="M255,694 L268,694 L268,699 L530,699" stroke="#8b5cf6" stroke-width="1.2" fill="none" marker-end="url(#arrowPurple)"/>
+  <path d="M255,700 L268,700 L268,706 L655,706" stroke="#8b5cf6" stroke-width="1.2" fill="none" marker-end="url(#arrowPurple)"/>
+
+  <!-- Arrow: Main Agent -> Orchestration -->
+  <path d="M450,595 L450,620" stroke="#8b5cf6" stroke-width="1.5" fill="none" marker-end="url(#arrowPurple)"/>
+  <text x="460" y="611" font-size="8" fill="#8b5cf6">delegate</text>
+
+  <!-- ============================================ -->
+  <!-- SECURITY RISK CALLOUTS (left side) -->
+  <!-- ============================================ -->
+  <rect x="20" y="155" width="160" height="425" rx="8" fill="#fef2f2" filter="url(#shadow)" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <rect x="20" y="155" width="5" height="425" rx="2.5" fill="#ef4444"/>
+
+  <text x="100" y="177" text-anchor="middle" font-size="11" font-weight="700" fill="#dc2626">Attack Surfaces</text>
+
+  <!-- Risk items -->
+  <text x="37" y="200" font-size="9" font-weight="600" fill="#991b1b">Prompt Injection</text>
+  <text x="37" y="213" font-size="8" fill="#64748b">Manipulate planning via</text>
+  <text x="37" y="224" font-size="8" fill="#64748b">crafted inputs</text>
+
+  <line x1="35" y1="233" x2="165" y2="233" stroke="#fca5a5" stroke-width="0.5"/>
+
+  <text x="37" y="248" font-size="9" font-weight="600" fill="#991b1b">Memory Poisoning</text>
+  <text x="37" y="261" font-size="8" fill="#64748b">Persist malicious context</text>
+  <text x="37" y="272" font-size="8" fill="#64748b">across sessions</text>
+
+  <line x1="35" y1="281" x2="165" y2="281" stroke="#fca5a5" stroke-width="0.5"/>
+
+  <text x="37" y="296" font-size="9" font-weight="600" fill="#991b1b">Tool Misuse</text>
+  <text x="37" y="309" font-size="8" fill="#64748b">Execute unintended actions</text>
+  <text x="37" y="320" font-size="8" fill="#64748b">with agent credentials</text>
+
+  <line x1="35" y1="329" x2="165" y2="329" stroke="#fca5a5" stroke-width="0.5"/>
+
+  <text x="37" y="344" font-size="9" font-weight="600" fill="#991b1b">Data Exfiltration</text>
+  <text x="37" y="357" font-size="8" fill="#64748b">Leak sensitive data via</text>
+  <text x="37" y="368" font-size="8" fill="#64748b">tool outputs or side channels</text>
+
+  <line x1="35" y1="377" x2="165" y2="377" stroke="#fca5a5" stroke-width="0.5"/>
+
+  <text x="37" y="392" font-size="9" font-weight="600" fill="#991b1b">Privilege Escalation</text>
+  <text x="37" y="405" font-size="8" fill="#64748b">Transitive authority through</text>
+  <text x="37" y="416" font-size="8" fill="#64748b">delegation chains</text>
+
+  <line x1="35" y1="425" x2="165" y2="425" stroke="#fca5a5" stroke-width="0.5"/>
+
+  <text x="37" y="440" font-size="9" font-weight="600" fill="#991b1b">MCP Supply Chain</text>
+  <text x="37" y="453" font-size="8" fill="#64748b">Malicious tool servers</text>
+  <text x="37" y="464" font-size="8" fill="#64748b">injecting capabilities</text>
+
+  <line x1="35" y1="473" x2="165" y2="473" stroke="#fca5a5" stroke-width="0.5"/>
+
+  <text x="37" y="488" font-size="9" font-weight="600" fill="#991b1b">Hallucination Cascade</text>
+  <text x="37" y="501" font-size="8" fill="#64748b">Fabricated outputs compound</text>
+  <text x="37" y="512" font-size="8" fill="#64748b">across agent chains</text>
+
+  <line x1="35" y1="521" x2="165" y2="521" stroke="#fca5a5" stroke-width="0.5"/>
+
+  <text x="37" y="536" font-size="9" font-weight="600" fill="#991b1b">Goal Drift</text>
+  <text x="37" y="549" font-size="8" fill="#64748b">Agent objectives diverge</text>
+  <text x="37" y="560" font-size="8" fill="#64748b">from original user intent</text>
+
+  <!-- Dashed arrows from risks to agent components -->
+  <path d="M180,205 L220,155" stroke="#ef4444" stroke-width="0.8" stroke-dasharray="3,3" fill="none" marker-end="url(#arrowRed)"/>
+  <path d="M180,255 L220,280" stroke="#ef4444" stroke-width="0.8" stroke-dasharray="3,3" fill="none" marker-end="url(#arrowRed)"/>
+  <path d="M180,305 L220,445" stroke="#ef4444" stroke-width="0.8" stroke-dasharray="3,3" fill="none" marker-end="url(#arrowRed)"/>
+  <path d="M180,450 L220,530" stroke="#ef4444" stroke-width="0.8" stroke-dasharray="3,3" fill="none" marker-end="url(#arrowRed)"/>
+
+  <!-- ============================================ -->
+  <!-- BOTTOM SUMMARY -->
+  <!-- ============================================ -->
+  <rect x="120" y="755" width="720" height="50" rx="8" fill="#1e293b"/>
+  <text x="480" y="776" text-anchor="middle" font-size="11" font-weight="600" fill="#ffffff">Every component is an attack surface. Every connection is a potential exploit path.</text>
+  <text x="480" y="794" text-anchor="middle" font-size="10" fill="#94a3b8">This is why agentic AI requires runtime security controls at every layer.</text>
+
+</svg>
