@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 820" width="960" height="820">
+  <style>
+    .title { font: bold 16px Arial, sans-serif; fill: #1e293b; }
+    .section-title { font: bold 12px Arial, sans-serif; }
+    .heading { font: bold 11px Arial, sans-serif; }
+    .body { font: 10px Arial, sans-serif; }
+    .small { font: 9px Arial, sans-serif; }
+    .delay { font: bold 9px Arial, sans-serif; }
+    .loop-label { font: bold 10px Arial, sans-serif; }
+  </style>
+
+  <defs>
+    <!-- Arrow markers -->
+    <marker id="arrowDark" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#475569"/>
+    </marker>
+    <marker id="arrowAmber" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#b45309"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#047857"/>
+    </marker>
+    <marker id="arrowCyan" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#0891b2"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#dc2626"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#7c3aed"/>
+    </marker>
+    <marker id="arrowSlate" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#64748b"/>
+    </marker>
+
+    <!-- Drop shadow -->
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="820" fill="#f8fafc"/>
+
+  <!-- Title -->
+  <text x="480" y="28" text-anchor="middle" class="title">Feedback Loops: How the System Learns and Tightens</text>
+  <text x="480" y="44" text-anchor="middle" class="small" fill="#64748b">A systems view of runtime security improvement through guardrails, judges, humans, and downstream signals</text>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION 1: RUNTIME FLOW (top band)         -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="20" y="58" width="920" height="100" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" filter="url(#shadow)"/>
+  <text x="40" y="76" class="section-title" fill="#475569">RUNTIME FLOW</text>
+  <text x="170" y="76" class="small" fill="#94a3b8">Milliseconds. Every request, every time.</text>
+
+  <!-- Request -->
+  <rect x="40" y="90" width="100" height="50" rx="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="90" y="112" text-anchor="middle" class="heading" fill="#475569">Request</text>
+  <text x="90" y="125" text-anchor="middle" class="small" fill="#94a3b8">user input</text>
+
+  <!-- Arrow -->
+  <line x1="140" y1="115" x2="170" y2="115" stroke="#475569" stroke-width="1.5" marker-end="url(#arrowDark)"/>
+
+  <!-- Guardrails -->
+  <rect x="178" y="90" width="130" height="50" rx="6" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+  <text x="243" y="108" text-anchor="middle" class="heading" fill="#b45309">Guardrails</text>
+  <text x="243" y="121" text-anchor="middle" class="small" fill="#92400e">deterministic, ~10ms</text>
+  <text x="243" y="133" text-anchor="middle" class="small" fill="#92400e">block known-bad</text>
+
+  <!-- Arrow -->
+  <line x1="308" y1="115" x2="338" y2="115" stroke="#475569" stroke-width="1.5" marker-end="url(#arrowDark)"/>
+
+  <!-- LLM -->
+  <rect x="346" y="90" width="110" height="50" rx="6" fill="#dbeafe" stroke="#1e40af" stroke-width="2"/>
+  <text x="401" y="108" text-anchor="middle" class="heading" fill="#1e40af">LLM / Agent</text>
+  <text x="401" y="121" text-anchor="middle" class="small" fill="#1e40af">generates response</text>
+  <text x="401" y="133" text-anchor="middle" class="small" fill="#1e40af">or takes action</text>
+
+  <!-- Arrow -->
+  <line x1="456" y1="115" x2="486" y2="115" stroke="#475569" stroke-width="1.5" marker-end="url(#arrowDark)"/>
+
+  <!-- Judge -->
+  <rect x="494" y="90" width="120" height="50" rx="6" fill="#d1fae5" stroke="#047857" stroke-width="2"/>
+  <text x="554" y="108" text-anchor="middle" class="heading" fill="#047857">Judge</text>
+  <text x="554" y="121" text-anchor="middle" class="small" fill="#047857">semantic evaluation</text>
+  <text x="554" y="133" text-anchor="middle" class="small" fill="#047857">pass / fail / uncertain</text>
+
+  <!-- Arrow -->
+  <line x1="614" y1="115" x2="644" y2="115" stroke="#475569" stroke-width="1.5" marker-end="url(#arrowDark)"/>
+
+  <!-- Response -->
+  <rect x="652" y="90" width="110" height="50" rx="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="707" y="112" text-anchor="middle" class="heading" fill="#475569">Response</text>
+  <text x="707" y="125" text-anchor="middle" class="small" fill="#94a3b8">to user / tool</text>
+
+  <!-- Arrow to downstream -->
+  <line x1="762" y1="115" x2="792" y2="115" stroke="#475569" stroke-width="1.5" marker-end="url(#arrowDark)"/>
+
+  <!-- Downstream -->
+  <rect x="800" y="90" width="120" height="50" rx="6" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="860" y="108" text-anchor="middle" class="heading" fill="#7c3aed">Downstream</text>
+  <text x="860" y="121" text-anchor="middle" class="small" fill="#7c3aed">tools, APIs, DBs</text>
+  <text x="860" y="133" text-anchor="middle" class="small" fill="#7c3aed">real-world effects</text>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- FLIGHT RECORDER (observation layer)        -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="20" y="172" width="920" height="55" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" filter="url(#shadow)"/>
+  <text x="40" y="192" class="section-title" fill="#475569">FLIGHT RECORDER</text>
+  <text x="175" y="192" class="small" fill="#94a3b8">Immutable log of every interaction, verdict, tool call, and outcome</text>
+
+  <!-- Small icons representing logged data -->
+  <rect x="40" y="200" width="80" height="18" rx="3" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="80" y="213" text-anchor="middle" class="small" fill="#64748b">prompts</text>
+
+  <rect x="130" y="200" width="80" height="18" rx="3" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="170" y="213" text-anchor="middle" class="small" fill="#64748b">responses</text>
+
+  <rect x="220" y="200" width="80" height="18" rx="3" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="260" y="213" text-anchor="middle" class="small" fill="#64748b">verdicts</text>
+
+  <rect x="310" y="200" width="80" height="18" rx="3" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="350" y="213" text-anchor="middle" class="small" fill="#64748b">tool calls</text>
+
+  <rect x="400" y="200" width="80" height="18" rx="3" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="440" y="213" text-anchor="middle" class="small" fill="#64748b">latencies</text>
+
+  <rect x="490" y="200" width="80" height="18" rx="3" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="530" y="213" text-anchor="middle" class="small" fill="#64748b">escalations</text>
+
+  <rect x="580" y="200" width="80" height="18" rx="3" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="620" y="213" text-anchor="middle" class="small" fill="#64748b">outcomes</text>
+
+  <rect x="670" y="200" width="100" height="18" rx="3" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="720" y="213" text-anchor="middle" class="small" fill="#64748b">human decisions</text>
+
+  <rect x="780" y="200" width="100" height="18" rx="3" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="830" y="213" text-anchor="middle" class="small" fill="#64748b">drift metrics</text>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION 2: THE FOUR FEEDBACK LOOPS         -->
+  <!-- ═══════════════════════════════════════════ -->
+
+  <!-- Loop B1: Fast loop - Judge → Guardrail codification -->
+  <rect x="20" y="245" width="450" height="175" rx="8" fill="#ffffff" stroke="#b45309" stroke-width="1.5" filter="url(#shadow)"/>
+
+  <!-- Loop label -->
+  <rect x="30" y="252" width="24" height="18" rx="9" fill="#b45309"/>
+  <text x="42" y="265" text-anchor="middle" class="delay" fill="#ffffff">B1</text>
+  <text x="62" y="265" class="loop-label" fill="#b45309">FAST LOOP: Judge signals tighten guardrails</text>
+
+  <!-- Delay badge -->
+  <rect x="365" y="252" width="95" height="18" rx="9" fill="#fef3c7" stroke="#b45309" stroke-width="1"/>
+  <text x="412" y="265" text-anchor="middle" class="delay" fill="#b45309">DELAY: min to hrs</text>
+
+  <!-- Flow inside B1 -->
+  <rect x="40" y="280" width="105" height="42" rx="4" fill="#d1fae5" stroke="#047857" stroke-width="1"/>
+  <text x="92" y="298" text-anchor="middle" class="small" fill="#047857">Judge detects</text>
+  <text x="92" y="311" text-anchor="middle" class="small" fill="#047857">novel violation</text>
+
+  <line x1="145" y1="301" x2="168" y2="301" stroke="#b45309" stroke-width="1.5" marker-end="url(#arrowAmber)"/>
+
+  <rect x="176" y="280" width="105" height="42" rx="4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/>
+  <text x="228" y="298" text-anchor="middle" class="small" fill="#475569">Pattern extracted</text>
+  <text x="228" y="311" text-anchor="middle" class="small" fill="#475569">and classified</text>
+
+  <line x1="281" y1="301" x2="304" y2="301" stroke="#b45309" stroke-width="1.5" marker-end="url(#arrowAmber)"/>
+
+  <rect x="312" y="280" width="140" height="42" rx="4" fill="#fef3c7" stroke="#b45309" stroke-width="1"/>
+  <text x="382" y="298" text-anchor="middle" class="small" fill="#b45309">Guardrail rule added</text>
+  <text x="382" y="311" text-anchor="middle" class="small" fill="#b45309">or threshold adjusted</text>
+
+  <!-- Explanation text -->
+  <text x="40" y="345" class="small" fill="#64748b">When the judge catches something guardrails missed, that pattern becomes a candidate</text>
+  <text x="40" y="358" class="small" fill="#64748b">for a new deterministic rule. Converts expensive semantic checks into cheap pattern</text>
+  <text x="40" y="371" class="small" fill="#64748b">matches. Each cycle makes guardrails smarter without increasing latency.</text>
+
+  <!-- Why delay matters -->
+  <rect x="40" y="382" width="415" height="28" rx="4" fill="#fffbeb" stroke="#fcd34d" stroke-width="1"/>
+  <text x="50" y="400" class="small" fill="#92400e">Delay impact: Low. Guardrails improve over hours, not seconds. Judge covers the gap in the meantime.</text>
+
+  <!-- Loop B2: Medium loop - Human → Judge calibration -->
+  <rect x="490" y="245" width="450" height="175" rx="8" fill="#ffffff" stroke="#047857" stroke-width="1.5" filter="url(#shadow)"/>
+
+  <rect x="500" y="252" width="24" height="18" rx="9" fill="#047857"/>
+  <text x="512" y="265" text-anchor="middle" class="delay" fill="#ffffff">B2</text>
+  <text x="532" y="265" class="loop-label" fill="#047857">MEDIUM LOOP: Human labels calibrate the judge</text>
+
+  <rect x="825" y="252" width="105" height="18" rx="9" fill="#d1fae5" stroke="#047857" stroke-width="1"/>
+  <text x="877" y="265" text-anchor="middle" class="delay" fill="#047857">DELAY: hrs to days</text>
+
+  <!-- Flow inside B2 -->
+  <rect x="510" y="280" width="105" height="42" rx="4" fill="#cffafe" stroke="#0891b2" stroke-width="1"/>
+  <text x="562" y="298" text-anchor="middle" class="small" fill="#0891b2">Human reviews</text>
+  <text x="562" y="311" text-anchor="middle" class="small" fill="#0891b2">escalated cases</text>
+
+  <line x1="615" y1="301" x2="638" y2="301" stroke="#047857" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+
+  <rect x="646" y="280" width="105" height="42" rx="4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/>
+  <text x="698" y="298" text-anchor="middle" class="small" fill="#475569">Ground truth</text>
+  <text x="698" y="311" text-anchor="middle" class="small" fill="#475569">labels created</text>
+
+  <line x1="751" y1="301" x2="774" y2="301" stroke="#047857" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+
+  <rect x="782" y="280" width="140" height="42" rx="4" fill="#d1fae5" stroke="#047857" stroke-width="1"/>
+  <text x="852" y="298" text-anchor="middle" class="small" fill="#047857">Judge thresholds</text>
+  <text x="852" y="311" text-anchor="middle" class="small" fill="#047857">and prompts tuned</text>
+
+  <text x="510" y="345" class="small" fill="#64748b">Every human decision on an escalated case is a labeled data point. These labels</text>
+  <text x="510" y="358" class="small" fill="#64748b">become ground truth for judge accuracy metrics. When the judge and humans</text>
+  <text x="510" y="371" class="small" fill="#64748b">disagree, the judge prompt, thresholds, or model are adjusted.</text>
+
+  <rect x="510" y="382" width="415" height="28" rx="4" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1"/>
+  <text x="520" y="400" class="small" fill="#047857">Delay impact: Moderate. Until humans label enough cases, judge drift goes uncorrected.</text>
+
+  <!-- Loop B3: Medium loop - Human → Guardrail policy -->
+  <rect x="20" y="435" width="450" height="175" rx="8" fill="#ffffff" stroke="#0891b2" stroke-width="1.5" filter="url(#shadow)"/>
+
+  <rect x="30" y="442" width="24" height="18" rx="9" fill="#0891b2"/>
+  <text x="42" y="455" text-anchor="middle" class="delay" fill="#ffffff">B3</text>
+  <text x="62" y="455" class="loop-label" fill="#0891b2">MEDIUM LOOP: Human insight updates policy</text>
+
+  <rect x="340" y="442" width="120" height="18" rx="9" fill="#cffafe" stroke="#0891b2" stroke-width="1"/>
+  <text x="400" y="455" text-anchor="middle" class="delay" fill="#0891b2">DELAY: days to weeks</text>
+
+  <rect x="40" y="470" width="105" height="42" rx="4" fill="#cffafe" stroke="#0891b2" stroke-width="1"/>
+  <text x="92" y="488" text-anchor="middle" class="small" fill="#0891b2">Human spots</text>
+  <text x="92" y="501" text-anchor="middle" class="small" fill="#0891b2">recurring pattern</text>
+
+  <line x1="145" y1="491" x2="168" y2="491" stroke="#0891b2" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+
+  <rect x="176" y="470" width="105" height="42" rx="4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/>
+  <text x="228" y="488" text-anchor="middle" class="small" fill="#475569">Policy review</text>
+  <text x="228" y="501" text-anchor="middle" class="small" fill="#475569">and approval</text>
+
+  <line x1="281" y1="491" x2="304" y2="491" stroke="#0891b2" stroke-width="1.5" marker-end="url(#arrowCyan)"/>
+
+  <rect x="312" y="470" width="140" height="42" rx="4" fill="#fef3c7" stroke="#b45309" stroke-width="1"/>
+  <text x="382" y="488" text-anchor="middle" class="small" fill="#b45309">Guardrail policy</text>
+  <text x="382" y="501" text-anchor="middle" class="small" fill="#b45309">or scope changed</text>
+
+  <text x="40" y="535" class="small" fill="#64748b">Humans see what automation cannot: business context, user intent shifts, regulatory</text>
+  <text x="40" y="548" class="small" fill="#64748b">changes. When reviewers notice a class of issue that neither guardrails nor judge</text>
+  <text x="40" y="561" class="small" fill="#64748b">handle well, they escalate to policy owners for guardrail or judge scope changes.</text>
+
+  <rect x="40" y="572" width="415" height="28" rx="4" fill="#ecfeff" stroke="#67e8f9" stroke-width="1"/>
+  <text x="50" y="590" class="small" fill="#0891b2">Delay impact: Acceptable. Policy changes need deliberation. Speed here causes over-blocking.</text>
+
+  <!-- Loop B4: Slow loop - Downstream outcomes -->
+  <rect x="490" y="435" width="450" height="175" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="1.5" filter="url(#shadow)"/>
+
+  <rect x="500" y="442" width="24" height="18" rx="9" fill="#7c3aed"/>
+  <text x="512" y="455" text-anchor="middle" class="delay" fill="#ffffff">B4</text>
+  <text x="532" y="455" class="loop-label" fill="#7c3aed">SLOW LOOP: Downstream outcomes close the circle</text>
+
+  <rect x="825" y="442" width="105" height="18" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="1"/>
+  <text x="877" y="455" text-anchor="middle" class="delay" fill="#7c3aed">DELAY: days to wks</text>
+
+  <rect x="510" y="470" width="105" height="42" rx="4" fill="#ede9fe" stroke="#7c3aed" stroke-width="1"/>
+  <text x="562" y="488" text-anchor="middle" class="small" fill="#7c3aed">Tool/API outcome</text>
+  <text x="562" y="501" text-anchor="middle" class="small" fill="#7c3aed">observed</text>
+
+  <line x1="615" y1="491" x2="638" y2="491" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arrowPurple)"/>
+
+  <rect x="646" y="470" width="105" height="42" rx="4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/>
+  <text x="698" y="488" text-anchor="middle" class="small" fill="#475569">Outcome linked to</text>
+  <text x="698" y="501" text-anchor="middle" class="small" fill="#475569">original decision</text>
+
+  <line x1="751" y1="491" x2="774" y2="491" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arrowPurple)"/>
+
+  <rect x="782" y="470" width="140" height="42" rx="4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/>
+  <text x="852" y="488" text-anchor="middle" class="small" fill="#475569">Risk model, judge, or</text>
+  <text x="852" y="501" text-anchor="middle" class="small" fill="#475569">tier adjusted</text>
+
+  <text x="510" y="535" class="small" fill="#64748b">Did the approved action succeed or cause harm? Downstream systems report outcomes:</text>
+  <text x="510" y="548" class="small" fill="#64748b">transaction reversals, user complaints, compliance flags, error rates. These signals</text>
+  <text x="510" y="561" class="small" fill="#64748b">flow back to recalibrate risk tiers, judge sensitivity, and escalation thresholds.</text>
+
+  <rect x="510" y="572" width="415" height="28" rx="4" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="520" y="590" class="small" fill="#7c3aed">Delay impact: High. Harm may occur before the signal arrives. Mitigation: tighten controls for new use cases.</text>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION 3: REINFORCING LOOP                -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="20" y="625" width="920" height="80" rx="8" fill="#ffffff" stroke="#dc2626" stroke-width="1.5" filter="url(#shadow)"/>
+
+  <rect x="30" y="632" width="22" height="18" rx="9" fill="#dc2626"/>
+  <text x="41" y="645" text-anchor="middle" class="delay" fill="#ffffff">R</text>
+  <text x="60" y="645" class="loop-label" fill="#dc2626">REINFORCING LOOP: Attack evolution vs. defense adaptation</text>
+  <text x="505" y="645" class="small" fill="#64748b">(this loop never closes; it is managed, not solved)</text>
+
+  <!-- Circular flow -->
+  <rect x="40" y="658" width="115" height="36" rx="4" fill="#fee2e2" stroke="#dc2626" stroke-width="1"/>
+  <text x="97" y="680" text-anchor="middle" class="small" fill="#dc2626">New attack vector</text>
+
+  <line x1="155" y1="676" x2="178" y2="676" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+
+  <rect x="186" y="658" width="115" height="36" rx="4" fill="#fee2e2" stroke="#dc2626" stroke-width="1"/>
+  <text x="243" y="675" text-anchor="middle" class="small" fill="#dc2626">Guardrails miss,</text>
+  <text x="243" y="687" text-anchor="middle" class="small" fill="#dc2626">judge catches (or not)</text>
+
+  <line x1="301" y1="676" x2="324" y2="676" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+
+  <rect x="332" y="658" width="115" height="36" rx="4" fill="#fef3c7" stroke="#b45309" stroke-width="1"/>
+  <text x="389" y="675" text-anchor="middle" class="small" fill="#b45309">Detection improves</text>
+  <text x="389" y="687" text-anchor="middle" class="small" fill="#b45309">(B1, B2, B3 activate)</text>
+
+  <line x1="447" y1="676" x2="470" y2="676" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+
+  <rect x="478" y="658" width="115" height="36" rx="4" fill="#d1fae5" stroke="#047857" stroke-width="1"/>
+  <text x="535" y="675" text-anchor="middle" class="small" fill="#047857">Attack blocked</text>
+  <text x="535" y="687" text-anchor="middle" class="small" fill="#047857">at lower cost</text>
+
+  <line x1="593" y1="676" x2="616" y2="676" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+
+  <rect x="624" y="658" width="115" height="36" rx="4" fill="#fee2e2" stroke="#dc2626" stroke-width="1"/>
+  <text x="681" y="675" text-anchor="middle" class="small" fill="#dc2626">Attacker adapts,</text>
+  <text x="681" y="687" text-anchor="middle" class="small" fill="#dc2626">tries new approach</text>
+
+  <line x1="739" y1="676" x2="762" y2="676" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+
+  <rect x="770" y="658" width="115" height="36" rx="4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/>
+  <text x="827" y="675" text-anchor="middle" class="small" fill="#64748b">Cycle repeats</text>
+  <text x="827" y="687" text-anchor="middle" class="small" fill="#64748b">(arms race)</text>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION 4: KEY INSIGHT                     -->
+  <!-- ═══════════════════════════════════════════ -->
+  <rect x="20" y="720" width="920" height="88" rx="8" fill="#1e293b" filter="url(#shadow)"/>
+  <text x="480" y="745" text-anchor="middle" class="heading" fill="#e2e8f0">THE SYSTEM PRINCIPLE</text>
+
+  <text x="480" y="768" text-anchor="middle" class="body" fill="#cbd5e1">No single layer is self-correcting. The guardrail does not know what it misses. The judge does not know when it drifts.</text>
+  <text x="480" y="783" text-anchor="middle" class="body" fill="#cbd5e1">The human does not scale. Downstream outcomes arrive late. Each layer's weakness is another layer's feedback signal.</text>
+  <text x="480" y="798" text-anchor="middle" class="body" fill="#f8fafc">The feedback loops are the system. Without them, every layer degrades independently.</text>
+</svg>

@@ -192,6 +192,7 @@ nav:
       - The Intent Layer: insights/the-intent-layer.md
       - Process-Aware Evaluation: insights/process-aware-evaluation.md
       - The Constraint Curve: insights/the-constraint-curve.md
+      - Feedback Loops: insights/feedback-loops.md
     - Threats & Attack Surfaces:
       - RAG Is Your Biggest Attack Surface: insights/rag-is-your-biggest-attack-surface.md
       - The MCP Problem: insights/the-mcp-problem.md
