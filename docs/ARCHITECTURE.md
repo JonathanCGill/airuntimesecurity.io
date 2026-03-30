@@ -19,7 +19,7 @@ The industry is converging on the same answer independently. NVIDIA NeMo, AWS Be
 
 **Guardrails prevent. Judge detects. Humans decide. Circuit breakers contain.**
 
-Each layer catches what the others miss. Remove any layer and you have a gap. Together they form a **closed-loop control system**: containment boundaries define the desired state, the Judge continuously measures actual behavior, drift detection computes the error, and human oversight applies corrective action. Unlike open-loop approaches that evaluate once and deploy, this architecture self-corrects continuously. See [Why Containment Beats Evaluation](insights/why-containment-beats-evaluation.md).
+Each layer catches what the others miss. Remove any layer and you have a gap. Together they form a **closed-loop control system**: containment boundaries define the desired state, the Judge continuously measures actual behavior, drift detection computes the error, and human oversight applies corrective action. Unlike open-loop approaches that evaluate once and deploy, this architecture self-corrects continuously. See [Why Containment Beats Evaluation](insights/why-containment-beats-evaluation.md) and [The Feedback Loops That Make It Work](insights/feedback-loops.md).
 
 ## Single-Agent Architecture
 

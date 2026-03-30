@@ -175,4 +175,5 @@ The Judge layer is covered across several documents. If you're here, you probabl
 | [Execution Control - EC-2.5](../maso/controls/execution-control.md) | Judge as the gate for agent actions. Action classification rules. Cross-validation at Tier 3 (EC-3.3). |
 | [Distilling the Judge into an SLM](../extensions/technical/distill-judge-slm.md) | Knowledge distillation from a large Judge into a fast, local Small Language Model for inline action screening. Includes the "check the checker" validation loop. |
 | [Judge Precedents](../extensions/technical/judge-precedents.md) | Worked examples of good and bad decisions that anchor judge evaluation, improve consistency, and make abstract criteria concrete. |
+| [The Feedback Loops That Make It Work](../insights/feedback-loops.md) | How judge verdicts, human labels, and downstream outcomes feed back into guardrail tuning, judge calibration, and policy updates. |
 

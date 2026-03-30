@@ -119,7 +119,7 @@ You cannot detect drift without a baseline. Capture the model's output distribut
 
 ### 3. Monitor Continuously, Not Periodically
 
-Weekly model reviews miss drift that accumulates between reviews. The [observability controls](../maso/controls/observability.md) require rolling baselines with automated alerting on deviation. At minimum, implement OB-2.3 (drift detection with 7-day rolling baseline, alert on >2 sigma deviation).
+Weekly model reviews miss drift that accumulates between reviews. The [observability controls](../maso/controls/observability.md) require rolling baselines with automated alerting on deviation. The [feedback loops](feedback-loops.md) that connect human labels back to judge calibration are the mechanism that corrects drift once detected. At minimum, implement OB-2.3 (drift detection with 7-day rolling baseline, alert on >2 sigma deviation).
 
 ### 4. Recalibrate After Every Model Change
 

@@ -102,7 +102,7 @@ No single layer is sufficient. Together, they provide defence in depth.
 
 **Match coverage to risk.** Not every transaction needs Judge evaluation. A CRITICAL system handling credit decisions? Evaluate 100%. A LOW-risk internal tool? Sample 5%. Risk tiers drive sampling rates.
 
-**Build feedback loops.** When the Judge finds something guardrails missed, update the guardrails. Every Judge finding is an opportunity to improve inline controls. Over time, more gets caught at the first layer.
+**Build feedback loops.** When the Judge finds something guardrails missed, update the guardrails. Every Judge finding is an opportunity to improve inline controls. Over time, more gets caught at the first layer. See [The Feedback Loops That Make It Work](feedback-loops.md) for how these loops operate at different speeds and why that matters.
 
 **Design escalation paths.** Judge findings go somewhere. Define queues, SLAs, and responsibilities. A finding without an owner is a finding ignored.
 
