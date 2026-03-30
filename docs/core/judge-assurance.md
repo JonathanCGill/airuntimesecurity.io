@@ -174,4 +174,5 @@ The Judge layer is covered across several documents. If you're here, you probabl
 | [Privileged Agent Governance](../maso/controls/privileged-agent-governance.md) | MASO controls for the Judge as a privileged agent: calibration testing (PA-2.2), criteria versioning (PA-2.3), model rotation (PA-3.4), continuous calibration (PA-3.5). |
 | [Execution Control - EC-2.5](../maso/controls/execution-control.md) | Judge as the gate for agent actions. Action classification rules. Cross-validation at Tier 3 (EC-3.3). |
 | [Distilling the Judge into an SLM](../extensions/technical/distill-judge-slm.md) | Knowledge distillation from a large Judge into a fast, local Small Language Model for inline action screening. Includes the "check the checker" validation loop. |
+| [Judge Precedents](../extensions/technical/judge-precedents.md) | Worked examples of good and bad decisions that anchor judge evaluation, improve consistency, and make abstract criteria concrete. |
 

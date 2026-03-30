@@ -18,6 +18,8 @@ The Judge evaluates AI interactions **after the fact**, looking for:
 
 **Remember:** The Judge surfaces findings for human review. It does not block transactions.
 
+**See also:** [Judge Precedents](../technical/judge-precedents.md) extends these prompt templates with worked examples of prior decisions that anchor judge reasoning and improve verdict consistency.
+
 ## General Evaluation Prompt
 
 Use this as a starting template for most evaluations:

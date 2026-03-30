@@ -6,7 +6,7 @@ description: "MASO Objective Intent: developer-declared intent specifications th
 
 > Part of the [MASO Framework](../README.md) · Control Specifications
 > Extends: [Prompt, Goal & Epistemic Integrity](prompt-goal-and-epistemic-integrity.md) · [Observability](observability.md) · [Privileged Agent Governance](privileged-agent-governance.md)
-> Cross-references: [The Intent Layer](../../insights/the-intent-layer.md) · [Judge Assurance](../../core/judge-assurance.md)
+> Cross-references: [The Intent Layer](../../insights/the-intent-layer.md) · [Judge Assurance](../../core/judge-assurance.md) · [Judge Precedents](../../extensions/technical/judge-precedents.md)
 
 ## Principle
 
@@ -322,7 +322,7 @@ Objective Intent evaluation intensity scales with risk classification:
 
 Specifying what an agent should do in sufficient detail for machine evaluation is non-trivial. Vague OISpecs ("produce good analysis") are unevaluable. Overly specific OISpecs ("respond with exactly these fields in this order") are brittle. The right level of specificity depends on the use case and risk tier.
 
-**Mitigation:** Start with HIGH/CRITICAL risk workflows. Use the cross-workflow learning feedback loop (OI-3.3) to improve OISpec templates over time. Accept that for LOW risk, minimal OISpecs are appropriate.
+**Mitigation:** Start with HIGH/CRITICAL risk workflows. Use the cross-workflow learning feedback loop (OI-3.3) to improve OISpec templates over time. Accept that for LOW risk, minimal OISpecs are appropriate. [Judge Precedents](../../extensions/technical/judge-precedents.md) address this directly: worked examples of how criteria apply to specific cases make abstract OISpecs concrete and evaluable.
 
 **2. An agent can satisfy the letter of its OISpec while violating the spirit.**
 

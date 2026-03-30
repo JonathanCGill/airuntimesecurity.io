@@ -244,6 +244,7 @@ nav:
     - Technical Reference:
       - Model-as-Judge Implementation: extensions/technical/model-as-judge-implementation.md
       - Judge Model Selection: extensions/technical/judge-model-selection.md
+      - Judge Precedents: extensions/technical/judge-precedents.md
       - Distilling the Judge into an SLM: extensions/technical/distill-judge-slm.md
       - Agentic Controls Catalogue: extensions/technical/agentic-controls-catalogue.md
       - Agentic Controls Extended: extensions/technical/agentic-controls-extended.md
