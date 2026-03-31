@@ -138,7 +138,7 @@ The strongest empirical backing for runtime security from a government body. The
 - **Scaffolding efficiency:** Scaffolding alone provided ~40% performance boost on SWE-bench. Optimised scaffolding achieved equivalent cyber performance at 13% of token budget.
 - **Emotional dependence:** 33% of UK citizens used AI for emotional support. Service outages caused 30x spikes in negative sentiment.
 
-This framework references AISI findings in: [Evaluation Integrity Risks](insights/evaluation-integrity-risks.md), [Risk Tiers](core/risk-tiers.md), [When the Judge Can Be Fooled](core/when-the-judge-can-be-fooled.md), [The MCP Problem](insights/the-mcp-problem.md), [Open-Weight Models](insights/open-weight-models-shift-the-burden.md), [Emerging Threats](maso/threat-intelligence/emerging-threats.md), and [Emerging Trends](extensions/technical/emerging-trends-impact.md).
+This framework references AISI findings in: [Evaluation Integrity Risks](insights/evaluation-integrity-risks.md), [Risk Tiers](core/risk-tiers.md), [When the Judge Can Be Fooled](core/when-the-judge-can-be-fooled.md), [The MCP Problem](insights/the-mcp-problem.md), [Open-Weight Models](insights/open-weight-models-shift-the-burden.md), and [Emerging Threats](maso/threat-intelligence/emerging-threats.md).
 
 - [UK AI Security Institute](https://www.aisi.gov.uk/)
 

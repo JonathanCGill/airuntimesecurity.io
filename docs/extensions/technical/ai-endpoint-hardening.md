@@ -224,5 +224,5 @@ Endpoint-specific signals to feed into the [SOC Content Pack](soc-content-pack.m
 - [Data Protection](../../infrastructure/controls/data-protection.md) - Data classification and protection in AI pipelines
 - [SOC Content Pack](soc-content-pack.md) - Detection rules for endpoint monitoring
 - [SOC Integration](soc-integration.md) - SOC architecture and triage procedures
-- [Bypass Prevention](bypass-prevention.md) - Guardrail bypass taxonomy and defences
+- [When the Judge Can Be Fooled](../../core/when-the-judge-can-be-fooled.md) - Adversarial failure modes and mitigations
 

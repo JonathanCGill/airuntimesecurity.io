@@ -22,7 +22,7 @@ There is a further mechanism that is less evidenced but reasonable to anticipate
 
 ## Why This Matters for MASO
 
-The [model drift](model-drift-impact.md) problem is well understood for single-agent systems. Temporal decay introduces a specific failure mode in multi-agent architectures that drift detection alone does not address: **correlated decay across the control hierarchy**.
+The model drift problem is well understood for single-agent systems. Temporal decay introduces a specific failure mode in multi-agent architectures that drift detection alone does not address: **correlated decay across the control hierarchy**.
 
 ### Three Decay Vectors
 
@@ -42,7 +42,7 @@ Temporal decay breaks that independence.
 
 If the Judge runs on the same or a similar model as the Agent, they decay together. Their training cutoffs are the same. Their blind spots are the same. They drift in the same direction. The Judge does not catch what the Agent gets wrong, because the Judge is wrong about the same things for the same reasons.
 
-This is correlated degradation applied to time, the most dangerous pattern in a defence-in-depth architecture. The [quantitative argument](model-drift-impact.md#the-quantitative-argument) in the drift analysis shows how correlated miss rate increases compound residual risk. Temporal decay is a specific, predictable driver of exactly that correlation.
+This is correlated degradation applied to time, the most dangerous pattern in a defence-in-depth architecture. Correlated miss rate increases compound residual risk. Temporal decay is a specific, predictable driver of exactly that correlation.
 
 ### A Concrete Example
 
@@ -112,7 +112,7 @@ Temporal decay is not the same problem as model drift. Drift is about unexpected
 The specific danger for MASO is correlated decay: the Agent and Judge aging together, becoming blind to the same things at the same rate, while the system's confidence metrics remain stable. That is the failure mode to design against, and it requires deliberate architectural separation of decay timelines, active knowledge base maintenance, and staleness thresholds that trigger escalation before anomaly detection has anything to detect.
 
 !!! info "References"
-    - [Model Drift Impact](model-drift-impact.md) - How model drift degrades every layer of the runtime security architecture
+    - [Observability Controls](../maso/controls/observability.md) - Continuous monitoring to detect drift across the control hierarchy
     - [Judge Model Selection](../extensions/technical/judge-model-selection.md) - Why the Judge must be architecturally independent from the system it evaluates
     - [PACE Resilience](../PACE-RESILIENCE.md) - Structured degradation when control integrity is compromised
     - [MASO Observability Controls](../maso/controls/observability.md) - Per-agent drift detection and cross-agent correlation

@@ -97,7 +97,7 @@ Read these in order. Total time: ~90 minutes.
 
 | # | Document | Why You Need It |
 |---|---|---|
-| 1 | [Cheat Sheet](../CHEATSHEET.md) | The entire framework on one page - classification, controls, fail postures |
+| 1 | [Quick Start](../QUICK_START.md) | The framework essentials: classification, controls, fail postures |
 | 2 | [Risk Tiers](../core/risk-tiers.md) | The classification scheme you'll mandate as the portfolio standard |
 | 3 | [Business Alignment](../strategy/business-alignment.md) | Four strategic questions every AI initiative must answer before investment |
 | 4 | [Cost & Latency](../extensions/technical/cost-and-latency.md) | Budget the control layers - the numbers behind the portfolio cost model |

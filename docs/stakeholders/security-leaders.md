@@ -57,7 +57,7 @@ Read these in order. Total time: ~90 minutes.
 
 | # | Document | Why You Need It |
 |---|---|---|
-| 1 | [Cheat Sheet](../CHEATSHEET.md) | The entire framework on one page - classify, control, fail posture, test |
+| 1 | [Quick Start](../QUICK_START.md) | The framework essentials: classify, control, fail posture, test |
 | 2 | [Risk Tiers](../core/risk-tiers.md) | The classification scheme you'll mandate across the organisation |
 | 3 | [Controls](../core/controls.md) | What each layer does, how to verify it works, when each is required |
 | 4 | [Risk Assessment](../core/risk-assessment.md) | Quantitative methodology for board-level risk reporting |

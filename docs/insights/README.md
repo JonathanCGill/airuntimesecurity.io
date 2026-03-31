@@ -29,7 +29,7 @@ Where the three-layer pattern meets its limits - and what to do about it.
 |---|---------|-----------------|----------|
 | 7 | [The Verification Gap](the-verification-gap.md) | Current safety approaches can't confirm ground truth | [Judge Assurance](../core/judge-assurance.md) |
 | 8 | [Behavioral Anomaly Detection](../extensions/technical/behavioral-anomaly-detection.md) | Aggregating signals to detect drift from normal | [Anomaly Detection Ops](../extensions/technical/anomaly-detection-ops.md) |
-| 8b | [Model Drift Impact](model-drift-impact.md) | Model drift degrades every control layer simultaneously, and closed-loop monitoring is the only viable response | [Observability Controls](../maso/controls/observability.md) |
+| 8b | [Temporal Decay](temporal-decay.md) | Correlated model decay degrades every control layer simultaneously | [Observability Controls](../maso/controls/observability.md) |
 | 9 | [Multimodal AI Breaks Your Text-Based Guardrails](multimodal-breaks-guardrails.md) | Images, audio, and video bypass text controls | [Multimodal Controls](../core/multimodal-controls.md) |
 | 10 | [When AI Thinks Before It Answers](when-ai-thinks.md) | Reasoning models need reasoning-aware controls | [Reasoning Model Controls](../core/reasoning-model-controls.md) |
 | 11 | [When Agents Talk to Agents](when-agents-talk-to-agents.md) | Multi-agent systems have accountability gaps | [Multi-Agent Controls](../core/multi-agent-controls.md) |
@@ -51,16 +51,6 @@ Blind spots in most enterprise AI security programmes.
 | 14 | [The Supply Chain Problem](the-supply-chain-problem.md) | You don't control the model you deploy | [Supply Chain Controls](../extensions/technical/supply-chain.md) |
 | 15 | [RAG Is Your Biggest Attack Surface](rag-is-your-biggest-attack-surface.md) | Retrieval pipelines bypass your existing access controls | [RAG Security](../extensions/technical/rag-security.md) |
 | 16 | [The Visibility Problem](the-visibility-problem.md) | You can't govern AI you don't know is running - shadow AI, inventories, and governance KPIs | [Operational Metrics](../extensions/technical/operational-metrics.md) |
-| 17 | [Seeing Through the Fog](seeing-through-the-fog.md) | In multi-product, multi-agent environments, the hardest problem isn't controlling agents - it's knowing where they are and what they're doing | [Observability Controls](../maso/controls/observability.md) |
-
-## Framework Review
-
-How the framework maps to the broader AI ecosystem and where it fits within the full AI lifecycle.
-
-| # | Article | One-Line Summary |
-|---|---------|-----------------|
-| 18 | [Review: The Framework Against the AI Lifecycle](ai-lifecycle-review.md) | Systematic assessment of framework coverage across all seven standard AI lifecycle phases: where it leads, where it defers, and where adopters must supplement |
-
 ## Research & Evidence
 
 What the peer-reviewed literature says about runtime AI security controls.

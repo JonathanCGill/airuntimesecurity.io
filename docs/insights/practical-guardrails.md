@@ -350,7 +350,7 @@ Guardrails protect the front door. Data also leaks through side channels that gu
 
 - **[Why Guardrails Aren't Enough](why-guardrails-arent-enough.md)** explains the theory - guardrails are necessary but not sufficient. This article makes the guardrail layer practical.
 - **[Data Protection](../infrastructure/controls/data-protection.md)** defines the formal DAT-01 through DAT-08 controls. This article provides implementation guidance for the guardrail components of those controls.
-- **[Bypass Prevention](../extensions/technical/bypass-prevention.md)** covers what happens when guardrails are circumvented. This article focuses on making them hard to circumvent in the first place.
+- **[When the Judge Can Be Fooled](../core/when-the-judge-can-be-fooled.md)** covers adversarial failure modes when controls are circumvented. This article focuses on making guardrails hard to circumvent in the first place.
 - **[RAG Security](../extensions/technical/rag-security.md)** covers RAG-specific controls. This article adds the ingestion filtering perspective.
 - **[Controls: Guardrails, Judge, and Human Oversight](../core/controls.md)** defines the three-layer model. This article provides depth on the first layer with practical detection guidance and governance for the second and third layers' data protection role.
 

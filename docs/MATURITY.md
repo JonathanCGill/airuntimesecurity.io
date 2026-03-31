@@ -105,7 +105,7 @@ What a pilot looks like:
 1. **Pick a scope.** One AI system, one risk tier. You don't need the whole framework.
 2. **Implement the controls.** Use the [Quick Start](QUICK_START.md) or [Implementation Guide](IMPLEMENTATION_GUIDE.md).
 3. **Measure.** Track false positive rates, Judge accuracy, latency impact, operational overhead.
-4. **Share.** Open an issue, submit a PR to [Adopters](ADOPTERS.md), or contact the maintainer directly.
+4. **Share.** Open an issue or contact the maintainer directly.
 
 Even negative results are valuable. "We implemented X and it didn't work because Y" improves the framework more than silence.
 

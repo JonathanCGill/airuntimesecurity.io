@@ -19,7 +19,7 @@ AI systems are non-deterministic. Same prompt, same model, same parameters - dif
 
 **Start here:**
 
-- [Read the 5-minute executive summary](../CHEATSHEET.md) - the entire framework on one page
+- [Read the Quick Start guide](../QUICK_START.md) - get working controls in 30 minutes
 - [Explore the technical architecture](#architecture) - three layers, what fails when
 - [Get working controls in 30 minutes](../QUICK_START.md) - from zero to deployed
 
@@ -45,7 +45,7 @@ This pattern already exists in production at major platforms: NVIDIA NeMo, AWS B
 
 | If you want to... | Go here |
 | --- | --- |
-| Get the whole framework on one page | [Cheat Sheet](../CHEATSHEET.md) / [Decision Poster](../DECISION-POSTER.md) |
+| Get started quickly | [Quick Start](../QUICK_START.md) |
 | Deploy low-risk AI fast | [Fast Lane](../FAST-LANE.md) |
 | Understand the concepts in 30 minutes | [Quick Start](../QUICK_START.md) |
 | Implement controls with working code | [Implementation Guide](../IMPLEMENTATION_GUIDE.md) |
@@ -95,8 +95,7 @@ Even at the lowest risk tier, there's a fallback plan. At the highest, there's a
 
 | Document | Purpose |
 | --- | --- |
-| [Cheat Sheet](../CHEATSHEET.md) | Entire framework on one page - classify, control, fail posture, test |
-| [Decision Poster](../DECISION-POSTER.md) | Visual one-page reference |
+| [Quick Start](../QUICK_START.md) | From zero to deployed in 30 minutes |
 | [Fast Lane](../FAST-LANE.md) | Pre-approved minimal controls for low-risk AI |
 | [Risk Tiers](../core/risk-tiers.md) | Classify your system, determine control and resilience requirements |
 | [Risk Assessment](../core/risk-assessment.md) | Quantitative control effectiveness, residual risk per tier, NIST AI RMF aligned |

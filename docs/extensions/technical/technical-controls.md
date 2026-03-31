@@ -2,7 +2,7 @@
 
 Network, infrastructure, and platform controls that enforce AI security at the technical layer.
 
-> **See also:** [Bypass Prevention](bypass-prevention.md) for the full taxonomy of bypass techniques and defence strategies.
+> **See also:** [When the Judge Can Be Fooled](../../core/when-the-judge-can-be-fooled.md) for adversarial failure modes and mitigations.
 
 ## Why Technical Controls Matter
 

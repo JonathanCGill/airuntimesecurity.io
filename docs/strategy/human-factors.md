@@ -14,7 +14,7 @@ AI strategies account for technology, data, and budget. They rarely account for 
 
 Not "headcount" - that's a budget line. People: their skills, their capacity to learn new things, their available time, their willingness to change how they work, and their ability to operate AI systems safely day after day.
 
-The framework's [novel risk #12](../extensions/technical/novel-ai-risks.md) - Human-AI Interaction Risk - identifies automation bias, deskilling, and accountability gaps as risks that emerge from how humans work alongside AI. But these aren't just runtime risks. They're strategic risks. If your AI strategy assumes human capabilities that don't exist, it will fail before any security control is tested.
+Automation bias, deskilling, and accountability gaps are risks that emerge from how humans work alongside AI. But these aren't just runtime risks. They're strategic risks. If your AI strategy assumes human capabilities that don't exist, it will fail before any security control is tested.
 
 ## The Five Human Constraints
 
@@ -207,7 +207,7 @@ The human requirements scale with risk tier, just as technical controls do:
 
 **Reality:** The security operations team has one person who understands the Judge system. That person also manages three other security tools. Judge calibration happens when they have time - roughly once a quarter instead of the weekly cadence specified. When they take holiday, nobody monitors Judge accuracy.
 
-**Framework impact:** Judge accuracy degrades without calibration. The framework's [invisible degradation](../extensions/technical/novel-ai-risks.md) risk materialises - not through technical failure, but through human capacity failure.
+**Framework impact:** Judge accuracy degrades without calibration. The invisible degradation risk materialises not through technical failure, but through human capacity failure.
 
 **Strategic response:**
 - Fund a dedicated AI security operations role (the governance model's "Technical Operations Team")
@@ -235,7 +235,7 @@ The human requirements scale with risk tier, just as technical controls do:
 
 ## The Deskilling Problem
 
-The framework identifies deskilling as a [novel risk](../extensions/technical/novel-ai-risks.md). It's also a strategic risk.
+Deskilling is both a runtime risk and a strategic risk.
 
 When AI handles tasks that humans used to do, humans lose the ability to do those tasks. This matters because:
 

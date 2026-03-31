@@ -155,7 +155,7 @@ If any dimension suggests higher tier, use it.
 
 ## Simplified Tier Mapping
 
-Some framework documents - particularly [PACE](pace-controls-section.md), [CHEATSHEET](../CHEATSHEET.md), and specialized controls - use a simplified **three-tier numbered system** (Tier 1/2/3). This is intentional: the three-tier system is a practical shorthand for operational contexts where the full four-tier classification adds complexity without proportionate benefit.
+Some framework documents, particularly [PACE](pace-controls-section.md) and specialized controls, use a simplified **three-tier numbered system** (Tier 1/2/3). This is intentional: the three-tier system is a practical shorthand for operational contexts where the full four-tier classification adds complexity without proportionate benefit.
 
 | Simplified Tier | Named Risk Tiers | Description |
 |-----------------|-----------------|-------------|

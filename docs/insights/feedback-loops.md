@@ -121,7 +121,7 @@ Each layer's weakness is another layer's feedback signal. The feedback loops are
 !!! info "References"
     - [Why Your AI Guardrails Aren't Enough](../insights/why-guardrails-arent-enough.md)
     - [Judge Assurance](../core/judge-assurance.md)
-    - [Model Drift and Its Impact](../insights/model-drift-impact.md)
+    - [Temporal Decay](../insights/temporal-decay.md)
     - [The Flight Recorder Problem](../insights/the-flight-recorder-problem.md)
     - [PACE Resilience](../PACE-RESILIENCE.md)
     - [Humans Remain Accountable](../insights/humans-remain-accountable.md)

@@ -17,17 +17,12 @@ Deep dives on controls, infrastructure, and metrics.
 | Document | Description |
 |----------|-------------|
 | [judge-model-selection.md](judge-model-selection.md) | Judge model selection principles |
-| [bypass-prevention.md](bypass-prevention.md) | Bypass taxonomy and defence strategies |
 | [technical-controls.md](technical-controls.md) | Network, WAF, DLP, gateway controls |
 | [ai-endpoint-hardening.md](ai-endpoint-hardening.md) | Model endpoint, gateway, and tool server hardening |
-| [Control Families](control-families.md) | Detailed control family definitions |
 | [Agentic Controls (Extended)](agentic-controls-extended.md) | Extended agentic control guidance |
 | [Model-as-Judge Implementation](model-as-judge-implementation.md) | Detailed Judge implementation |
 | [operational-metrics.md](operational-metrics.md) | Comprehensive metrics catalogue |
 | [control-selection-guide.md](control-selection-guide.md) | Control selection methodology |
-| [ai-specific-risks.md](novel-ai-risks.md) | AI-specific risk categories |
-| [support-systems-risk.md](support-systems-risk.md) | Feeder system risk analysis |
-| [emerging-trends-impact.md](emerging-trends-impact.md) | Technology trend impact assessment |
 
 ## Operations
 

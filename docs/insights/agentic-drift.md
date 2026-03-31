@@ -12,7 +12,7 @@ Consider a user request that passes through four agents. The user's intent is sp
 
 Nobody attacked the system. No agent was compromised. The security context simply eroded as it passed through the chain.
 
-This is **agentic drift**: the unintentional, gradual loss of security constraints, intent boundaries, and contextual meaning as tasks are delegated from agent to agent. It is distinct from [model drift](model-drift-impact.md) (where the model's behavior changes over time) and from deliberate privilege escalation (where an attacker exploits a delegation chain). Agentic drift happens in systems that are working as designed, because the design did not account for how context degrades across agent boundaries.
+This is **agentic drift**: the unintentional, gradual loss of security constraints, intent boundaries, and contextual meaning as tasks are delegated from agent to agent. It is distinct from model drift (where the model's behavior changes over time) and from deliberate privilege escalation (where an attacker exploits a delegation chain). Agentic drift happens in systems that are working as designed, because the design did not account for how context degrades across agent boundaries.
 
 ## Why Context Degrades
 
@@ -40,7 +40,7 @@ This is not a bug in any single agent. It is an emergent property of chained nat
 
 ## How It Differs from Model Drift
 
-[Model drift](model-drift-impact.md) is about the model changing. Agentic drift is about the context changing. They can compound, but they require different controls.
+Model drift is about the model changing. Agentic drift is about the context changing. They can compound, but they require different controls.
 
 | Dimension | Model Drift | Agentic Drift |
 |-----------|-------------|---------------|
@@ -50,7 +50,7 @@ This is not a bug in any single agent. It is an emergent property of chained nat
 | **Time scale** | Days to weeks | Within a single request chain |
 | **Affected systems** | Any system using the model | Multi-agent systems with delegation |
 
-When both occur simultaneously, the effect is multiplicative. A model that has drifted toward weaker instruction-following will lose constraints faster as it summarises tasks for downstream agents. The [multi-agent drift amplification](model-drift-impact.md#multi-agent-drift-amplification) problem becomes significantly worse.
+When both occur simultaneously, the effect is multiplicative. A model that has drifted toward weaker instruction-following will lose constraints faster as it summarises tasks for downstream agents. The multi-agent drift amplification problem becomes significantly worse.
 
 ## Where It Appears
 
@@ -193,7 +193,7 @@ The structural controls in the framework (permission intersection, identity prop
 The fix is not more guardrails. It is carrying the intent alongside the task, in a form that machines can verify and humans can audit.
 
 !!! info "References"
-    - [Model Drift Is a Runtime Security Problem](model-drift-impact.md) - How model behavioral drift compounds with agentic drift in multi-agent systems
+    - [Temporal Decay](temporal-decay.md) - How correlated model decay compounds with agentic drift in multi-agent systems
     - [Delegation Chain Controls](../infrastructure/agentic/delegation-chains.md) - DEL-01 through DEL-05: structural controls for delegation chains
     - [Multi-Agent Controls](../core/multi-agent-controls.md) - Trust topologies, identity propagation, and circuit breakers
     - [When Agents Talk to Agents](when-agents-talk-to-agents.md) - Accountability gaps and coordination failures in multi-agent systems

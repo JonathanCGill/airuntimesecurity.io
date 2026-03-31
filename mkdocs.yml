@@ -208,7 +208,6 @@ nav:
       - Agentic Drift: insights/agentic-drift.md
       - The Orchestrator Problem: insights/the-orchestrator-problem.md
       - The Long-Horizon Problem: insights/the-long-horizon-problem.md
-      - Seeing Through the Fog: insights/seeing-through-the-fog.md
       - The Visibility Problem: insights/the-visibility-problem.md
       - When the Pattern Breaks: insights/when-the-pattern-breaks.md
       - What Scales: insights/what-scales.md
@@ -217,7 +216,6 @@ nav:
       - The Model You Choose: insights/the-model-you-choose.md
       - The Backbone Problem: insights/the-backbone-problem.md
       - Open-Weight Models Shift the Burden: insights/open-weight-models-shift-the-burden.md
-      - Model Drift Impact: insights/model-drift-impact.md
       - Temporal Decay: insights/temporal-decay.md
       - You Can't Validate Unfinished: insights/you-cant-validate-unfinished.md
       - Risk Tier Is Use Case: insights/risk-tier-is-use-case.md
@@ -227,8 +225,6 @@ nav:
       - The Evidence Gap: insights/the-evidence-gap.md
       - Risk Stories: insights/risk-stories.md
       - The Flight Recorder Problem: insights/the-flight-recorder-problem.md
-      - Where Agentic AI Meets Human Behaviour: insights/where-agentic-ai-meets-human-behaviour.md
-      - AI Lifecycle Review: insights/ai-lifecycle-review.md
       - Securing the Connective Tissue: insights/securing-the-connective-tissue.md
       - Automated Risk Tiering: insights/automated-risk-tiering.md
 
@@ -255,9 +251,7 @@ nav:
       - SOC Integration: extensions/technical/soc-integration.md
       - SOC Content Pack: extensions/technical/soc-content-pack.md
       - Runtime Telemetry Reference: extensions/technical/runtime-telemetry-reference.md
-      - Bypass Prevention: extensions/technical/bypass-prevention.md
       - Control Selection Guide: extensions/technical/control-selection-guide.md
-      - Control Families: extensions/technical/control-families.md
       - Technical Controls: extensions/technical/technical-controls.md
       - Current Solutions: extensions/technical/current-solutions.md
       - AI Endpoint Hardening: extensions/technical/ai-endpoint-hardening.md
@@ -265,15 +259,12 @@ nav:
       - Behavioral Anomaly Detection: extensions/technical/behavioral-anomaly-detection.md
       - Graph-Based Agent Monitoring: extensions/technical/graph-based-agent-monitoring.md
       - Multi-Agent Failure Analysis: extensions/technical/multi-agent-failure-analysis.md
-      - Emerging Trends Impact: extensions/technical/emerging-trends-impact.md
       - Operational Metrics: extensions/technical/operational-metrics.md
       - Output Evaluator: extensions/technical/output-evaluator.md
       - Humans in the Business Process: extensions/technical/humans-in-the-business-process.md
-      - Novel AI Risks: extensions/technical/novel-ai-risks.md
       - Economic Governance: extensions/technical/economic-governance.md
       - NHI Lifecycle: extensions/technical/nhi-lifecycle.md
       - Supply Chain Controls: extensions/technical/supply-chain.md
-      - Support Systems Risk: extensions/technical/support-systems-risk.md
     - Templates:
       - extensions/templates/README.md
       - AI Incident Playbook: extensions/templates/ai-incident-playbook.md
@@ -293,6 +284,5 @@ nav:
       - Multi-Agent Risk Demo: extensions/examples/multi-agent-risk-demo.md
     - Downloads: downloads.md
     - News: news.md
-    - News Archive: news-archive.md
     - FAQ: FAQ.md
     - About: ABOUT.md

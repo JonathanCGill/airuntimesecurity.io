@@ -67,7 +67,7 @@ The [Use Case Definition](../strategy/use-case-definition.md) provides ten quest
 
 | # | Document | Why You Need It |
 |---|---|---|
-| 1 | [Cheat Sheet](../CHEATSHEET.md) | The entire framework on one page - decide your tier in 2 minutes |
+| 1 | [Risk Tiers](../core/risk-tiers.md) | Classify your AI system, decide your tier in 2 minutes |
 | 2 | [Fast Lane](../FAST-LANE.md) | Check if your system qualifies for accelerated deployment |
 | 3 | [Risk Tiers](../core/risk-tiers.md) | If not Fast Lane, classify your system using the six dimensions |
 | 4 | [Use Case Definition](../strategy/use-case-definition.md) | Ten questions that feed directly into security requirements |
@@ -77,7 +77,7 @@ The [Use Case Definition](../strategy/use-case-definition.md) provides ten quest
 
 ## What You Can Do Monday Morning
 
-1. **Classify your AI system** using the [Cheat Sheet](../CHEATSHEET.md). Can it go through the Fast Lane? If so, do that. If not, know your tier.
+1. **Classify your AI system** using the [Risk Tiers](../core/risk-tiers.md). Can it go through the Fast Lane? If so, do that. If not, know your tier.
 
 2. **Complete the [Use Case Definition](../strategy/use-case-definition.md)** before requesting a security review. Ten questions, 15 minutes, and you arrive with a clear scope that security can approve faster.
 

@@ -199,5 +199,5 @@ Risk classification is a governance function, not an engineering function. The s
 You can. Guardrail effectiveness is measured through red team exercises. Evaluation layer accuracy is measured through labelled datasets. Human reviewer effectiveness is measured through agreement studies. The [Risk Assessment](../core/risk-assessment.md) methodology explains exactly how - and what to do with illustrative rates before you have measured ones.
 
 **"This is too complex for our current maturity."**
-Start with the [Cheat Sheet](../CHEATSHEET.md) and apply tier classification only. Even classifying your AI systems into four tiers, without implementing any new controls, gives you a risk inventory you didn't have before. That alone is a board-reportable improvement.
+Start with the [Risk Tiers](../core/risk-tiers.md) and apply tier classification only. Even classifying your AI systems into four tiers, without implementing any new controls, gives you a risk inventory you didn't have before. That alone is a board-reportable improvement.
 

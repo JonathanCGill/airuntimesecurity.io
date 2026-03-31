@@ -114,7 +114,7 @@ Each phase requires demonstrated operational maturity before progressing. You do
 
 | # | Document | Why You Need It |
 |---|---|---|
-| 1 | [Cheat Sheet](../CHEATSHEET.md) | The entire framework on one page - know your tier in 2 minutes |
+| 1 | [Risk Tiers](../core/risk-tiers.md) | Classify your AI system, know your tier in 2 minutes |
 | 2 | [Fast Lane](../FAST-LANE.md) | Check if any of your products qualify for accelerated low-risk deployment |
 | 3 | [Business Alignment](../strategy/business-alignment.md) | Four questions every AI initiative must answer - including cost and skills feasibility |
 | 4 | [Risk Assessment](../core/risk-assessment.md) | Quantified methodology for understanding your actual risk exposure |

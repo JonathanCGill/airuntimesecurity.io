@@ -83,7 +83,7 @@ The model can still be built. But the strategy needs to account for 3-6 months o
 
 **Does the data represent the real world the AI will operate in?**
 
-This is particularly important for high-stakes AI and is directly connected to the framework's [novel risk](../extensions/technical/novel-ai-risks.md) #6 (training data influence) and #5 (opacity).
+This is particularly important for high-stakes AI and is directly connected to training data influence and model opacity risks.
 
 | Representativeness Problem | Example | Consequence |
 |---------------------------|---------|-------------|
