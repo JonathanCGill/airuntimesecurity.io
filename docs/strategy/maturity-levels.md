@@ -27,9 +27,7 @@ The rest of this article addresses maturity across all four tracks. The full [co
 
 Maturity models exist to answer a simple question: **where are we, and what should we build next?**
 
-Without a maturity model, organisations either underinvest (operating at risk levels they don't recognise) or overinvest (applying Tier 3 controls to Tier 1 problems). Both waste money. Both create false confidence.
-
-The maturity conversation for AI security is complicated by the fact that most organisations are at different levels on different tracks simultaneously. An enterprise might be Level 4 on copilot adoption (M365 Copilot deployed to 50,000 users with governance controls) and Level 1 on custom AI (one experimental RAG pipeline with no monitoring). The maturity model needs to help leaders locate themselves on each track and prioritise accordingly.
+Without one, organisations either underinvest (operating at risk levels they don't recognise) or overinvest (applying Tier 3 controls to Tier 1 problems). The complication: most organisations are at different levels on different tracks simultaneously. An enterprise might be Level 4 on copilot adoption and Level 1 on custom AI. The model needs to help leaders locate themselves on each track.
 
 ## Established Maturity Models
 
@@ -180,11 +178,9 @@ Predictive and self-optimising. AI-assisted monitoring of AI systems. Behavioura
 
 ## The Real Maturity Gap
 
-The research paints a consistent picture: **the gap is not capability. It is operational discipline.**
+**The gap is not capability. It is operational discipline.** 95%+ of enterprises are on cloud platforms. 50% use GenAI services through them. The platforms provide security controls. The question is whether organisations configure them, monitor them, and act on what they find.
 
-95%+ of enterprises are on cloud platforms. 50% are already using GenAI services through those platforms. The platforms provide security controls. The question is whether organisations configure them, monitor them, and act on what they find.
-
-The data on this is well-sourced across multiple independent studies:
+The data is well-sourced:
 
 - **99% of cloud security failures** are the customer's fault, primarily misconfigurations (Gartner, corroborated by CSA, Thales, breach reports)
 - **Only 26%** of organisations use cloud security posture management tools
@@ -202,15 +198,11 @@ The maturity question for most organisations is not "do we have the tools?" It i
 3. **Are you reading the logs?**
 4. **Do you act on what you find?**
 
-For AI you build and operate, the question extends further: have you implemented the [three-layer defence](../ARCHITECTURE.md), scaled controls to [risk tiers](../core/risk-tiers.md), and tested [PACE resilience](../PACE-RESILIENCE.md)?
+For AI you build and operate: have you implemented the [three-layer defence](../ARCHITECTURE.md), scaled controls to [risk tiers](../core/risk-tiers.md), and tested [PACE resilience](../PACE-RESILIENCE.md)?
 
 ## The Balance Between AI and Non-AI Solutions
 
-A mature organisation does not replace traditional security with AI security. It layers AI capabilities on top of strong traditional foundations.
-
-Traditional security fundamentals remain essential at every level. Access controls, encryption, network segmentation, DLP, SIEM, secure coding practices. These are prerequisites, not things you graduate from. The AIRS framework explicitly states this: [MASO controls are a layer within your wider security architecture, not a replacement for it](../foundations/README.md#defence-in-depth-beyond-the-ai-layer).
-
-The shift across maturity levels is not replacement but augmentation:
+A mature organisation layers AI capabilities on top of strong traditional foundations. Access controls, encryption, network segmentation, DLP, SIEM, secure coding practices remain essential at every level. The shift is augmentation, not replacement:
 
 | Level | Traditional security | AI-assisted security | Human role |
 |-------|---------------------|---------------------|------------|
@@ -238,8 +230,8 @@ These align with the [progression timelines](progression.md) already in the fram
 - **70% of organisations** lack optimised AI governance; 40% have none at all
 - **Fragmented ownership:** CIOs control AI security in 29% of organisations; CISOs only 14.5%
 - **Siloed teams:** Data scientists and security teams operate in separate worlds
-- **Skills shortage:** Cybersecurity workforce gap of 3.5 million; AI security specialists are extremely scarce
-- **Alert fatigue:** Average enterprise runs 45 cybersecurity tools. SOC teams are overwhelmed before AI monitoring adds to the load
+- **Skills shortage:** Cybersecurity workforce gap of 3.5 million; AI security specialists extremely scarce
+- **Alert fatigue:** Average enterprise runs 45 tools. SOC teams are overwhelmed before AI monitoring adds to the load
 
 ### What accelerates transitions
 
@@ -251,15 +243,13 @@ These align with the [progression timelines](progression.md) already in the fram
 
 ## Data Management as a Gate
 
-All data management maturity models (DAMA-DMBOK, DCAM, CMMI DMM, ISO 8000, Gartner) converge on a critical finding: **organisations below Level 3 in data management lack the foundation to implement meaningful AI security controls.**
+All data management maturity models (DAMA-DMBOK, DCAM, CMMI DMM, ISO 8000, Gartner) converge: **organisations below Level 3 in data management lack the foundation for meaningful AI security controls.**
 
-This applies differently by track:
+**AI you build and operate:** Without data lineage, poisoning detection is impossible. Without classification, access controls are arbitrary. Level 3 data management is the minimum for systematic AI data governance.
 
-**AI you build and operate:** Data quality directly determines AI quality. Without data lineage, poisoning detection is impossible. Without classification, access controls are arbitrary. Without quality gates, training data corruption goes undetected. Level 3 data management (defined, organisation-wide standards) is the minimum for systematic AI data governance.
+**Copilots and productivity AI:** Copilots retrieve from your organisational data. If classification is poor, they surface sensitive information to the wrong users. Only 30% of organisations classify data effectively. AI amplifies this gap by making data retrieval effortless.
 
-**Copilots and productivity AI:** The data risk is different but equally real. Copilots retrieve from your organisational data. If your data classification is poor, the copilot surfaces sensitive information to users who should not see it. Only 30% of organisations classify data effectively. This is a data governance problem, not an AI problem, but AI amplifies it by making data retrieval effortless.
-
-**AI coding tools:** The data management concern is about output, not input. AI-generated code may introduce insecure patterns, hallucinated dependencies, or licence-contaminated snippets. The maturity question is whether your code review and testing processes catch these, not whether your training data is clean (you don't control the training data).
+**AI coding tools:** The concern is output, not input. AI-generated code may introduce insecure patterns, hallucinated dependencies, or licence-contaminated snippets. The question is whether your review processes catch these.
 
 Key data dimensions that mature across levels:
 
@@ -272,21 +262,15 @@ Key data dimensions that mature across levels:
 
 ## MASO and Maturity
 
-The [MASO framework](../maso/) provides the mental model for securing multi-agent AI systems, whether you build them from scratch or deploy them on a platform (LangGraph, AutoGen, CrewAI, AWS Bedrock Agents).
+The [MASO framework](../maso/) secures multi-agent AI systems, whether built from scratch or deployed on a platform (LangGraph, AutoGen, CrewAI, AWS Bedrock Agents).
 
-MASO's value at each maturity level:
+**Level 1-2:** MASO is a reference architecture. The seven [control domains](../maso/) provide the vocabulary for multi-agent security before you implement formal controls.
 
-**Level 1-2:** MASO is a reference architecture. Use the [control domains](../maso/) to understand what risks exist in multi-agent systems and what controls are needed. The seven domains (Prompt Integrity, Identity, Data Protection, Execution Control, Observability, Supply Chain, Privileged Agent Governance) provide the vocabulary for talking about multi-agent security even before you implement formal controls.
+**Level 3:** MASO becomes operational. [Tier 1 (Supervised)](../maso/implementation/tier-1-supervised.md) applies: all agent actions require human approval, communication is logged, monitoring is periodic.
 
-**Level 3:** MASO becomes operational. [Tier 1 (Supervised)](../maso/implementation/tier-1-supervised.md) implementation applies: all agent actions require human approval, communication is logged, monitoring is periodic. The control domains drive standardisation of how your organisation secures agent deployments.
+**Level 4-5:** [Tier 2 (Managed)](../maso/implementation/tier-2-managed.md) and [Tier 3 (Autonomous)](../maso/implementation/tier-3-autonomous.md) apply. Agents operate autonomously within bounds, PACE resilience is fully operational, kill switches tested quarterly.
 
-**Level 4-5:** MASO's [Tier 2 (Managed)](../maso/implementation/tier-2-managed.md) and [Tier 3 (Autonomous)](../maso/implementation/tier-3-autonomous.md) apply. Agents execute autonomously within bounds. PACE resilience is fully operational. Continuous monitoring with automated anomaly detection. Kill switches tested quarterly.
-
-If you use a cloud platform's agent orchestration (Bedrock Agents, Azure AI Agent Service), MASO provides the security requirements; the platform provides the implementation mechanisms. The [integration guide](../maso/integration/integration-guide.md) maps MASO controls to specific platform capabilities.
-
-If you build custom multi-agent systems, MASO provides both the requirements and the architectural patterns.
-
-Either way, MASO helps you think about what needs to be true for multi-agent AI to be safe. The technical implementation varies. The security model does not.
+For cloud platform orchestration (Bedrock Agents, Azure AI Agent Service), the [integration guide](../maso/integration/integration-guide.md) maps MASO controls to platform capabilities. For custom systems, MASO provides both requirements and architectural patterns.
 
 ## Where Most Organisations Are
 
@@ -299,9 +283,9 @@ The data suggests most enterprises sit around Level 2, with significant variatio
 | **Custom/internal AI** | Level 1-2 | Fewer than 5% of enterprises have custom AI in production. Most are piloting. |
 | **Multi-agent/agentic AI** | Level 1 | 2% deployed at scale, 61% still exploring. Only 21% report a mature governance model for agents. |
 
-76% of enterprise AI use cases are now purchased rather than built (Menlo Ventures 2025, up from 53% in 2024). The trend is accelerating toward consumption. This means the most impactful maturity improvements for most organisations are in tracks 2 and 3 (platform configuration and copilot governance), not track 1 (building custom AI).
+76% of enterprise AI use cases are now purchased rather than built (Menlo Ventures 2025, up from 53% in 2024). The most impactful maturity improvements for most organisations are in tracks 2 and 3 (platform configuration and copilot governance), not track 1 (building custom AI).
 
-For organisations that are building custom AI or deploying agents, the full framework applies, and the maturity path follows the [progression model](progression.md) already defined: Fast Lane, then Tier 1, then Tier 2, then Tier 3 only if genuinely needed.
+For organisations building custom AI or deploying agents, the maturity path follows the [progression model](progression.md): Fast Lane, then Tier 1, then Tier 2, then Tier 3 only if genuinely needed.
 
 ## A Note on Statistics
 
@@ -319,9 +303,9 @@ When building a business case for AI security maturity, use the specific, well-s
 
 ## Relationship to Progression
 
-This maturity model complements the existing [progression path](progression.md) (No AI, Assisted, Supported, Supervised, Autonomous). The progression model describes **what your AI systems can do at each stage**. The maturity model describes **what your organisation can safely govern at each stage**.
+This maturity model complements the [progression path](progression.md) (No AI, Assisted, Supported, Supervised, Autonomous). Progression describes **what your AI systems can do**. Maturity describes **what your organisation can safely govern**.
 
-An organisation at maturity Level 2 attempting to operate Tier 3 (Autonomous) AI systems is taking on risk it cannot manage. The [progression model](progression.md) explains why skipping steps is the most common strategic failure. The maturity model provides the organisational context for why.
+An organisation at Level 2 attempting Tier 3 (Autonomous) AI is taking on risk it cannot manage. The maturity model provides the organisational context for why skipping steps is the most common strategic failure.
 
 !!! info "References"
     - [CMMI Institute (ISACA)](https://cmmiinstitute.com/)

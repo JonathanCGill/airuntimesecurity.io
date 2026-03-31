@@ -23,15 +23,15 @@ The methodology below follows the NIST RMF lifecycle: **identify** threats (MAP)
 
 ## Why Quantify Control Effectiveness
 
-Most AI security guidance says "add guardrails" or "implement human oversight" without answering the question that risk committees actually ask: **how much does each layer reduce the probability of harm, and what residual risk remains?**
+Most AI security guidance says "add guardrails" or "implement human oversight" without answering the question risk committees ask: **how much does each layer reduce the probability of harm, and what residual risk remains?**
 
-This document provides a quantitative model for answering that question. It uses illustrative effectiveness rates - not empirically validated benchmarks - to demonstrate the methodology. Your actual rates will depend on your implementation quality, threat landscape, and operational maturity. The point is the approach, not the specific numbers.
+This document models that answer using illustrative effectiveness rates. The point is the approach, not the specific numbers.
 
-> **Important:** The effectiveness percentages in this document are illustrative. They exist to demonstrate how layered controls compound to reduce residual risk. Your organisation should measure actual effectiveness through red teaming, Judge accuracy calibration (see [Judge Assurance](judge-assurance.md)), and incident data. Replace the illustrative rates with your measured rates as they become available.
+> **Important:** The effectiveness percentages are illustrative. Measure actual effectiveness through red teaming, Judge accuracy calibration (see [Judge Assurance](judge-assurance.md)), and incident data. Replace these rates with your measured rates as they become available.
 
 ## The Layered Control Model
 
-Each layer in the three-layer pattern operates independently. When one layer misses a threat, the next layer has an independent opportunity to catch it. This is the same principle behind defence in depth in traditional security - except here we can model the compounding effect mathematically.
+Each layer operates independently. When one layer misses a threat, the next has an independent opportunity to catch it. The compounding effect can be modelled mathematically.
 
 ### Illustrative Effectiveness Rates
 
@@ -62,17 +62,13 @@ P(issue reaches customer) = P(miss guardrail) × P(miss judge) × P(miss human)
 | Guardrails + Judge | 0.5% | 200× |
 | Guardrails + Judge + Human | 0.01% | 10,000× |
 
-This is why the framework insists on layered controls. Each layer alone is insufficient. Together, they achieve orders-of-magnitude risk reduction.
+Each layer alone is insufficient. Together, they achieve orders-of-magnitude risk reduction.
 
 ### Critical Caveat: Independence Assumption
 
-This model assumes layers fail independently - a threat that bypasses guardrails is not inherently more likely to bypass the Judge. This holds when:
+This model assumes layers fail independently. This holds when the Judge uses a **different model** than the task agent, human reviewers have **domain expertise** beyond what the AI provides, and each layer uses **different detection methods**.
 
-- The Judge uses a **different model** than the task agent
-- Human reviewers have **domain expertise** beyond what the AI provides
-- Each layer uses **different detection methods** (pattern matching vs. semantic evaluation vs. human judgement)
-
-If your Judge uses the same model as your task agent, or your human reviewers rubber-stamp AI outputs, the independence assumption breaks and your actual residual risk is higher than this model predicts.
+If your Judge uses the same model as your task agent, or your human reviewers rubber-stamp AI outputs, the independence assumption breaks and actual residual risk is higher than predicted.
 
 ## Worked Example: Customer Product Chatbot (HIGH Tier)
 
@@ -223,7 +219,7 @@ Five failure modes that matter for this system, with per-layer analysis across 1
 
 ## Compensating Controls
 
-The three-layer AI pattern does not operate in isolation. Existing infrastructure provides independent controls that further reduce residual risk. These are not substitutes for AI-specific controls - they are additional layers in the overall defence.
+Existing infrastructure provides independent controls that further reduce residual risk. These supplement AI-specific controls, not substitute for them.
 
 ### For the Product Chatbot
 
@@ -364,18 +360,15 @@ See the [detailed worked example above](#worked-example-customer-product-chatbot
 
 ## What These Numbers Do Not Tell You
 
-**1. Severity is not uniform.** One PII leakage incident may matter more than fifty hallucinated FAQ answers. The residual risk numbers are per-incident counts, not impact-weighted. Weight your residual risk by impact severity when reporting to risk committees.
+**1. Severity is not uniform.** One PII leakage incident may matter more than fifty hallucinated FAQ answers. Weight residual risk by impact severity when reporting to risk committees.
 
-**2. Effectiveness rates change over time.** Adversaries adapt. Models drift. Guardrail bypass techniques evolve. The 90/95/98 rates are a snapshot. Schedule quarterly recalibration through:
-- Red team exercises against guardrails
-- Judge accuracy measurement against labelled datasets (see [Judge Assurance](judge-assurance.md))
-- Human reviewer agreement studies
+**2. Effectiveness rates change over time.** Adversaries adapt. Models drift. The 90/95/98 rates are a snapshot. Recalibrate quarterly through red team exercises, Judge accuracy measurement (see [Judge Assurance](judge-assurance.md)), and human reviewer agreement studies.
 
-**3. Correlated failures break the model.** If a novel attack technique bypasses both guardrails AND the Judge (because both rely on similar detection approaches), the independence assumption fails and residual risk is higher than predicted. This is why the framework emphasises different models, different methods, and different perspectives across layers.
+**3. Correlated failures break the model.** If a novel attack bypasses both guardrails and the Judge (because both rely on similar detection approaches), the independence assumption fails. This is why the framework emphasises different models, methods, and perspectives across layers.
 
-**4. The "unknown unknown" isn't modelled.** This analysis covers known threat categories. Novel failure modes - threats you haven't imagined - are not captured. The Judge layer's semantic evaluation and Human Oversight provide some coverage for novel threats, but the model cannot quantify what it cannot anticipate. This is the fundamental argument for defence in depth: you need layers precisely because you can't predict everything.
+**4. The "unknown unknown" isn't modelled.** Novel failure modes are not captured. Defence in depth exists precisely because you can't predict everything.
 
-**5. Compensating controls have their own failure rates.** The payment gateway, fraud detection system, and API validation layer can all fail too. A complete risk assessment would model these as additional independent layers with their own effectiveness rates, producing a full probability tree. The simplified analysis above is sufficient for directional decision-making.
+**5. Compensating controls have their own failure rates.** A complete risk assessment would model these as additional independent layers. The simplified analysis above is sufficient for directional decision-making.
 
 ## Using This in Practice
 
@@ -391,11 +384,7 @@ If your organisation uses NIST AI RMF, frame this assessment in those terms:
 | Risk appetite comparison | **GOVERN** | "This residual risk is within/outside our stated risk tolerance" |
 | Compensating controls and PACE postures | **MANAGE** | "We have compensating controls and defined degradation paths when controls fail" |
 
-Present two numbers:
-1. **AI-layer residual risk** - what's left after guardrails, Judge, and human oversight
-2. **Compensated residual risk** - what's left after existing infrastructure controls also apply
-
-Frame the discussion around whether the compensated residual risk is within appetite, not whether it's zero. It will never be zero.
+Present two numbers: **AI-layer residual risk** (after guardrails, Judge, human oversight) and **compensated residual risk** (after infrastructure controls also apply). Frame the discussion around whether compensated residual risk is within appetite. It will never be zero.
 
 ### For Engineering Teams
 

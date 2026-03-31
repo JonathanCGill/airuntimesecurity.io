@@ -21,7 +21,7 @@ Not every risk associated with AI is a novel risk. Many are traditional cyber or
 
 ### 1. Non-Determinism
 
-**What's new:** Traditional systems are deterministic - the same input produces the same output. AI is probabilistic. Ask the same question twice, get two different answers. This fundamentally breaks traditional approaches to testing, QA, audit, and reproducibility.
+**What's new:** Traditional systems are deterministic; AI is probabilistic. The same input produces different outputs, breaking traditional testing, QA, audit, and reproducibility.
 
 **Why it matters for banking:**
 
@@ -44,7 +44,7 @@ Not every risk associated with AI is a novel risk. Many are traditional cyber or
 
 ### 2. Prompt Injection
 
-**What's new:** In traditional systems, instructions (code) and data (user input) are in separate channels. SQL injection was a similar concept but was solved with parameterised queries. In AI, instructions and data share the same channel - the context window. There is no reliable way to fully separate them. This is an unsolved problem in computer science.
+**What's new:** In traditional systems, instructions and data are in separate channels. In AI, they share the context window with no reliable separation. This is an unsolved problem in computer science.
 
 **Why it matters for banking:**
 
@@ -69,7 +69,7 @@ Not every risk associated with AI is a novel risk. Many are traditional cyber or
 
 ### 3. Hallucination
 
-**What's new:** Traditional systems return data from a database or compute from a formula. If the data doesn't exist, you get a null or error. AI generates plausible content that may have no basis in fact - with the same confidence as correct content. The system doesn't "know" it's wrong.
+**What's new:** Traditional systems return stored data or computed results. AI generates plausible content that may have no basis in fact, with the same confidence as correct content. The system doesn't "know" it's wrong.
 
 **Why it matters for banking:**
 
@@ -93,7 +93,7 @@ Not every risk associated with AI is a novel risk. Many are traditional cyber or
 
 ### 4. Emergent Behavior
 
-**What's new:** Traditional systems do exactly what they're programmed to do. AI models develop capabilities that weren't explicitly programmed - abilities that emerge from the complexity of training. These capabilities can be beneficial or dangerous, and they're hard to predict or test for.
+**What's new:** Traditional systems do what they're programmed to do. AI models develop capabilities that emerge from training complexity, which are hard to predict or test for.
 
 **Why it matters for banking:**
 
@@ -116,7 +116,7 @@ Not every risk associated with AI is a novel risk. Many are traditional cyber or
 
 ### 5. Opacity
 
-**What's new:** Traditional code can be inspected. You can trace execution, step through logic, and explain exactly why a specific output was produced. AI models are billions of parameters in a neural network. You cannot fully explain why a specific output was produced. Explainability methods (attention maps, SHAP, etc.) are approximations, not ground truth.
+**What's new:** Traditional code can be inspected and traced. AI models are billions of parameters in a neural network. Explainability methods (attention maps, SHAP) are approximations, not ground truth.
 
 **Why it matters for banking:**
 
@@ -140,7 +140,7 @@ Not every risk associated with AI is a novel risk. Many are traditional cyber or
 
 ### 6. Training Data Influence
 
-**What's new:** Traditional systems behave according to their code. AI systems behave according to their training data, which you likely didn't curate, may not have seen, and can't fully audit. The training data of foundation models is typically proprietary and undisclosed. Your system's behavior is shaped by data you don't control.
+**What's new:** Traditional systems behave according to their code. AI systems behave according to training data you likely didn't curate, may not have seen, and can't audit. Foundation model training data is typically proprietary and undisclosed.
 
 **Why it matters for banking:**
 
@@ -164,7 +164,7 @@ Not every risk associated with AI is a novel risk. Many are traditional cyber or
 
 ### 7. Semantic Attack Surface
 
-**What's new:** Traditional attacks exploit syntax - malformed inputs, buffer overflows, injection through special characters. AI attacks exploit meaning. An attacker doesn't need special characters or malformed data - they need persuasive language. Security controls based on pattern matching don't work against semantic attacks.
+**What's new:** Traditional attacks exploit syntax (malformed inputs, buffer overflows). AI attacks exploit meaning. Persuasive language, not special characters, is the weapon. Pattern-matching security controls don't work against semantic attacks.
 
 **Why it matters for banking:**
 
@@ -187,7 +187,7 @@ Not every risk associated with AI is a novel risk. Many are traditional cyber or
 
 ### 8. Context Window Poisoning
 
-**What's new:** When AI retrieves information via RAG, it incorporates that content into its reasoning. If retrieved content contains malicious instructions, the AI may follow them. The AI cannot reliably distinguish between "information I should process" and "instructions I should follow" within retrieved content. This is a specific form of indirect prompt injection, but it deserves separate treatment because it attacks the knowledge layer.
+**What's new:** AI retrieves information via RAG and incorporates it into reasoning. If retrieved content contains malicious instructions, the AI may follow them. It cannot reliably distinguish "information to process" from "instructions to follow." This attacks the knowledge layer specifically.
 
 **Why it matters for banking:**
 
@@ -209,7 +209,7 @@ Not every risk associated with AI is a novel risk. Many are traditional cyber or
 
 ### 9. Autonomous Goal Pursuit
 
-**What's new:** Traditional systems execute predefined logic. Agentic AI systems pursue goals across multiple steps, choosing their own actions. They can plan, use tools, and adapt their approach. This introduces risks that don't exist in reactive systems: the AI decides what to do, not just how to respond.
+**What's new:** Traditional systems execute predefined logic. Agentic AI pursues goals across multiple steps, choosing its own actions, tools, and approach. The AI decides what to do, not just how to respond.
 
 **Why it matters for banking:**
 
@@ -233,7 +233,7 @@ Not every risk associated with AI is a novel risk. Many are traditional cyber or
 
 ### 10. Confidence Without Competence
 
-**What's new:** Traditional systems either return correct data or throw errors. AI presents every output with equal confidence - correct or incorrect. Users cannot distinguish between a confident correct answer and a confident wrong answer from the AI's output alone. This is related to hallucination but broader: it applies to reasoning, recommendations, and judgements, not just factual claims.
+**What's new:** Traditional systems return correct data or throw errors. AI presents every output with equal confidence, correct or incorrect. Users cannot distinguish confident right answers from confident wrong ones. This extends beyond hallucination to reasoning, recommendations, and judgements.
 
 **Why it matters for banking:**
 
@@ -257,7 +257,7 @@ Not every risk associated with AI is a novel risk. Many are traditional cyber or
 
 ### 11. Invisible Degradation
 
-**What's new:** Traditional systems fail visibly - errors, crashes, timeouts. AI systems degrade silently. Output quality can drop without any error signal. The system keeps responding, just worse. This can happen due to data drift, model updates, context changes, or guardrail erosion.
+**What's new:** Traditional systems fail visibly. AI systems degrade silently: output quality drops without any error signal. The system keeps responding, just worse.
 
 **Why it matters for banking:**
 
@@ -281,7 +281,7 @@ Not every risk associated with AI is a novel risk. Many are traditional cyber or
 
 ### 12. Human-AI Interaction Risk
 
-**What's new:** Traditional systems have defined interfaces. AI systems have conversational interfaces where the boundary between "using the system" and "being influenced by the system" is blurred. The AI can shape human decisions, introduce bias, and create dependency in ways that traditional software cannot.
+**What's new:** AI's conversational interface blurs the boundary between "using the system" and "being influenced by the system." AI shapes decisions, introduces bias, and creates dependency in ways traditional software cannot.
 
 **Why it matters for banking:**
 
@@ -357,24 +357,14 @@ The existing framework covers most of these risks partially, but **8 new control
 
 ## The Uncomfortable Conclusion
 
-Traditional cybersecurity assumes:
-- Systems are deterministic
-- You can test exhaustively
-- Failures are visible
-- Code is inspectable
-- Instructions and data are separate
-- Systems do only what they're programmed to do
+Traditional cybersecurity assumes determinism, exhaustive testing, visible failures, inspectable code, instruction/data separation, and predictable behavior. **AI violates all six assumptions.**
 
-**AI violates all six assumptions.**
+The framework addresses this through layered defence (Guardrails, Judge, HITL) but must be honest about what it can't solve. Prompt injection has no complete fix. Hallucination can be reduced but not eliminated. Opacity is inherent.
 
-The framework addresses this through layered defence - Guardrails, Judge, HITL - but it needs to be honest about what it can't solve. Prompt injection has no complete fix. Hallucination can be reduced but not eliminated. Emergent behavior can't be fully predicted. Opacity is inherent to the technology.
+The correct response is not to avoid AI. It is to:
 
-The correct response is not to avoid AI. It's to:
-
-1. **Accept the residual risk** - document it, communicate it, get sign-off
-2. **Layer the controls** - no single control is sufficient
-3. **Monitor continuously** - because you can't test exhaustively
-4. **Keep humans in the loop** - for decisions where errors have real consequences
-5. **Be honest** - with regulators, customers, and executives about what AI can and can't guarantee
-
-Several of these risks - drift (#11), opacity (#5), bias (#6), confidence calibration (#10) - are not purely security problems. They are broader AI risk domains that the framework's control architecture addresses structurally.
+1. **Accept the residual risk** and get sign-off
+2. **Layer the controls** because no single control is sufficient
+3. **Monitor continuously** because you can't test exhaustively
+4. **Keep humans in the loop** for consequential decisions
+5. **Be honest** about what AI can and can't guarantee
