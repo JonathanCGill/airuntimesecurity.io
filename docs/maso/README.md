@@ -4,6 +4,8 @@ description: "The Multi-Agent Security Operations (MASO) framework: risk-proport
 
 # Multi-Agent Security Operations (MASO) Framework
 
+![MASO Hero: Single chatbot security vs multi-agent security operations](../images/maso-hero.svg){ .arch-diagram }
+
 **Risk-proportionate controls for securing multi-model agent orchestration.**
 
 Agentic AI systems are powerful and fragile at the same time. They [reason in natural language, act through tools, and collaborate through delegation](../agentic-agent-anatomy.md). Every one of those capabilities is also an attack surface. MASO exists because agents cannot be trusted to police themselves: something outside the agent must [declare what it should do, constrain what it can do, and evaluate whether it did the right thing](../constraining-agents.md) before irreversible actions are committed.
