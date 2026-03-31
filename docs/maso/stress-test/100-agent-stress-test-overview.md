@@ -6,50 +6,39 @@
 
 ## What This Is (And What It Is Not)
 
-This is a **tabletop stress test** - a structured thought exercise for identifying where MASO's controls, assumptions, and architectural patterns encounter their limits as agent count increases from single digits to triple digits.
+This is a **tabletop stress test**: a structured thought exercise for identifying where MASO's controls encounter their limits as agent count increases from single digits to triple digits.
 
-It is not a report on a system we built and tested. No 100-agent system was deployed. The value here is in the reasoning: taking the framework's controls and asking, methodically, *does this still work when the numbers change by an order of magnitude?*
+No 100-agent system was deployed. The value is in the reasoning: taking the framework's controls and asking *does this still work when the numbers change by an order of magnitude?*
 
-The [worked examples](../examples/worked-examples.md) validate MASO against realistic 5-agent systems. This document asks what happens next - when organisations move from pilot to platform, and agent count grows from a handful to a fleet.
+The [worked examples](../examples/worked-examples.md) validate MASO against 5-agent systems. This document asks what happens when agent count grows from a handful to a fleet.
 
 ## Why Tabletop Stress Testing Matters
 
-MASO's controls were designed with scalability in mind, but design intent and operational reality diverge in predictable ways:
+Design intent and operational reality diverge in predictable ways:
 
-- **Linear controls hit quadratic problems.** A control that inspects each agent's output scales linearly. A control that monitors communication *between* agents scales with the number of agent pairs - quadratically.
-- **Composition creates emergent behavior.** Five agents with well-tested PACE transitions do not guarantee that fifty agents degrade gracefully when a shared dependency fails. Cascade dynamics only emerge at scale.
-- **Operational cost becomes a constraint.** A Judge evaluation on every inter-agent message is sound security architecture. Whether the organisation can afford the compute and latency at 10,000 messages per second is an operational question the framework should help teams answer before they discover it in production.
+- **Linear controls hit quadratic problems.** Output inspection scales linearly. Monitoring communication *between* agents scales with the number of agent pairs, quadratically.
+- **Composition creates emergent behavior.** Five agents with well-tested PACE transitions do not guarantee fifty agents degrade gracefully. Cascade dynamics only emerge at scale.
+- **Operational cost becomes a constraint.** A Judge evaluation on every inter-agent message is sound architecture. Whether the organisation can afford it at 10,000 messages per second is a question to answer before production.
 
-The purpose of this exercise is to help architects and security teams anticipate these breakpoints *before* they scale - not after an incident teaches them where the limits were.
+This exercise helps architects anticipate breakpoints *before* scaling.
 
 ## AI Systems May Not Scale Economically
 
-There is an assumption embedded in most AI deployment plans: that the system which works at pilot scale will remain economically viable at production scale. This assumption is often wrong, and the failure mode is not technical; it is financial.
+Most AI deployment plans assume pilot-scale economics hold at production scale. This is often wrong, and the failure mode is financial, not technical.
 
-Traditional software scales predictably. Double the users, roughly double the compute, roughly double the cost. Revenue scales with users. Margins hold. AI agent systems break this relationship in three ways:
+**1. Cost per interaction is non-deterministic.** The same query can cost 2x or 10x more depending on reasoning path, tool calls, conversation depth, and retry loops. At 10,000 concurrent customers, the tail of expensive interactions drives total cost disproportionately.
 
-**1. Cost per interaction is non-deterministic.** The same customer query can cost 2× or 10× more depending on the model's reasoning path, the number of tool calls, the depth of the conversation, and whether the agent enters a retry loop. At pilot scale with 100 customers, variance averages out. At 10,000 concurrent customers, variance compounds, and the tail of expensive interactions drives total cost disproportionately.
+**2. Security controls scale with risk, not revenue.** A Judge evaluation costs the same whether serving 100 or 10,000 customers. At scale, security control overhead can exceed agent costs. Unlike infrastructure, this overhead cannot be amortised because each interaction requires independent evaluation.
 
-**2. Security controls scale with risk, not with revenue.** MASO's three-layer defence (guardrails, Judge evaluation, human oversight) exists because the risk demands it. But the cost of these controls does not decrease as customer volume increases. A Judge evaluation costs the same whether the system is serving 100 or 10,000 customers. At scale, security control overhead can exceed the cost of the agents themselves. Unlike infrastructure costs, this overhead cannot be amortised across users because each interaction requires independent evaluation.
+**3. Revenue plateaus before costs do.** During peak trading, customer volume is finite but per-interaction costs keep rising: longer conversations, more retries, more edge cases. The system becomes most expensive precisely when it should be most profitable.
 
-**3. Revenue growth plateaus before cost growth does.** In a peak trading scenario (Black Friday, Christmas), customer volume reaches a ceiling (the market is finite). But per-interaction costs can continue rising: longer conversations, more complex queries, more retries from edge cases, more returns processing. The result is a cost-revenue divergence where the system becomes more expensive to run precisely when it is supposed to be most profitable.
-
-This matters because organisations often plan to fund AI investment from the returns AI generates. If the AI system costs more to operate during peak periods than the incremental revenue it produces, the reinvestment thesis collapses, not from a technical failure, but from an economic one that nobody stress-tested.
-
-**The implication for MASO stress testing:** every dimension in this document has a cost axis. When assessing whether a control "survives" at scale, the question is not only *does it still work?* but also *can you still afford it?* And when cost pressure arrives, the follow-on question is: *does the organisation have the governance discipline to fix root causes rather than strip controls?*
-
-The [E-Commerce 10K Stress Test](ecommerce-10k-stress-test.md) (Stress Dimension 9) examines this dynamic in detail through a four-phase cost escalation scenario. The [Economic Governance](../../extensions/technical/economic-governance.md) extension provides the enforcement model. But the principle applies to every stress dimension here: **a system that is technically sound but economically unviable under load has failed the stress test.**
+Every dimension in this document has a cost axis. The question is not only *does it still work?* but *can you still afford it?* The [E-Commerce 10K Stress Test](ecommerce-10k-stress-test.md) examines this through a four-phase cost escalation scenario. The [Economic Governance](../../extensions/technical/economic-governance.md) extension provides the enforcement model. **A system that is technically sound but economically unviable under load has failed the stress test.**
 
 ## How to Run This Exercise
 
 ### Audience
 
-This tabletop is designed for the team responsible for a multi-agent deployment that is growing (or planned to grow) beyond a single orchestration cluster. The ideal participants include:
-
-- The AI/ML engineering lead responsible for agent architecture
-- The security architect or CISO responsible for MASO control implementation
-- The platform/infrastructure lead responsible for observability and operations
-- The risk owner who will sign off on the deployment
+The team responsible for a multi-agent deployment growing beyond a single orchestration cluster: AI/ML engineering lead, security architect/CISO, platform/infrastructure lead, and risk owner.
 
 ### Format
 
@@ -320,12 +309,12 @@ At 100 agents, the attack surface is not 20x larger - it is combinatorially larg
 
 After working through the 8 dimensions, you should have:
 
-1. **A scaling profile for each MASO control** - which controls scale linearly with agent count, which scale quadratically with agent pairs, and which hit hard limits.
-2. **Your breakpoints** - the agent count or message volume at which you need to adapt the framework's standard implementation.
-3. **Architectural decisions** - where you need segmentation (separate message buses, separate providers for task vs. control plane), where you need sampling (observability at volume), and where you need new coordination mechanisms (cross-cluster PACE).
-4. **Cost projections** - the operational cost of full MASO compliance at your target scale, so you can make informed trade-offs.
+1. **A scaling profile for each MASO control**: linear with agent count, quadratic with agent pairs, or hitting hard limits.
+2. **Your breakpoints**: the agent count or volume at which you need architectural adaptation.
+3. **Architectural decisions**: where you need segmentation, sampling, or new coordination mechanisms.
+4. **Cost projections**: operational cost of full MASO compliance at target scale.
 
-These findings should feed directly into your MASO implementation planning and your risk owner's sign-off process. The framework's controls are the *what*. This exercise helps you plan the *how much* and *at what cost* for your specific scale.
+These findings feed directly into MASO implementation planning and risk owner sign-off. The controls are the *what*. This exercise plans the *how much* and *at what cost*.
 
 ## Relationship to Other MASO Documents
 

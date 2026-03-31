@@ -8,20 +8,18 @@ description: "IAM governance principles for AI agents: why traditional identity 
 
 ## The Problem Traditional IAM Doesn't Solve
 
-Identity and access management was designed for a world where every actor is a human sitting at a keyboard, or an application running a predictable, pre-defined workflow. Access decisions are static: a role is assigned, permissions are granted, access reviews happen quarterly.
-
-AI agents break every assumption in this model.
+Identity and access management was designed for humans at keyboards and applications running predictable workflows. AI agents break every assumption in this model.
 
 | Traditional IAM Assumption | AI Agent Reality |
 |---------------------------|-----------------|
-| Actors are human or run deterministic code | Agents are non-deterministic - same input, different actions |
+| Actors are human or run deterministic code | Agents are non-deterministic: same input, different actions |
 | Access is scoped to a single application | Agents reach across systems, APIs, databases, and tools in a single task |
 | Permissions are assigned at provisioning and reviewed quarterly | Agents need dynamic, task-scoped permissions that change per request |
 | One identity = one set of actions | An agent acts on behalf of a user, but may exceed the user's intended scope |
 | Sessions are human-length (minutes to hours) | Agent sessions may be seconds (single inference) or days (autonomous workflow) |
 | Audit trail links action to person | Audit trail must link action to originating user *through* a chain of agents |
 
-The consequence: AI agents are becoming **authorisation bypass paths**. A user with limited access can instruct an agent to perform actions the user couldn't perform directly - because the agent's service account has broader permissions than the user's role. This is not a theoretical risk. It is the primary IAM threat in AI systems today.
+The consequence: AI agents are becoming **authorisation bypass paths**. A user with limited access can instruct an agent to perform actions the user couldn't perform directly, because the agent's service account has broader permissions than the user's role. This is the primary IAM threat in AI systems today.
 
 ## Governance Principles
 
@@ -29,9 +27,7 @@ Ten principles govern IAM for AI systems. They are drawn from internationally re
 
 ### 1. Identity Is the Primary Control Plane
 
-Every AI agent is an identity. Not a feature. Not a tool. An identity with credentials, permissions, a lifecycle, and an owner.
-
-Treat agent identities with the same governance rigour as human identities: formal registration, approval, classification, review, and decommissioning. ISO 27001:2022 (A.5.16) explicitly requires this - the 2022 revision expanded identity management to cover non-human identities as first-class citizens.
+Every AI agent is an identity with credentials, permissions, a lifecycle, and an owner. Treat agent identities with the same governance rigour as human identities (ISO 27001:2022 A.5.16).
 
 **Implication:** Your identity provider must recognise agents. If agents exist outside your IdP, they exist outside your governance.
 
@@ -45,9 +41,7 @@ Every request from an agent - every tool invocation, every data retrieval, every
 
 ### 3. Least Privilege and Zero Standing Privileges
 
-No agent should hold permissions it is not actively using.
-
-Standing privileges - permissions assigned at provisioning and left in place until review - are the root cause of most IAM-related breaches. For AI agents, the risk is amplified because agent service accounts tend to receive broad permissions "so the AI can be useful." Just-in-time (JIT) access, task-scoped tokens, and short-lived credentials are not aspirational - they are mandatory.
+No agent should hold permissions it is not actively using. Standing privileges are the root cause of most IAM breaches. For AI agents, the risk is amplified because service accounts tend to receive broad permissions "so the AI can be useful." JIT access, task-scoped tokens, and short-lived credentials are mandatory.
 
 **Implication:** If an agent's token lasts longer than its task, the token is too long-lived. Minutes, not days.
 
@@ -75,11 +69,11 @@ This principle applies to every IAM control: enforce at the gateway, the network
 
 **Implication:** If removing the system prompt doesn't change the agent's access boundaries, the access controls are correctly implemented.
 
-### 7. Automated Lifecycle - No Manual Steps in the Critical Path
+### 7. Automated Lifecycle
 
-Agent identity provisioning, credential rotation, access review, and decommissioning must be automated. Manual processes introduce delays that create attack windows: orphaned identities that persist for months, long-lived secrets that are never rotated, deprovisioning that waits for a ticket to be processed.
+Agent identity provisioning, credential rotation, access review, and decommissioning must be automated. Manual processes create attack windows: orphaned identities, unrotated secrets, deprovisioning that waits for a ticket.
 
-OWASP NHI Top 10 data shows 47% of organisations have IAM roles from third-party integrations that have been unused for over 90 days. That is 47% of organisations with standing attack surfaces they have forgotten about.
+OWASP NHI Top 10 data shows 47% of organisations have IAM roles unused for over 90 days.
 
 **Implication:** Policy-as-code in version control. Deploy through CI/CD. Every change tracked, reviewed, and reversible.
 
@@ -156,41 +150,27 @@ The agent proves its identity on every interaction. Not once at startup - every 
 
 #### Workload Identity: SPIFFE and SPIRE
 
-Traditional agent authentication relies on secrets - API keys, client certificates, or OAuth tokens that must be provisioned, stored, rotated, and eventually decommissioned. Every secret is a liability: it can be leaked, stolen, or forgotten.
-
-**SPIFFE** (Secure Production Identity Framework for Everyone) eliminates this problem by giving every workload - including AI agents - a cryptographically verifiable identity that is not a secret. Instead of "here is my password," the agent says "here is a signed attestation of what I am, where I run, and what created me." The identity is bound to the workload itself, not to a credential that can be copied.
+Traditional agent authentication relies on secrets (API keys, certificates, OAuth tokens) that can be leaked, stolen, or forgotten. **SPIFFE** gives every workload a cryptographically verifiable identity that is not a secret: a signed attestation of what the agent is, where it runs, and what created it.
 
 | Concept | What It Does |
 |---------|-------------|
-| **SPIFFE ID** | A URI-formatted identity (e.g., `spiffe://org.example/agent/research-bot/prod`) that uniquely identifies a workload. Not a secret - safe to log, inspect, and share |
-| **SVID** (SPIFFE Verifiable Identity Document) | A short-lived X.509 certificate or JWT that proves the workload holds a given SPIFFE ID. Issued automatically, rotated frequently, never touches disk in plaintext |
-| **Trust Domain** | A namespace boundary. Agents in `spiffe://bank.example/` cannot impersonate agents in `spiffe://partner.example/` without explicit federation |
+| **SPIFFE ID** | A URI-formatted identity (e.g., `spiffe://org.example/agent/research-bot/prod`) that uniquely identifies a workload. Not a secret. |
+| **SVID** (SPIFFE Verifiable Identity Document) | A short-lived X.509 certificate or JWT proving the workload holds a given SPIFFE ID. Issued and rotated automatically. |
+| **Trust Domain** | A namespace boundary. Agents in `spiffe://bank.example/` cannot impersonate agents in `spiffe://partner.example/` without explicit federation. |
 
-**SPIRE** (the SPIFFE Runtime Environment) is the production implementation. It runs as infrastructure - an attestation authority that verifies workload identity based on platform-level evidence (node attestation, process attestation, Kubernetes service account, cloud instance metadata) and issues short-lived SVIDs automatically.
-
-**Why this matters for AI agent IAM:**
+**SPIRE** is the production implementation: an attestation authority that verifies workload identity based on platform-level evidence and issues short-lived SVIDs automatically.
 
 | Traditional Approach | SPIFFE/SPIRE Approach |
 |---------------------|----------------------|
-| Agent holds an API key. Key must be stored somewhere. Key can be copied. | Agent's identity is attested by the platform. Nothing to copy. |
-| Rotation requires updating every system that accepts the key | SVIDs rotate automatically (minutes to hours). No manual intervention |
-| Stolen key works from any location | SVID is bound to platform attestation - stolen certificate is useless without the matching workload environment |
-| Shared secrets between agents in the same cluster | Every agent gets a unique SPIFFE ID and unique SVID, even in the same cluster |
-| Cross-organisation trust requires shared credentials | Trust domain federation allows controlled cross-org identity verification without sharing secrets |
+| Agent holds an API key that can be copied | Agent's identity is attested by the platform. Nothing to copy. |
+| Rotation requires updating every accepting system | SVIDs rotate automatically (minutes to hours) |
+| Stolen key works from any location | SVID is bound to platform attestation, useless without the matching environment |
+| Shared secrets between agents in the same cluster | Every agent gets a unique SPIFFE ID and SVID |
+| Cross-org trust requires shared credentials | Trust domain federation enables cross-org verification without sharing secrets |
 
-**When to use SPIFFE/SPIRE:**
+**Use SPIFFE/SPIRE for:** containerised agent deployments, multi-agent mutual authentication, cross-trust-boundary communication, and Tier 2+ deployments eliminating static secrets. **Not applicable for:** SaaS-only deployments (you don't control attestation) or single-agent systems behind a managed API gateway.
 
-- Containerised or orchestrated agent deployments (Kubernetes, cloud-managed compute)
-- Multi-agent systems where agents need to authenticate to each other
-- Cross-trust-boundary communication (agent in one environment calling tools in another)
-- Any Tier 2 or Tier 3 deployment where eliminating static secrets is a governance priority
-
-**When it doesn't apply:**
-
-- SaaS-only deployments where agent workloads run on a vendor's infrastructure (you don't control the attestation layer)
-- Single-agent systems using a managed API gateway with OAuth (the gateway handles identity)
-
-SPIFFE/SPIRE is vendor-neutral, CNCF-graduated, and supported across major cloud platforms. It is the closest the industry has to a universal standard for workload identity - and it solves the AI agent authentication problem at the infrastructure layer rather than the application layer.
+SPIFFE/SPIRE is vendor-neutral, CNCF-graduated, and the closest industry standard for workload identity.
 
 ### Phase 3: Authorisation
 
@@ -273,19 +253,14 @@ In multi-agent systems, the delegation chain determines who is accountable for e
 
 ### Context-Aware Access: The Critical Pattern
 
-The most important IAM pattern in AI systems is **context-aware access**: the AI system should never access data based on its own permissions. It should access data based on the *requesting user's* permissions.
+The AI system should access data based on the *requesting user's* permissions, not its own.
 
 ```
 Traditional:    User → AI Service Account → Database (full access)
 Context-aware:  User → AI (user identity propagated) → Database (user's row-level access)
 ```
 
-Without this pattern, every AI system is a privilege escalation vector. A junior analyst asks a question; the AI retrieves data only a senior executive should see - because the AI's service account can see everything.
-
-Context-aware access requires:
-- User identity passed through the entire chain (not just authenticated at the entry point)
-- Data layer enforces user permissions (row-level security, column masking, view-based access)
-- AI receives only what the user would receive if they queried the system directly
+Without this, every AI system is a privilege escalation vector. Context-aware access requires user identity propagated through the entire chain, data layer enforcement of user permissions (row-level security, column masking), and the AI receiving only what the user would receive directly.
 
 **See also:** [High-Risk Financial Services - Access Controls](../extensions/regulatory/high-risk-financial-services.md#access-controls-who-can-touch-what)
 
