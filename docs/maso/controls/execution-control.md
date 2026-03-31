@@ -16,21 +16,21 @@ Execution control is where the PACE resilience methodology meets real-time opera
 
 ## Why This Matters in Multi-Agent Systems
 
-**Tool misuse compounds across agents.** In a single-model system, a tool misuse event is contained to one context. In a multi-agent system, Agent A's misuse of Tool X produces output that becomes Agent B's input for Tool Y. The damage from chained tool misuse can far exceed what any single agent could accomplish alone.
+**Tool misuse compounds across agents.** Agent A's misuse of Tool X becomes Agent B's input for Tool Y. Chained tool misuse can far exceed what any single agent could accomplish alone.
 
-**Code execution pathways multiply.** When agents generate and execute code, each agent is a potential entry point for code injection. If Agent A generates code that Agent B executes in its sandbox, the security boundary depends on both the generation controls (Agent A) and the execution controls (Agent B). A weakness in either is exploitable.
+**Code execution pathways multiply.** If Agent A generates code that Agent B executes, the security boundary depends on both generation and execution controls. A weakness in either is exploitable.
 
-**Cascading failures are the default, not the exception.** Multi-agent systems are tightly coupled by design - agents depend on each other's outputs. A hallucination in one agent becomes a flawed plan in the next, becomes a destructive action in the third. Without explicit isolation, errors propagate at the speed of the orchestration.
+**Cascading failures are the default.** Agents depend on each other's outputs. A hallucination in one agent becomes a flawed plan in the next, becomes a destructive action in the third. Without explicit isolation, errors propagate at the speed of the orchestration.
 
-**Runaway loops consume resources exponentially.** Two agents triggering each other in a cycle can generate exponential resource consumption. The loop may look like productive work to a naive monitor - each agent is calling tools, producing outputs, and delegating tasks - but the system is burning tokens and compute on a recursive dead end.
+**Runaway loops consume resources exponentially.** Two agents triggering each other in a cycle may look like productive work to a naive monitor, but the system is burning tokens and compute on a recursive dead end.
 
-**Single agent loss cascades through the orchestration (OP-04).** When one agent in a multi-agent system becomes unavailable - model provider outage, sandbox crash, credential revocation - every agent that depends on its output is affected. Without explicit failover, a single agent failure degrades or halts the entire orchestration. The system's availability is determined by its least available component, not its most robust.
+**Single agent loss cascades through the orchestration (OP-04).** Without explicit failover, a single agent failure (provider outage, sandbox crash, credential revocation) degrades or halts the entire orchestration. Availability is determined by the least available component.
 
-**Irreversible actions compound across agent chains (OP-05).** Agent A sends an email. Agent B deletes a record. Agent C makes an API call to a third party. Each action was individually approved, but the chain is collectively irreversible. When Agent D detects that Agent A's email was based on hallucinated data, the downstream actions cannot be undone. Reversibility must be assessed for the chain, not just per-action, and compensating controls must exist for actions that cannot be recalled.
+**Irreversible actions compound across agent chains (OP-05).** Agent A sends an email. Agent B deletes a record. Agent C calls a third-party API. Each was individually approved, but the chain is collectively irreversible. Reversibility must be assessed for the chain, not just per-action.
 
-**Token exhaustion degrades agents and their monitors simultaneously (OP-04).** As an agent's context window fills, attention dilution weakens system prompt instructions (including safety constraints, role boundaries, and tool restrictions) without any adversarial action. The lost-in-the-middle effect causes critical constraints to be functionally forgotten. Hallucination rates increase. Instruction-following degrades. This is a dual failure path: the agent gets worse, and the Model-as-Judge evaluating it gets worse at the same time if it's also accumulating context. A degraded Judge reviewing a degraded agent's output is a compounding failure that bypasses two control layers simultaneously. In multi-agent systems, each agent burns tokens independently (you can't see the degradation from the orchestrator's perspective), and retry loops accelerate exhaustion by consuming more context on each failed attempt. Prompt injection becomes easier as system prompt influence weakens, and blast radius caps may be ignored if the agent stops reliably following structured constraints. Token exhaustion is gradual, not binary: the agent doesn't crash, it gets subtly worse. This means PACE transitions may not trigger without explicit context utilisation monitoring.
+**Token exhaustion degrades agents and their monitors simultaneously (OP-04).** As context fills, attention dilution weakens system prompt instructions without any adversarial action. Hallucination rates increase. Instruction-following degrades. This is a dual failure: the agent gets worse, and the Model-as-Judge evaluating it gets worse at the same time if it's also accumulating context. A degraded Judge reviewing a degraded agent is a compounding failure that bypasses two control layers simultaneously. Each agent burns tokens independently (invisible from the orchestrator's perspective), and retry loops accelerate exhaustion. Token exhaustion is gradual, not binary: the agent doesn't crash, it gets subtly worse, so PACE transitions may not trigger without explicit context utilisation monitoring.
 
-**Data integrity failures are silent and cumulative.** Security guardrails catch injections. Content filters catch harmful output. But when Agent A returns a JSON object with a missing field and Agent B silently treats that field as `null`, the resulting action is wrong - not malicious, just wrong. In production multi-agent systems, the majority of runtime failures come not from security violations but from structural data integrity failures between components: malformed tool outputs, unexpected types, truncated responses, hallucinated field names, and partial results presented as complete. These failures are harder to detect than security violations because they don't trigger guardrails - the output is syntactically valid but semantically broken.
+**Data integrity failures are silent and cumulative.** When Agent A returns JSON with a missing field and Agent B silently treats that field as `null`, the resulting action is wrong, not malicious. In production, the majority of runtime failures come from structural data integrity issues: malformed outputs, unexpected types, truncated responses, hallucinated field names, and partial results presented as complete. These don't trigger guardrails because the output is syntactically valid but semantically broken.
 
 ## Controls by Tier
 
@@ -104,9 +104,7 @@ A prompt-injected agent attempting SQL injection, path traversal, or parameter m
 
 API responses to agent callers return success with the result, or failure with no diagnostic detail. No stack traces, SQL error messages, internal paths, version numbers, or configuration details. Full error details are logged server-side for human operators.
 
-This closes the reconnaissance loop. Most attacks (human or agent) are iterative: try something, read the error message, adjust, try again. Stripping error detail to a binary pass/fail makes the agent effectively blind to the system's internals. It cannot learn from failures because failures contain no information.
-
-For use cases where self-correction is important, provide structured error codes (e.g., `INVALID_RECIPIENT`, `AMOUNT_EXCEEDS_LIMIT`) without revealing why the validation exists or how it works.
+Most attacks are iterative: try, read the error, adjust, retry. Stripping error detail to pass/fail makes the agent blind to internals. For use cases needing self-correction, provide structured error codes (e.g., `INVALID_RECIPIENT`, `AMOUNT_EXCEEDS_LIMIT`) without revealing why the validation exists.
 
 ### Database-Level Enforcement
 
@@ -116,9 +114,9 @@ Row-level security at the database layer enforces access boundaries even if the 
 
 ### No-Retry Enforcement
 
-Agent system prompts include explicit no-retry directives (behavioral control, can be overridden by injection). Server-side retry blocking tracks recent failed requests per agent NHI and rejects identical or near-identical retries within a cooldown window (infrastructure control, cannot be overridden). A retry budget at the API gateway enforces a maximum retry count per agent per endpoint per time window.
+Agent system prompts include explicit no-retry directives (behavioral, can be overridden by injection). Server-side retry blocking tracks recent failed requests per agent NHI and rejects identical or near-identical retries within a cooldown window (infrastructure, cannot be overridden). A retry budget at the API gateway enforces a maximum retry count per agent per endpoint per time window.
 
-This prevents brute-force exploration, which is the primary remaining attack vector when error responses are opaque. Even with binary pass/fail responses, an agent could try thousands of variations and infer structure from the pattern of successes and failures. One attempt, pass or fail, no retry, eliminates that channel.
+Even with binary pass/fail responses, an agent could try thousands of variations and infer structure from the pattern of successes and failures. Retry blocking eliminates that channel.
 
 ## Action Classification Rules (Tier 2+)
 
@@ -149,9 +147,7 @@ The action classification engine is the core mechanism that replaces per-action 
 
 ## Deployment Topology: Evaluation Roles vs. Services
 
-The MASO architecture describes evaluation roles as logically distinct components: tactical judge, strategic evaluator, meta-evaluator, observer, domain judges. This is correct for the security model: each role has a different threat profile, different OISpec, and different failure modes. They must be logically independent.
-
-They do not need to be operationally independent. Logical separation and operational consolidation are compatible, as long as context isolation is maintained between evaluations.
+The MASO architecture describes evaluation roles as logically distinct components: tactical judge, strategic evaluator, meta-evaluator, observer, domain judges. They must be logically independent (different threat profiles, OISpecs, and failure modes) but do not need to be operationally independent, as long as context isolation is maintained.
 
 ### How Roles Map to Services
 

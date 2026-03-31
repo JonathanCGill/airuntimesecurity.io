@@ -10,9 +10,9 @@ description: "Tier 3 MASO implementation: autonomous multi-agent deployment with
 
 ## When to Use Tier 3
 
-Tier 3 is for multi-agent systems that have earned the right to operate with minimal human intervention. This is not an aspiration - it is a privilege granted through demonstrated trustworthiness, rigorous adversarial testing, and sustained operational evidence.
+Tier 3 is for multi-agent systems that have earned the right to operate with minimal human intervention through demonstrated trustworthiness, rigorous adversarial testing, and sustained operational evidence.
 
-At Tier 3, agents operate autonomously for pre-approved task categories. Human oversight shifts from supervising individual actions to strategic review, exception handling, and governance. The system is expected to detect, contain, and in many cases resolve its own anomalies through the full PACE cycle before a human needs to intervene.
+Agents operate autonomously for pre-approved task categories. Human oversight shifts from supervising individual actions to strategic review, exception handling, and governance. The system detects, contains, and in many cases resolves its own anomalies through the full PACE cycle.
 
 Tier 3 is appropriate only when:
 
@@ -33,15 +33,15 @@ Examples of Tier 3 candidates: high-frequency trading support agents, 24/7 secur
 
 Key architectural changes from Tier 2:
 
-**Encrypted message bus.** Inter-agent messages are both signed (Tier 2) and encrypted in transit. Even if the bus infrastructure is compromised, message content is protected. Encryption uses the agents' NHI certificates.
+**Encrypted message bus.** Inter-agent messages are signed (Tier 2) and encrypted in transit using NHI certificates. Message content is protected even if bus infrastructure is compromised.
 
-**Autonomous monitoring and response.** The monitoring layer can execute PACE Primary↔Alternate transitions without human involvement. The system self-heals: it detects an anomalous agent, isolates it, activates the backup, and returns to Primary once the backup demonstrates stable behavior. Human involvement is only required for Contingency and Emergency transitions.
+**Autonomous monitoring and response.** The monitoring layer executes PACE Primary↔Alternate transitions without human involvement: detect anomalous agent, isolate, activate backup, return to Primary on stabilisation. Human involvement is only required for Contingency and Emergency transitions.
 
-**Physically isolated kill switch.** The Emergency shutdown mechanism is not accessible through the same control plane as the agent system. It operates on a separate network path, with its own authentication, and can terminate all agents even if the agent control plane is compromised. The kill switch is tested regularly and its audit log is immutable and stored independently of the agent system's logging infrastructure.
+**Physically isolated kill switch.** The Emergency shutdown operates on a separate network path with its own authentication, and can terminate all agents even if the agent control plane is compromised. Tested regularly with an immutable audit log stored independently.
 
-**Full blast radius enforcement.** Every agent and every orchestration has hard caps on impact scope that are enforced at the infrastructure level, not by the agent itself. An agent cannot override its own blast radius cap through any mechanism.
+**Full blast radius enforcement.** Every agent and orchestration has infrastructure-enforced impact caps. An agent cannot override its own blast radius through any mechanism.
 
-**Adversarial testing programme.** Regular red team exercises are not a one-off Tier 2 graduation requirement - they are an ongoing operational discipline at Tier 3. The system is continuously tested against evolving attack techniques.
+**Adversarial testing programme.** Regular red team exercises are an ongoing operational discipline at Tier 3, not a one-off graduation requirement.
 
 ## Control Implementation by MASO Domain
 
@@ -85,10 +85,10 @@ Key architectural changes from Tier 2:
 
 **All Tier 2 controls remain active, plus:**
 
-- **Infrastructure-enforced blast radius caps.** At Tier 2, blast radius caps are defined and monitored. At Tier 3, they are enforced at the infrastructure level - the underlying platform (not the agent or orchestrator) prevents any single agent from exceeding its defined impact scope. This is analogous to operating system-level resource limits that a process cannot override regardless of what code it runs.
-- **Autonomous circuit breaker with self-healing.** When a circuit breaker engages at Tier 3, the system doesn't just pause the agent - it initiates the PACE P→A transition automatically, activates the backup agent, and returns to Primary once the backup demonstrates stable behavior. This self-healing loop can repeat up to a configured maximum (recommended: 3 cycles in 24 hours) before automatic escalation to Contingency.
-- **Multi-model cross-validation for high-consequence actions.** For actions classified as high-consequence (based on the action classification engine), the output is validated by both the Model-as-Judge AND a second independent model before execution. Disagreement between the validators triggers human escalation.
-- **Time-boxing on all autonomous operations.** Every autonomous task has a maximum execution time. If the task is not completed within the time box, the agent is paused, the state is captured, and the task is either reassigned or escalated. This prevents indefinite autonomous operation on tasks that may have drifted from their original objective.
+- **Infrastructure-enforced blast radius caps.** The underlying platform (not the agent or orchestrator) prevents any agent from exceeding its defined impact scope, analogous to OS-level resource limits a process cannot override.
+- **Autonomous circuit breaker with self-healing.** Circuit breaker engages, PACE P→A transition fires automatically, backup agent activates, system returns to Primary on stabilisation. Maximum 3 self-healing cycles in 24 hours before auto-escalation to Contingency.
+- **Multi-model cross-validation for high-consequence actions.** High-consequence outputs validated by both the Model-as-Judge and a second independent model. Disagreement triggers human escalation.
+- **Time-boxing on all autonomous operations.** Every autonomous task has a maximum execution time. Expiry triggers pause, state capture, and reassignment or escalation.
 
 **Implementation checklist:**
 
@@ -144,21 +144,21 @@ Tier 3 is the only tier where the full PACE cycle operates autonomously for the 
 
 ### Primary (P) - Full Autonomous Operations
 
-All agents active and operating autonomously within pre-approved task categories. All seven MASO control domains fully operational. Human governance focuses on strategic review (weekly), exception handling (as escalated), and adversarial testing programme management.
+All agents autonomous within pre-approved task categories, all seven MASO domains operational. Human governance: weekly strategic review, exception handling, adversarial testing management.
 
 ### Alternate (A) - Autonomous Self-Healing
 
 **Trigger:** Same as Tier 2 (drift score > 60, circuit breaker, Model-as-Judge blocks).
 
-**Autonomous response (no human involvement for P→A or A→P):**
+**Autonomous response (no human involvement):**
 
 1. Anomalous agent isolated.
-2. Backup agent activated with progressive permission escalation (starts read-only, gains write permissions after demonstrating baseline-normal behavior for a configured warm-up period).
-3. System-wide monitoring sensitivity increased.
-4. If backup agent stabilises within the configured window (recommended: 2 hours), automatic return to Primary.
-5. If backup agent does not stabilise, or if the original agent's anomaly is not explained by automated diagnostics, escalation to Contingency.
+2. Backup agent activated with progressive permissions (starts read-only, gains write after demonstrating baseline-normal behavior).
+3. Monitoring sensitivity increased system-wide.
+4. If backup stabilises within the configured window (recommended: 2 hours), automatic return to Primary.
+5. If backup does not stabilise or the anomaly is unexplained, escalation to Contingency.
 
-**Self-healing cycle limit:** Maximum 3 P↔A cycles in 24 hours. Exceeding this limit indicates a systemic issue and triggers automatic C escalation.
+**Self-healing cycle limit:** Maximum 3 P↔A cycles in 24 hours. Exceeding this triggers automatic C escalation.
 
 ### Contingency (C) - Human-Gated Degraded Mode
 
@@ -226,13 +226,13 @@ Tier 3 paradoxically requires the most skilled staff despite having the least pe
 
 **Minimum roles:**
 
-- **AI Security Architect** (0.5–1 FTE): Owns the MASO control architecture, designs and maintains the adversarial testing programme, conducts root cause analysis for any PACE escalations, and advises on evolving threats. Requires deep expertise in both AI systems and cybersecurity.
-- **AI Security Engineer** (1 FTE): Manages drift detection, anomaly scoring, NHI lifecycle, kill switch testing, and day-to-day security operations for the agent system.
-- **Platform Engineer** (0.5–1 FTE): Manages infrastructure-level controls (sandbox enforcement, blast radius caps, message bus encryption, credential rotation automation), NHI infrastructure, and model version pipeline.
-- **Red Team Operator** (0.25–0.5 FTE or contracted quarterly): Executes the adversarial testing programme. Requires expertise in AI-specific attack techniques.
-- **Governance Reviewer** (0.25 FTE): Conducts periodic strategic reviews of the agent system's operational data, compliance evidence, and alignment with business objectives. For regulated industries, this role interfaces with the compliance function and regulators.
+- **AI Security Architect** (0.5–1 FTE): Owns MASO control architecture, adversarial testing programme, and root cause analysis for PACE escalations.
+- **AI Security Engineer** (1 FTE): Manages drift detection, anomaly scoring, NHI lifecycle, kill switch testing, and day-to-day security operations.
+- **Platform Engineer** (0.5–1 FTE): Manages infrastructure controls (sandboxes, blast radius caps, message bus encryption, credential rotation), NHI infrastructure, and model version pipeline.
+- **Red Team Operator** (0.25–0.5 FTE or contracted quarterly): Executes adversarial testing. Requires AI-specific attack expertise.
+- **Governance Reviewer** (0.25 FTE): Periodic strategic reviews of operational data, compliance evidence, and business alignment. Interfaces with compliance and regulators for regulated industries.
 
-**Note on the Agent Operator/Supervisor role:** At Tier 3, there is no dedicated per-system operator or supervisor during normal operations. The AI Security Engineer and on-call rotation handle the rare escalations that reach human attention. This is the labour cost saving that justifies the Tier 3 investment - but it only works if the automated controls are trustworthy, which is why the adversarial testing programme is non-negotiable.
+At Tier 3, there is no dedicated per-system operator during normal operations. The AI Security Engineer and on-call rotation handle rare escalations. This is the cost saving that justifies Tier 3, but it only works if automated controls are trustworthy, which is why adversarial testing is non-negotiable.
 
 ## Cost Indicators
 
@@ -268,24 +268,13 @@ All Tier 1 and Tier 2 tests remain valid and should be re-executed. Additional T
 
 ## Regression Prevention
 
-Tier 3 systems can regress to lower tiers under certain conditions. This is by design - regression is a safety mechanism, not a failure.
+Tier 3 systems can regress to lower tiers. This is by design: regression is a safety mechanism, not a failure.
 
-**Automatic regression to Tier 2 (Contingency activation):**
+**Regression to Tier 2 (Contingency):** Self-healing cycle limit exceeded, persistent monitoring disagreement, critical undetected vulnerability from adversarial testing, or model changes invalidating behavioral baselines.
 
-- Self-healing cycle limit exceeded.
-- Independent observability agent reports persistent disagreement with primary monitoring.
-- Adversarial testing reveals a critical undetected vulnerability.
-- Model provider changes that invalidate the current behavioral baselines.
+**Regression to Tier 1 (Emergency):** Kill switch activated, confirmed security incident, or regulatory order requiring increased human oversight.
 
-**Automatic regression to Tier 1 (Emergency activation):**
-
-- Kill switch activated.
-- Confirmed security incident.
-- Regulatory order or audit finding requiring increased human oversight.
-
-**Re-progression requirements:**
-
-After any regression, the system must re-meet the graduation criteria for the target tier. The timeline for re-progression is typically compressed (30 days instead of 90/180 for first-time graduation) provided the root cause is fully resolved and the regression was not caused by a fundamental control failure.
+**Re-progression:** The system must re-meet graduation criteria. Timeline is typically compressed (30 days instead of 90/180) provided the root cause is fully resolved and was not a fundamental control failure.
 
 ## Worked Example - 24/7 Fraud Detection
 

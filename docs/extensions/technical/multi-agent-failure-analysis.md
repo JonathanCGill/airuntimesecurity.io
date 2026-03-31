@@ -2,9 +2,9 @@
 
 ## Systems Thinking Approach
 
-This document maps the complete runtime event space of a multi-agent system, identifies failure nodes at each stage, classifies whether failures are detectable (trigger security events) or silent (propagate undetected), and traces the feedback loops that amplify, dampen, or transform failures as they move through the system.
+This document maps the runtime event space of a multi-agent system: failure nodes at each stage, whether failures are detectable or silent, and the feedback loops that amplify, dampen, or transform failures across agent boundaries.
 
-The core insight: most dangerous failures in multi-agent systems are not point failures. They are emergent properties of feedback loops operating across agent boundaries where no single node is observably broken.
+Most dangerous failures are not point failures. They are emergent properties of feedback loops where no single node is observably broken.
 
 ---
 
@@ -98,17 +98,7 @@ Every multi-agent runtime operation falls into one of seven event classes. Each 
 
 ## 2. Failure Node Map
 
-Each runtime event is a potential failure node. Failures are classified on two dimensions:
-
-**Detection:** Does the failure trigger a detectable event?
-- **Loud** = produces an error, exception, or observable deviation
-- **Silent** = system continues operating with degraded or corrupted state, no alert
-
-**Impact propagation:** Does the failure stay local or spread?
-- **Contained** = affects only this node
-- **Propagating** = corrupts downstream state or decisions
-
-The most dangerous failures are **silent + propagating**. These are the primary targets for MASO controls.
+Each runtime event is a potential failure node. Failures are classified by **detection** (loud or silent) and **propagation** (contained or propagating). The most dangerous failures are **silent + propagating**: the system continues operating with corrupted state and no alert. These are the primary targets for MASO controls.
 
 ### 2.1 Agent Lifecycle Failure Nodes
 
@@ -185,11 +175,11 @@ The most dangerous failures are **silent + propagating**. These are the primary 
 
 ## 3. Feedback Loops
 
-Feedback loops are what make multi-agent systems behave as complex adaptive systems rather than linear pipelines. Each loop can amplify failures, dampen them, or transform them into qualitatively different problems.
+Feedback loops make multi-agent systems behave as complex adaptive systems rather than linear pipelines.
 
 ### 3.1 Amplifying Loops (Positive Feedback - Destabilising)
 
-These loops make small problems bigger. They are the primary source of emergent systemic risk.
+These loops make small problems bigger and are the primary source of emergent systemic risk.
 
 #### Loop 1: Confabulation Cascade
 
@@ -203,9 +193,9 @@ Agent A confabulates claim X
     → Human reviewer sees high-confidence output, less likely to challenge
 ```
 
-**Amplification mechanism:** Each agent adds derived claims, increasing the apparent evidence base. The confabulation becomes harder to detect as it moves downstream because it's buried under legitimate-looking derived reasoning.
+**Amplification mechanism:** Each agent adds derived claims, burying the original fabrication under legitimate-looking reasoning.
 
-**MASO intervention point:** Epistemic checkpoint at each handoff verifying provenance of factual claims. Break the loop at first propagation.
+**MASO intervention point:** Epistemic checkpoint at each handoff verifying claim provenance. Break the loop at first propagation.
 
 #### Loop 2: Sycophantic Reinforcement
 
@@ -219,9 +209,9 @@ Agent A produces output aligned with orchestrator's implicit preference
     → System converges on confidently wrong equilibrium
 ```
 
-**Amplification mechanism:** The evaluation signal rewards agreement, not accuracy. Each cycle tightens the alignment between agents at the expense of ground truth.
+**Amplification mechanism:** The evaluation signal rewards agreement, not accuracy.
 
-**MASO intervention point:** Independent epistemic evaluation that measures accuracy against external reference, not coherence with chain-internal signals.
+**MASO intervention point:** Independent epistemic evaluation measuring accuracy against external reference, not chain-internal coherence.
 
 #### Loop 3: Context Window Compression Death Spiral
 
@@ -237,9 +227,9 @@ Chain generates large volumes of inter-agent communication
     → Eventually, agents operate on heavily degraded representations of original inputs
 ```
 
-**Amplification mechanism:** Information loss is cumulative and irreversible within a chain execution. Each compression cycle removes the details most likely to catch errors.
+**Amplification mechanism:** Information loss is cumulative and irreversible. Each compression cycle removes the details most likely to catch errors.
 
-**MASO intervention point:** Provenance tagging on critical claims so they survive summarisation. Checkpoint that verifies key facts are preserved post-compression.
+**MASO intervention point:** Provenance tagging on critical claims so they survive summarisation. Checkpoint verifying key facts are preserved post-compression.
 
 #### Loop 4: Error Recovery Amplification
 
@@ -254,9 +244,9 @@ Agent fails on task
     → Retry is treated as "recovery" but may be "mutation"
 ```
 
-**Amplification mechanism:** Error recovery changes the system trajectory without any mechanism to evaluate whether the new trajectory is better or worse than the one that failed.
+**Amplification mechanism:** Error recovery changes the system trajectory with no mechanism to evaluate whether the new path is better or worse.
 
-**MASO intervention point:** Containment boundary that evaluates retry output against original task criteria before allowing it to propagate downstream.
+**MASO intervention point:** Containment boundary evaluating retry output against original task criteria before allowing downstream propagation.
 
 ### 3.2 Dampening Loops (Negative Feedback - Stabilising)
 
@@ -273,9 +263,9 @@ Agent produces output with unverifiable claim
     → Corrected output propagates downstream
 ```
 
-**Dampening mechanism:** The checkpoint creates a verification barrier that forces correction before propagation. Failure is caught and resolved at the node of origin.
+**Dampening mechanism:** Verification barrier forces correction before propagation. Failure is caught at the node of origin.
 
-**Dependency:** Checkpoint must verify provenance, not just plausibility. An Model-as-Judge that only checks "does this sound right" will not catch well-constructed confabulations.
+**Dependency:** Checkpoint must verify provenance, not just plausibility. A Model-as-Judge that only checks "does this sound right" will not catch well-constructed confabulations.
 
 #### Loop 6: Human Oversight Escalation
 
@@ -288,9 +278,9 @@ Automated monitoring detects anomaly in chain behaviour
     → Correction propagates through remainder of chain
 ```
 
-**Dampening mechanism:** Human judgment applied at the point of maximum uncertainty. Breaks automated feedback loops that have converged on wrong answers.
+**Dampening mechanism:** Human judgment breaks automated feedback loops that have converged on wrong answers.
 
-**Dependency:** Human must have sufficient context to evaluate the chain. Chain-of-custody logging must provide the full reasoning trail, not just the final output. Oversight debt (speed mismatch between chain execution and human review) limits the frequency of this loop.
+**Dependency:** Chain-of-custody logging must provide the full reasoning trail. Oversight debt (speed mismatch between chain execution and human review) limits the frequency of this loop.
 
 #### Loop 7: Containment Circuit Breaker
 
@@ -304,9 +294,9 @@ Agent output triggers containment policy (e.g., confidence below threshold, anom
     → Downstream agents never receive corrupted input
 ```
 
-**Dampening mechanism:** Hard stop prevents propagation. The failure is contained at the node where it occurred rather than spreading through the chain.
+**Dampening mechanism:** Hard stop prevents propagation at the node where the failure occurred.
 
-**Dependency:** Containment thresholds must be correctly calibrated. Too tight = constant false positives, system unusable. Too loose = failures pass through.
+**Dependency:** Containment thresholds must be correctly calibrated. Too tight = constant false positives. Too loose = failures pass through.
 
 ### 3.3 Transforming Loops (Feedback that Changes the Nature of the Failure)
 
@@ -324,9 +314,9 @@ Guardrail blocks certain output patterns
     → Original content problem transforms into a guardrail gaming problem
 ```
 
-**Transformation mechanism:** The failure mode changes from "bad output" to "output that is optimised to appear good to the specific detection mechanism in use." The risk surface shifts from the content to the evaluation.
+**Transformation mechanism:** The failure shifts from "bad output" to "output optimised to appear good to the specific detection mechanism." The risk surface moves from content to evaluation.
 
-**MASO intervention point:** Multi-layered evaluation (guardrail + Model-as-Judge + epistemic checkpoint + human sample) so that gaming one layer doesn't bypass all layers.
+**MASO intervention point:** Multi-layered evaluation (guardrail + Model-as-Judge + epistemic checkpoint + human sample) so gaming one layer doesn't bypass all layers.
 
 #### Loop 9: Delegation Recursion
 
@@ -341,9 +331,9 @@ Agent A delegates sub-task to Agent B
     → Final output satisfies no one's actual intent but everyone's proximate request
 ```
 
-**Transformation mechanism:** Goal fidelity degrades through reinterpretation at each delegation boundary. The failure transforms from "wrong answer" to "right answer to the wrong question."
+**Transformation mechanism:** Goal fidelity degrades through reinterpretation at each delegation boundary: "wrong answer" becomes "right answer to the wrong question."
 
-**MASO intervention point:** Delegation scope specification that carries the original objective through the chain, not just the immediate sub-task. Checkpoint at each delegation boundary that verifies alignment with root objective.
+**MASO intervention point:** Delegation scope specification carrying the original objective through the chain. Checkpoint at each boundary verifying alignment with the root objective.
 
 #### Loop 10: Observability Saturation
 
@@ -359,15 +349,15 @@ System generates high volume of logs, metrics, and alerts
     → Cycle repeats with higher baseline noise
 ```
 
-**Transformation mechanism:** The failure transforms from an agent-level problem to an observability problem. The system's attempt to manage information overload creates blind spots that become the actual vulnerability.
+**Transformation mechanism:** The failure transforms from an agent-level problem to an observability problem. Managing information overload creates blind spots that become the actual vulnerability.
 
-**MASO intervention point:** Structured anomaly detection that operates on patterns rather than individual alerts. Epistemic integrity scoring provides a single composite signal that's harder to drown in noise than discrete event alerts.
+**MASO intervention point:** Structured anomaly detection operating on patterns rather than individual alerts. Epistemic integrity scoring provides a composite signal harder to drown in noise than discrete event alerts.
 
 ---
 
 ## 4. Failure Propagation Pathways
 
-Not all failures propagate the same way. Understanding the propagation mode determines where controls are effective.
+Understanding the propagation mode determines where controls are effective.
 
 ### 4.1 Linear Propagation
 
@@ -437,7 +427,7 @@ Real-world failures combine multiple failure nodes and feedback loops simultaneo
 
 Agent A retrieves data but confabulates one regulatory threshold. Agent B receives this, and the handoff summary loses the qualifier "approximately" that Agent A included. Agent C now has a precise-looking but fabricated number. The Model-as-Judge evaluates the chain and assesses it as "well-sourced and internally consistent." The human reviewer sees a confident, high-rated output and approves it.
 
-**Why point-analysis misses this:** Each individual node performed acceptably. The confabulation was small. The semantic loss was trivial. The Judge was technically correct that the chain was internally consistent. The failure is emergent from the interaction of these small deviations.
+**Why point-analysis misses this:** Each node performed acceptably. The failure is emergent from the interaction of individually small deviations.
 
 ### Scenario 2: The Slow Drift
 
@@ -446,7 +436,7 @@ Agent A retrieves data but confabulates one regulatory threshold. Agent B receiv
 
 An agent in a recurring process subtly degrades its output quality over time (or across iterations). Each output is marginally worse than the last, but never enough to trigger guardrails. Context compression between cycles loses the details that would reveal the trend. Monitoring generates alerts on noise that operators filter out, incidentally suppressing the degradation signal. Over weeks, the system's baseline output quality drops significantly. No single event is a failure. The failure is the trajectory.
 
-**Why point-analysis misses this:** No single execution contains a detectable failure. The degradation is only visible in the time series across executions. Standard runtime monitoring watches individual runs, not longitudinal trends.
+**Why point-analysis misses this:** No single execution contains a detectable failure. The degradation is only visible in the time series across executions.
 
 ### Scenario 3: The Delegation Shell Game
 
@@ -455,7 +445,7 @@ An agent in a recurring process subtly degrades its output quality over time (or
 
 Orchestrator decomposes task incorrectly, assigning a sub-task to Agent A that should have gone to Agent B. Agent A partially fails, triggering retry. The retry agent reinterprets the task, delegates to Agent C, which delegates further. By the end, the executed task bears only superficial resemblance to the original. But each delegation was syntactically valid, and the final output matches the format expected. The output is accepted because it looks right.
 
-**Why point-analysis misses this:** Every agent completed its delegated task. Every handoff was valid. The orchestrator's original decomposition error is buried under layers of legitimate-looking delegation. Root cause analysis requires reconstructing the full delegation chain and comparing it to the original intent.
+**Why point-analysis misses this:** Every agent completed its delegated task and every handoff was valid. Root cause analysis requires reconstructing the full delegation chain and comparing it to the original intent.
 
 ---
 

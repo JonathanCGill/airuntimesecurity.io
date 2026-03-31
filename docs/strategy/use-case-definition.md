@@ -8,9 +8,9 @@
 
 Every AI system starts as a use case. "We want AI to help with customer queries." "We want AI to analyse contracts." "We want AI to detect fraud."
 
-These are not use cases. They're aspirations. A use case - one that security, governance, and risk functions can actually work with - is something far more specific. It defines not just what the AI does, but what data it touches, who sees its outputs, what decisions it influences, what happens when it's wrong, and who is accountable.
+These are not use cases. They're aspirations. A use case that security, governance, and risk functions can work with defines what the AI does, what data it touches, who sees its outputs, what decisions it influences, what happens when it's wrong, and who is accountable.
 
-The difference matters because the framework's entire control model flows from the use case. The [risk tier](../core/risk-tiers.md) determines which controls apply. The risk tier is determined by the use case. A vague use case produces an uncertain risk tier, which produces either too many controls (killing the business case) or too few (creating unmanaged risk).
+The framework's entire control model flows from the use case. The [risk tier](../core/risk-tiers.md) determines which controls apply. The risk tier is determined by the use case. A vague use case produces either too many controls (killing the business case) or too few (creating unmanaged risk).
 
 **A well-defined use case is the single most valuable input to the entire framework.**
 
@@ -18,7 +18,7 @@ The difference matters because the framework's entire control model flows from t
 
 ### The Minimum Viable Use Case
 
-A use case definition that security and governance can work with answers ten questions. These aren't optional fields on a form - each one directly determines a control requirement.
+A workable use case definition answers ten questions. Each directly determines a control requirement.
 
 ![Use Case Definition Model](../images/strategy-use-case-model.svg)
 
@@ -39,7 +39,7 @@ A use case definition that security and governance can work with answers ten que
 
 **Q1: What does it do?**
 
-Not "what could it do" or "what might it do eventually." What does it do *in this deployment*? Scope creep is the primary reason use cases drift from one risk tier to another without anyone noticing.
+What does it do *in this deployment*, not what could it do eventually? Scope creep is the primary reason use cases drift between risk tiers unnoticed.
 
 | Bad | Good |
 |-----|------|
@@ -47,11 +47,11 @@ Not "what could it do" or "what might it do eventually." What does it do *in thi
 | "Contract analysis tool" | "Extracts key dates, parties, and obligation clauses from supplier contracts. Outputs a structured summary for procurement review. Does not recommend accept/reject decisions." |
 | "Fraud detection" | "Scores incoming card transactions against fraud patterns. Transactions scoring above 0.85 are held for human review. Transactions below 0.85 proceed automatically. Does not block transactions independently." |
 
-The good definitions include explicit **negative scope** - what the system *cannot* do. This is critical for guardrail configuration. If the use case says "does not provide financial advice," then the guardrails enforce that boundary. Without that boundary in the definition, nobody knows to configure it.
+Good definitions include explicit **negative scope**: what the system *cannot* do. Without that boundary in the definition, nobody knows to configure the guardrails that enforce it.
 
 **Q2: What decisions does it make or influence?**
 
-The most important question for risk classification. The framework distinguishes between four levels of decision authority:
+The most important question for risk classification.
 
 | Level | Description | Example | Typical Tier Impact |
 |-------|-------------|---------|---------------------|
@@ -60,11 +60,11 @@ The most important question for risk classification. The framework distinguishes
 | **Influential** | Output significantly shapes human decision | Risk score that determines investigation priority | HIGH |
 | **Autonomous** | AI makes the decision; human monitors | Auto-approved claims under £500 | HIGH–CRITICAL |
 
-Many use cases claim to be "advisory" when they're functionally "influential." If the human reviewer accepts the AI recommendation 95% of the time without independent analysis, the system is influential regardless of what the process document says. Be honest about actual decision authority, not theoretical.
+Many use cases claim to be "advisory" when they're functionally "influential." If the human reviewer accepts the AI recommendation 95% of the time without independent analysis, the system is influential regardless of what the process says. Be honest about actual decision authority.
 
 **Q3: What data does it access?**
 
-Not just what data it *needs* - what data it *can access*. If the system has a database connection with broader permissions than the use case requires, the risk profile reflects the access, not the intent.
+Not what data it *needs*, but what data it *can access*. The risk profile reflects the access, not the intent.
 
 | Data Category | Examples | Risk Impact |
 |---------------|----------|-------------|
@@ -97,15 +97,15 @@ Not just what data it *needs* - what data it *can access*. If the system has a d
 | **Regulatory breach** | PII disclosed in response | Notification required |
 | **Physical harm** | Wrong medical triage priority | Irreversible |
 
-**Q6: Volume** determines operational cost - see [Business Alignment](business-alignment.md) for the FTE calculation. A CRITICAL-tier system at 100 interactions/day is operationally different from one at 100,000 interactions/day, even though the control requirements are identical.
+**Q6: Volume** determines operational cost (see [Business Alignment](business-alignment.md)). A CRITICAL-tier system at 100 interactions/day is operationally different from one at 100,000/day, even though control requirements are identical.
 
-**Q7: Regulatory context** is often the simplest question to answer and the one most often skipped. If the use case operates in financial services, healthcare, legal, HR, or insurance, there are sector-specific requirements that may override the framework's general tiers.
+**Q7: Regulatory context** is the simplest question and the one most often skipped. Sector-specific requirements in financial services, healthcare, legal, HR, or insurance may override the framework's general tiers.
 
-**Q8: Tools and actions** determine whether agentic controls apply. If the AI can call APIs, write to databases, send emails, or trigger workflows, it's agentic - even if nobody calls it that.
+**Q8: Tools and actions** determine whether agentic controls apply. If the AI can call APIs, write to databases, send emails, or trigger workflows, it's agentic.
 
-**Q9: Business process position** determines upstream and downstream dependencies. Where does the AI sit? What feeds it? What consumes its output? This shapes the [threat model](../extensions/templates/threat-model-template.md) - attack surfaces are at integration points, not inside the model.
+**Q9: Business process position** shapes the [threat model](../extensions/templates/threat-model-template.md). Attack surfaces are at integration points, not inside the model.
 
-**Q10: Accountability** is the governance anchor. Someone - named, not "TBD" - owns the outcomes of this AI system. This person is responsible for HITL decisions, incident response, and regulatory engagement. Without named accountability, the governance model has no force.
+**Q10: Accountability** is the governance anchor. A named individual (not "TBD") owns the outcomes, HITL decisions, incident response, and regulatory engagement. Without named accountability, the governance model has no force.
 
 ## Translating Use Cases to Risk Profiles
 
@@ -135,7 +135,7 @@ Use case modifiers (agentic, customer-facing, regulated) can increase the effect
 
 ### Can AI Score Risk Tiers?
 
-Yes - with caveats. The six-dimension model is structured enough to be machine-evaluable. An LLM can extract the relevant information from a well-written use case definition and propose a risk tier.
+Yes, with caveats. The six-dimension model is structured enough for an LLM to extract relevant information and propose a risk tier.
 
 **What AI can reliably do:**
 
@@ -159,16 +159,9 @@ Yes - with caveats. The six-dimension model is structured enough to be machine-e
 
 **Practical approach: AI as classification assistant.**
 
-Use an LLM to:
-1. Parse the use case definition against the ten-question template
-2. Flag missing or ambiguous answers
-3. Score each dimension based on available information
-4. Propose a risk tier with reasoning
-5. Identify questions the human classifier should investigate
+Use an LLM to parse against the template, flag gaps, score dimensions, propose a tier with reasoning, and identify areas needing human investigation. A human risk analyst then reviews, investigates, and makes the final decision.
 
-Then a human risk analyst reviews the proposal, investigates the flagged areas, and makes the final classification decision.
-
-This is an example of the framework's own principle in action: **AI proposes. Humans decide.** The classification itself is a [MEDIUM-tier use case](../insights/risk-tier-is-use-case.md) - it influences risk decisions, should be reviewed by a human, and the consequences of misclassification are significant but recoverable.
+This is the framework's own principle in action: **AI proposes. Humans decide.** The classification itself is a [MEDIUM-tier use case](../insights/risk-tier-is-use-case.md): it influences risk decisions, and the consequences of misclassification are significant but recoverable.
 
 **Example AI classification prompt:**
 
@@ -342,7 +335,7 @@ Given a brief description - even a single sentence - an LLM can draft a structur
 | Business process? | Sits between incoming customer email and outbound response | High | Confirm: any other systems in the chain? |
 | Accountability? | Unknown | Low | Requires: named business owner |
 
-The AI identifies what it can populate (6 of 10 questions), what needs verification (3), and what it can't answer (1). The human effort shifts from writing to reviewing and completing.
+The human effort shifts from writing to reviewing and completing.
 
 ### Semi-Automated Discovery
 
@@ -363,7 +356,7 @@ For organisations with mature observability, use case discovery can be partially
 - Regulatory context (Q7) - requires legal/compliance knowledge
 - Accountability (Q10) - requires organisational knowledge
 
-**The shadow AI problem:** Semi-automated discovery is most valuable for finding AI use cases that exist but aren't formally defined. The framework's [Visibility Problem](../insights/the-visibility-problem.md) article notes that over 50% of enterprise AI adoption may be shadow AI. Automated discovery tools that scan API calls, cloud service provisioning, and browser traffic can identify undocumented AI usage - which can then be formally defined, classified, and governed.
+**The shadow AI problem:** Semi-automated discovery is most valuable for finding AI use cases that aren't formally defined. The [Visibility Problem](../insights/the-visibility-problem.md) article notes that over 50% of enterprise AI adoption may be shadow AI. Discovery tools scanning API calls, cloud provisioning, and browser traffic can surface undocumented usage for formal governance.
 
 ### Automated Classification - With Guardrails
 
@@ -537,13 +530,11 @@ For practical use. Complete each section before submitting for risk classificati
 
 ## The Framework Gap
 
-The framework defines risk tiers and controls but doesn't provide a structured use case definition methodology. The [control selection guide](../extensions/technical/control-selection-guide.md) has a decision tree, and the [model card template](../extensions/templates/model-card-template.md) captures system metadata, but neither bridges the gap between "we have an idea for AI" and "here's the risk profile and required controls."
-
-This article fills that gap. The ten-question template, the six-dimension scoring model, and the RACI model for use case management connect strategy (what we want to build) to the framework (how we secure it).
+The framework defines risk tiers and controls but doesn't bridge the gap between "we have an idea for AI" and "here's the risk profile and required controls." This article fills that gap.
 
 **Where the framework should evolve:**
-- A formal use case definition template should be added to [extensions/templates/](../extensions/templates/)
-- Risk tier classification should reference this structured input, not assume it exists
-- AI-assisted classification guidance should be incorporated into the [control selection guide](../extensions/technical/control-selection-guide.md)
-- The [model card template](../extensions/templates/model-card-template.md) should be extended to include use case definition fields
+- A formal use case definition template added to [extensions/templates/](../extensions/templates/)
+- Risk tier classification referencing this structured input
+- AI-assisted classification guidance incorporated into the [control selection guide](../extensions/technical/control-selection-guide.md)
+- The [model card template](../extensions/templates/model-card-template.md) extended with use case definition fields
 

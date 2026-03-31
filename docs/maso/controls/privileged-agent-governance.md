@@ -16,13 +16,13 @@ The controls in other MASO domains secure task agents against each other and aga
 
 ## Why This Matters
 
-**Orchestrators influence outcomes through decisions, not tools.** A compromised orchestrator doesn't need tool access to cause harm. It causes harm through task decomposition, agent selection, and result interpretation. Existing controls (IA-2.5, tool scoping) don't address this class of threat because the orchestrator's power is in planning, not execution.
+**Orchestrators influence outcomes through decisions, not tools.** A compromised orchestrator causes harm through task decomposition, agent selection, and result interpretation. Existing controls (IA-2.5, tool scoping) don't address this because the orchestrator's power is in planning, not execution.
 
-**Evaluators are single points of trust.** The Model-as-Judge approves or blocks every task agent output. If Judge criteria drift, or the Judge model is compromised, Layer 2 collapses silently - every output passes because the standard has shifted. The system reports healthy while the controls are effectively disabled.
+**Evaluators are single points of trust.** If Judge criteria drift or the Judge model is compromised, Layer 2 collapses silently: every output passes because the standard has shifted. The system reports healthy while controls are effectively disabled.
 
-**Observers with kill switch authority can be weaponised.** An over-sensitive observer repeatedly triggers emergency shutdowns, degrading the system into permanent contingency. Operators disable it to restore service. The system now runs without its safety net - and nobody formally accepted that risk.
+**Observers with kill switch authority can be weaponised.** An over-sensitive observer repeatedly triggers shutdowns. Operators disable it to restore service. The system now runs without its safety net, and nobody formally accepted that risk.
 
-**Nested orchestration multiplies these risks.** In hierarchical topologies, a compromised sub-orchestrator affects its entire agent cluster. Per-agent blast radius caps don't contain aggregate harm from a coordinated sub-tree.
+**Nested orchestration multiplies these risks.** A compromised sub-orchestrator affects its entire agent cluster. Per-agent blast radius caps don't contain aggregate harm from a coordinated sub-tree.
 
 ## Agent Role Classification
 
@@ -85,13 +85,13 @@ All Tier 2 controls remain active, plus:
 
 ## Inter-Judge Conflict Resolution
 
-When a workflow uses multiple judges evaluating the same action from different perspectives (fraud detection, security policy, compliance, data protection), those judges will disagree. This is not a failure; it is the expected behaviour of independent evaluation. A fraud judge says "flag this transaction." A security judge says "transaction is within policy." A compliance judge says "block, insufficient documentation." Which verdict wins?
+When multiple judges evaluate the same action from different perspectives (fraud, security, compliance, data protection), they will disagree. This is expected. A fraud judge flags a transaction. A security judge approves it. A compliance judge blocks it. Which verdict wins?
 
-Without a defined resolution protocol, teams either ignore conflicts (the loudest judge wins) or escalate everything to humans (defeating the purpose of automated evaluation). Both outcomes erode trust in the evaluation architecture.
+Without a defined resolution protocol, teams either ignore conflicts (loudest judge wins) or escalate everything to humans (defeating automation). Both erode trust in the evaluation architecture.
 
 ### The Problem of Multi-Domain Evaluation
 
-Multi-domain evaluation is different from multi-model cross-validation (EC-3.3). Cross-validation asks two models the same question and flags when they disagree. Multi-domain evaluation asks different questions about the same action:
+Multi-domain evaluation differs from multi-model cross-validation (EC-3.3). Cross-validation asks two models the same question. Multi-domain evaluation asks different questions about the same action:
 
 | Evaluation Domain | Question Being Asked | Evaluation Timing |
 |-------------------|---------------------|-------------------|
@@ -102,9 +102,9 @@ Multi-domain evaluation is different from multi-model cross-validation (EC-3.3).
 | **Intent alignment** | Does this action satisfy the agent's declared OISpec? | Synchronous (operational) |
 | **Ethics / bias / fairness** | Does this action align with organisational values and fairness standards? | Asynchronous (policy-driven, see [below](#policy-driven-evaluation-domains-ethics-bias-and-fairness)) |
 
-These are not redundant checks. They evaluate orthogonal concerns. A transaction can be non-fraudulent but non-compliant. An action can be policy-compliant but misaligned with intent. Conflict between domain judges is meaningful signal, not noise.
+These evaluate orthogonal concerns. A transaction can be non-fraudulent but non-compliant. Conflict between domain judges is meaningful signal, not noise.
 
-The operational domains (fraud through intent alignment) participate in the real-time conflict resolution protocol below. The policy-driven domains (ethics, bias, fairness) run post-action and produce advisories, not blocks. See [Policy-Driven Evaluation Domains](#policy-driven-evaluation-domains-ethics-bias-and-fairness) for the rationale and implementation pattern.
+Operational domains (fraud through intent alignment) participate in the real-time conflict resolution protocol below. Policy-driven domains (ethics, bias, fairness) run post-action and produce advisories, not blocks. See [Policy-Driven Evaluation Domains](#policy-driven-evaluation-domains-ethics-bias-and-fairness).
 
 ### Resolution Protocol
 
@@ -134,7 +134,7 @@ Every workflow OISpec must include a **judge precedence order** that defines whi
 
 #### Step 2: Apply the "most restrictive wins" default
 
-Unless the precedence order specifies otherwise, the default resolution is: **the most restrictive verdict wins.** If any judge says block, the action is blocked. If any judge says escalate while others approve, the action is escalated.
+Unless the precedence order specifies otherwise: **the most restrictive verdict wins.** Any block wins. Any escalate wins over approve.
 
 | Fraud Judge | Security Judge | Compliance Judge | Resolution |
 |------------|---------------|-----------------|------------|
@@ -145,11 +145,11 @@ Unless the precedence order specifies otherwise, the default resolution is: **th
 | Flag | Flag | Approve | **Escalate** (multi-domain concern) |
 | Block | Flag | Block | **Block** |
 
-This is conservative by design. False positives from multi-domain disagreement are preferable to false negatives where a legitimate concern is overridden by another domain's approval.
+Conservative by design. False positives from disagreement are preferable to false negatives where a legitimate concern is overridden.
 
 #### Step 2a: Time-constrained conflicts with competing actions
 
-The "most restrictive wins" default handles simple approve/flag/block disagreements. Real operational conflicts are harder. When fraud is in progress, judges may agree that action is needed but disagree on *which* action:
+The "most restrictive wins" default handles simple approve/flag/block disagreements. Harder conflicts arise when judges agree action is needed but disagree on *which* action:
 
 | Judge | Verdict | Prescribed Action |
 |-------|---------|-------------------|
@@ -157,7 +157,7 @@ The "most restrictive wins" default handles simple approve/flag/block disagreeme
 | **Security judge** | Block: security violation in progress | Freeze the account. Revoke session credentials. Isolate the compromised endpoint. |
 | **Compliance judge** | Block: regulatory hold required | Place transaction on hold for the maximum permissible period. Gather documentation. |
 
-These are not contradictory verdicts. They are competing priorities with a shared urgency. The fraud judge wants to chase the money. The security judge wants to contain the breach. The compliance judge wants to preserve the audit trail. All three are legitimate, and delay harms all of them.
+These are competing priorities with shared urgency, not contradictory verdicts. All three are legitimate, and delay harms all of them.
 
 **Resolution for time-constrained conflicts:**
 
@@ -277,14 +277,14 @@ Offline monitoring and evaluation (separate process):
 
 **Why offline, not inline?**
 
-1. **Blocking on subjective criteria creates unpredictable friction.** A bias evaluator that blocks 5% of legitimate transactions based on ambiguous criteria will be disabled within a week. Offline evaluation with human review preserves the evaluation without creating operational friction.
-2. **The most important signals come from outside the agent architecture.** Customer complaints, appeal outcomes, regulatory feedback, demographic outcome data, and adverse action challenges are external signals that no inline judge can access. A customer who was denied credit and successfully appeals provides ground truth that no amount of LLM self-evaluation can replicate.
-3. **Portfolio-level detection is more reliable than per-transaction detection.** A single decision may not be detectably biased. A pattern of 10,000 decisions that systematically disadvantages a protected class is detectable through statistical analysis. Offline evaluation enables this portfolio view.
-4. **LLMs are unreliable evaluators of their own biases.** An LLM asked "is this output biased?" may say no, because the bias is in the model's own training data. Statistical monitoring of outcomes across protected classes is more reliable than per-output LLM evaluation.
+1. **Blocking on subjective criteria creates unpredictable friction.** A bias evaluator that blocks 5% of legitimate transactions on ambiguous criteria will be disabled within a week. Offline evaluation preserves the assessment without operational friction.
+2. **The most important signals come from outside the agent architecture.** Customer complaints, appeal outcomes, regulatory feedback, and demographic data are external signals no inline judge can access.
+3. **Portfolio-level detection is more reliable than per-transaction detection.** A single decision may not be detectably biased. A pattern of 10,000 decisions that systematically disadvantages a protected class is detectable through statistical analysis.
+4. **LLMs are unreliable evaluators of their own biases.** Statistical monitoring of outcomes across protected classes is more reliable than per-output LLM evaluation.
 
 #### External Signal Sources
 
-Policy-driven evaluation is only as good as the data it consumes. The runtime decision chain provides the agent's view. External sources provide the world's view:
+The runtime decision chain provides the agent's view. External sources provide the world's view:
 
 | Signal Source | What It Reveals | How It Integrates |
 |--------------|----------------|-------------------|
@@ -331,15 +331,13 @@ The statistical monitoring component combined with external signals is the most 
 
 ### What This Does Not Solve
 
-**Precedence order is a policy decision, not a technical one.** The framework defines the mechanism. The organisation decides the policy. In financial services, compliance typically takes precedence. In healthcare, patient safety takes precedence. In security operations, the security domain takes precedence. There is no universal answer.
+**Precedence order is a policy decision, not a technical one.** The framework defines the mechanism. The organisation decides the policy. There is no universal answer.
 
-**Judges can agree and still be wrong.** Multi-domain evaluation reduces the risk of single-domain blind spots, but if all judges share a common assumption (e.g. the same training data bias), they can unanimously approve something they should all flag. This is why judge model diversity (Judge Assurance, Control 2) and adversarial testing (PA-2.8) remain necessary even with multi-domain evaluation.
+**Judges can agree and still be wrong.** If all judges share a common assumption (e.g. the same training data bias), they can unanimously approve something they should all flag. Judge model diversity and adversarial testing (PA-2.8) remain necessary even with multi-domain evaluation.
 
 ## Recognising Judge Proliferation
 
-The evaluation architecture can look alarming on paper. A workflow with 5 task agents, a tactical judge, a strategic evaluator, a meta-evaluator, an observer, and 3 domain-specific judges appears to require 12 running services. Teams that read the architecture diagrams literally may perceive "judge hell": an uncontrollable proliferation of evaluation agents that costs more than the system it protects.
-
-This perception is understandable. It is also based on a misreading of the architecture. The framework describes **evaluation roles**, not **evaluation services**. The distinction matters.
+A workflow with 5 task agents, a tactical judge, a strategic evaluator, a meta-evaluator, an observer, and 3 domain judges appears to need 12 services. The framework describes **evaluation roles**, not **evaluation services**. The distinction matters.
 
 ### Roles vs. Services
 
@@ -351,14 +349,7 @@ This perception is understandable. It is also based on a misreading of the archi
 | **Observer** | Anomaly scoring, PACE escalation | A metrics pipeline feeding the anomaly scoring model. Existing monitoring infrastructure. |
 | **Domain judges** (fraud, security, compliance) | Evaluates actions from a specific policy perspective | Can be consolidated into a single evaluation call with structured multi-domain criteria. Or separate SLM sidecars if latency requires it. |
 
-A fraud detection workflow at Tier 2 with SLM sidecars requires:
-
-- 1 SLM sidecar process (tactical evaluation, possibly multi-domain)
-- 1 periodic batch job (strategic evaluation)
-- 1 scheduled pipeline (meta-evaluation / calibration)
-- Existing monitoring infrastructure (observer)
-
-That is 3 operational components, not 12. The architecture describes the logical separation of concerns. The deployment consolidates them.
+A Tier 2 fraud detection workflow requires: 1 SLM sidecar (tactical, possibly multi-domain), 1 periodic batch job (strategic), 1 scheduled pipeline (calibration), and existing monitoring infrastructure. That is 3 operational components, not 12.
 
 ### When to Add a Judge, When Not To
 
@@ -372,7 +363,7 @@ Not every workflow needs every evaluation layer. Use this decision framework:
 | Is this a Tier 1 (supervised) deployment? | Manual human review replaces automated judges. No judge infrastructure needed. | Automated evaluation scales with autonomy. |
 | Does the judge's false negative rate exceed the base rate of the threat? | The judge adds cost without security value. Remove it or retrain it. | The judge is net-positive. Keep it. |
 
-**The right number of judges is the minimum needed to catch what guardrails miss, proportionate to the risk of the workflow.** A low-risk FAQ bot needs guardrails and maybe a sampled judge. A high-risk fraud detection pipeline needs the full stack. Deploying the full stack on every workflow is over-engineering. Deploying nothing but guardrails on a high-risk workflow is under-engineering.
+**The right number of judges is the minimum needed to catch what guardrails miss, proportionate to risk.** A low-risk FAQ bot needs guardrails and maybe a sampled judge. A high-risk fraud pipeline needs the full stack.
 
 ## Testing Criteria
 
