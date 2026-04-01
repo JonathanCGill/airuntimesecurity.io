@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="680" viewBox="0 0 920 680" font-family="Inter, Arial, Helvetica, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0e1a"/>
+      <stop offset="100%" stop-color="#1a1e3a"/>
+    </linearGradient>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#556"/>
+    </marker>
+  </defs>
+
+  <rect width="920" height="680" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="460" y="32" text-anchor="middle" fill="#fff" font-size="16" font-weight="700" letter-spacing="2">EU AI ACT RISK TIERING: CONTROLS UNLOCK CAPABILITY</text>
+  <text x="460" y="52" text-anchor="middle" fill="#ff6b35" font-size="10" letter-spacing="1">EACH CONTROL LAYER ENABLES MORE AMBITIOUS AI DEPLOYMENTS</text>
+  <line x1="100" y1="62" x2="820" y2="62" stroke="#ff6b35" stroke-width="0.6" opacity="0.4"/>
+
+  <!-- Column headers -->
+  <text x="110" y="90" fill="#8899aa" font-size="9" letter-spacing="1" font-weight="600">EU AI ACT CATEGORY</text>
+  <text x="310" y="90" fill="#8899aa" font-size="9" letter-spacing="1" font-weight="600">CONTROLS REQUIRED</text>
+  <text x="620" y="90" fill="#8899aa" font-size="9" letter-spacing="1" font-weight="600">AI USE CASES UNLOCKED</text>
+
+  <!-- TIER: NONE -->
+  <rect x="30" y="105" width="860" height="85" rx="8" fill="#0d1225" stroke="#27ae60" stroke-width="1.5"/>
+  <rect x="30" y="105" width="6" height="85" rx="3" fill="#27ae60"/>
+  <text x="52" y="130" fill="#27ae60" font-size="14" font-weight="700">NONE</text>
+  <text x="52" y="148" fill="#667" font-size="10">Minimal Risk</text>
+  <text x="52" y="164" fill="#556" font-size="9">No obligations</text>
+  <text x="52" y="178" fill="#445" font-size="9">EU AI Act: unregulated</text>
+
+  <text x="310" y="130" fill="#8899aa" font-size="11">No specific controls required</text>
+  <text x="310" y="148" fill="#667" font-size="10">Basic usage policies</text>
+  <text x="310" y="164" fill="#667" font-size="10">Standard IT governance</text>
+
+  <rect x="610" y="115" width="260" height="65" rx="6" fill="#0a1018" stroke="#27ae60" stroke-width="0.8"/>
+  <text x="625" y="135" fill="#27ae60" font-size="10" font-weight="600">Public FAQ bots</text>
+  <text x="625" y="150" fill="#8899aa" font-size="9">Content suggestions</text>
+  <text x="625" y="165" fill="#8899aa" font-size="9">Internal search over public data</text>
+  <text x="625" y="178" fill="#556" font-size="8">Read-only, no personal data</text>
+
+  <!-- TIER: LOW -->
+  <rect x="30" y="200" width="860" height="85" rx="8" fill="#0d1225" stroke="#2ecc71" stroke-width="1.5"/>
+  <rect x="30" y="200" width="6" height="85" rx="3" fill="#2ecc71"/>
+  <text x="52" y="225" fill="#2ecc71" font-size="14" font-weight="700">LOW</text>
+  <text x="52" y="243" fill="#667" font-size="10">Minimal Risk</text>
+  <text x="52" y="259" fill="#556" font-size="9">Transparency codes</text>
+  <text x="52" y="273" fill="#445" font-size="9">EU AI Act: Art. 52</text>
+
+  <text x="310" y="220" fill="#2ecc71" font-size="10" font-weight="600">+ Basic guardrails</text>
+  <text x="310" y="237" fill="#8899aa" font-size="10">Input content filtering</text>
+  <text x="310" y="252" fill="#8899aa" font-size="10">Basic output filtering</text>
+  <text x="310" y="267" fill="#8899aa" font-size="10">Metadata logging (90 days)</text>
+
+  <rect x="610" y="210" width="260" height="65" rx="6" fill="#0a1018" stroke="#2ecc71" stroke-width="0.8"/>
+  <text x="625" y="230" fill="#2ecc71" font-size="10" font-weight="600">Internal Q&amp;A assistants</text>
+  <text x="625" y="245" fill="#8899aa" font-size="9">Document summarisation</text>
+  <text x="625" y="260" fill="#8899aa" font-size="9">Code generation with human review</text>
+  <text x="625" y="273" fill="#556" font-size="8">Internal users, recoverable errors</text>
+
+  <!-- TIER: MEDIUM -->
+  <rect x="30" y="295" width="860" height="95" rx="8" fill="#0d1225" stroke="#f39c12" stroke-width="1.5"/>
+  <rect x="30" y="295" width="6" height="95" rx="3" fill="#f39c12"/>
+  <text x="52" y="320" fill="#f39c12" font-size="14" font-weight="700">MEDIUM</text>
+  <text x="52" y="338" fill="#667" font-size="10">Limited Risk</text>
+  <text x="52" y="354" fill="#556" font-size="9">Transparency obligations</text>
+  <text x="52" y="368" fill="#445" font-size="9">EU AI Act: Art. 50</text>
+  <text x="52" y="382" fill="#445" font-size="9">GPAI provisions</text>
+
+  <text x="310" y="318" fill="#f39c12" font-size="10" font-weight="600">+ Judge evaluation (5-10%)</text>
+  <text x="310" y="335" fill="#8899aa" font-size="10">Standard injection detection</text>
+  <text x="310" y="350" fill="#8899aa" font-size="10">PII detection (warn)</text>
+  <text x="310" y="365" fill="#8899aa" font-size="10">Full I/O logging (1 year)</text>
+  <text x="310" y="380" fill="#8899aa" font-size="10">Exception-based human review</text>
+
+  <rect x="610" y="305" width="260" height="75" rx="6" fill="#0a1018" stroke="#f39c12" stroke-width="0.8"/>
+  <text x="625" y="325" fill="#f39c12" font-size="10" font-weight="600">Document drafting tools</text>
+  <text x="625" y="340" fill="#8899aa" font-size="9">Internal chatbots with limited PII</text>
+  <text x="625" y="355" fill="#8899aa" font-size="9">AI-powered content generation</text>
+  <text x="625" y="370" fill="#556" font-size="8">Humans review before external delivery</text>
+
+  <!-- TIER: HIGH -->
+  <rect x="30" y="400" width="860" height="95" rx="8" fill="#0d1225" stroke="#e67e22" stroke-width="1.5"/>
+  <rect x="30" y="400" width="6" height="95" rx="3" fill="#e67e22"/>
+  <text x="52" y="425" fill="#e67e22" font-size="14" font-weight="700">HIGH</text>
+  <text x="52" y="443" fill="#667" font-size="10">High Risk</text>
+  <text x="52" y="459" fill="#556" font-size="9">Conformity assessment</text>
+  <text x="52" y="473" fill="#445" font-size="9">EU AI Act: Annex III</text>
+  <text x="52" y="487" fill="#445" font-size="9">Arts. 9-15 apply</text>
+
+  <text x="310" y="420" fill="#e67e22" font-size="10" font-weight="600">+ Judge at 20-50%, near real-time</text>
+  <text x="310" y="437" fill="#8899aa" font-size="10">Enhanced guardrails + ML classifiers</text>
+  <text x="310" y="452" fill="#8899aa" font-size="10">PII blocking + grounding checks</text>
+  <text x="310" y="467" fill="#8899aa" font-size="10">Systematic HITL (4h SLA)</text>
+  <text x="310" y="482" fill="#8899aa" font-size="10">Full logging + context (3 years)</text>
+
+  <rect x="610" y="410" width="260" height="75" rx="6" fill="#0a1018" stroke="#e67e22" stroke-width="0.8"/>
+  <text x="625" y="430" fill="#e67e22" font-size="10" font-weight="600">Customer service with account access</text>
+  <text x="625" y="445" fill="#8899aa" font-size="9">HR screening and analysis</text>
+  <text x="625" y="460" fill="#8899aa" font-size="9">Legal document review</text>
+  <text x="625" y="475" fill="#556" font-size="8">External-facing, sensitive data, brand impact</text>
+
+  <!-- TIER: CRITICAL -->
+  <rect x="30" y="505" width="860" height="105" rx="8" fill="#0d1225" stroke="#e74c3c" stroke-width="1.5"/>
+  <rect x="30" y="505" width="6" height="105" rx="3" fill="#e74c3c"/>
+  <text x="52" y="530" fill="#e74c3c" font-size="14" font-weight="700">CRITICAL</text>
+  <text x="52" y="548" fill="#667" font-size="10">High Risk (highest impact)</text>
+  <text x="52" y="564" fill="#556" font-size="9">Full conformity + audit</text>
+  <text x="52" y="578" fill="#445" font-size="9">EU AI Act: Annex III</text>
+  <text x="52" y="592" fill="#445" font-size="9">Arts. 9-15 + GDPR Art. 22</text>
+
+  <text x="310" y="525" fill="#e74c3c" font-size="10" font-weight="600">+ Judge at 100%, real-time</text>
+  <text x="310" y="542" fill="#8899aa" font-size="10">Multi-layer guardrails + custom rules</text>
+  <text x="310" y="557" fill="#8899aa" font-size="10">Confidence thresholds + citation</text>
+  <text x="310" y="572" fill="#8899aa" font-size="10">All-significant HITL (1h SLA)</text>
+  <text x="310" y="587" fill="#8899aa" font-size="10">Immutable logging + reasoning (7 years)</text>
+  <text x="310" y="602" fill="#8899aa" font-size="10">Full PACE resilience, monthly drills</text>
+
+  <rect x="610" y="515" width="260" height="85" rx="6" fill="#0a1018" stroke="#e74c3c" stroke-width="0.8"/>
+  <text x="625" y="535" fill="#e74c3c" font-size="10" font-weight="600">Credit approval, fraud blocking</text>
+  <text x="625" y="550" fill="#8899aa" font-size="9">Automated trading decisions</text>
+  <text x="625" y="565" fill="#8899aa" font-size="9">Medical triage systems</text>
+  <text x="625" y="580" fill="#8899aa" font-size="9">Autonomous agent deployments</text>
+  <text x="625" y="593" fill="#556" font-size="8">Autonomous decisions, real-world impact</text>
+
+  <!-- Upward arrow showing progression -->
+  <line x1="15" y1="600" x2="15" y2="120" stroke="#ff6b35" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="10" y="360" fill="#ff6b35" font-size="9" font-weight="600" transform="rotate(-90, 10, 360)">MORE CONTROLS = MORE CAPABILITY</text>
+
+  <!-- Footer -->
+  <rect x="30" y="625" width="860" height="45" rx="6" fill="#0a1018" stroke="#334" stroke-width="0.5"/>
+  <text x="460" y="643" text-anchor="middle" fill="#ff6b35" font-size="10" font-weight="600">Guardrails prevent. Judge detects. Humans decide.</text>
+  <text x="460" y="660" text-anchor="middle" fill="#556" font-size="9">Each tier inherits all controls from the tiers below. Controls are cumulative, not replacements.</text>
+</svg>
