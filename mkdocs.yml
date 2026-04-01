@@ -231,6 +231,7 @@ nav:
   - Resources:
     - Regulatory:
       - EU AI Act Crosswalk: extensions/regulatory/eu-ai-act-crosswalk.md
+      - EU AI Act Risk Tiering: extensions/regulatory/eu-ai-act-risk-tiering.md
       - ISO 42001 Clause Mapping: extensions/regulatory/iso-42001-clause-mapping.md
       - ISO 42001 Alignment: extensions/regulatory/iso-42001-alignment.md
       - ISO 27001 Alignment: extensions/regulatory/iso-27001-alignment.md
