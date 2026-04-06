@@ -40,6 +40,66 @@ Framework tags use these categories:
 
 <!-- NEWS_START -->
 
+### 2026-04-02: Google Publishes Layered Defense Strategy Against Indirect Prompt Injection in Workspace
+
+**Tags**: Guardrails, Agentic, Human Oversight
+
+The Google Security team published a detailed account of their continuous defense strategy against indirect prompt injection targeting Gemini in Google Workspace. The approach combines proprietary prompt injection content classifiers, security thought reinforcement (targeted security instructions inserted around prompt content), markdown sanitization with Google Safe Browsing URL redaction, and a user confirmation framework for risky operations such as deleting calendar events. Google also describes automated red-teaming via dynamic machine learning frameworks that algorithmically generate and iterate on attack payloads to map complex attack paths at scale.
+
+**Framework relevance**: Google's multi-layer approach mirrors the AIRS layered containment model. Content classifiers map to the [Guardrails](core/controls.md) layer, while the user confirmation framework operationalizes [Human Oversight](core/controls.md) for high-risk actions. The automated red-teaming pipeline aligns with continuous evaluation requirements in [Judge Assurance](core/judge-assurance.md), and the URL redaction component addresses data exfiltration concerns in [Data Protection](maso/controls/data-protection.md).
+
+**Source**: [Google Workspace's continuous approach to mitigating indirect prompt injections](https://security.googleblog.com/2026/04/google-workspaces-continuous-approach.html)
+
+---
+
+### 2026-04-02: Microsoft Open-Sources Agent Governance Toolkit with Sub-Millisecond Runtime Policy Engine
+
+**Tags**: Agentic, Guardrails, IAM
+
+Microsoft released the Agent Governance Toolkit under MIT license, providing runtime security governance for autonomous AI agents. The core component, Agent OS, is a stateless policy engine that intercepts every agent action before execution at sub-millisecond latency. The toolkit is available as TypeScript (npm) and .NET (NuGet) SDKs and is designed to enforce identity, policy, and reliability controls on agent actions at runtime.
+
+**Framework relevance**: Agent OS implements the runtime interception model described in [Agentic AI Controls](core/agentic.md), where every tool call is validated against policy before execution. The sub-millisecond latency target aligns with the [Guardrails](core/controls.md) layer's requirement for containment decisions that do not degrade agent responsiveness, and the identity enforcement component maps to [IAM Governance](core/iam-governance.md).
+
+**Source**: [Introducing the Agent Governance Toolkit: Open-source runtime security for AI agents](https://opensource.microsoft.com/blog/2026/04/02/introducing-the-agent-governance-toolkit-open-source-runtime-security-for-ai-agents/)
+
+---
+
+### 2026-04-02: CSA Survey of 1,500 Security Leaders Finds 1 in 8 Organizations Report AI Agent Breaches
+
+**Tags**: Agentic, Observability, Supply Chain
+
+The Cloud Security Alliance published its *State of AI Cybersecurity 2026* report based on a survey of over 1,500 security leaders. Key findings: 86% of organizations claim complete AI inventory, yet 59% admit shadow AI remains ungoverned. 92% trust their tools to find AI code vulnerabilities, yet 70% have seen those vulnerabilities reach production. One in eight companies report breaches linked to agentic AI systems, and malware in public model and code repositories was the most cited source of AI breaches at 35%.
+
+**Framework relevance**: The gap between perceived inventory coverage and actual shadow AI governance validates the [Observability](maso/controls/observability.md) domain's insistence on comprehensive asset discovery. The 35% breach rate from public repositories reinforces [Supply Chain](maso/controls/supply-chain.md) controls for model and dependency provenance. The 1-in-8 agentic breach rate demonstrates that [Agentic AI Controls](core/agentic.md) are not a theoretical concern.
+
+**Source**: [The State of AI Cybersecurity 2026: Unveiling Insights from Over 1,500 Security Leaders](https://cloudsecurityalliance.org/blog/2026/04/02/the-state-of-ai-cybersecurity-2026-unveiling-insights-from-over-1-500-security-leaders)
+
+---
+
+### 2026-03-27: Three Vulnerabilities in LangChain and LangGraph Expose Enterprise Files, Secrets, and Databases
+
+**Tags**: Agentic, Supply Chain, Guardrails
+
+Three serious vulnerabilities were disclosed across LangChain and LangGraph, which collectively see over 80 million weekly downloads. CVE-2026-34070 (CVSS 7.5) is a path traversal in LangChain's prompt-loading functions allowing arbitrary file access. CVE-2025-68664 (CVSS 9.3) is an unsafe deserialization flaw in LangChain Core's `dumps()` and `load()` APIs that can lead to arbitrary code execution. CVE-2025-67644 (CVSS 7.3) is an SQL injection in LangGraph's SQLite checkpoint implementation. Patches are available in langchain-core 1.2.22+, langchain 0.3.81/1.2.5+, and langgraph-checkpoint-sqlite 3.0.1+.
+
+**Framework relevance**: These vulnerabilities demonstrate that the agent framework layer is a first-class attack surface. Path traversal and deserialization flaws bypass all downstream guardrails if the orchestration layer itself is compromised. The findings reinforce [Supply Chain](maso/controls/supply-chain.md) governance requirements for framework dependencies and [Agentic AI Controls](core/agentic.md) requirements for sandboxed execution environments that limit the blast radius of framework-level vulnerabilities.
+
+**Source**: [LangChain, LangGraph Flaws Expose Files, Secrets, Databases in Widely Used AI Frameworks](https://thehackernews.com/2026/03/langchain-langgraph-flaws-expose-files.html)
+
+---
+
+### 2026-03-24: TeamPCP Backdoors LiteLLM via Trivy CI/CD Supply Chain Compromise
+
+**Tags**: Supply Chain, Agentic, Guardrails
+
+A threat actor known as TeamPCP published two malicious versions of the litellm PyPI package (1.82.7 and 1.82.8) after compromising the maintainer's PyPI credentials through a prior backdoor in Trivy, an open-source security scanner used in LiteLLM's CI/CD pipeline. The payload used a `.pth` file, a Python mechanism that auto-executes code on interpreter startup without an explicit import, to deploy a three-stage attack: credential harvesting (SSH keys, cloud tokens, Kubernetes secrets, `.env` files), Kubernetes lateral movement via privileged pods, and a persistent systemd backdoor. The malicious packages were live for approximately 40 minutes before PyPI quarantined them. The incident was assigned CVE-2026-33634 with a CVSS score of 9.4.
+
+**Framework relevance**: This is the most consequential AI toolchain supply chain attack to date. It demonstrates that compromising a single CI/CD dependency can cascade into full credential theft across an AI deployment, validating the [Supply Chain](maso/controls/supply-chain.md) domain's requirements for build pipeline integrity and dependency verification. The attack bypasses all runtime [Guardrails](core/controls.md) because the malicious code executes before the AI system itself starts.
+
+**Source**: [TeamPCP Backdoors LiteLLM Versions 1.82.7-1.82.8 via Trivy CI/CD Compromise](https://thehackernews.com/2026/03/teampcp-backdoors-litellm-versions.html)
+
+---
+
 ### 2026-03-20: Zero-Trust Architecture for Autonomous AI Agents Validated in 90-Day Healthcare Deployment
 
 **Tags**: Agentic, IAM, Data Protection
