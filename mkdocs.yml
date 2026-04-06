@@ -164,6 +164,7 @@ nav:
       - AWS Bedrock: infrastructure/reference/platform-patterns/aws-bedrock.md
       - Microsoft Foundry: infrastructure/reference/platform-patterns/microsoft-foundry.md
       - Databricks: infrastructure/reference/platform-patterns/databricks.md
+      - Microsoft Agent Governance Toolkit: infrastructure/reference/platform-patterns/microsoft-agent-governance-toolkit.md
     - Strategy:
       - strategy/README.md
       - Business Alignment: strategy/business-alignment.md
@@ -203,6 +204,7 @@ nav:
       - Evaluation Integrity Risks: insights/evaluation-integrity-risks.md
       - You Don't Know What You're Deploying: insights/you-dont-know-what-youre-deploying.md
       - The Sandbox Escape Problem: insights/the-sandbox-escape-problem.md
+      - The Agent Supply Chain Crisis: insights/the-agent-supply-chain-crisis.md
     - Agentic AI:
       - When Agents Talk to Agents: insights/when-agents-talk-to-agents.md
       - Agentic Drift: insights/agentic-drift.md
@@ -219,6 +221,8 @@ nav:
       - Temporal Decay: insights/temporal-decay.md
       - You Can't Validate Unfinished: insights/you-cant-validate-unfinished.md
       - Risk Tier Is Use Case: insights/risk-tier-is-use-case.md
+      - When Learning Goes Wrong: insights/when-learning-goes-wrong.md
+      - Beyond Language Models: insights/beyond-language-models.md
     - Evidence & Analysis:
       - State of Reality: insights/state-of-reality.md
       - What Works: insights/what-works.md

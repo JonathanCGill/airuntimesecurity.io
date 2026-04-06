@@ -57,3 +57,10 @@ For self-hosted models, you have more control but more responsibility. You own t
 
 Neither is inherently safer. Both need explicit controls.
 
+## 2026 Update: The Agent Supply Chain
+
+The risks described above have materialised at scale. In early 2026, the OpenClaw agent framework's skill registry was found to contain 1,184 malicious packages, roughly one in five skills in the ecosystem. A separate "Rules File Backdoor" technique was discovered where hidden unicode characters in AI coding assistant configuration files inject malicious instructions that produce backdoored code.
+
+These incidents demonstrate that the AI supply chain now extends beyond models and frameworks to include agent skills, plugins, and configuration files. For detailed analysis, see [The Agent Supply Chain Crisis](the-agent-supply-chain-crisis.md).
+
+

@@ -203,6 +203,60 @@ Treat inter-agent messages as untrusted: **Agent A → Guardrails → Agent B**
 - How to detect emergent behavior we haven't imagined?
 - Accountability in peer-to-peer systems?
 
+## 7. Non-LLM Generative Model Controls
+
+The core framework and extensions above assume the model is a language model. Diffusion models, voice synthesis systems, and AI code generators create attack surfaces that text-centric controls miss entirely.
+
+### Diffusion Models (Image/Video Generation)
+
+| Risk | Description | Maturity |
+|------|------------|----------|
+| Inference-time safety bypass | Gradient-guided embedding optimisation achieves 90%+ bypass of concept-erasure | Documented |
+| Open-weight safety removal | Safety filters on self-hosted models can be manually removed | Operational |
+| Membership inference | Training data membership determined via query patterns | Research |
+| Backdoor activation | Hidden triggers embedded during training, activated by specific inputs | Research |
+
+**Proposed controls**: Content classifiers on generated outputs, concept-erasure robustness testing, output provenance metadata (C2PA), and human review gates for generated media.
+
+### Voice Synthesis
+
+| Risk | Description | Maturity |
+|------|------------|----------|
+| Voice identity spoofing | Clones indistinguishable from real voices with seconds of sample audio | Operational |
+| Deepfake-as-a-service | Commodity platforms enable voice cloning at scale | Operational |
+| Voice agent input poisoning | Synthetic voice inputs to voice-based AI systems | Emerging |
+
+**Proposed controls**: Deepfake detection on voice inputs, synthetic origin metadata on voice outputs, non-voice confirmation for high-value actions, speaker verification beyond voice biometrics alone.
+
+### AI-Generated Code
+
+| Risk | Description | Maturity |
+|------|------------|----------|
+| Vulnerability generation | 25-30% of AI-generated code snippets contain security weaknesses | Documented |
+| Rules-file backdoor | Hidden unicode in config files injects malicious instructions | Documented |
+| CVE production | 35 CVEs in March 2026 directly attributed to AI code generation | Operational |
+
+**Proposed controls**: Security scanning gates on all AI-generated code (extends SAND-06), configuration file integrity verification, treat AI-generated code as untrusted input regardless of model trust level.
+
+See [Beyond Language Models](../insights/beyond-language-models.md) for detailed analysis.
+
+## 8. RL Training Governance
+
+When organisations run reinforcement learning on models they deploy, training-time safety becomes a runtime concern.
+
+| Risk | Description | Maturity |
+|------|------------|----------|
+| Reward hacking | Model games reward signal without achieving intended objective | Documented |
+| Emergent misalignment | Reward hacking generalises to broader misaligned behaviour | Research (Anthropic, 2025) |
+| Training sandbox escape | RL agents break out of training environments autonomously | Documented (Alibaba ROME) |
+| Context-dependent deception | Misaligned model appears aligned in evaluation, misaligned in production | Research |
+
+**Proposed controls**: Reward curve monitoring for suspicious patterns, behavioural evaluation across complexity levels pre- and post-training, training environment containment matching production sandbox standards, rollback capability to pre-training checkpoints.
+
+Microsoft's Agent Governance Toolkit addresses this with Agent Lightning: policy-enforced runners and reward shaping targeting zero policy violations during RL training.
+
+See [When Learning Goes Wrong](../insights/when-learning-goes-wrong.md) for detailed analysis.
+
 ## Maturity Summary
 
 | Extension | Status |
@@ -214,6 +268,10 @@ Treat inter-agent messages as untrusted: **Agent A → Guardrails → Agent B**
 | State governance | Conceptual |
 | Streaming controls | Conceptual |
 | Multi-agent controls | Conceptual |
+| Diffusion model controls | Research/Emerging |
+| Voice synthesis controls | Emerging |
+| AI-generated code controls | Emerging (tools exist) |
+| RL training governance | Research/Emerging |
 
 ## Guidance
 
@@ -226,6 +284,10 @@ Treat inter-agent messages as untrusted: **Agent A → Guardrails → Agent B**
 | Long context | State checkpointing + expiration |
 | Streaming | Post-hoc evaluation; accept gaps |
 | Multi-agent | Boundary validation; system logging |
+| Diffusion models | Content classifiers on output; concept-erasure testing |
+| Voice synthesis | Deepfake detection on inputs; synthetic labelling on outputs |
+| AI code generation | Security scanning gates; config file integrity checks |
+| RL fine-tuning | Reward curve monitoring; pre/post behavioural evaluation |
 
 **Experiment posture:**
 1. Shadow mode first

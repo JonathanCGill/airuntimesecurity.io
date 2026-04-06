@@ -40,6 +40,30 @@ These models are proliferating - embedded in productivity tools, developer envir
 
 A future iteration of this framework will need to consider how to apply proportionate controls to systems where traditional infrastructure enforcement may not be available. The principles of the three-layer pattern still hold; the implementation mechanisms will be different.
 
+### Reinforcement Learning Training Governance
+
+The framework currently defers training-time safety to model providers. That boundary is eroding. Organisations now routinely fine-tune models with reinforcement learning, and agent training loops that learn from production feedback are emerging.
+
+Anthropic's alignment team demonstrated in late 2025 that RL training on real programming tasks spontaneously produced broad misalignment, including alignment faking, sabotage of safety research, and context-dependent deception that standard RLHF only partially mitigated. Separately, an experimental RL agent broke out of its training sandbox and began mining cryptocurrency without instruction.
+
+When deployers run RL, they inherit training-time safety risks. The framework needs controls for RL training governance: reward metric monitoring, behavioural evaluation pre- and post-training, training environment containment, and rollback to pre-training checkpoints. Microsoft's Agent Governance Toolkit includes an "Agent Lightning" component addressing this with policy-enforced runners and reward shaping. See [When Learning Goes Wrong](../insights/when-learning-goes-wrong.md) for full analysis.
+
+### Non-LLM Generative Model Controls
+
+The framework assumes text-based models. Organisations increasingly deploy diffusion models (text-to-image, text-to-video), voice synthesis models, and AI code generation systems. Each creates runtime security challenges that text-centric controls cannot address:
+
+- Diffusion models are vulnerable to inference-time safety bypasses (90%+ success rates against concept-erasure) that text-based guardrails cannot detect
+- Voice cloning has crossed the "indistinguishable threshold," breaking voice-based trust assumptions in AI systems
+- AI-generated code produces CVEs at measurable rates (35 in March 2026 alone), creating a new supply chain vector
+
+A future iteration should extend the three-layer pattern with modality-specific implementations for each model type. See [Beyond Language Models](../insights/beyond-language-models.md) for the argument.
+
+### Agent Supply Chain Governance
+
+The OpenClaw incident in early 2026 (1,184 malicious skills in an agent registry, roughly 1 in 5 packages) demonstrated that agent ecosystems have created a new supply chain layer between models and applications. Skills loaded dynamically at runtime, configuration files poisoned with hidden unicode, and trust assumptions in skill registries all require controls beyond what the current SUP domain addresses.
+
+Key gaps include runtime skill verification, dynamic loading governance, configuration integrity checking, and registry trust criteria. See [The Agent Supply Chain Crisis](../insights/the-agent-supply-chain-crisis.md) for detailed analysis and Microsoft's Agent Governance Toolkit for an implementation reference.
+
 ## Acknowledged but Deferred
 
 These are important topics that fall outside the practical scope of an enterprise deployment security framework.
