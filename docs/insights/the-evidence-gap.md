@@ -97,7 +97,7 @@ The [ACM Computing Surveys](https://dl.acm.org/doi/10.1145/3716628) systematic r
 
 The research on [open challenges in multi-agent security](https://arxiv.org/html/2505.02077v1) warns that novel threats emerge from agent interaction that cannot be addressed by securing individual agents in isolation - including steganographic collusion channels, cascading jailbreaks across agent boundaries, and coordinated adversarial behaviors that evade single-agent detection.
 
-The framework's 128 MASO controls across seven domains are directionally aligned with these identified threats. But honesty demands acknowledging that the empirical validation base for multi-agent security controls is thin. Most controls are derived from threat modelling and architectural reasoning, not from measured effectiveness in production deployments. The field is building the aeroplane in flight.
+The framework's MASO controls across ten domains are directionally aligned with these identified threats. But honesty demands acknowledging that the empirical validation base for multi-agent security controls is thin. Most controls are derived from threat modelling and architectural reasoning, not from measured effectiveness in production deployments. The field is building the aeroplane in flight.
 
 ## RAG Security: The Evidence Backs the Alarm
 

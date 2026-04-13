@@ -8,7 +8,7 @@ description: "MASO emergent risk register: 34 risks across nine categories mappe
 
 ## Review Findings
 
-The source risk table identifies 35 emergent risks across nine categories. Comparison against the seven MASO control domains and the OWASP dual mapping reveals three classes of coverage:
+The source risk table identifies 35 emergent risks across nine categories. Comparison against the ten MASO control domains and the OWASP dual mapping reveals three classes of coverage:
 
 **MASO already strong (no new controls needed):** Cross-agent prompt injection, confused deputy, privilege escalation by delegation, tool-chain injection, role drift, goal drift, memory poisoning, provenance loss, cost blowouts. These map directly to existing MASO controls that are equal to or stronger than the source table's mitigations.
 

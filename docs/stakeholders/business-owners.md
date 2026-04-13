@@ -73,7 +73,7 @@ When you run multiple products with different agent sets, manage them as a portf
 | **Skills concentration risk** | Whether one person operates controls for multiple products | Cross-train or hire; single points of failure are unacceptable for HIGH/CRITICAL systems |
 | **Aggregate incident exposure** | Total expected incidents across all products | Board-level risk metric; drives insurance and regulatory conversations |
 
-**Multi-agent complexity:** If any product runs a multi-agent system (agents communicating with other agents), the control requirements increase. The [MASO Framework](../maso/) adds seven control domains: prompt integrity, identity and access, data protection, execution control, observability, supply chain, and privileged agent governance. This isn't optional overhead - it addresses risks (privilege escalation across agents, emergent behavior, delegation chain attacks) that don't exist in single-agent systems.
+**Multi-agent complexity:** If any product runs a multi-agent system (agents communicating with other agents), the control requirements increase. The [MASO Framework](../maso/) adds ten control domains covering prompt integrity, identity and access, data protection, execution control, observability, supply chain, privileged agent governance, model cognition assurance, agentic task contracts, and objective intent. This isn't optional overhead - it addresses risks (privilege escalation across agents, emergent behavior, delegation chain attacks) that don't exist in single-agent systems.
 
 ### Operational staffing reality
 
@@ -120,7 +120,7 @@ Each phase requires demonstrated operational maturity before progressing. You do
 | 4 | [Risk Assessment](../core/risk-assessment.md) | Quantified methodology for understanding your actual risk exposure |
 | 5 | [Cost & Latency](../extensions/technical/cost-and-latency.md) | The real numbers for control costs at each tier |
 
-**If you run multi-agent products:** Add [MASO Overview](../maso/) - the seven control domains for multi-agent orchestration.
+**If you run multi-agent products:** Add [MASO Overview](../maso/) - the ten control domains for multi-agent orchestration.
 
 **If you're building the business case for controls:** Add [Risk Stories](../insights/risk-stories.md) for documented incident costs and the [Risk Assessment](../core/risk-assessment.md) worked examples.
 

@@ -264,7 +264,7 @@ Key data dimensions that mature across levels:
 
 The [MASO framework](../maso/) secures multi-agent AI systems, whether built from scratch or deployed on a platform (LangGraph, AutoGen, CrewAI, AWS Bedrock Agents).
 
-**Level 1-2:** MASO is a reference architecture. The seven [control domains](../maso/) provide the vocabulary for multi-agent security before you implement formal controls.
+**Level 1-2:** MASO is a reference architecture. The ten [control domains](../maso/) provide the vocabulary for multi-agent security before you implement formal controls.
 
 **Level 3:** MASO becomes operational. [Tier 1 (Supervised)](../maso/implementation/tier-1-supervised.md) applies: all agent actions require human approval, communication is logged, monitoring is periodic.
 

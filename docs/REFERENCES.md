@@ -205,7 +205,7 @@ These papers and reports directly inform MASO's treatment of multi-agent risks. 
 
 The first Trust, Risk, and Security Management framework for agentic AI, specifically for systems where multiple LLM-powered agents collaborate. Organised around pillars of Explainability, ModelOps, Security, Privacy, and Governance for autonomous decision-making. Gartner reports 35% of enterprises now use autonomous agents for business-critical workflows.
 
-MASO's seven control domains cover similar ground but are structured around operational implementation tiers rather than capability pillars.
+MASO's ten control domains cover similar ground but are structured around operational implementation tiers rather than capability pillars.
 
 - [TRiSM for Agentic AI (arXiv)](https://arxiv.org/html/2506.04133v3)
 

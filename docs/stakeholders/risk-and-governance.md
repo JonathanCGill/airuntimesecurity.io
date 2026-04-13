@@ -54,7 +54,7 @@ You already have NIST AI RMF, ISO 42001, and the EU AI Act. This framework isn't
 |---|---|---|
 | **Runtime behavior** | Standards focus on design-time risk assessment and pre-deployment testing. They don't specify how to monitor and control AI *after* it's deployed, in production, under real conditions. | A layered runtime control architecture with quantified per-layer effectiveness |
 | **Defined failure modes** | Standards require "robustness" and "resilience" but don't define what happens when specific control layers fail. | PACE degradation: four predetermined states (Primary → Alternate → Contingency → Emergency) with pre-approved risk implications |
-| **Multi-agent security** | Standards address single AI systems. They don't cover agent-to-agent communication, delegated authority, tool access chains, or emergent behavior in multi-agent workflows. | MASO: seven control domains for multi-agent orchestration with risk-tiered implementation |
+| **Multi-agent security** | Standards address single AI systems. They don't cover agent-to-agent communication, delegated authority, tool access chains, or emergent behavior in multi-agent workflows. | MASO: ten control domains for multi-agent orchestration with risk-tiered implementation |
 
 This framework is the **implementation layer** that sits between what standards require and what engineering teams build. It turns "implement risk management measures" (EU AI Act Art. 9) into "here are the three control layers, here's how to measure each one, and here's what happens when they fail."
 

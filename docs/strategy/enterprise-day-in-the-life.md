@@ -348,7 +348,7 @@ The CIO's review identified that the human review team is at 78% utilisation and
 
 ### 7. Multi-agent systems need multi-agent controls
 
-The Finance and Claims systems run multi-agent orchestrations with per-agent identity, inter-agent message signing, delegation chain auditing, and independent failure domains. These controls don't exist in single-agent deployments because the risks don't exist. The [MASO Framework](../maso/) provides the seven control domains.
+The Finance and Claims systems run multi-agent orchestrations with per-agent identity, inter-agent message signing, delegation chain auditing, and independent failure domains. These controls don't exist in single-agent deployments because the risks don't exist. The [MASO Framework](../maso/) provides the ten control domains.
 
 ---
 

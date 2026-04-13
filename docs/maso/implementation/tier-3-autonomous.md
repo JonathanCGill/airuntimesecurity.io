@@ -144,7 +144,7 @@ Tier 3 is the only tier where the full PACE cycle operates autonomously for the 
 
 ### Primary (P) - Full Autonomous Operations
 
-All agents autonomous within pre-approved task categories, all seven MASO domains operational. Human governance: weekly strategic review, exception handling, adversarial testing management.
+All agents autonomous within pre-approved task categories, all ten MASO control domains operational. Human governance: weekly strategic review, exception handling, adversarial testing management.
 
 ### Alternate (A) - Autonomous Self-Healing
 
