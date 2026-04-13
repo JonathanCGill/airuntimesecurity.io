@@ -440,4 +440,5 @@ Not every workflow needs every evaluation layer. Use this decision framework:
 | [Execution Control](execution-control.md) | PA extends EC-2.5 (Model-as-Judge gate) with Judge governance - calibration, criteria versioning, disagreement procedures. PA-3.3 extends EC-2.3 (blast radius caps) to orchestration sub-trees. |
 | [Observability](observability.md) | PA extends OB-3.3 (independent observability agent) with observer self-test, precision monitoring, and kill switch dual authorisation. |
 | [Prompt, Goal & Epistemic Integrity](prompt-goal-and-epistemic-integrity.md) | PA-2.1 (orchestrator intent verification) complements PG-2.2 (goal integrity monitoring) by applying intent verification to the orchestrator's own decisions, not just task agents. |
+| [Agentic Task Contract](agentic-task-contract.md) | The Anti-Mythos judge (AT-2.11 through AT-3.3) is a specialised evaluator subject to PA controls. AT-2.12 (judge contract) complements PA-2.3 (judge criteria versioning). AT-3.3 (judge independence) extends organisational separation to contract compliance evaluation. |
 
