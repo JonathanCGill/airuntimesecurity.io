@@ -124,6 +124,7 @@ nav:
     - Observability: maso/controls/observability.md
     - Supply Chain: maso/controls/supply-chain.md
     - Privileged Agent Governance: maso/controls/privileged-agent-governance.md
+    - Model Cognition Assurance: maso/controls/model-cognition-assurance.md
     - Emergent Risk Register: maso/controls/risk-register.md
     - Environment Containment: maso/environment-containment.md
     - Tier 1 - Supervised: maso/implementation/tier-1-supervised.md
