@@ -183,4 +183,4 @@ The three-level defence structure in b³ (prompt hardening, context management, 
 
 !!! info "References"
     - [Bazinska, A. et al. (2026) *Breaking Agent Backbones: Benchmarking Backbone LLM Robustness for AI Agents*. ICLR 2026. Lakera AI, UK AISI, ETH Zürich, University of Oxford.](https://arxiv.org/abs/2603.02277)
-    - [b³ Benchmark and threat snapshot framework](https://github.com/lakeraai/b3-benchmark)
+    - [b³ Benchmark and threat snapshot framework](https://www.lakera.ai/blog/b3-benchmark-llm-robustness)

@@ -210,5 +210,5 @@ Each agent within a workflow has its own contract that inherits from and cannot 
 !!! info "References"
     - [Anthropic: Claude Mythos System Card](https://www.anthropic.com) - creative substitution and reward hacking patterns in agentic execution documented during pre-deployment evaluation
     - [Federal Reserve SR 11-7: Supervisory Guidance on Model Risk Management](https://www.federalreserve.gov/supervisionreg/srletters/sr1107.htm) - model validation principles referenced in AT-2.15
-    - [OWASP Top 10 for Agentic Applications (2026)](https://owasp.org/www-project-top-10-for-large-language-model-applications/) - ASI02 (Tool Misuse), ASI05 (Unexpected Code Execution), ASI10 (Rogue Agents)
+    - [OWASP Top 10 for Agentic Applications (2026)](https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/) - ASI02 (Tool Misuse), ASI05 (Unexpected Code Execution), ASI10 (Rogue Agents)
     - [NIST AI RMF](https://www.nist.gov/artificial-intelligence/risk-management-framework) - Manage function: controls for AI system behaviour in deployment

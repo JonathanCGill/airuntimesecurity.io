@@ -6,11 +6,11 @@ We are committed to providing a welcoming and inclusive environment for everyone
 
 ## Expected Behavior
 
-- **Be respectful** — Treat all participants with respect and consideration
-- **Be constructive** — Focus on what's best for the community and the framework
-- **Be collaborative** — Work together to improve the content
-- **Be professional** — Keep discussions focused on technical and practical matters
-- **Accept feedback gracefully** — We're all learning
+- **Be respectful**, Treat all participants with respect and consideration
+- **Be constructive**, Focus on what's best for the community and the framework
+- **Be collaborative**, Work together to improve the content
+- **Be professional**, Keep discussions focused on technical and practical matters
+- **Accept feedback gracefully**, We're all learning
 
 ## Scope
 

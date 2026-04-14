@@ -114,7 +114,7 @@ The Teacher is not fed generic examples. It receives a structured curriculum of 
 
 ```text
 Teacher input:  tool_call(transfer, amount=50000, target=external_account_id)
-Teacher output: REJECT — Transfer exceeds session limit and targets
+Teacher output: REJECT, Transfer exceeds session limit and targets
                 an account not in the user's verified payee list.
                 Matches pattern: unauthorized-payee-escalation.
 

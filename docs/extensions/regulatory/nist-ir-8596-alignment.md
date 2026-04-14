@@ -211,7 +211,7 @@ IR 8596, as a CSF profile, is outcome-oriented: it describes *what* to achieve. 
 
 ### 2. Multi-Agent Security
 
-IR 8596 does not specifically address multi-agent system risks. AIRS's [MASO framework](../../maso/) provides 128 controls across 7 domains specifically for multi-agent orchestration, covering epistemic integrity, cross-agent data fencing, delegation tracking, and privileged agent governance. As agentic AI adoption accelerates, this is a significant area where AIRS provides guidance that IR 8596 does not yet cover.
+IR 8596 does not specifically address multi-agent system risks. AIRS's [MASO framework](../../maso/) provides controls across 10 domains specifically for multi-agent orchestration, covering epistemic integrity, cross-agent data fencing, delegation tracking, privileged agent governance, model cognition assurance, agentic task contracts, and objective intent. As agentic AI adoption accelerates, this is a significant area where AIRS provides guidance that IR 8596 does not yet cover.
 
 ### 3. Operational Resilience Patterns
 
@@ -238,7 +238,7 @@ IR 8596 references several frameworks that AIRS also aligns with, reinforcing th
 | NIST AI RMF 1.0 | [NIST AI RMF Mapping](../../infrastructure/mappings/nist-ai-rmf.md) |
 | NIST SP 800-218A | [SP 800-218A Mapping](../../infrastructure/mappings/nist-sp800-218a.md) |
 | OWASP AI Security Guides | [OWASP LLM Top 10 Mapping](../../infrastructure/mappings/owasp-llm-top10.md) |
-| MITRE ATLAS | Referenced in [Threat Intelligence](../../maso/threat-intelligence/) |
+| MITRE ATLAS | Referenced in [MASO Threat Intelligence Review](../../maso/threat-intelligence/threat-intelligence-review.md) |
 | ISO/IEC 42001 | [ISO 42001 Alignment](iso-42001-alignment.md) |
 
 In addition, IR 8596 notes NIST is developing **SP 800-53 Control Overlays for Securing AI Systems (COSAiS)**, implementation-level controls that complement the Cyber AI Profile's outcome-oriented guidance. When COSAiS is published, a separate alignment review should be conducted, as it will likely map more directly to AIRS's infrastructure control level.

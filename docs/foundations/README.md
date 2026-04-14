@@ -13,9 +13,9 @@ AI systems are non-deterministic. Same prompt, same model, same parameters - dif
 - **Guardrails fail silently** - the most dangerous outputs look perfectly normal
 - **Multi-agent systems amplify errors** - hallucinations compound, permissions propagate, failures correlate
 
-**Guardrails** → **Judge** → **Human Oversight** → **Circuit Breaker**
+**Guardrails** → **Judge** → **Human Oversight**, with a **Circuit Breaker** fallback when every layer fails.
 
-*Block known-bad → Detect unknown-bad → Decide edge cases → Fail safely*
+*Block known-bad → Detect unknown-bad → Decide edge cases → Fail safely.*
 
 **Start here:**
 
@@ -142,11 +142,11 @@ When AI agents collaborate, delegate tasks, and take autonomous actions across t
 
 | Document | Purpose |
 | --- | --- |
-| [MASO Overview](../maso/) | Architecture, PACE integration, OWASP dual mapping, 7 control domains |
+| [MASO Overview](../maso/) | Architecture, PACE integration, OWASP dual mapping, 10 control domains |
 | [Tier 1 - Supervised](../maso/implementation/tier-1-supervised.md) | Low autonomy: human approves all writes |
 | [Tier 2 - Managed](../maso/implementation/tier-2-managed.md) | Medium autonomy: NHI, signed bus, Model-as-Judge, continuous monitoring |
 | [Tier 3 - Autonomous](../maso/implementation/tier-3-autonomous.md) | High autonomy: self-healing PACE, adversarial testing, isolated kill switch |
-| [Red Team Playbook](../maso/red-team/red-team-playbook.md) | 13 adversarial test scenarios for multi-agent systems |
+| [Red Team Playbook](../maso/red-team/red-team-playbook.md) | 16 adversarial test scenarios for multi-agent systems |
 | [Integration Guide](../maso/integration/integration-guide.md) | LangGraph, AutoGen, CrewAI, AWS Bedrock implementation patterns |
 | [Worked Examples](../maso/examples/worked-examples.md) | Financial services, healthcare, critical infrastructure |
 

@@ -224,7 +224,7 @@ The HR candidate screening assistant (HIGH tier) undergoes its fortnightly bias 
 
 **Today's findings:** The adverse impact ratio is 0.83 (above the 0.8 four-fifths threshold, but trending down from 0.91 two weeks ago). The HR legal advisor flags this as a watch item. If it drops below 0.8, the system needs intervention.
 
-**Framework connection:** This is [Human Oversight](../core/controls.md#3-human-oversight) at HIGH tier - structured review with domain expertise. The [Risk Assessment](../core/risk-assessment.md) methodology requires ongoing measurement, not just initial classification.
+**Framework connection:** This is [Human Oversight](../core/controls.md#3-human-oversight-hitl) at HIGH tier - structured review with domain expertise. The [Risk Assessment](../core/risk-assessment.md) methodology requires ongoing measurement, not just initial classification.
 
 **Who acts:** HR Analytics lead presents findings. HR Legal advisor sets the watch threshold. AI engineering team is on standby for prompt or training data adjustments if needed.
 
@@ -269,7 +269,7 @@ The Business Owner for Product Line C (Claims processing, CRITICAL tier) holds a
 | Change | Framework Impact | Action Required |
 |---|---|---|
 | **Volume increase (40%)** | Judge cost increases proportionally (CRITICAL = 100% coverage) | Budget: additional ~$1,700/week in Judge costs |
-| **Volume increase (40%)** | Human review queue increases proportionally | Staffing: 2 additional HITL reviewers needed (see [09:00 CIO review](#0900---cios-weekly-ai-portfolio-review)) |
+| **Volume increase (40%)** | Human review queue increases proportionally | Staffing: 2 additional HITL reviewers needed (see [09:00 CIO review](#0900-cios-weekly-ai-portfolio-review)) |
 | **New claim type (motor)** | Different domain, different regulations, different fraud patterns | [Use Case Definition](../strategy/use-case-definition.md): re-evaluate - may require separate risk classification |
 | **New claim type (motor)** | Assessment agent needs new training data and evaluation criteria | Judge prompt update + recalibration period |
 | **New claim type (motor)** | PACE fail postures may differ for motor vs. existing claim types | [PACE design](../PACE-RESILIENCE.md) review for the new claim type |
@@ -356,11 +356,11 @@ The Finance and Claims systems run multi-agent orchestrations with per-agent ide
 
 | If You Are... | Focus On... |
 |---|---|
-| **A CIO** | [09:00](#0900---cios-weekly-ai-portfolio-review) - Portfolio governance, cost visibility, skills planning |
-| **A Business Owner** | [16:30](#1630---business-owner-review-product-line-c-quarterly-planning) - Growth planning within the framework |
-| **A Security Leader** | [15:00](#1500---risk--security-threat-intelligence-update) - Threat response across a multi-tier portfolio |
-| **An AI Engineer** | [13:00](#1300---claims-processing-pace-state-change) - PACE state transitions in multi-agent systems |
-| **A Privacy Officer** | [10:30](#1030---privacy-dsar-assistant-data-classification-boundary) - Data boundary controls in practice |
-| **A Product Owner** | [11:00](#1100---product-line-b-fast-lane-deployment) and [08:15](#0815---product-line-a-customer-service-escalation) - Fast Lane vs. HIGH-tier daily operations |
-| **A Risk Manager** | [17:00](#1700---end-of-day-governance-roll-up) - Portfolio-level risk metrics and action tracking |
+| **A CIO** | [09:00](#0900-cios-weekly-ai-portfolio-review) - Portfolio governance, cost visibility, skills planning |
+| **A Business Owner** | [16:30](#1630-business-owner-review-product-line-c-quarterly-planning) - Growth planning within the framework |
+| **A Security Leader** | [15:00](#1500-risk-security-threat-intelligence-update) - Threat response across a multi-tier portfolio |
+| **An AI Engineer** | [13:00](#1300-claims-processing-pace-state-change) - PACE state transitions in multi-agent systems |
+| **A Privacy Officer** | [10:30](#1030-privacy-dsar-assistant-data-classification-boundary) - Data boundary controls in practice |
+| **A Product Owner** | [11:00](#1100-product-line-b-fast-lane-deployment) and [08:15](#0815-product-line-a-customer-service-escalation) - Fast Lane vs. HIGH-tier daily operations |
+| **A Risk Manager** | [17:00](#1700-end-of-day-governance-roll-up) - Portfolio-level risk metrics and action tracking |
 

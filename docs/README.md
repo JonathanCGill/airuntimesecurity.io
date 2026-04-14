@@ -23,7 +23,7 @@ Runtime is where AI risk lives. AIRS gives you the controls to catch it.
 
 **You deployed a model. It works. Now what?**
 
-Most organisations have no controls between the model and the damage it can do. AIRS fixes that with four layers of runtime defence: guardrails that enforce hard limits, a judge model that catches what guardrails miss, human oversight for high-stakes calls, and circuit breakers that shut things down when controls fail.
+Most organisations have no controls between the model and the damage it can do. AIRS fixes that with three layers of runtime defence, guardrails that enforce hard limits, a judge model that catches what guardrails miss, and human oversight for high-stakes calls, plus a circuit-breaker fallback that shuts things down when every layer fails.
 
 Pick the layers you need. Skip the ones you do not. Match controls to your actual risk, not a compliance checklist.
 
@@ -159,5 +159,5 @@ Securing autonomous agent coordination in multi-agent systems.
 ---
 
 <p style="text-align: center; font-size: 0.85rem; color: var(--md-default-fg-color--light);">
-Created by <a href="https://www.linkedin.com/in/jonathancgill/">Jonathan C. Gill</a>
+Created by <a href="https://www.linkedin.com/in/jonathancgill/">Jonathan Gill</a>
 </p>

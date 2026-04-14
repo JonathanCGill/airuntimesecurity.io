@@ -2,7 +2,7 @@
 
 **160 tests. No mocks. No API keys. Run them yourself.**
 
-The test suite is the SDK's most important documentation. It doesn't just verify that code works — it demonstrates, in executable form, that layered runtime security for AI is a real engineering discipline with provable properties.
+The test suite is the SDK's most important documentation. It doesn't just verify that code works, it demonstrates, in executable form, that layered runtime security for AI is a real engineering discipline with provable properties.
 
 ## Get the Code and Run It
 
@@ -24,7 +24,7 @@ All 160 tests pass in under a second. No API keys, no external services, no netw
 
 ## The Point
 
-Most AI security guidance is descriptive: it tells you what *should* be true. These tests prove what *is* true — in code you can run, read, and verify.
+Most AI security guidance is descriptive: it tells you what *should* be true. These tests prove what *is* true, in code you can run, read, and verify.
 
 The framework makes a specific architectural claim: **AI systems need layered runtime controls because no single layer catches everything.** The tests prove this claim by demonstrating three things:
 
@@ -32,13 +32,13 @@ The framework makes a specific architectural claim: **AI systems need layered ru
 2. The layers compose correctly into a pipeline
 3. Honest documentation of what each layer catches and what it misses
 
-That third point matters most. The adversarial test suite doesn't just test the happy path — it documents the exact detection boundary and shows you where Layer 1 stops and Layer 2 needs to start.
+That third point matters most. The adversarial test suite doesn't just test the happy path, it documents the exact detection boundary and shows you where Layer 1 stops and Layer 2 needs to start.
 
 ---
 
 ## Test Suite by Module
 
-### Guardrails — 15 tests (`test_guardrails.py`)
+### Guardrails, 15 tests (`test_guardrails.py`)
 
 **What it proves:** Layer 1 (fast, deterministic pattern matching) works correctly.
 
@@ -63,18 +63,18 @@ That third point matters most. The adversarial test suite doesn't just test the 
 
 ---
 
-### Adversarial — 59 tests (`test_adversarial.py`)
+### Adversarial, 59 tests (`test_adversarial.py`)
 
-**What it proves:** Where the detection boundary actually is — honestly.
+**What it proves:** Where the detection boundary actually is, honestly.
 
 This is the most important test file in the SDK. It is organised into two categories:
 
-- **CAUGHT** — attacks the guardrail correctly blocks
-- **BYPASSED** — attacks the guardrail fails to detect
+- **CAUGHT**, attacks the guardrail correctly blocks
+- **BYPASSED**, attacks the guardrail fails to detect
 
 Every test in the BYPASSED section is a **known gap**, not a bug. The tests document it explicitly so anyone evaluating the SDK can see exactly what regex guardrails can and cannot do, rather than guessing.
 
-#### Prompt Injection — Caught (20 tests)
+#### Prompt Injection, Caught (20 tests)
 
 These are baseline, well-known attacks. Any guardrail that misses these is useless:
 
@@ -89,7 +89,7 @@ These are baseline, well-known attacks. Any guardrail that misses these is usele
 | Case variation | UPPER, Mixed, lower all caught |
 | Embedded in context | Attack hidden inside HTML comments or markdown |
 
-#### Prompt Injection — Bypassed (16 tests)
+#### Prompt Injection, Bypassed (16 tests)
 
 These are the attacks regex **cannot catch**. Each test documents why:
 
@@ -108,11 +108,11 @@ These are the attacks regex **cannot catch**. Each test documents why:
 | Gradual escalation | No single message is suspicious (multi-turn) | Stateful Judge |
 | Deceptive delight | Restricted content blended with innocuous framing | Model-as-Judge |
 
-#### PII Detection — Caught (5 tests) and Bypassed (9 tests)
+#### PII Detection, Caught (5 tests) and Bypassed (9 tests)
 
 The output guardrail catches SSNs (with dashes), credit cards, and emails. It misses SSNs with spaces, SSNs without separators, verbal SSNs, phone numbers, physical addresses, passport numbers, IBANs, and South African IDs. Each gap is documented with a test.
 
-#### Judge Evasion — Bypassed (4 tests)
+#### Judge Evasion, Bypassed (4 tests)
 
 The rule-based judge (no API key needed) catches excessive output length and refusal-then-comply patterns. It misses:
 
@@ -131,7 +131,7 @@ End-to-end tests through the complete SecurityPipeline showing what the combined
 
 ---
 
-### Pipeline — 9 tests (`test_pipeline.py`)
+### Pipeline, 9 tests (`test_pipeline.py`)
 
 **What it proves:** The three layers compose correctly into a single evaluation flow.
 
@@ -147,11 +147,11 @@ End-to-end tests through the complete SecurityPipeline showing what the combined
 | `test_latency_recorded` | Total pipeline latency is measured |
 | `test_pace_contingency_requires_human` | At PACE Contingency, all outputs require human approval |
 
-**Why it matters:** Individual layers are necessary but not sufficient. These tests prove the pipeline orchestrates them correctly — that guardrail blocks fire before the model is called, that circuit breaker overrides everything, and that PACE state controls the pipeline's behavior.
+**Why it matters:** Individual layers are necessary but not sufficient. These tests prove the pipeline orchestrates them correctly, that guardrail blocks fire before the model is called, that circuit breaker overrides everything, and that PACE state controls the pipeline's behavior.
 
 ---
 
-### PACE Resilience — 13 tests (`test_pace.py`)
+### PACE Resilience, 13 tests (`test_pace.py`)
 
 **What it proves:** The PACE state machine (Primary, Alternate, Contingency, Emergency) works as a structured degradation model.
 
@@ -171,11 +171,11 @@ End-to-end tests through the complete SecurityPipeline showing what the combined
 | `test_judge_sampling_at_primary` | Primary: judge evaluates 5% of requests |
 | `test_judge_all_at_alternate` | Alternate: judge evaluates 100% of requests |
 
-**Why it matters:** Most systems are binary — on or off. PACE proves that structured degradation works: when one control fails, the system tightens other controls rather than failing silently. Recovery requires human authorization, not automatic reset. This is the difference between "it stopped working" and "it transitioned to a predetermined safe state."
+**Why it matters:** Most systems are binary, on or off. PACE proves that structured degradation works: when one control fails, the system tightens other controls rather than failing silently. Recovery requires human authorization, not automatic reset. This is the difference between "it stopped working" and "it transitioned to a predetermined safe state."
 
 ---
 
-### Circuit Breaker — 9 tests (`test_circuit_breaker.py`)
+### Circuit Breaker, 9 tests (`test_circuit_breaker.py`)
 
 **What it proves:** The emergency stop mechanism works correctly.
 
@@ -191,11 +191,11 @@ End-to-end tests through the complete SecurityPipeline showing what the combined
 | `test_stats` | Operational statistics are available |
 | `test_success_doesnt_trip` | Successful requests don't count toward the failure threshold |
 
-**Why it matters:** The circuit breaker is the last line of defense. When everything else fails — guardrails bypassed, judge compromised, attack in progress — the circuit breaker stops all AI traffic and activates a non-AI fallback. These tests prove it works both automatically (threshold-based) and manually (operator-triggered).
+**Why it matters:** The circuit breaker is the last line of defense. When everything else fails, guardrails bypassed, judge compromised, attack in progress, the circuit breaker stops all AI traffic and activates a non-AI fallback. These tests prove it works both automatically (threshold-based) and manually (operator-triggered).
 
 ---
 
-### Risk Classification — 6 tests (`test_risk.py`)
+### Risk Classification, 6 tests (`test_risk.py`)
 
 **What it proves:** Deployments are classified into risk tiers based on objective criteria, and the classification drives which controls are required.
 
@@ -208,11 +208,11 @@ End-to-end tests through the complete SecurityPipeline showing what the combined
 | `test_human_review_mitigates` | Human review reduces the risk tier |
 | `test_classify_with_reasons` | Classification includes specific risk factors and mitigations |
 
-**Why it matters:** Not every AI system needs every control. Risk classification ensures that a low-risk internal chatbot doesn't require the same controls as a high-risk financial trading agent. The controls are risk-proportionate — and the classification is transparent (it shows you *why* it assigned the tier).
+**Why it matters:** Not every AI system needs every control. Risk classification ensures that a low-risk internal chatbot doesn't require the same controls as a high-risk financial trading agent. The controls are risk-proportionate, and the classification is transparent (it shows you *why* it assigned the tier).
 
 ---
 
-### Agent Security — 20 tests (`test_agents.py`)
+### Agent Security, 20 tests (`test_agents.py`)
 
 **What it proves:** Multi-agent identity propagation, scope narrowing, and delegation enforcement work correctly.
 
@@ -221,7 +221,7 @@ End-to-end tests through the complete SecurityPipeline showing what the combined
 | Identity | 2 | Every agent carries a unique identity |
 | Context propagation | 5 | User ID, session, and correlation ID flow through the chain |
 | Delegation depth | 2 | Depth is tracked and increments correctly |
-| Scope narrowing | 3 | Permissions can only narrow as delegation deepens — a child **cannot** grant itself permissions the parent doesn't have |
+| Scope narrowing | 3 | Permissions can only narrow as delegation deepens, a child **cannot** grant itself permissions the parent doesn't have |
 | Deep chains | 1 | 10-level delegation chains work correctly |
 | Max depth enforcement | 1 | Delegation is denied when max depth is exceeded |
 | Agent type allow-list | 1 | Only permitted agent types can join the chain |
@@ -232,7 +232,7 @@ End-to-end tests through the complete SecurityPipeline showing what the combined
 
 ---
 
-### Tool Policy — 11 tests (`test_tool_policy.py`)
+### Tool Policy, 11 tests (`test_tool_policy.py`)
 
 **What it proves:** Tool-level access control works with deny-lists, allow-lists, per-agent-type restrictions, and delegation scope enforcement.
 
@@ -252,7 +252,7 @@ End-to-end tests through the complete SecurityPipeline showing what the combined
 
 ---
 
-### Telemetry — 18 tests (`test_telemetry.py`)
+### Telemetry, 18 tests (`test_telemetry.py`)
 
 **What it proves:** Every security decision produces a structured, machine-readable event for audit trails and SOC integration.
 
@@ -263,22 +263,22 @@ End-to-end tests through the complete SecurityPipeline showing what the combined
 | Buffer sink | 3 | In-memory collection with max size and clear |
 | Pipeline integration | 5 | Pipeline emits events automatically, agent context propagates, circuit breaker rejections emit events |
 
-**Why it matters:** Security without telemetry is security without evidence. These tests prove that every pipeline evaluation — allowed, blocked, or circuit-broken — produces a structured event with correlation IDs, agent chains, and verdicts. This is what feeds your SIEM dashboards, audit trails, and incident investigations.
+**Why it matters:** Security without telemetry is security without evidence. These tests prove that every pipeline evaluation, allowed, blocked, or circuit-broken, produces a structured event with correlation IDs, agent chains, and verdicts. This is what feeds your SIEM dashboards, audit trails, and incident investigations.
 
 ---
 
 ## What the Tests Prove, Taken Together
 
-1. **Each layer works individually** — guardrails catch known patterns, the judge catches subtle violations, the circuit breaker stops everything when needed, PACE degrades gracefully.
+1. **Each layer works individually**, guardrails catch known patterns, the judge catches subtle violations, the circuit breaker stops everything when needed, PACE degrades gracefully.
 
-2. **The layers compose correctly** — the pipeline orchestrates them in the right order, with the right precedence (circuit breaker > guardrails > judge > human), and PACE controls the behavior at each state.
+2. **The layers compose correctly**, the pipeline orchestrates them in the right order, with the right precedence (circuit breaker > guardrails > judge > human), and PACE controls the behavior at each state.
 
-3. **The architecture is honest about its limits** — the adversarial tests document exactly what each layer catches and misses. The gaps aren't bugs; they're the reason you need multiple layers.
+3. **The architecture is honest about its limits**, the adversarial tests document exactly what each layer catches and misses. The gaps aren't bugs; they're the reason you need multiple layers.
 
-4. **Multi-agent security guarantees hold** — identity propagates, scope narrows, cycles are detected, delegation is enforced, and tool access is controlled across arbitrarily deep chains.
+4. **Multi-agent security guarantees hold**, identity propagates, scope narrows, cycles are detected, delegation is enforced, and tool access is controlled across arbitrarily deep chains.
 
-5. **Everything is observable** — every decision produces a structured telemetry event for audit and investigation.
+5. **Everything is observable**, every decision produces a structured telemetry event for audit and investigation.
 
-6. **Risk classification is transparent** — you can see exactly why your deployment was classified at a given tier and what controls that tier requires.
+6. **Risk classification is transparent**, you can see exactly why your deployment was classified at a given tier and what controls that tier requires.
 
 The point isn't that this catches everything. No system does. The point is that the architecture is **layered, honest about its limits, and provably correct** for the properties it claims.

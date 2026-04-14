@@ -80,7 +80,7 @@
   {% set seo_description = page.meta.get('og_description', page.meta.get('description', config.site_description)) %}
   <!-- Open Graph / LinkedIn -->
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="{{ page.meta.get('og_title', page.meta.get('title', page.title)) }} — {{ config.site_name }}" />
+  <meta property="og:title" content="{{ page.meta.get('og_title', page.meta.get('title', page.title)) }} | {{ config.site_name }}" />
   <meta property="og:description" content="{{ seo_description }}" />
   <meta property="og:url" content="{{ page.canonical_url }}" />
   <meta property="og:site_name" content="{{ config.site_name }}" />
@@ -88,14 +88,14 @@
   <meta property="og:image" content="{{ config.site_url }}images/architecture-overview.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="867" />
-  <meta property="og:image:alt" content="AIRS — AI Runtime Security Architecture Overview" />
+  <meta property="og:image:alt" content="AIRS | AI Runtime Security Architecture Overview" />
   <meta property="article:author" content="https://www.linkedin.com/in/jonathancgill/" />
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="{{ page.meta.get('og_title', page.meta.get('title', page.title)) }} — {{ config.site_name }}" />
+  <meta name="twitter:title" content="{{ page.meta.get('og_title', page.meta.get('title', page.title)) }} | {{ config.site_name }}" />
   <meta name="twitter:description" content="{{ seo_description }}" />
   <meta name="twitter:image" content="{{ config.site_url }}images/architecture-overview.png" />
-  <meta name="twitter:image:alt" content="AIRS — AI Runtime Security Architecture Overview" />
+  <meta name="twitter:image:alt" content="AIRS | AI Runtime Security Architecture Overview" />
 {% else %}
   <!-- Fallback OG tags (e.g. 404 page) -->
   <meta property="og:type" content="website" />

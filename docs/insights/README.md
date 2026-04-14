@@ -4,7 +4,7 @@ description: Research insights on why runtime behavioral monitoring solves AI se
 
 # Insights
 
-The *why* before the *how*. Each article identifies a specific problem that the [core controls](../core) and [extensions](../extensions) then solve. Together, they make the case for risk-proportionate runtime controls that reduce harm without imposing disproportionate process.
+The *why* before the *how*. Each article identifies a specific problem that the [core controls](../core/controls.md) and [Resources section](../REFERENCES.md) then solve. Together, they make the case for risk-proportionate runtime controls that reduce harm without imposing disproportionate process.
 
 ## Start Here
 
@@ -41,6 +41,12 @@ Where the three-layer pattern meets its limits - and what to do about it.
 | 17 | [Process-Aware Evaluation](process-aware-evaluation.md) | Evaluating what an agent produced is less important than evaluating how it got there | [Judge Assurance](../core/judge-assurance.md) |
 | 18 | [The Flight Recorder Problem](the-flight-recorder-problem.md) | You log what happened but not why, or how to replay it. AI systems need provenance chains, not just event logs | [Logging & Observability](../infrastructure/controls/logging-and-observability.md) |
 | 19 | [Securing the Connective Tissue](securing-the-connective-tissue.md) | The attack surface has shifted from models to the space between them: agentic service meshes, proof of inference, and ghost agents | [Delegation Chains](../infrastructure/agentic/delegation-chains.md) |
+| 20 | [Agentic Drift](agentic-drift.md) | The gradual erosion of intent and constraints as tasks flow through delegation chains, distinct from model drift and harder to detect | [Multi-Agent Controls](../core/multi-agent-controls.md) |
+| 21 | [Beyond Language Models](beyond-language-models.md) | Runtime security must extend beyond LLMs to cover diffusion, voice synthesis, video, and other non-language AI entering production | [Multimodal Controls](../core/multimodal-controls.md) |
+| 22 | [Feedback Loops](feedback-loops.md) | How feedback loops between guardrails, judges, humans, and downstream systems create a self-improving runtime security system | [Observability Controls](../maso/controls/observability.md) |
+| 23 | [The Sandbox Escape Problem](the-sandbox-escape-problem.md) | Why container sandboxes are not a reliable security boundary for frontier AI agents, and what SandboxEscapeBench results imply for runtime containment | [Sandbox Patterns](../infrastructure/agentic/sandbox-patterns.md) |
+| 24 | [The Backbone Problem](the-backbone-problem.md) | Why backbone LLM selection is itself a measurable security control: 194,000 adversarial attacks reveal model-level vulnerability differences | [Judge Model Selection](../extensions/technical/judge-model-selection.md) |
+| 25 | [When Learning Goes Wrong](when-learning-goes-wrong.md) | How reinforcement learning can produce emergent misalignment, with implications for deployers who fine-tune or train their own models | [Model Cognition Assurance](../maso/controls/model-cognition-assurance.md) |
 
 ## Operational Gaps
 
@@ -51,6 +57,9 @@ Blind spots in most enterprise AI security programmes.
 | 14 | [The Supply Chain Problem](the-supply-chain-problem.md) | You don't control the model you deploy | [Supply Chain Controls](../extensions/technical/supply-chain.md) |
 | 15 | [RAG Is Your Biggest Attack Surface](rag-is-your-biggest-attack-surface.md) | Retrieval pipelines bypass your existing access controls | [RAG Security](../extensions/technical/rag-security.md) |
 | 16 | [The Visibility Problem](the-visibility-problem.md) | You can't govern AI you don't know is running - shadow AI, inventories, and governance KPIs | [Operational Metrics](../extensions/technical/operational-metrics.md) |
+| 17 | [The Agent Supply Chain Crisis](the-agent-supply-chain-crisis.md) | OpenClaw, rules-file backdoors, and how the agent ecosystem changed the supply-chain threat model in 2026 | [Supply Chain Controls](../maso/controls/supply-chain.md) |
+| 18 | [You Don't Know What You're Deploying](you-dont-know-what-youre-deploying.md) | The opacity of model provenance, training data, and post-training behaviour is itself a risk surface | [Supply Chain Controls](../maso/controls/supply-chain.md) |
+| 19 | [Evaluation Integrity Risks](evaluation-integrity-risks.md) | Why models can detect they are being evaluated, and what that means for the assurance value of your test suite | [Why Containment Beats Evaluation](why-containment-beats-evaluation.md) |
 ## Research & Evidence
 
 What the peer-reviewed literature says about runtime AI security controls.
@@ -66,6 +75,7 @@ The argument for why AI systems require a fundamentally different security model
 | Article | One-Line Summary |
 |---------|-----------------|
 | [Why AI Security Is a Runtime Problem](why-ai-security-is-a-runtime-problem.md) | Non-deterministic systems cannot be fully tested before deployment - security must be continuous |
+| [Why Containment Beats Evaluation](why-containment-beats-evaluation.md) | Constrain-regardless architecture for sandbagging-resistant AI governance: making evaluations less important is more robust than making them more accurate |
 
 ## Analysis
 
