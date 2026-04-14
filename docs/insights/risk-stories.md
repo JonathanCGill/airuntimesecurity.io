@@ -62,7 +62,7 @@ DPD's response - immediately disabling the AI element - is effectively a manual 
 
 **Air Canada - November 2022 (ruling: February 2024)**
 
-Air Canada's chatbot told a customer, Jake Moffatt, that they could apply for a bereavement fare discount retroactively within 90 days of ticket purchase. This was wrong - Air Canada's actual policy required the discount to be applied before booking. Moffatt flew to their grandmother's funeral and applied for the discount afterward, as the chatbot advised. Air Canada refused, saying the chatbot was wrong and pointing to the correct policy on a different page of their website. Moffatt took it to the British Columbia Civil Resolution Tribunal. The tribunal ruled that Air Canada was responsible for all information on its website, including chatbot outputs, and ordered the airline to pay $812 in damages. Air Canada later removed the chatbot entirely.
+Air Canada's chatbot told a customer, Jake Moffatt, that they could apply for a bereavement fare discount retroactively within 90 days of ticket purchase. This was wrong - Air Canada's actual policy required the discount to be applied before booking. Moffatt flew to their grandmother's funeral and applied for the discount afterward, as the chatbot advised. Air Canada refused, saying the chatbot was wrong and pointing to the correct policy on a different page of their website. Moffatt took it to the British Columbia Civil Resolution Tribunal. The tribunal ruled that Air Canada was responsible for all information on its website, including chatbot outputs, and ordered the airline to pay CAD $812.02 in damages. Air Canada later removed the chatbot entirely.
 
 ### What Failed
 
@@ -223,7 +223,7 @@ The framework can't prevent a political decision to keep a broken system running
 
 **For architects:** Each story maps to specific controls in the framework. Use them as worked examples when designing your control architecture. Ask: "If this happened to our system, which layer would catch it? How fast? What's the fallback?"
 
-**For executives:** These are the conversations to have before deploying AI, not after the incident. The cost of implementing the framework's controls is a fraction of the reputational, legal, and financial cost of any one of these incidents. Air Canada's chatbot cost them a legal precedent, not just $812.
+**For executives:** These are the conversations to have before deploying AI, not after the incident. The cost of implementing the framework's controls is a fraction of the reputational, legal, and financial cost of any one of these incidents. Air Canada's chatbot cost them a legal precedent, not just CAD $812.02.
 
 **For security teams:** These stories are evidence for your risk assessments. When someone says "it's just a chatbot, what could go wrong?" - point them here.
 

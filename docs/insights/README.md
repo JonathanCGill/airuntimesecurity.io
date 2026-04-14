@@ -4,7 +4,7 @@ description: Research insights on why runtime behavioral monitoring solves AI se
 
 # Insights
 
-The *why* before the *how*. Each article identifies a specific problem that the [core controls](../core) and [extensions](../extensions) then solve. Together, they make the case for risk-proportionate runtime controls that reduce harm without imposing disproportionate process.
+The *why* before the *how*. Each article identifies a specific problem that the [core controls](../core/controls.md) and [worked examples](../extensions/examples/README.md) then solve. Together, they make the case for risk-proportionate runtime controls that reduce harm without imposing disproportionate process.
 
 !!! tip "New here? Follow the Golden Thread."
     The [Reading Paths](../reading-paths.md) page sequences these articles into a guided walkthrough of the framework. The **Golden Thread** takes you from *why runtime security?* through *which controls?* to *how do they improve over time?* in roughly two hours. If you do not know where to start, start there.
@@ -27,7 +27,7 @@ Six articles carry the main argument. Read these, in order, and you have the cas
 
 ## Deep Dives
 
-The rest of the library, grouped by theme. Expand the section you need. If you are trying to match a specific problem to a specific control, the [core controls index](../core) and [extensions index](../extensions) are usually a faster route.
+The rest of the library, grouped by theme. Expand the section you need. If you are trying to match a specific problem to a specific control, the [core controls index](../core/README.md) and the [worked examples](../extensions/examples/README.md) are usually a faster route.
 
 ??? note "Foundations: other framing arguments"
     Alternative entry points into the same thesis. Read these when the core six raise a question or when you want a different angle on the same ground.
@@ -113,5 +113,6 @@ The rest of the library, grouped by theme. Expand the section you need. If you a
     - [Reading Paths](../reading-paths.md)
     - [Minimum Viable AIRS](../minimum-viable-airs.md)
     - [Architecture Overview](../ARCHITECTURE.md)
-    - [Core Controls](../core/)
-    - [Extensions](../extensions/)
+    - [Core Controls](../core/README.md)
+    - [Worked Examples](../extensions/examples/README.md)
+    - [Templates](../extensions/templates/README.md)

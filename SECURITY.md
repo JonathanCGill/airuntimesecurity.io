@@ -8,7 +8,7 @@ This security policy applies to the AI Runtime Security documentation and any ex
 
 ### In the Framework Documentation
 
-If you identify a security issue with the guidance provided in this framework — for example, a recommendation that could lead to insecure implementations — please:
+If you identify a security issue with the guidance provided in this framework, for example, a recommendation that could lead to insecure implementations, please:
 
 1. **Open a GitHub issue** describing the concern
 2. **Label it** with `security` if you have permissions, or mention "security concern" in the title
@@ -26,9 +26,9 @@ If you find a security vulnerability in any example code provided:
 
 ## Response Timeline
 
-- **Acknowledgment** — Within 48 hours
-- **Initial assessment** — Within 7 days
-- **Fix or mitigation** — Depends on severity; critical issues prioritised
+- **Acknowledgment**, Within 48 hours
+- **Initial assessment**, Within 7 days
+- **Fix or mitigation**, Depends on severity; critical issues prioritised
 
 ## Supported Versions
 
@@ -44,10 +44,10 @@ As a documentation framework (not software), we don't have traditional "supporte
 
 If you're implementing this framework:
 
-1. **This is guidance, not assurance** — You're responsible for validating controls in your environment
-2. **Test before deploying** — Don't assume the examples work securely in your context
-3. **Keep dependencies updated** — If you use tools mentioned here, keep them patched
-4. **Layer your defences** — No single control is sufficient
+1. **This is guidance, not assurance**, You're responsible for validating controls in your environment
+2. **Test before deploying**, Don't assume the examples work securely in your context
+3. **Keep dependencies updated**, If you use tools mentioned here, keep them patched
+4. **Layer your defences**, No single control is sufficient
 
 ## Acknowledgments
 

@@ -327,7 +327,7 @@ These incidents are referenced throughout the framework to ground controls in de
 
 ### Air Canada Chatbot - Moffatt v. Air Canada (February 2024)
 
-Air Canada's chatbot gave incorrect bereavement fare information. The airline argued the chatbot was "a separate legal entity responsible for its own actions." The BC Civil Resolution Tribunal ruled against Air Canada: *"It makes no difference whether the information comes from a static page or a chatbot."* Ordered to pay $812.02.
+Air Canada's chatbot gave incorrect bereavement fare information. The airline argued the chatbot was "a separate legal entity responsible for its own actions." The BC Civil Resolution Tribunal ruled against Air Canada: *"It makes no difference whether the information comes from a static page or a chatbot."* Ordered to pay CAD $812.02.
 
 Established legal precedent that organisations are liable for AI-generated misinformation. Maps to: Guardrails, Human Oversight, Model-as-Judge.
 

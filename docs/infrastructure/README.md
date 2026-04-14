@@ -216,7 +216,7 @@ Reference patterns for implementing these controls on specific platforms:
 
 ## Diagrams
 
-Fourteen SVG diagrams covering IAM architecture, logging pipelines, network zones, agent egress flows, credential isolation, data classification, incident classification, delegation permission models, and more. All in [`diagrams/`](diagrams/).
+Fourteen SVG diagrams covering IAM architecture, logging pipelines, network zones, agent egress flows, credential isolation, data classification, incident classification, delegation permission models, and more. All in the [`infrastructure/diagrams/` directory on GitHub](https://github.com/JonathanCGill/airuntimesecurity.io/tree/main/docs/infrastructure/diagrams).
 
 ## Design Principles
 

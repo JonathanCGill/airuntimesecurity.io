@@ -8,18 +8,18 @@ Thank you for your interest in contributing to this project. This document provi
 
 If you find an error, omission, or have a suggestion:
 
-1. **Check existing issues** — Someone may have already reported it
-2. **Open a new issue** — Use the appropriate template
-3. **Be specific** — Include the document, section, and what you think should change
-4. **Provide context** — Why does this matter? What's the impact?
+1. **Check existing issues**, Someone may have already reported it
+2. **Open a new issue**, Use the appropriate template
+3. **Be specific**, Include the document, section, and what you think should change
+4. **Provide context**, Why does this matter? What's the impact?
 
 ### Submitting Changes
 
 1. **Fork the repository**
-2. **Create a branch** — `feature/your-feature-name` or `fix/issue-number`
-3. **Make your changes** — Follow the style guide below
-4. **Test your changes** — Ensure links work, markdown renders correctly
-5. **Submit a pull request** — Reference any related issues
+2. **Create a branch**, `feature/your-feature-name` or `fix/issue-number`
+3. **Make your changes**, Follow the style guide below
+4. **Test your changes**, Ensure links work, markdown renders correctly
+5. **Submit a pull request**, Reference any related issues
 
 ### What We're Looking For
 
@@ -44,10 +44,10 @@ If you find an error, omission, or have a suggestion:
 
 ### Writing Style
 
-- **Clear and direct** — Avoid jargon where possible
-- **Practical** — Focus on what practitioners need
-- **Honest** — Distinguish between proven and theoretical
-- **Consistent** — Match the tone of existing content
+- **Clear and direct**, Avoid jargon where possible
+- **Practical**, Focus on what practitioners need
+- **Honest**, Distinguish between proven and theoretical
+- **Consistent**, Match the tone of existing content
 
 ### Markdown Conventions
 
@@ -86,10 +86,10 @@ If you find an error, omission, or have a suggestion:
 
 ## Review Process
 
-1. **Automated checks** — Links, markdown formatting
-2. **Maintainer review** — Content accuracy, style consistency
-3. **Feedback** — We may request changes or clarification
-4. **Merge** — Once approved, your contribution will be merged
+1. **Automated checks**, Links, markdown formatting
+2. **Maintainer review**, Content accuracy, style consistency
+3. **Feedback**, We may request changes or clarification
+4. **Merge**, Once approved, your contribution will be merged
 
 ### Review Criteria
 
@@ -136,10 +136,10 @@ Areas where new content is welcome:
 
 This project follows a standard code of conduct. In summary:
 
-- **Be respectful** — Treat others as you want to be treated
-- **Be constructive** — Focus on improving the content
-- **Be patient** — Maintainers are volunteers
-- **Be inclusive** — Welcome diverse perspectives
+- **Be respectful**, Treat others as you want to be treated
+- **Be constructive**, Focus on improving the content
+- **Be patient**, Maintainers are volunteers
+- **Be inclusive**, Welcome diverse perspectives
 
 See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for details.
 

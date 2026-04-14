@@ -167,7 +167,7 @@ The full pattern looks like this:
 This is not about preventing agents from being useful. It is about making their usefulness legible and verifiable. An agent that can explain what it is doing, why, and how that aligns with its declared purpose is an agent you can trust proportionally. An agent that cannot is an agent you cannot govern.
 
 !!! abstract "The foundation for MASO"
-    This declare-constrain-evaluate pattern is the foundation of the [MASO Framework](maso/). MASO extends it with 128 controls across 7 domains, covering identity, data protection, execution control, observability, and supply chain security for multi-agent systems. If you are deploying agents at scale, start here to understand the principles, then move to MASO for the full control set.
+    This declare-constrain-evaluate pattern is the foundation of the [MASO Framework](maso/). MASO extends it across 10 control domains, covering identity, data protection, execution control, observability, supply chain security, privileged-agent governance, model cognition assurance, agentic task contracts, objective intent, and prompt/goal/epistemic integrity. If you are deploying agents at scale, start here to understand the principles, then move to MASO for the full control set.
 
 !!! info "References"
     - [Anatomy of an Agentic Agent](agentic-agent-anatomy.md)

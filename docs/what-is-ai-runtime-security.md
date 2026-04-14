@@ -72,8 +72,8 @@ AI Runtime Security is not a single product, vendor capability, or proprietary m
 
 The [AIRS Framework](ARCHITECTURE.md) is a reference architecture for this discipline: one implementation model that provides controls, patterns, and operational guidance. It is designed so that AI product owners can quickly identify the controls they need and apply them, without being forced into a one-size-fits-all mandate. But the discipline itself is broader than any single framework. It encompasses:
 
-- The [Foundation Framework](foundations/) for single-agent deployments (80+ controls)
-- [Multi-Agent Security Operations (MASO)](maso/) for autonomous agent coordination (128 controls)
+- The [Foundation Framework](foundations/) for single-agent deployments: the three-layer behavioural pattern (Guardrails, Judge, Human Oversight), backed by 80 [infrastructure controls](infrastructure/) across 11 domains.
+- [Multi-Agent Security Operations (MASO)](maso/) for autonomous agent coordination, with controls organised into 10 domains
 - [Regulatory alignment](extensions/regulatory/eu-ai-act-crosswalk.md) with EU AI Act, ISO 42001, and NIST AI RMF
 - [Platform-specific patterns](infrastructure/reference/platform-patterns/aws-bedrock.md) for AWS, Azure, and Databricks
 
@@ -92,4 +92,4 @@ AI Runtime Security maps to established regulatory and standards frameworks:
 
 ---
 
-*[Jonathan C. Gill](https://www.linkedin.com/in/jonathancgill/) contributes to the AI Runtime Security discipline through the AIRS Framework at [airuntimesecurity.io](https://airuntimesecurity.io).*
+*[Jonathan Gill](https://www.linkedin.com/in/jonathancgill/) contributes to the AI Runtime Security discipline through the AIRS Framework at [airuntimesecurity.io](https://airuntimesecurity.io).*

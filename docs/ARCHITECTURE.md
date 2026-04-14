@@ -33,7 +33,7 @@ For a single AI model - a chatbot, a document processor, an assistant - the thre
 
 Controls scale to risk tier. A low-risk internal tool needs minimal guardrails and self-certification ([Fast Lane](FAST-LANE.md)). A customer-facing agent handling regulated data needs the full architecture with mandatory human approval. The framework respects that every organisation has its own way of working, and lets you match controls to your context rather than imposing a single mandate.
 
-**→ [Foundation Framework](foundations/)** - 80 controls, risk tiers, implementation checklists
+**→ [Foundation Framework](foundations/)** - the three-layer behavioural pattern (Guardrails, Judge, Human Oversight) with risk tiers and implementation checklists. Backed by 80 [infrastructure controls](infrastructure/) across 11 domains.
 
 ## Multi-Agent Architecture
 
@@ -46,7 +46,7 @@ When multiple LLMs collaborate, delegate, and take autonomous actions, single-ag
 
 Multi-agent security requires per-agent identity, per-agent permissions, per-agent evaluation - plus controls for the interactions between them: message bus security, epistemic integrity, kill switch architecture.
 
-**→ [MASO Framework](maso/)** - 128 controls across 7 domains, 3 implementation tiers, full OWASP dual coverage
+**→ [MASO Framework](maso/)** - controls across 10 domains, 3 implementation tiers, full OWASP dual coverage
 
 ## PACE Resilience
 

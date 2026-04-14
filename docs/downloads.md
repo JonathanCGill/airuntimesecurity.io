@@ -35,7 +35,7 @@ Grounded in established maturity models (CMMI, NIST CSF, C2M2, ISO 42001) and cu
 
 ### MASO Framework (Full PDF)
 
-The complete Multi-Agent Security Operations (MASO) framework as a single PDF document. Includes all 7 control domains (128 controls), implementation tiers, red team playbook, incident tracker, integration guide, and worked examples.
+The complete Multi-Agent Security Operations (MASO) framework as a single PDF document. Includes all 10 control domains, implementation tiers, red team playbook, incident tracker, integration guide, and worked examples.
 
 [Download PDF (31 March 2026)](Downloads/MASO-Framework-2026-03-31.pdf){ .md-button }
 
@@ -51,4 +51,4 @@ Comprehensive training material for practitioners implementing Multi-Agent Secur
 
 > See also: [Multi-Agent Security Operations (MASO)](maso/README.md) (online reference)
 
-*All materials are provided under the [MIT License](../LICENSE).*
+*All materials are provided under the [MIT License](https://github.com/JonathanCGill/airuntimesecurity.io/blob/main/LICENSE).*

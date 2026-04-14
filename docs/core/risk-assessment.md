@@ -17,7 +17,7 @@ This document implements activities from all four functions of the [NIST AI Risk
 | **MEASURE** | 1.1, 1.2, 2.1, 2.2, 2.3, 2.6 | Quantitative risk metrics; per-layer effectiveness measurement; residual risk calculation; recalibration methodology |
 | **MANAGE** | 1.1, 1.3, 2.1, 2.2, 2.4 | Control selection proportionate to risk tier; compensating controls; PACE fail postures per tier; incident-driven recalculation |
 
-The methodology below follows the NIST RMF lifecycle: **identify** threats (MAP), **measure** control effectiveness (MEASURE), calculate **residual risk** for governance decisions (GOVERN), and define **response actions** when risk exceeds appetite (MANAGE).
+The methodology below follows the NIST AI RMF lifecycle: **identify** threats (MAP), **measure** control effectiveness (MEASURE), calculate **residual risk** for governance decisions (GOVERN), and define **response actions** when risk exceeds appetite (MANAGE).
 
 > For detailed infrastructure control mappings to all 51 NIST AI RMF subcategories, see [NIST AI RMF Mapping](../infrastructure/mappings/nist-ai-rmf.md).
 
@@ -376,7 +376,7 @@ See the [detailed worked example above](#worked-example-customer-product-chatbot
 
 If your organisation uses NIST AI RMF, frame this assessment in those terms:
 
-| What You're Presenting | NIST RMF Function | Language to Use |
+| What You're Presenting | NIST AI RMF Function | Language to Use |
 |---|---|---|
 | Threat scenarios and likelihood | **MAP** | "We've identified and categorised the AI-specific risks for this system" |
 | Per-layer effectiveness data | **MEASURE** | "We've measured control effectiveness through red teaming and Judge calibration" |
@@ -415,31 +415,31 @@ When an incident occurs, update the effectiveness rates:
 
 For each AI system, complete this assessment. NIST AI RMF function labels are included so you can slot each step into your existing risk management process.
 
-**1. System description and tier classification** *(NIST RMF: MAP 1.1, MAP 2.1)*
+**1. System description and tier classification** *(NIST AI RMF: MAP 1.1, MAP 2.1)*
 - What does the system do?
 - What data does it access? What actions can it take?
 - What is the assigned risk tier and why?
 
-**2. Threat scenario identification** *(NIST RMF: MAP 3.1, MAP 3.2)*
+**2. Threat scenario identification** *(NIST AI RMF: MAP 3.1, MAP 3.2)*
 - List 3-7 realistic failure modes
 - Estimate inherent likelihood per 1,000 transactions (use incident data, red team results, or informed estimates)
 - Rate severity: Critical / High / Medium / Low
 
-**3. Per-layer control analysis** *(NIST RMF: MEASURE 1.1, MEASURE 2.1, MEASURE 2.6)*
+**3. Per-layer control analysis** *(NIST AI RMF: MEASURE 1.1, MEASURE 2.1, MEASURE 2.6)*
 - For each scenario, describe what each layer detects and how
 - Apply your measured or estimated effectiveness rates
 - Calculate residual risk
 
-**4. Compensating controls** *(NIST RMF: MANAGE 1.1, MANAGE 2.2)*
+**4. Compensating controls** *(NIST AI RMF: MANAGE 1.1, MANAGE 2.2)*
 - List existing infrastructure controls that independently reduce risk
 - Estimate their effectiveness against each scenario
 - Calculate compensated residual risk
 
-**5. Appetite comparison** *(NIST RMF: GOVERN 1.5, MANAGE 2.4)*
+**5. Appetite comparison** *(NIST AI RMF: GOVERN 1.5, MANAGE 2.4)*
 - Does the compensated residual risk fall within your risk appetite?
 - If not, what additional controls or scope reductions are needed?
 
-**6. Recalibration plan** *(NIST RMF: MEASURE 2.3, GOVERN 1.4)*
+**6. Recalibration plan** *(NIST AI RMF: MEASURE 2.3, GOVERN 1.4)*
 - When will you re-measure effectiveness rates?
 - What triggers an unscheduled reassessment?
 

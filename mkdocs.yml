@@ -1,7 +1,7 @@
 site_name: AI Runtime Security
 site_url: https://airuntimesecurity.io/
 site_description: >-
-  AI Runtime Security (AIRS) — the discipline of monitoring, controlling,
+  AI Runtime Security (AIRS) | the discipline of monitoring, controlling,
   and constraining AI system behaviour in production environments.
 site_author: Jonathan Gill
 
@@ -83,7 +83,7 @@ extra:
 
 copyright: >-
   Copyright &copy; 2026 Jonathan Gill | MIT License<br>
-  Feedback welcome — <a href="mailto:feedback@airuntimesecurity.io">feedback@airuntimesecurity.io</a>
+  Feedback welcome | <a href="mailto:feedback@airuntimesecurity.io">feedback@airuntimesecurity.io</a>
 
 nav:
   - Home: README.md

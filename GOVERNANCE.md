@@ -47,9 +47,9 @@ Changes that fundamentally alter the framework's approach require:
 ## Versioning
 
 The framework uses semantic versioning:
-- **Major version** — Significant structural changes or breaking changes
-- **Minor version** — New content, controls, or sections
-- **Patch version** — Corrections, clarifications, minor improvements
+- **Major version**, Significant structural changes or breaking changes
+- **Minor version**, New content, controls, or sections
+- **Patch version**, Corrections, clarifications, minor improvements
 
 ## Conflicts
 
@@ -61,7 +61,7 @@ If there's disagreement among maintainers:
 
 ## Becoming a Maintainer
 
-Contributors who consistently provide high-quality contributions may be invited to become maintainers. There's no formal process — it's based on demonstrated commitment and judgement.
+Contributors who consistently provide high-quality contributions may be invited to become maintainers. There's no formal process, it's based on demonstrated commitment and judgement.
 
 ## Changes to Governance
 

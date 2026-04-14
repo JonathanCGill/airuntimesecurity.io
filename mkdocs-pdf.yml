@@ -2,10 +2,10 @@
 ### Usage: mkdocs build -f mkdocs-pdf.yml
 ### Output: site-pdf/pdf/MASO-Framework.pdf
 
-site_name: "MASO Framework — AI Runtime Security"
+site_name: "MASO Framework | AI Runtime Security"
 site_url: https://airuntimesecurity.io/
 site_description: >-
-  Multi-Agent Security Operations (MASO) — A PACE-driven framework
+  Multi-Agent Security Operations (MASO) | A PACE-driven framework
   for securing multi-model agent orchestration at runtime.
 site_author: Jonathan Gill
 
@@ -31,7 +31,7 @@ plugins:
       cover: true
       cover_title: "MASO Framework"
       cover_subtitle: >-
-        Multi-Agent Security Operations —
+        Multi-Agent Security Operations,
         A PACE-Driven Approach to Securing
         Multi-Model Agent Orchestration
       output_path: pdf/MASO-Framework.pdf

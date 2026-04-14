@@ -3,7 +3,7 @@
 Complete working examples that demonstrate the AIRS SDK in action.
 
 !!! warning "These are demos, not production blueprints"
-    The examples below are deliberately simple. They illustrate the *mechanics* of each SDK component — how guardrails chain, how the judge evaluates, how PACE degrades — but they use minimal patterns and hardcoded data. They should not be relied on to assess or protect a real, production AI solution at this time.
+    The examples below are deliberately simple. They illustrate the *mechanics* of each SDK component, how guardrails chain, how the judge evaluates, how PACE degrades, but they use minimal patterns and hardcoded data. They should not be relied on to assess or protect a real, production AI solution at this time.
 
     The aim is to give you a working starting point and a way to think about how these security layers fit together. As the SDK matures, more examples aligned to real-world use cases, industries, and threat models will be added. For now: learn the shape, then build your own.
 
