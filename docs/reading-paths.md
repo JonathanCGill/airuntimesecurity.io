@@ -6,6 +6,9 @@ description: "Curated reading paths through the AI Runtime Security framework, o
 
 This site covers a lot of ground. These curated paths help you find what matters most based on what you are trying to achieve. Each path is a suggested sequence, not a strict order. Skip what you already know, dive deeper where you need to.
 
+!!! tip "Shipping your first LLM feature?"
+    If you need a short, opinionated list of controls to put in place before going live, start with [Minimum Viable AIRS](minimum-viable-airs.md). Seven controls, one checklist, one decision tree for whether you need to go deeper.
+
 !!! tip "Looking for role-based guidance?"
     The [Stakeholder Views](stakeholders/) pages provide tailored entry points for security leaders, risk teams, architects, engineers, product owners, and more. Each one includes a starting path, concrete first actions, and answers to common objections.
 
@@ -101,5 +104,6 @@ Controls degrade. Attackers adapt. Models drift. The system only stays effective
 
 !!! info "References"
     - [What is AI Runtime Security?](what-is-ai-runtime-security.md)
+    - [Minimum Viable AIRS](minimum-viable-airs.md)
     - [Quick Start](QUICK_START.md)
     - [FAQ](FAQ.md)

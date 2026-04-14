@@ -89,6 +89,7 @@ nav:
   - Home: README.md
   - About: what-is-ai-runtime-security.md
   - Start Here: reading-paths.md
+  - Minimum Viable AIRS: minimum-viable-airs.md
 
   - Framework:
     - Anatomy of an Agent: agentic-agent-anatomy.md
@@ -136,6 +137,18 @@ nav:
     - Red Team Playbook: maso/red-team/red-team-playbook.md
     - Integration Guide: maso/integration/integration-guide.md
     - Worked Examples: maso/examples/worked-examples.md
+
+  - SDK:
+    - sdk/README.md
+    - Guardrails: sdk/guardrails.md
+    - Judge: sdk/judge.md
+    - Circuit Breaker & PACE: sdk/resilience.md
+    - Pipeline: sdk/pipeline.md
+    - Agent Security: sdk/agents.md
+    - Telemetry & Audit: sdk/telemetry.md
+    - FastAPI Integration: sdk/fastapi.md
+    - Examples: sdk/examples.md
+    - What the Tests Prove: sdk/tests.md
 
   - Stakeholders:
     - stakeholders/README.md

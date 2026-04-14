@@ -29,6 +29,16 @@ Pick the layers you need. Skip the ones you do not. Match controls to your actua
 
 </div>
 
+<div class="home-primary-cta" markdown>
+
+**New to AIRS? Read this first.**
+
+[What is AI Runtime Security? →](what-is-ai-runtime-security.md){ .md-button .md-button--primary }
+
+Shipping your first AI feature? Start with [Minimum Viable AIRS](minimum-viable-airs.md).
+
+</div>
+
 ## The AIRS Philosophy
 
 ![AIRS Runtime Control Plane](images/airs-runtime-control-plane.svg){ .arch-diagram }

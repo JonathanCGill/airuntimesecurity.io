@@ -130,6 +130,25 @@ img[src$=".svg"] {
   color: var(--md-default-fg-color);
 }
 
+/* Primary CTA below the opening pitch */
+.home-primary-cta {
+  text-align: center;
+  max-width: 38rem;
+  margin: 0 auto 2.5rem;
+}
+
+.home-primary-cta strong {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--md-default-fg-color);
+  margin-bottom: 0.75rem;
+}
+
+.home-primary-cta .md-button {
+  font-size: 1rem;
+}
+
 /* Pull quote */
 .pull-quote {
   text-align: center;
