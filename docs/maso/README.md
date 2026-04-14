@@ -121,7 +121,7 @@ None of these pieces stand alone. The control domains implement the declarations
 
 ## Control Domains
 
-The framework organises controls into ten domains. The first five map to specific OWASP risks. The sixth, Prompt, Goal & Epistemic Integrity, addresses both the three OWASP risks that require cross-cutting controls and the nine epistemic risks identified in the [Emergent Risk Register](controls/risk-register.md) that have no OWASP equivalent. The seventh, Privileged Agent Governance, addresses the unique risks of orchestrators, planners, and other agents with elevated authority. The eighth, Model Cognition Assurance, addresses the gap between a model's expressed reasoning and its internal computational state. The ninth, Agentic Task Contract and Behavioural Governance, enforces means compliance and detects behavioural deviation in agentic workflows.
+The framework organises controls into ten domains. The first five map to specific OWASP risks. The sixth, Prompt, Goal & Epistemic Integrity, addresses both the three OWASP risks that require cross-cutting controls and the nine epistemic risks identified in the [Emergent Risk Register](controls/risk-register.md) that have no OWASP equivalent. The seventh, Privileged Agent Governance, addresses the unique risks of orchestrators, planners, and other agents with elevated authority. The eighth, Model Cognition Assurance, addresses the gap between a model's expressed reasoning and its internal computational state. The ninth, Agentic Task Contract and Behavioural Governance, enforces means compliance and detects behavioural deviation in agentic workflows. The tenth, Objective Intent, provides the declared intent specifications that the evaluation architecture and contract governance depend on.
 
 ### 0. [Prompt, Goal & Epistemic Integrity](controls/prompt-goal-and-epistemic-integrity.md)
 
@@ -177,17 +177,17 @@ Formal contract governance for agentic workflows. Solution contracts declare int
 
 *Covers: Agentic task contract governance, means compliance, creative substitution detection, plan attempt detection, Anti-Mythos judge architecture*
 
-### [Environment Containment](environment-containment.md)
-
-Cross-cutting strategy that complements all ten control domains. Instead of relying on the agent to behave correctly, harden every system the agent connects to: strict API input validation, opaque error responses, stored procedures, no-retry enforcement, and infrastructure-level kill switches. Existing enterprise security systems (DLP, fraud detection, WAF, SIEM) apply unchanged to agent traffic. The agent proposes; the infrastructure disposes.
-
-*Cross-cuts: All Control Domains · All Implementation Tiers*
-
 ### 9. [Objective Intent](controls/objective-intent.md)
 
 Every agent, judge, and workflow operates against a developer-declared Objective Intent Specification (OISpec), a structured, version-controlled contract defining what the agent should accomplish and within what parameters. Tactical judges evaluate individual agents against their OISpecs. A strategic evaluation agent assesses whether combined agent actions satisfy the workflow's aggregated intent. Judges are themselves monitored against their own OISpecs. This is the bridge from fault detection to behavioral assurance: from catching things that go wrong to verifying that things go right.
 
 *Covers: Intent alignment at all levels: individual agent compliance (tactical), aggregate workflow compliance (strategic), and judge behavioral monitoring (lateral). Most critical at HIGH and CRITICAL risk tiers.*
+
+### [Environment Containment](environment-containment.md)
+
+Cross-cutting strategy that complements all ten control domains. Instead of relying on the agent to behave correctly, harden every system the agent connects to: strict API input validation, opaque error responses, stored procedures, no-retry enforcement, and infrastructure-level kill switches. Existing enterprise security systems (DLP, fraud detection, WAF, SIEM) apply unchanged to agent traffic. The agent proposes; the infrastructure disposes.
+
+*Cross-cuts: All Control Domains · All Implementation Tiers*
 
 ## OWASP Risk Coverage
 
