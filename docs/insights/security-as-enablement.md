@@ -115,7 +115,7 @@ For this framework:
 
 ### Principle 4: Produce Tools, Not Findings
 
-The [strategy section](../strategy/) describes the framework's philosophy as "guardrails, not gates." This must extend to implementation.
+The [strategy section](../strategy/README.md) describes the framework's philosophy as "guardrails, not gates." This must extend to implementation.
 
 Every control in the framework should be evaluated against a simple test: does it produce a tool, or does it produce a finding?
 

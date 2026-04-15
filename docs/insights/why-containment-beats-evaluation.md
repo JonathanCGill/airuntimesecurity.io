@@ -63,7 +63,7 @@ In engineering, no critical system operates on open-loop control. AI governance 
 
 The three layers are not just defence-in-depth by coincidence. Each layer is specifically designed to catch what the previous layer misses.
 
-**Layer 1 - Containment Boundaries (Guardrails):** Define what the agent is permitted to do based on business intent. Enforced through [infrastructure controls](../infrastructure/): API restrictions, tool permissions, data scopes, action whitelists. This neutralises sandbagging as a breakout vector - there is nothing to game.
+**Layer 1 - Containment Boundaries (Guardrails):** Define what the agent is permitted to do based on business intent. Enforced through [infrastructure controls](../infrastructure/README.md): API restrictions, tool permissions, data scopes, action whitelists. This neutralises sandbagging as a breakout vector - there is nothing to game.
 
 **What Layer 1 does not catch:** Adversarial behavior *within* permitted bounds. An agent that subtly degrades output quality, optimises for unintended objectives, or produces technically compliant but strategically misaligned results.
 

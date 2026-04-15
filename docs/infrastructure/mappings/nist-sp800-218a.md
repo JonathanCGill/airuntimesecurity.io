@@ -54,13 +54,13 @@ This mapping shows where SP 800-218A practices connect to controls in this frame
 
 | SP 800-218A Task | Priority | Framework Relevance | Framework Controls |
 | --- | --- | --- | --- |
-| **PW.1.1** AI-specific threat modelling | High | Development-time threat models should inform deployment-time controls. Threats identified here (prompt injection, data poisoning, supply chain attacks) map directly to this framework's control domains. | [Risk Tiers](../../core/risk-tiers.md), threat model templates in [Templates](../../extensions/templates/) |
+| **PW.1.1** AI-specific threat modelling | High | Development-time threat models should inform deployment-time controls. Threats identified here (prompt injection, data poisoning, supply chain attacks) map directly to this framework's control domains. | [Risk Tiers](../../core/risk-tiers.md), threat model templates in [Templates](../../extensions/templates/README.md) |
 | **PW.3.1** Analyse training data integrity *(new practice)* | High | Out of scope for this framework except for organisations fine-tuning. | No direct mapping - development concern |
 | **PW.3.3** Include adversarial samples in training | Medium | Development-time robustness testing. At deployment, adversarial resilience is enforced through guardrails and the Judge layer. | AI.7 Guardrails (input validation), AI.8 Judge (adversarial detection) |
 | **PW.4.4** Verify acquired AI components | High | Directly relevant. Deployers acquiring models or components should verify integrity, provenance, and security before deployment. | SC-01 through SC-04 (Supply Chain) |
 | **PW.5.1** Secure coding for inputs and outputs | High | **Key overlap.** SP 800-218A wants input/output handling built into code. This framework enforces it at the infrastructure layer. Both are needed - defence-in-depth means code-level and infrastructure-level controls should coexist. | AI.7 Guardrails (input/output filtering), NS-03 (API gateway controls), see also [Infrastructure Beats Instructions](../../insights/infrastructure-beats-instructions.md) |
 | **PW.7.2** Scan models for malware and vulnerabilities | High | Pre-deployment scanning is SP 800-218A's concern. Runtime monitoring for anomalous behavior is this framework's concern. | LO-01 through LO-10 (Logging & Observability), see also [Behavioral Anomaly Detection](../../extensions/technical/behavioral-anomaly-detection.md) |
-| **PW.8.1–8.2** Test AI models for vulnerabilities | High | Pre-deployment testing. This framework addresses post-deployment testing through red-teaming guidance and continuous evaluation. | Testing guidance in [Templates](../../extensions/templates/), AI.8 Judge (ongoing evaluation) |
+| **PW.8.1–8.2** Test AI models for vulnerabilities | High | Pre-deployment testing. This framework addresses post-deployment testing through red-teaming guidance and continuous evaluation. | Testing guidance in [Templates](../../extensions/templates/README.md), AI.8 Judge (ongoing evaluation) |
 
 ### Respond to Vulnerabilities (RV)
 
@@ -85,7 +85,7 @@ These are the areas where SP 800-218A practices hand off to this framework's con
 
 ## Control ID Reference
 
-The control IDs referenced above use the domain prefix scheme from this framework's [Infrastructure Controls](../):
+The control IDs referenced above use the domain prefix scheme from this framework's [Infrastructure Controls](../README.md):
 
 | Prefix | Domain |
 | --- | --- |

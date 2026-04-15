@@ -6,7 +6,7 @@ description: "How organisational maturity affects AI security posture. What Leve
 
 *What maturity actually means for AI security, why most organisations are further along than they think, and where the real gaps are.*
 
-> Part of [From Strategy to Production](./)
+> Part of [From Strategy to Production](README.md)
 
 ## Scope: AI You Build vs. AI You Consume
 
@@ -21,7 +21,7 @@ Most organisations also consume AI through other channels. The maturity question
 | **Copilots and productivity AI** | Microsoft 365 Copilot, GitHub Copilot, Salesforce Einstein | Vendor operates the AI; you govern access and data. | Data classification, access governance, RAG exposure management, output review processes. |
 | **AI coding tools** | GitHub Copilot, Cursor, Claude Code | Vendor operates the AI; you own what ships to production. | Code review discipline. Understanding AI-generated output before it reaches production. |
 
-The rest of this article addresses maturity across all four tracks. The full [control architecture](../ARCHITECTURE.md), [risk tiers](../core/risk-tiers.md), and [MASO framework](../maso/) apply in depth to the first track. For the other three, the framework provides the mental model; the implementation details differ.
+The rest of this article addresses maturity across all four tracks. The full [control architecture](../ARCHITECTURE.md), [risk tiers](../core/risk-tiers.md), and [MASO framework](../maso/README.md) apply in depth to the first track. For the other three, the framework provides the mental model; the implementation details differ.
 
 ## Why Maturity Models Matter
 
@@ -35,7 +35,7 @@ Several authoritative models inform this framework's approach. None were designe
 
 ### CMMI (Capability Maturity Model Integration)
 
-The most widely recognised maturity model. Five levels from ad hoc to optimising, maintained by ISACA (originally SEI at Carnegie Mellon). The existing [MASO implementation tiers](../maso/) reference CMMI levels explicitly: Tier 1 maps to CMMI Level 1-2, Tier 2 maps to Level 2-3, Tier 3 maps to Level 3+.
+The most widely recognised maturity model. Five levels from ad hoc to optimising, maintained by ISACA (originally SEI at Carnegie Mellon). The existing [MASO implementation tiers](../maso/README.md) reference CMMI levels explicitly: Tier 1 maps to CMMI Level 1-2, Tier 2 maps to Level 2-3, Tier 3 maps to Level 3+.
 
 **Median transition time from Level 1 to Level 2: 5 months. Level 2 to Level 3: an additional 21 months.**
 
@@ -262,9 +262,9 @@ Key data dimensions that mature across levels:
 
 ## MASO and Maturity
 
-The [MASO framework](../maso/) secures multi-agent AI systems, whether built from scratch or deployed on a platform (LangGraph, AutoGen, CrewAI, AWS Bedrock Agents).
+The [MASO framework](../maso/README.md) secures multi-agent AI systems, whether built from scratch or deployed on a platform (LangGraph, AutoGen, CrewAI, AWS Bedrock Agents).
 
-**Level 1-2:** MASO is a reference architecture. The ten [control domains](../maso/) provide the vocabulary for multi-agent security before you implement formal controls.
+**Level 1-2:** MASO is a reference architecture. The ten [control domains](../maso/README.md) provide the vocabulary for multi-agent security before you implement formal controls.
 
 **Level 3:** MASO becomes operational. [Tier 1 (Supervised)](../maso/implementation/tier-1-supervised.md) applies: all agent actions require human approval, communication is logged, monitoring is periodic.
 

@@ -10,7 +10,7 @@ This site covers a lot of ground. These curated paths help you find what matters
     If you need a short, opinionated list of controls to put in place before going live, start with [Minimum Viable AIRS](minimum-viable-airs.md). Seven controls, one checklist, one decision tree for whether you need to go deeper.
 
 !!! tip "Looking for role-based guidance?"
-    The [Stakeholder Views](stakeholders/) pages provide tailored entry points for security leaders, risk teams, architects, engineers, product owners, and more. Each one includes a starting path, concrete first actions, and answers to common objections.
+    The [Stakeholder Views](stakeholders/README.md) pages provide tailored entry points for security leaders, risk teams, architects, engineers, product owners, and more. Each one includes a starting path, concrete first actions, and answers to common objections.
 
 ## The Golden Thread: Guardrails, Judges, and Why They Work Together
 
@@ -73,7 +73,7 @@ Controls degrade. Attackers adapt. Models drift. The system only stays effective
 
 ### "I need to secure multi-agent systems"
 
-1. [MASO Framework overview](maso/)
+1. [MASO Framework overview](maso/README.md)
 2. [Prompt, Goal & Epistemic Integrity](maso/controls/prompt-goal-and-epistemic-integrity.md)
 3. [Identity & Access](maso/controls/identity-and-access.md)
 4. [Execution Control](maso/controls/execution-control.md)
@@ -88,7 +88,7 @@ Controls degrade. Attackers adapt. Models drift. The system only stays effective
 3. [AI Incident Playbook](extensions/templates/ai-incident-playbook.md)
 4. [Vendor Assessment Questionnaire](extensions/templates/vendor-assessment-questionnaire.md)
 5. [Model Card Template](extensions/templates/model-card-template.md)
-6. [Use Case Examples](extensions/examples/)
+6. [Use Case Examples](extensions/examples/README.md)
 
 ### "I want to see real-world examples"
 

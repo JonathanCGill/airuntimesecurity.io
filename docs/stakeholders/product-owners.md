@@ -6,7 +6,7 @@ description: "AIRS framework guide for product managers: quickly identify the co
 
 **Product Managers, Business Owners, Delivery Leads: quickly identify the controls you need, consciously deselect the ones you do not, and ship AI with proportionate security.**
 
-> *Part of [Stakeholder Views](README.md) · [AI Runtime Security](../)*
+> *Part of [Stakeholder Views](README.md) · [AI Runtime Security](../README.md)*
 
 ## The Problem You Have
 
@@ -73,7 +73,7 @@ The [Use Case Definition](../strategy/use-case-definition.md) provides ten quest
 | 4 | [Use Case Definition](../strategy/use-case-definition.md) | Ten questions that feed directly into security requirements |
 | 5 | [Checklist](../core/checklist.md) | Track your implementation - know what's done and what's left |
 
-**If you're planning AI strategy:** [From Strategy to Production](../strategy/) covers business alignment, data reality, human factors, and progression planning.
+**If you're planning AI strategy:** [From Strategy to Production](../strategy/README.md) covers business alignment, data reality, human factors, and progression planning.
 
 ## What You Can Do Monday Morning
 

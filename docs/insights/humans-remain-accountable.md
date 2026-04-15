@@ -1,5 +1,10 @@
 # Humans Remain Accountable
 
+<!-- golden-thread-nav -->
+!!! tip "Part of the Golden Thread (10 of 14)"
+    Previous: [When the Judge Can Be Fooled](../core/when-the-judge-can-be-fooled.md) · Next: [Infrastructure Beats Instructions](infrastructure-beats-instructions.md) · [See the full sequence](../reading-paths.md#the-golden-thread-guardrails-judges-and-why-they-work-together)
+<!-- golden-thread-nav -->
+
 *AI assists. Humans own outcomes.*
 
 There's a fantasy in AI deployment that goes like this: we'll automate the decisions, reduce headcount, and let the algorithms handle it.

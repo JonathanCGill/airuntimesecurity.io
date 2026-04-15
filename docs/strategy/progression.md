@@ -2,7 +2,7 @@
 
 *Moving from low-risk to high-risk AI - and why skipping steps is the most common strategic failure.*
 
-> Part of [From Strategy to Production](./)
+> Part of [From Strategy to Production](README.md)
 
 ## The Maturity Trap
 

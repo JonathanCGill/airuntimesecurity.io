@@ -84,7 +84,7 @@ The two-axis model above applies to single-model deployments. When **multiple ag
 
 Multi-agent systems fail differently. A single agent producing a bad output is a local problem. An agent chain where one compromised agent's output becomes another agent's trusted input is a systemic problem. PACE for multi-agent systems must handle cascading failures, not just component failures.
 
-The **[MASO Framework](maso/)** integrates PACE at the orchestration level:
+The **[MASO Framework](maso/README.md)** integrates PACE at the orchestration level:
 
 | PACE Phase | Multi-Agent Response |
 |---|---|
@@ -101,7 +101,7 @@ The **[MASO Framework](maso/)** integrates PACE at the orchestration level:
 
 **Recovery requires chain verification.** Stepping back from C→A or A→P isn't just "restart the failed component." The system must verify that no poisoned data from the compromised agent persists in other agents' memory, context, or RAG corpus.
 
-**→ [MASO PACE Implementation](maso/)** · [Tier 1](maso/implementation/tier-1-supervised.md) · [Tier 2](maso/implementation/tier-2-managed.md) · [Tier 3](maso/implementation/tier-3-autonomous.md)
+**→ [MASO PACE Implementation](maso/README.md)** · [Tier 1](maso/implementation/tier-1-supervised.md) · [Tier 2](maso/implementation/tier-2-managed.md) · [Tier 3](maso/implementation/tier-3-autonomous.md)
 
 ## Testing Your PACE Plan
 
@@ -126,7 +126,7 @@ For Tier 3 systems, testing should involve the same personnel who would handle a
 | [Controls](core/controls.md) | The three-layer architecture with integrated PACE resilience |
 | [Agentic](core/agentic.md) | Graceful degradation for autonomous agents |
 | [Risk Tiers](core/risk-tiers.md) | Classification that determines PACE requirements |
-| [MASO Framework](maso/) | PACE extended to multi-agent orchestration - agent failover, cascading failure response, kill switch architecture |
-| [Incident Playbook](extensions/templates) | Templates for Emergency layer activation |
+| [MASO Framework](maso/README.md) | PACE extended to multi-agent orchestration - agent failover, cascading failure response, kill switch architecture |
+| [Incident Playbook](extensions/templates/README.md) | Templates for Emergency layer activation |
 | [Infrastructure Beats Instructions](insights/infrastructure-beats-instructions.md) | Why the Emergency layer must be infrastructure, not prompts |
 

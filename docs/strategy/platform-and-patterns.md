@@ -2,7 +2,7 @@
 
 *Why standardising on approved platforms, trusted models, proven patterns, and consistent data access is the single biggest force multiplier for AI governance.*
 
-> Part of [From Strategy to Production](./)
+> Part of [From Strategy to Production](README.md)
 
 ## Why This Matters
 
@@ -106,7 +106,7 @@ A proven pattern is a reference architecture for a common AI use case type. It d
 | **Document Processing** | Extracting structured information from unstructured documents | Document parser + LLM + validation layer | Input validation, output schema enforcement, confidence scoring, human review for low-confidence |
 | **Classification / Routing** | Categorising inputs or routing to appropriate handlers | LLM or traditional NLP + rules engine | Classification accuracy monitoring, fallback routing, bias detection |
 | **Content Generation** | Producing text, summaries, or communications | LLM + output guardrails + human review | Tone/brand guardrails, factual accuracy evaluation, regulatory language checking |
-| **Agentic Workflow** | Multi-step tasks requiring tool use and autonomous action | Orchestrator + tools + [sandbox](../infrastructure/agentic/sandbox-patterns.md) + [delegation chain](../infrastructure/agentic/delegation-chains.md) | Action validation, sandbox enforcement, budget limits, human approval controls, [MASO controls](../maso/) |
+| **Agentic Workflow** | Multi-step tasks requiring tool use and autonomous action | Orchestrator + tools + [sandbox](../infrastructure/agentic/sandbox-patterns.md) + [delegation chain](../infrastructure/agentic/delegation-chains.md) | Action validation, sandbox enforcement, budget limits, human approval controls, [MASO controls](../maso/README.md) |
 
 Each pattern includes:
 - **Architecture diagram** - how the components connect

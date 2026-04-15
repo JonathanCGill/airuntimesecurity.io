@@ -6,7 +6,7 @@ description: "AIRS framework guide for CIOs and CTOs, covering how to govern AI 
 
 **CIOs, CTOs, VP Technology - how to govern AI across your technology portfolio when every product runs different agents with different risk profiles.**
 
-> *Part of [Stakeholder Views](README.md) · [AI Runtime Security](../)*
+> *Part of [Stakeholder Views](README.md) · [AI Runtime Security](../README.md)*
 
 ## The Problem You Have
 
@@ -75,7 +75,7 @@ When different products run different agent sets, you need shared infrastructure
 | **Agent identity platform** | Non-Human Identity (NHI) management for all agents across products | Consistent credential lifecycle; no per-product IAM silos |
 | **Common PACE fail postures** | Standardised degradation paths | Incident response works the same way regardless of which product fails |
 
-This is the platform approach applied to AI security. Individual product teams own their risk classification and business logic. The platform team owns the shared control infrastructure. See [Infrastructure Controls](../infrastructure/) for the 80-control mapping.
+This is the platform approach applied to AI security. Individual product teams own their risk classification and business logic. The platform team owns the shared control infrastructure. See [Infrastructure Controls](../infrastructure/README.md) for the 80-control mapping.
 
 ### Risk visibility for the board
 
@@ -103,9 +103,9 @@ Read these in order. Total time: ~90 minutes.
 | 4 | [Cost & Latency](../extensions/technical/cost-and-latency.md) | Budget the control layers - the numbers behind the portfolio cost model |
 | 5 | [Human Factors](../strategy/human-factors.md) | The skills gap that will determine whether your AI portfolio can actually be operated |
 
-**If you have multi-agent products:** Add [MASO Overview](../maso/) and [Multi-Agent Controls](../core/multi-agent-controls.md).
+**If you have multi-agent products:** Add [MASO Overview](../maso/README.md) and [Multi-Agent Controls](../core/multi-agent-controls.md).
 
-**If you're building a platform team:** Add [Infrastructure Controls](../infrastructure/) and [AI Governance Operating Model](../extensions/regulatory/ai-governance-operating-model.md).
+**If you're building a platform team:** Add [Infrastructure Controls](../infrastructure/README.md) and [AI Governance Operating Model](../extensions/regulatory/ai-governance-operating-model.md).
 
 **If you're presenting to the board:** Add [Risk Assessment](../core/risk-assessment.md) for the quantified methodology.
 

@@ -4,6 +4,11 @@ description: "How feedback loops between guardrails, judges, humans, and downstr
 
 # The Feedback Loops That Make It Work
 
+<!-- golden-thread-nav -->
+!!! tip "Part of the Golden Thread (12 of 14)"
+    Previous: [Infrastructure Beats Instructions](infrastructure-beats-instructions.md) · Next: [Architecture Overview](../ARCHITECTURE.md) · [See the full sequence](../reading-paths.md#the-golden-thread-guardrails-judges-and-why-they-work-together)
+<!-- golden-thread-nav -->
+
 *Guardrails prevent. Judges detect. Humans decide. But none of them improve on their own.*
 
 A runtime security system with guardrails, a Model-as-Judge, and human oversight looks good on a diagram. Three layers, each catching what the others miss. Ship it.

@@ -251,7 +251,7 @@ These risks are specific to autonomous agent behavior - the primary threat surfa
 
 ![PACE Multi-Agent Cycle](../images/pace-multi-agent-cycle.svg)
 
-The [PACE methodology](../) (Primary, Alternate, Contingency, Emergency) from the parent framework is extended for multi-agent failure modes.
+The [PACE methodology](../README.md) (Primary, Alternate, Contingency, Emergency) from the parent framework is extended for multi-agent failure modes.
 
 **Primary - Normal Operations.** All agents active within designated roles. Full three-layer security stack operational. Inter-agent communication through the signed message bus. Behavioral baselines actively monitored.
 
@@ -400,7 +400,7 @@ These questions come up in every MASO deployment. The answers sit across the fra
 
 ## Relationship to Parent Framework
 
-MASO is the multi-agent extension of [AI Runtime Security](../). It inherits the three-layer defence model, PACE resilience methodology, risk classification matrix, and regulatory mapping framework. It also inherits the core philosophy: controls are proportionate to risk, organisations select what they need based on their own context, and the goal is reducing harm rather than imposing process.
+MASO is the multi-agent extension of [AI Runtime Security](../README.md). It inherits the three-layer defence model, PACE resilience methodology, risk classification matrix, and regulatory mapping framework. It also inherits the core philosophy: controls are proportionate to risk, organisations select what they need based on their own context, and the goal is reducing harm rather than imposing process.
 
 It extends into multi-agent territory by addressing multi-model orchestration security, inter-agent communication integrity, the OWASP Agentic Top 10 (2026), compound risk dynamics, Non-Human Identity management, and kill switch architecture.
 

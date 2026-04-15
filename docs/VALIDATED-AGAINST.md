@@ -2,7 +2,7 @@
 
 **Every major control in this framework addresses a documented, public AI security failure. This page shows how.**
 
-> Part of [AI Runtime Security](./)
+> Part of [AI Runtime Security](README.md)
 > Last updated: March 2026
 
 ## How to Read This Page

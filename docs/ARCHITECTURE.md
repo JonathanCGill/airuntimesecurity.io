@@ -4,6 +4,11 @@ description: "AIRS Framework architecture: risk-proportionate, layered runtime c
 
 # Architecture Overview
 
+<!-- golden-thread-nav -->
+!!! tip "Part of the Golden Thread (13 of 14)"
+    Previous: [The Feedback Loops That Make It Work](insights/feedback-loops.md) · Next: [What Works](insights/what-works.md) · [See the full sequence](reading-paths.md#the-golden-thread-guardrails-judges-and-why-they-work-together)
+<!-- golden-thread-nav -->
+
 The goal of this architecture is to reduce harm caused by AI systems in production through layered controls that are proportionate to risk. Not every AI use case needs every control. The architecture provides risk-oriented paths so that AI product owners can quickly identify the controls they need and apply them, or consciously deselect the ones they do not need. Everything described here serves that goal.
 
 ![Three-layer runtime security: Guardrails, Model-as-Judge, Human Oversight](images/three-layer-simple.svg){ .arch-diagram }
@@ -33,7 +38,7 @@ For a single AI model - a chatbot, a document processor, an assistant - the thre
 
 Controls scale to risk tier. A low-risk internal tool needs minimal guardrails and self-certification ([Fast Lane](FAST-LANE.md)). A customer-facing agent handling regulated data needs the full architecture with mandatory human approval. The framework respects that every organisation has its own way of working, and lets you match controls to your context rather than imposing a single mandate.
 
-**→ [Foundation Framework](foundations/)** - the three-layer behavioural pattern (Guardrails, Judge, Human Oversight) with risk tiers and implementation checklists. Backed by 80 [infrastructure controls](infrastructure/) across 11 domains.
+**→ [Foundation Framework](foundations/README.md)** - the three-layer behavioural pattern (Guardrails, Judge, Human Oversight) with risk tiers and implementation checklists. Backed by 80 [infrastructure controls](infrastructure/README.md) across 11 domains.
 
 ## Multi-Agent Architecture
 
@@ -46,7 +51,7 @@ When multiple LLMs collaborate, delegate, and take autonomous actions, single-ag
 
 Multi-agent security requires per-agent identity, per-agent permissions, per-agent evaluation - plus controls for the interactions between them: message bus security, epistemic integrity, kill switch architecture.
 
-**→ [MASO Framework](maso/)** - controls across 10 domains, 3 implementation tiers, full OWASP dual coverage
+**→ [MASO Framework](maso/README.md)** - controls across 10 domains, 3 implementation tiers, full OWASP dual coverage
 
 ## PACE Resilience
 

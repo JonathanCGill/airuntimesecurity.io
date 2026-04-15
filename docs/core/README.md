@@ -6,7 +6,7 @@ description: Core implementation guide for AI runtime security controls includin
 
 Reducing harm caused by AI systems in production through risk-proportionate controls that you select, adapt, or consciously deselect based on your risk appetite and the way your organisation works.
 
-> *This is the implementation companion to the [Foundation overview](../foundations/). The Foundation explains the architecture and principles. This section contains the risk classification criteria, control definitions, checklists, and specialised controls you need to implement them. Start with the essentials. Branch into specialised topics based on your deployment. Deselect what does not apply.*
+> *This is the implementation companion to the [Foundation overview](../foundations/README.md). The Foundation explains the architecture and principles. This section contains the risk classification criteria, control definitions, checklists, and specialised controls you need to implement them. Start with the essentials. Branch into specialised topics based on your deployment. Deselect what does not apply.*
 
 ## Reading Order
 
@@ -29,7 +29,7 @@ Start with the essentials, then branch into specialised topics based on your dep
 | Reasoning models (chain-of-thought) | [Reasoning Model Controls](reasoning-model-controls.md) |
 | Streaming responses | [Streaming Controls](streaming-controls.md) |
 | Persistent memory or long context | [Memory and Context](memory-and-context.md) |
-| Multi-agent systems | [Multi-Agent Controls](multi-agent-controls.md) then [MASO](../maso/) |
+| Multi-agent systems | [Multi-Agent Controls](multi-agent-controls.md) then [MASO](../maso/README.md) |
 | Open-weight / self-hosted models | [Open-Weight Models](../insights/open-weight-models-shift-the-burden.md) |
 
 **PACE resilience (read after controls):**
@@ -160,10 +160,10 @@ What has been missing: clear guidance on *why* this pattern is necessary and *ho
 
 | Folder | Contents |
 |--------|----------|
-| [regulatory/](../extensions/regulatory/) | ISO 42001, EU AI Act mapping |
-| [technical/](../extensions/technical/) | Bypass prevention, infrastructure, metrics |
-| [templates/](../extensions/templates/) | Playbooks, threat models |
-| [examples/](../extensions/examples/) | Worked examples |
+| [regulatory/](../extensions/regulatory/README.md) | ISO 42001, EU AI Act mapping |
+| [technical/](../extensions/technical/README.md) | Bypass prevention, infrastructure, metrics |
+| [templates/](../extensions/templates/README.md) | Playbooks, threat models |
+| [examples/](../extensions/examples/README.md) | Worked examples |
 
 ## Key Principles
 

@@ -1,5 +1,10 @@
 # Containment Through Declared Intent
 
+<!-- golden-thread-nav -->
+!!! tip "Part of the Golden Thread (2 of 14)"
+    Previous: [Why AI Security Is a Runtime Problem](why-ai-security-is-a-runtime-problem.md) · Next: [Process-Aware Evaluation](process-aware-evaluation.md) · [See the full sequence](../reading-paths.md#the-golden-thread-guardrails-judges-and-why-they-work-together)
+<!-- golden-thread-nav -->
+
 *If you know what an agent is supposed to do, every layer of defence has a reference point.*
 
 ## The Theory

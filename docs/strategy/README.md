@@ -6,7 +6,7 @@ description: Guided path from business problem identification through governed A
 
 *The guided path from "we have a business problem" to "we have a governed AI system in production" - and how to keep it honest after launch.*
 
-> Part of [AI Runtime Security](../)
+> Part of [AI Runtime Security](../README.md)
 
 ## What This Section Does
 

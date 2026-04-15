@@ -4,6 +4,11 @@ description: "Why AI security must shift from pre-deployment testing to continuo
 
 # Why AI Security Is a Runtime Problem
 
+<!-- golden-thread-nav -->
+!!! tip "Part of the Golden Thread (1 of 14)"
+    Next: [Containment Through Declared Intent](containment-through-intent.md) · [See the full sequence](../reading-paths.md#the-golden-thread-guardrails-judges-and-why-they-work-together)
+<!-- golden-thread-nav -->
+
 *You cannot fully test a non-deterministic system before deployment. Security must shift from "prove it works" to "continuously verify it's working."*
 
 ## The Assumption That Doesn't Hold

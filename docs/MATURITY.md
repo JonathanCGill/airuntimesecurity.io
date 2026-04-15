@@ -2,7 +2,7 @@
 
 **An honest assessment of what this reference is, what it's validated against, and where the gaps are.**
 
-> Part of [AI Runtime Security](./)
+> Part of [AI Runtime Security](README.md)
 > Last updated: February 2026
 
 ## Status

@@ -6,7 +6,7 @@ description: "AIRS framework guide for CISOs and security directors, focused on 
 
 **CISOs, Security Directors, Security Architects - what this framework means for your security programme.**
 
-> *Part of [Stakeholder Views](README.md) · [AI Runtime Security](../)*
+> *Part of [Stakeholder Views](README.md) · [AI Runtime Security](../README.md)*
 
 ## The Problem You Have
 
@@ -63,7 +63,7 @@ Read these in order. Total time: ~90 minutes.
 | 4 | [Risk Assessment](../core/risk-assessment.md) | Quantitative methodology for board-level risk reporting |
 | 5 | [PACE Resilience](../PACE-RESILIENCE.md) | Fail postures - what happens when each control layer degrades |
 
-**If you have multi-agent systems:** Add [MASO Overview](../maso/) and the [Red Team Playbook](../maso/red-team/red-team-playbook.md).
+**If you have multi-agent systems:** Add [MASO Overview](../maso/README.md) and the [Red Team Playbook](../maso/red-team/red-team-playbook.md).
 
 **If you run a SOC:** Add [SOC Integration](../extensions/technical/soc-integration.md) and [Behavioral Anomaly Detection](../extensions/technical/behavioral-anomaly-detection.md).
 

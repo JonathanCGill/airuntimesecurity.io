@@ -1,5 +1,10 @@
 # The Judge Detects. It Doesn't Decide.
 
+<!-- golden-thread-nav -->
+!!! tip "Part of the Golden Thread (7 of 14)"
+    Previous: [Practical Guardrails](practical-guardrails.md) · Next: [Judge Assurance](../core/judge-assurance.md) · [See the full sequence](../reading-paths.md#the-golden-thread-guardrails-judges-and-why-they-work-together)
+<!-- golden-thread-nav -->
+
 *Why using LLMs to block transactions is a mistake*
 
 When teams discover that guardrails miss things, the instinct is to add another AI layer that can catch what rules-based systems can't. An LLM that evaluates every transaction. If it spots a problem, block it.

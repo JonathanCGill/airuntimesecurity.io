@@ -121,7 +121,7 @@ Use this decision tree to decide where to invest next. Any *yes* answer means yo
 | Does the feature face external customers or the general public? | Read [Why Guardrails Aren't Enough](insights/why-guardrails-arent-enough.md), then add a [Model-as-Judge](core/judge-assurance.md) layer for output evaluation. |
 | Does the feature process regulated data (PII, financial, health, legal)? | Walk through the [Risk Tiers](core/risk-tiers.md) to classify the deployment, then map controls with the [Implementation Checklist](core/checklist.md). |
 | Does the feature take actions against external systems without a human in the loop? | Read [Infrastructure Beats Instructions](insights/infrastructure-beats-instructions.md) and apply [Tool Access Controls](infrastructure/agentic/tool-access-controls.md). |
-| Is there more than one agent, or does the feature delegate to other agents? | Start with the [MASO Framework](maso/) for multi-agent controls. |
+| Is there more than one agent, or does the feature delegate to other agents? | Start with the [MASO Framework](maso/README.md) for multi-agent controls. |
 | Do outputs influence decisions that are hard or impossible to reverse? | Build a [Human Oversight](stakeholders/security-leaders.md) path before you go live, not after. |
 | Are you operating under the EU AI Act, ISO 42001, or sector-specific AI regulation? | Start with the relevant [regulatory crosswalk](extensions/regulatory/eu-ai-act-crosswalk.md) and align your controls to the obligations. |
 

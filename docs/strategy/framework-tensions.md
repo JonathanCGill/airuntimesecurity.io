@@ -6,7 +6,7 @@ description: "Where the security framework supports strategy, where it constrain
 
 *Where this framework supports strategy, where it's silent, and where it actively constrains strategic choices.*
 
-> Part of [From Strategy to Production](./)
+> Part of [From Strategy to Production](README.md)
 
 ## The Nature of the Tension
 
@@ -60,7 +60,7 @@ The single biggest strategic benefit of the framework is the [Fast Lane](../FAST
 
 ### 4. Standards Alignment De-Risks Regulatory Strategy
 
-The framework's [regulatory crosswalks](../extensions/regulatory/) map controls to NIST AI RMF, ISO 42001, EU AI Act, and other standards. This supports strategy by:
+The framework's [regulatory crosswalks](../extensions/regulatory/README.md) map controls to NIST AI RMF, ISO 42001, EU AI Act, and other standards. This supports strategy by:
 
 - Reducing regulatory uncertainty ("if we do X, we're aligned with Y standard")
 - Making compliance investment count for multiple regulations
@@ -192,7 +192,7 @@ These are experiments, not production systems. The risk is genuinely low because
 
 ### 5. Multi-Agent Progression Isn't Addressed
 
-The framework's [MASO section](../maso/) covers multi-agent security in detail. But the progression from single-agent to multi-agent isn't mapped.
+The framework's [MASO section](../maso/README.md) covers multi-agent security in detail. But the progression from single-agent to multi-agent isn't mapped.
 
 An organisation with mature Tier 2 single-agent deployments wants to introduce multi-agent orchestration. The MASO framework starts at Tier 1 (Supervised - all writes require human approval). But the organisation's single-agent capability is already beyond this.
 

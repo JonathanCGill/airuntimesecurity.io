@@ -6,7 +6,7 @@ description: "A day in the life of an enterprise operating agentic AI under the 
 
 **What a single day looks like when an enterprise with multiple departments, data classifications, and risk tiers operates agentic AI under the framework.**
 
-> *Part of [From Strategy to Production](./) · [AI Runtime Security](../)*
+> *Part of [From Strategy to Production](README.md) · [AI Runtime Security](../README.md)*
 
 ## The Enterprise
 
@@ -348,7 +348,7 @@ The CIO's review identified that the human review team is at 78% utilisation and
 
 ### 7. Multi-agent systems need multi-agent controls
 
-The Finance and Claims systems run multi-agent orchestrations with per-agent identity, inter-agent message signing, delegation chain auditing, and independent failure domains. These controls don't exist in single-agent deployments because the risks don't exist. The [MASO Framework](../maso/) provides the ten control domains.
+The Finance and Claims systems run multi-agent orchestrations with per-agent identity, inter-agent message signing, delegation chain auditing, and independent failure domains. These controls don't exist in single-agent deployments because the risks don't exist. The [MASO Framework](../maso/README.md) provides the ten control domains.
 
 ---
 

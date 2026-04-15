@@ -119,7 +119,7 @@ This creates emergent risks that do not exist in single-agent systems:
 - **Confused deputy.** An agent acts on behalf of another agent, using its own credentials but following potentially manipulated instructions.
 - **Coordination failures.** Agents make conflicting assumptions, duplicate work, or deadlock waiting for each other.
 
-For controls designed specifically for these failure modes, see [Multi-Agent Controls](core/multi-agent-controls.md) and the [MASO Framework](maso/).
+For controls designed specifically for these failure modes, see [Multi-Agent Controls](core/multi-agent-controls.md) and the [MASO Framework](maso/README.md).
 
 ## Why This Architecture Creates Security Challenges
 
@@ -135,12 +135,12 @@ Traditional software security assumes deterministic behaviour, inspectable logic
 
 **Credential aggregation.** An agent accumulates the permissions of every tool it can access. Compromise of the agent compromises everything it can reach.
 
-This is why agents require runtime security, not just pre-deployment testing. The [AIRS Architecture](ARCHITECTURE.md) provides the layered control model. [MASO](maso/) extends it for multi-agent systems. Both start from the same premise: you must control what agents can do, not just what they are told to do.
+This is why agents require runtime security, not just pre-deployment testing. The [AIRS Architecture](ARCHITECTURE.md) provides the layered control model. [MASO](maso/README.md) extends it for multi-agent systems. Both start from the same premise: you must control what agents can do, not just what they are told to do.
 
 !!! info "References"
     - [Agentic AI Controls](core/agentic.md)
     - [AIRS Architecture Overview](ARCHITECTURE.md)
-    - [MASO Framework](maso/)
+    - [MASO Framework](maso/README.md)
     - [The MCP Problem](insights/the-mcp-problem.md)
     - [The Memory Problem](insights/the-memory-problem.md)
     - [Infrastructure Beats Instructions](insights/infrastructure-beats-instructions.md)

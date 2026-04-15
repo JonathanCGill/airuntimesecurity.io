@@ -6,7 +6,7 @@ description: "The human constraints in AI strategy: skills gaps, learning capaci
 
 *Skills, time, learning capacity, and the organisational readiness nobody wants to audit.*
 
-> Part of [From Strategy to Production](./)
+> Part of [From Strategy to Production](README.md)
 
 ## The Missing Variable
 

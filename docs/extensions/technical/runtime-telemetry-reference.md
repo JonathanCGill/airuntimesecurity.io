@@ -6,7 +6,7 @@ description: "End-to-end runtime telemetry reference: one transaction through ev
 
 **One transaction, end-to-end. Every control layer. Every log event. Every threshold.**
 
-> *Part of [Technical Extensions](README.md) · [AI Runtime Security](../../)*
+> *Part of [Technical Extensions](README.md) · [AI Runtime Security](../../README.md)*
 
 ## Purpose
 

@@ -2,7 +2,7 @@
 
 *How strategy, use case definition, solution filtering, security design, and continuous monitoring connect into a single, unbroken lifecycle.*
 
-> Part of [From Strategy to Production](./)
+> Part of [From Strategy to Production](README.md)
 
 ## Why This Article Exists
 

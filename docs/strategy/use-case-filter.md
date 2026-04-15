@@ -6,7 +6,7 @@ description: "A structured decision flow for determining whether AI is the right
 
 *A structured decision flow for determining whether AI is the right solution - and what to use instead when it isn't.*
 
-> Part of [From Strategy to Production](./)
+> Part of [From Strategy to Production](README.md)
 
 ## Why This Exists
 
@@ -193,7 +193,7 @@ This is the boundary between a generative AI application and an agentic AI syste
 | Attribute | Value |
 |-----------|-------|
 | Risk profile | High–Critical |
-| Framework applies? | Yes - full framework + [MASO](../maso/) |
+| Framework applies? | Yes - full framework + [MASO](../maso/README.md) |
 | Examples | Automated research workflows, autonomous customer resolution, multi-system orchestration |
 | Typical cost | High build, high operate |
 | Maintenance | All of the above + agent coordination, sandbox management, action validation |

@@ -58,7 +58,7 @@ IR 8596 emphasises AI governance, risk strategy, roles/responsibilities, policy,
 |---|---|---|
 | Organisational context for AI risk management | [Risk Tiers](../../core/risk-tiers.md), four-level classification (LOW/MEDIUM/HIGH/CRITICAL) based on six dimensions | **Strong** |
 | AI risk appetite and tolerance statements | Risk tier boundaries define tolerance per deployment category | **Strong** |
-| Roles and responsibilities for AI cybersecurity | [Human Oversight](../../foundations/) layer, escalation paths, [AI Governance Operating Model](ai-governance-operating-model.md) (three lines) | **Strong** |
+| Roles and responsibilities for AI cybersecurity | [Human Oversight](../../foundations/README.md) layer, escalation paths, [AI Governance Operating Model](ai-governance-operating-model.md) (three lines) | **Strong** |
 | AI-specific policy establishment and enforcement | Controls registry enforces policy at infrastructure layer | **Strong** |
 | Oversight and continuous improvement | [PACE Resilience](../../PACE-RESILIENCE.md), post-incident review (IR-07, IR-08) | **Strong** |
 | AI supply chain risk management | [Supply Chain controls](../../maso/controls/supply-chain.md) (SC-1.1 through SC-3.4), AIBOM, signed manifests, model provenance | **Strong** |
@@ -72,7 +72,7 @@ IR 8596 urges organisations to maintain inventories covering models, agents, API
 | IR 8596 Emphasis | AIRS Coverage | Assessment |
 |---|---|---|
 | AI asset inventory (models, agents, APIs, datasets) | SC-05 (Asset inventory), model registry, risk tier classification per deployment | **Strong** |
-| End-to-end AI data flow mapping | [Network & Segmentation](../../infrastructure/) controls, three-layer pipeline data flow documentation | **Strong** |
+| End-to-end AI data flow mapping | [Network & Segmentation](../../infrastructure/README.md) controls, three-layer pipeline data flow documentation | **Strong** |
 | AI-specific vulnerability identification | Guardrail patterns (prompt injection, jailbreak vectors), [Red Team Playbook](../../maso/red-team/red-team-playbook.md) (RT-01 through RT-13) | **Strong** |
 | AI-specific threat identification | [Threat Intelligence Review](../../maso/threat-intelligence/threat-intelligence-review.md), [Incident Tracker](../../maso/threat-intelligence/incident-tracker.md), [Emerging Threats](../../maso/threat-intelligence/emerging-threats.md) | **Strong** |
 | Risk assessment incorporating AI-specific factors | Six-dimension risk scoring, tier-based control selection | **Strong** |
@@ -86,10 +86,10 @@ IR 8596 focuses on data provenance and integrity for training and input data, ex
 | IR 8596 Emphasis | AIRS Coverage | Assessment |
 |---|---|---|
 | Training/input data provenance and integrity | SC-01 (Provenance verification), SC-02 (Integrity checking) | **Strong** |
-| AI-specific identity and access management | [Identity & Access Management](../../infrastructure/) controls, [MASO Identity & Access](../../maso/controls/identity-and-access.md) | **Strong** |
+| AI-specific identity and access management | [Identity & Access Management](../../infrastructure/README.md) controls, [MASO Identity & Access](../../maso/controls/identity-and-access.md) | **Strong** |
 | Data-in-use protection (context windows, inference) | PR.DS-10 mapped to Session & Scope controls, guardrail layer | **Strong**: identified as "Key AI subcategory" in CSF 2.0 mapping |
-| Least privilege for AI agents and tools | [Tool Access](../../infrastructure/) controls, TA-based least-privilege, MASO IA-2.3 (no transitive permissions) | **Strong** |
-| AI-specific logging and monitoring | [Logging & Observability](../../infrastructure/), prompts, responses, guardrail decisions, Judge evaluations, tool invocations | **Strong** |
+| Least privilege for AI agents and tools | [Tool Access](../../infrastructure/README.md) controls, TA-based least-privilege, MASO IA-2.3 (no transitive permissions) | **Strong** |
+| AI-specific logging and monitoring | [Logging & Observability](../../infrastructure/README.md), prompts, responses, guardrail decisions, Judge evaluations, tool invocations | **Strong** |
 | Model and data supply chain extension | Supply Chain controls, AIBOM, dependency scanning | **Strong** |
 | AI-specific contractual terms with suppliers | SC controls specify provider requirements | **Moderate**: present but could be more prescriptive |
 | Infrastructure resilience for AI systems | Circuit breakers, fallback models, PACE degradation | **Strong** |
@@ -115,7 +115,7 @@ IR 8596 emphasises extending incident response to AI-specific scenarios, includi
 
 | IR 8596 Emphasis | AIRS Coverage | Assessment |
 |---|---|---|
-| AI-specific incident response playbooks | [Incident Response](../../infrastructure/) controls, AI-specific playbooks for model compromise, prompt injection campaigns, agent misbehaviour | **Strong** |
+| AI-specific incident response playbooks | [Incident Response](../../infrastructure/README.md) controls, AI-specific playbooks for model compromise, prompt injection campaigns, agent misbehaviour | **Strong** |
 | AI-specific containment (circuit breakers, tool revocation) | Circuit breakers disable model endpoints, TA controls revoke tool access, NS controls isolate segments | **Strong** |
 | AI-specific eradication (model rollback, cache purge) | Model rollback, guardrail/Judge criteria reset, credential rotation, cache purge procedures | **Strong** |
 | Supplier coordination during AI incidents | IR controls specify notification to model providers | **Moderate** |
@@ -187,7 +187,7 @@ Despite strong overall alignment, the review identified areas where the framewor
 
 **Current state:** The CSF 2.0 mapping marks these as "Organisational practice, not infrastructure control" and out of scope. This is reasonable for a controls framework, but IR 8596 assigns these moderate priority with AI-specific considerations (e.g., training staff to recognise AI-generated content, understanding AI-specific attack vectors).
 
-**Recommendation:** Consider adding a brief note in the [Human Oversight](../../foundations/) documentation that effective human oversight depends on trained reviewers who understand AI-specific risks (hallucination patterns, prompt injection indicators, confidence calibration). This doesn't require new controls but acknowledges the dependency.
+**Recommendation:** Consider adding a brief note in the [Human Oversight](../../foundations/README.md) documentation that effective human oversight depends on trained reviewers who understand AI-specific risks (hallucination patterns, prompt injection indicators, confidence calibration). This doesn't require new controls but acknowledges the dependency.
 
 **Priority:** Low. Valid scoping decision. Brief acknowledgement would strengthen completeness.
 
@@ -211,7 +211,7 @@ IR 8596, as a CSF profile, is outcome-oriented: it describes *what* to achieve. 
 
 ### 2. Multi-Agent Security
 
-IR 8596 does not specifically address multi-agent system risks. AIRS's [MASO framework](../../maso/) provides controls across 10 domains specifically for multi-agent orchestration, covering epistemic integrity, cross-agent data fencing, delegation tracking, privileged agent governance, model cognition assurance, agentic task contracts, and objective intent. As agentic AI adoption accelerates, this is a significant area where AIRS provides guidance that IR 8596 does not yet cover.
+IR 8596 does not specifically address multi-agent system risks. AIRS's [MASO framework](../../maso/README.md) provides controls across 10 domains specifically for multi-agent orchestration, covering epistemic integrity, cross-agent data fencing, delegation tracking, privileged agent governance, model cognition assurance, agentic task contracts, and objective intent. As agentic AI adoption accelerates, this is a significant area where AIRS provides guidance that IR 8596 does not yet cover.
 
 ### 3. Operational Resilience Patterns
 

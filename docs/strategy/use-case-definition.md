@@ -2,7 +2,7 @@
 
 *What makes a good AI use case definition from a security and governance perspective - and how to translate one into a risk profile, control set, and operating model.*
 
-> Part of [From Strategy to Production](./)
+> Part of [From Strategy to Production](README.md)
 
 ## Why Use Case Definition Matters
 
@@ -30,7 +30,7 @@ A workable use case definition answers ten questions. Each directly determines a
 | 4 | **Who are the users?** | Audience dimension → risk tier, access controls | [Identity & Access](../infrastructure/controls/identity-and-access.md) |
 | 5 | **What happens when it's wrong?** | Reversibility dimension → risk tier, PACE plan | [PACE Resilience](../PACE-RESILIENCE.md) |
 | 6 | **What's the expected volume?** | Operational sizing - HITL staffing, Judge compute, logging storage | [Governance Model](../extensions/regulatory/ai-governance-operating-model.md) |
-| 7 | **What regulatory context applies?** | Regulatory dimension → risk tier, compliance controls | [Regulatory Extensions](../extensions/regulatory/) |
+| 7 | **What regulatory context applies?** | Regulatory dimension → risk tier, compliance controls | [Regulatory Extensions](../extensions/regulatory/README.md) |
 | 8 | **What tools or actions can it take?** | Agentic scope → agentic controls, execution boundaries | [Agentic Controls](../core/agentic.md) |
 | 9 | **Where does it sit in the business process?** | Integration points, upstream/downstream dependencies | [Threat Model Template](../extensions/templates/threat-model-template.md) |
 | 10 | **Who is accountable for its outputs?** | Governance ownership, HITL escalation, incident response | [Governance Operating Model](../extensions/regulatory/ai-governance-operating-model.md) |
@@ -533,7 +533,7 @@ For practical use. Complete each section before submitting for risk classificati
 The framework defines risk tiers and controls but doesn't bridge the gap between "we have an idea for AI" and "here's the risk profile and required controls." This article fills that gap.
 
 **Where the framework should evolve:**
-- A formal use case definition template added to [extensions/templates/](../extensions/templates/)
+- A formal use case definition template added to [extensions/templates/](../extensions/templates/README.md)
 - Risk tier classification referencing this structured input
 - AI-assisted classification guidance incorporated into the [control selection guide](../extensions/technical/control-selection-guide.md)
 - The [model card template](../extensions/templates/model-card-template.md) extended with use case definition fields

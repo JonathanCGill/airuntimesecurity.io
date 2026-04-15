@@ -2,7 +2,7 @@
 
 *Your data determines your strategy more than your ambition does.*
 
-> Part of [From Strategy to Production](./)
+> Part of [From Strategy to Production](README.md)
 
 ## The Data Assumption
 

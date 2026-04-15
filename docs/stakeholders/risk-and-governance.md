@@ -6,7 +6,7 @@ description: "AIRS framework guide for CROs and risk managers, covering how to q
 
 **CROs, Risk Managers, GRC Teams - how to quantify AI risk, set appetite, and demonstrate control effectiveness to the board.**
 
-> *Part of [Stakeholder Views](README.md) · [AI Runtime Security](../)*
+> *Part of [Stakeholder Views](README.md) · [AI Runtime Security](../README.md)*
 
 ## Executive Summary
 

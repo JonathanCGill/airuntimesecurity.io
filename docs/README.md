@@ -128,14 +128,6 @@ Each layer operates independently. No single failure compromises the system.
 
 ---
 
-## The Problem AIRS Solves
-
-AI security focuses almost entirely on the model layer: training data, prompt injection, pre-deployment red-teaming. This misses the point. The risk that matters is what the model *does* at runtime, in production, with real data and real users. Guardrails alone are a single point of failure. Process gates slow delivery without reducing harm. In every other security domain we layer controls and assume any single one will fail. AI security has not caught up.
-
-[Why AI security is a runtime problem](insights/why-ai-security-is-a-runtime-problem.md)
-
----
-
 ## Insights
 
 The *why* before the *how*. Each article identifies a specific problem that the controls then solve.

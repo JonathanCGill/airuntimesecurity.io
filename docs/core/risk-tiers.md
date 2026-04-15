@@ -165,7 +165,7 @@ Some framework documents, particularly [PACE](pace-controls-section.md) and spec
 
 **When in doubt, use the four-tier system.** The simplified tiers are for operational guidance (PACE resilience, testing cadence, fail posture) where the distinction between LOW and MEDIUM or HIGH and CRITICAL is less material than the distinction between internal/customer-facing/regulated.
 
-The [MASO Framework](../maso/) also uses Tier 1/2/3 for multi-agent **autonomy levels** (Supervised → Managed → Autonomous), which is a separate dimension from risk classification.
+The [MASO Framework](../maso/README.md) also uses Tier 1/2/3 for multi-agent **autonomy levels** (Supervised → Managed → Autonomous), which is a separate dimension from risk classification.
 
 ## Related
 
@@ -174,7 +174,7 @@ The [MASO Framework](../maso/) also uses Tier 1/2/3 for multi-agent **autonomy l
 | Low-risk systems that skip the full review | [Fast Lane](../FAST-LANE.md) - self-certification for internal, read-only, no regulated data |
 | Cost implications of each tier | [Cost & Latency](../extensions/technical/cost-and-latency.md) - security overhead is 15–40% at Tier 2, 40–100% at Tier 3 |
 | Quantitative risk scoring | [Risk Assessment](risk-assessment.md) - six-dimension scoring for board reporting |
-| Multi-agent tier progression | [MASO Implementation Tiers](../maso/) - Supervised → Managed → Autonomous |
+| Multi-agent tier progression | [MASO Implementation Tiers](../maso/README.md) - Supervised → Managed → Autonomous |
 
 ## Tier Changes
 

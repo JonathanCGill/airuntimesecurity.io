@@ -4,6 +4,11 @@ description: "Adversarial failure modes for Model-as-Judge evaluation, including
 
 # When the Judge Can Be Fooled
 
+<!-- golden-thread-nav -->
+!!! tip "Part of the Golden Thread (9 of 14)"
+    Previous: [Judge Assurance](judge-assurance.md) · Next: [Humans Remain Accountable](../insights/humans-remain-accountable.md) · [See the full sequence](../reading-paths.md#the-golden-thread-guardrails-judges-and-why-they-work-together)
+<!-- golden-thread-nav -->
+
 > *This document uses the simplified three-tier system (Tier 1/2/3). See [Risk Tiers - Simplified Tier Mapping](risk-tiers.md#simplified-tier-mapping) for the mapping to LOW/MEDIUM/HIGH/CRITICAL.*
 
 **The Model-as-Judge pattern works because it provides independent evaluation. But the Judge is itself an LLM - and LLMs can be manipulated.**

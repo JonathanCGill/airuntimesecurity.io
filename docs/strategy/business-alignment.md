@@ -6,7 +6,7 @@ description: "Aligning AI investments to business problems: why most AI mismatch
 
 *How to match AI investments to business problems - and why most mismatches are strategic, not technical.*
 
-> Part of [From Strategy to Production](./)
+> Part of [From Strategy to Production](README.md)
 
 ## The Alignment Problem Nobody Talks About
 
@@ -311,7 +311,7 @@ This is how mature organisations handle the tension between innovation and contr
 
 ### Reality 3: Some Constraints Are External
 
-Regulatory requirements are not negotiable within the organisation. If the EU AI Act classifies your use case as high-risk, you need the controls the Act specifies - regardless of what this framework says. The framework's [regulatory crosswalks](../extensions/regulatory/) help identify where external constraints apply.
+Regulatory requirements are not negotiable within the organisation. If the EU AI Act classifies your use case as high-risk, you need the controls the Act specifies - regardless of what this framework says. The framework's [regulatory crosswalks](../extensions/regulatory/README.md) help identify where external constraints apply.
 
 ## Common Strategic Mistakes
 

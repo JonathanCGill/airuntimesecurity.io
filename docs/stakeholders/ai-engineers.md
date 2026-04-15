@@ -6,7 +6,7 @@ description: "AIRS framework guide for ML engineers and AI developers, covering 
 
 **ML Engineers, AI Developers, Data Scientists, Platform Engineers - implementation patterns, not governance theory.**
 
-> *Part of [Stakeholder Views](README.md) · [AI Runtime Security](../)*
+> *Part of [Stakeholder Views](README.md) · [AI Runtime Security](../README.md)*
 
 ## The Problem You Have
 

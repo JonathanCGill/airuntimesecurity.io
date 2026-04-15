@@ -213,7 +213,7 @@ If your agents **communicate, delegate, or act autonomously**, you need addition
 - Transitive authority creating unintended privilege escalation
 - Consensus that looks like independent validation but isn't
 
-The **[MASO Framework](maso/)** extends this pattern into multi-agent orchestration. Start with [Tier 1 - Supervised](maso/implementation/tier-1-supervised.md) and graduate upward as your controls mature.
+The **[MASO Framework](maso/README.md)** extends this pattern into multi-agent orchestration. Start with [Tier 1 - Supervised](maso/implementation/tier-1-supervised.md) and graduate upward as your controls mature.
 
 ## Common Mistakes
 
@@ -231,11 +231,11 @@ The **[MASO Framework](maso/)** extends this pattern into multi-agent orchestrat
 |------|-------|
 | Understand the pattern | [Core Framework](core/README.md) |
 | See available tools | [Current Solutions](extensions/technical/current-solutions.md) |
-| See examples | [Worked Examples](extensions/examples/) |
-| Deep-dive technical | [Technical Controls](extensions/technical/) |
-| Map to regulations | [Regulatory Extensions](extensions/regulatory/) |
+| See examples | [Worked Examples](extensions/examples/README.md) |
+| Deep-dive technical | [Technical Controls](extensions/technical/README.md) |
+| Map to regulations | [Regulatory Extensions](extensions/regulatory/README.md) |
 | Test your controls | [Testing Guidance](extensions/templates/testing-guidance.md) |
-| **Secure multi-agent systems** | **[MASO Framework](maso/)** |
+| **Secure multi-agent systems** | **[MASO Framework](maso/README.md)** |
 
 ## The Key Insight
 

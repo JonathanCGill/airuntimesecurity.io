@@ -4,6 +4,11 @@ description: "Where AI security controls are measurably reducing harm: evidence 
 
 # What's Working: Where Controls Are Reducing Harm
 
+<!-- golden-thread-nav -->
+!!! tip "Part of the Golden Thread (14 of 14)"
+    Previous: [Architecture Overview](../ARCHITECTURE.md) · [See the full sequence](../reading-paths.md#the-golden-thread-guardrails-judges-and-why-they-work-together)
+<!-- golden-thread-nav -->
+
 > *"People often call me an optimist, because I show them the enormous progress they didn't know about. That makes me angry. I'm not an optimist. That makes me sound naive. I'm a very serious 'possibilist'."*
 > - Hans Rosling
 

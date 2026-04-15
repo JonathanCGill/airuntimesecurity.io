@@ -6,7 +6,7 @@ description: "AIRS framework guide for compliance officers and legal counsel, co
 
 **Compliance Officers, Legal Counsel, DPOs, Audit Teams - how this framework maps to your regulatory obligations and produces the evidence you need.**
 
-> *Part of [Stakeholder Views](README.md) · [AI Runtime Security](../)*
+> *Part of [Stakeholder Views](README.md) · [AI Runtime Security](../README.md)*
 
 ## The Problem You Have
 
@@ -34,7 +34,7 @@ The framework maps its controls to the standards you're already tracking:
 | **NIST CSF 2.0** | [CSF 2.0 Mapping](../infrastructure/mappings/csf-2.0.md) | Cybersecurity framework function alignment |
 | **NIST IR 8596** | [IR 8596 Alignment](../extensions/regulatory/nist-ir-8596-alignment.md) | Cyber AI Profile: all six CSF Functions for "Secure" focus area |
 | **OWASP LLM Top 10** | [OWASP Mapping](../infrastructure/mappings/owasp-llm-top10.md) | Full control mapping to all 10 risks |
-| **DORA** | Referenced in [MASO](../maso/) | Digital operational resilience for financial services |
+| **DORA** | Referenced in [MASO](../maso/README.md) | Digital operational resilience for financial services |
 
 These are **control-level crosswalks**, not executive summaries. They map specific framework controls to specific regulatory requirements, giving you the traceability auditors expect.
 

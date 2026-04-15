@@ -6,7 +6,7 @@ description: "End-to-end AI lifecycle: from initial idea through risk classifica
 
 *The end-to-end process: strategy to use case to tool selection to risk tiering to deployment to ongoing governance. One flow, no gaps.*
 
-> Part of [From Strategy to Production](./)
+> Part of [From Strategy to Production](README.md)
 
 ## Why This Matters
 
@@ -135,7 +135,7 @@ This stage explicitly evaluates alternatives. The framework's [first control](..
 | **RPA / workflow automation** | Structured, repeatable processes; UI-based integration | Low - deterministic, auditable | Outside framework scope |
 | **Traditional ML** | Pattern recognition on structured data; classification, regression | Low–Medium - predictable, testable | Partial framework (monitoring, bias) |
 | **LLM / Generative AI** | Unstructured input, natural language, content generation | Medium–Critical (depends on use case) | Full framework applies |
-| **Multi-agent AI** | Complex workflows requiring multiple AI components collaborating | High–Critical | Full framework + [MASO](../maso/) |
+| **Multi-agent AI** | Complex workflows requiring multiple AI components collaborating | High–Critical | Full framework + [MASO](../maso/README.md) |
 
 ### The Hybrid Reality
 
@@ -221,7 +221,7 @@ The framework applies to the AI components. The risk tier is determined by what 
 - Specify HITL requirements (who reviews, SLA, escalation path)
 - Size operational requirements (HITL staff, Judge compute, log storage)
 - If agentic: specify tool access controls, sandbox boundaries, delegation limits
-- If multi-agent: apply [MASO](../maso/) controls at the appropriate tier
+- If multi-agent: apply [MASO](../maso/README.md) controls at the appropriate tier
 
 **Output: Control Specification**
 

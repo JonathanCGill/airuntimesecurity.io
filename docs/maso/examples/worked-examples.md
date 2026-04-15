@@ -14,7 +14,7 @@ This document provides three end-to-end worked examples of MASO implementation i
 
 These are not toy examples. They reflect the multi-agent architectures that enterprises are building now.
 
-> **Looking for single-agent examples?** See the [Foundation Worked Examples](../../extensions/examples/) for single-model implementations including customer service, document Q&A, credit decisioning, high-volume communications, and fraud analytics.
+> **Looking for single-agent examples?** See the [Foundation Worked Examples](../../extensions/examples/README.md) for single-model implementations including customer service, document Q&A, credit decisioning, high-volume communications, and fraud analytics.
 
 ## Example 1: Investment Research Multi-Agent System
 

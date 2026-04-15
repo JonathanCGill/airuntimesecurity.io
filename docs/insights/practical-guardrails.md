@@ -1,5 +1,10 @@
 # Practical Guardrails
 
+<!-- golden-thread-nav -->
+!!! tip "Part of the Golden Thread (6 of 14)"
+    Previous: [Why Your Guardrails Aren't Enough](why-guardrails-arent-enough.md) · Next: [The Judge Detects, Not Decides](judge-detects-not-decides.md) · [See the full sequence](../reading-paths.md#the-golden-thread-guardrails-judges-and-why-they-work-together)
+<!-- golden-thread-nav -->
+
 *What guardrails should actually do, what they should catch, when they can be turned off, and who decides.*
 
 ## Why This Exists

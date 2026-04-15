@@ -4,6 +4,11 @@ description: "Why AI guardrails alone are insufficient for production safety, in
 
 # Why Your AI Guardrails Aren't Enough
 
+<!-- golden-thread-nav -->
+!!! tip "Part of the Golden Thread (5 of 14)"
+    Previous: [The Constraint Curve](the-constraint-curve.md) · Next: [Practical Guardrails](practical-guardrails.md) · [See the full sequence](../reading-paths.md#the-golden-thread-guardrails-judges-and-why-they-work-together)
+<!-- golden-thread-nav -->
+
 *And what to do about it*
 
 Every enterprise deploying AI in production has the same conversation eventually: "We need guardrails." Input validation. Output filtering. Content policies. Prompt injection detection.

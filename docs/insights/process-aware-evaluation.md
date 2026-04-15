@@ -1,5 +1,10 @@
 # Process-Aware Evaluation: Judge the Trace, Not Just the Output
 
+<!-- golden-thread-nav -->
+!!! tip "Part of the Golden Thread (3 of 14)"
+    Previous: [Containment Through Declared Intent](containment-through-intent.md) · Next: [The Constraint Curve](the-constraint-curve.md) · [See the full sequence](../reading-paths.md#the-golden-thread-guardrails-judges-and-why-they-work-together)
+<!-- golden-thread-nav -->
+
 *Evaluating what an agent did is less important than evaluating how it got there*
 
 An agent produces a correct answer. The customer gets the right information. The output passes guardrails, passes the Judge, looks clean in the audit log.
