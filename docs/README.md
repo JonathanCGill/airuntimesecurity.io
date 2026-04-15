@@ -142,6 +142,6 @@ The framework maps to EU AI Act (Articles 9, 14, 15), NIST AI RMF, ISO 42001, OW
 
 <div style="text-align: center; padding: 1rem 0;" markdown>
 
-Created by [Jonathan C. Gill](https://www.linkedin.com/in/jonathancgill/) · [feedback@airuntimesecurity.io](mailto:feedback@airuntimesecurity.io)
+Created by [Jonathan Gill](https://www.linkedin.com/in/jonathancgill/) · [feedback@airuntimesecurity.io](mailto:feedback@airuntimesecurity.io)
 
 </div>
