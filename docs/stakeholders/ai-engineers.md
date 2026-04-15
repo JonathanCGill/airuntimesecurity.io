@@ -32,7 +32,7 @@ What you're implementing:
 - Latency budget: ~10-20ms total
 - Libraries: NVIDIA NeMo Guardrails, Guardrails AI, LangChain output parsers, AWS Bedrock Guardrails, Azure AI Content Safety
 
-**2. Model-as-Judge** - an independent LLM that evaluates your task agent's output.
+**2. Model-as-Judge** - an independent model (SLM or LLM) that evaluates your task agent's output.
 
 What you're implementing:
 - A separate model (different from your task agent) that receives the input, output, and context
