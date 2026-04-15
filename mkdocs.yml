@@ -100,8 +100,8 @@ nav:
   - Home: README.md
 
   - Start:
-    - start.md
-    - Start Here: reading-paths.md
+    - Where to Begin: start.md
+    - Reading Paths: reading-paths.md
     - AIRSLite: minimum-viable-airs.md
     - Quick Start: QUICK_START.md
     - Fast Lane: FAST-LANE.md

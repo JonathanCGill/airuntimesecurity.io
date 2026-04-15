@@ -1,9 +1,9 @@
 ---
-title: Start
+title: Where to Begin
 description: "Triage page for new readers. Pick the entry point that matches your situation: shipping today, shipping this week, or learning the framework in full."
 ---
 
-# Start
+# Where to Begin
 
 **Where you begin depends on what you are doing now.** Five entry points, one triage.
 
