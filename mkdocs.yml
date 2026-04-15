@@ -89,6 +89,7 @@ nav:
   - Home: README.md
 
   - Start:
+    - start.md
     - Start Here: reading-paths.md
     - AIRSLite: minimum-viable-airs.md
     - Quick Start: QUICK_START.md
@@ -167,6 +168,7 @@ nav:
     - Insider Threat Teams: stakeholders/insider-threat-teams.md
 
   - Library:
+    - library.md
     - Insights:
       - insights/README.md
       - Foundations:
@@ -281,16 +283,20 @@ nav:
 
     - Regulatory:
       - extensions/regulatory/README.md
-      - EU AI Act Crosswalk: extensions/regulatory/eu-ai-act-crosswalk.md
-      - EU AI Act Risk Tiering: extensions/regulatory/eu-ai-act-risk-tiering.md
-      - ISO 42001 Clause Mapping: extensions/regulatory/iso-42001-clause-mapping.md
-      - ISO 42001 Alignment: extensions/regulatory/iso-42001-alignment.md
-      - ISO 27001 Alignment: extensions/regulatory/iso-27001-alignment.md
-      - NIST IR 8596 Alignment: extensions/regulatory/nist-ir-8596-alignment.md
-      - AI Governance Operating Model: extensions/regulatory/ai-governance-operating-model.md
-      - High-Risk Financial Services: extensions/regulatory/high-risk-financial-services.md
-      - ETSI Standards Alignment: extensions/regulatory/etsi-sai-alignment.md
-      - Platform Integration Guide: extensions/regulatory/platform-integration-guide.md
+      - International Standards:
+        - ISO 42001 Alignment: extensions/regulatory/iso-42001-alignment.md
+        - ISO 42001 Clause Mapping: extensions/regulatory/iso-42001-clause-mapping.md
+        - ISO 27001 Alignment: extensions/regulatory/iso-27001-alignment.md
+        - NIST IR 8596 Alignment: extensions/regulatory/nist-ir-8596-alignment.md
+        - ETSI SAI Alignment: extensions/regulatory/etsi-sai-alignment.md
+      - EU:
+        - EU AI Act Crosswalk: extensions/regulatory/eu-ai-act-crosswalk.md
+        - EU AI Act Risk Tiering: extensions/regulatory/eu-ai-act-risk-tiering.md
+      - Sector-Specific:
+        - High-Risk Financial Services: extensions/regulatory/high-risk-financial-services.md
+      - Operational:
+        - AI Governance Operating Model: extensions/regulatory/ai-governance-operating-model.md
+        - Platform Integration Guide: extensions/regulatory/platform-integration-guide.md
 
     - Technical Reference:
       - extensions/technical/README.md

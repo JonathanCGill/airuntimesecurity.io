@@ -23,7 +23,7 @@ Most organisations have no controls between the model and the damage it can do. 
 
     Ship your first LLM feature with the controls that matter most. Seven controls, one checklist, one decision tree for whether you need to go deeper.
 
-    [Start Here](reading-paths.md) · [AIRSLite](minimum-viable-airs.md) · [Quick Start](QUICK_START.md)
+    [Start](start.md) · [AIRSLite](minimum-viable-airs.md) · [Quick Start](QUICK_START.md)
 
 -   **How do I secure AI while it is running?**
 
@@ -38,6 +38,54 @@ Most organisations have no controls between the model and the damage it can do. 
     [For Your Role](stakeholders/README.md)
 
 </div>
+
+---
+
+## Find Your Role
+
+Nine role-specific entry points. Each one frames AI runtime security through the lens of a single job, with a starting path, Monday-morning actions, and answers to the pushback you will get.
+
+<div class="grid cards" markdown>
+
+-   **[Security Leaders](stakeholders/security-leaders.md)**
+
+    *How do I secure AI when the threat model is unlike anything I've secured before?*
+
+-   **[Risk & Governance](stakeholders/risk-and-governance.md)**
+
+    *How do I quantify AI risk and prove to the board that controls are working?*
+
+-   **[Compliance & Legal](stakeholders/compliance-and-legal.md)**
+
+    *How do I demonstrate that AI deployments meet regulatory obligations, with evidence?*
+
+-   **[Insider Threat Teams](stakeholders/insider-threat-teams.md)**
+
+    *Your programme already solves the problem AI agents create. How do you extend it?*
+
+-   **[Chief Information Officers](stakeholders/chief-information-officers.md)**
+
+    *How do I govern AI across my technology portfolio when every product runs different agents?*
+
+-   **[Enterprise Architects](stakeholders/enterprise-architects.md)**
+
+    *Where do controls go in my pipeline, what do they cost, and how do they fail?*
+
+-   **[AI Engineers](stakeholders/ai-engineers.md)**
+
+    *What do I actually build? Give me implementation patterns, not governance theory.*
+
+-   **[Business Owners](stakeholders/business-owners.md)**
+
+    *How do I manage AI risk across my product lines when agents are operational?*
+
+-   **[Product Owners](stakeholders/product-owners.md)**
+
+    *What controls are required to ship AI, and what do they cost in time and money?*
+
+</div>
+
+[All nine roles, grouped and explained](stakeholders/README.md)
 
 ---
 

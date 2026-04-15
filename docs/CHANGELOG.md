@@ -58,6 +58,9 @@ Threat intelligence analysis (CrowdStrike 2025 Global Threat Report, Microsoft D
 
 These are the first **major** additions to core controls since v0.5.0. The framework's core architecture (Guardrails → Judge → Human) remains sound for per-interaction threats. These additions extend it to handle campaign-level, speed-critical, and supply-chain threats that the 2025–2026 landscape has made operationally relevant.
 
+<details markdown>
+<summary><strong>Earlier versions (0.8.4 and older)</strong></summary>
+
 ## [0.8.4] - 2026-03-01
 
 ### Added
@@ -281,6 +284,8 @@ Framework had grown to 48 files. Core + Extensions model provides clear "start h
 - Implementation guide
 - Maturity model
 - Example implementations (customer service, document assistant, credit decision)
+
+</details>
 
 ## Categories
 
