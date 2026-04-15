@@ -19,13 +19,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # full history so git-revision-date-localized can read it
 
       - uses: actions/setup-python@v5
         with:
           python-version: "3.x"
 
+      - name: Install system deps for social card rendering
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcairo2-dev libpango1.0-dev
+
       - name: Install dependencies
-        run: pip install "mkdocs>=1.6,<2" mkdocs-material mkdocs-with-pdf
+        run: |
+          pip install "mkdocs>=1.6,<2"
+          pip install "mkdocs-material[imaging]"
+          pip install mkdocs-with-pdf
+          pip install mkdocs-git-revision-date-localized-plugin
 
       - name: Generate MASO PDF
         run: mkdocs build -f mkdocs-pdf.yml

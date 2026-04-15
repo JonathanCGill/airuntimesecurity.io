@@ -5,7 +5,9 @@ site_description: >-
   and constraining AI system behaviour in production environments.
 site_author: Jonathan Gill
 
-edit_uri: ""
+repo_url: https://github.com/JonathanCGill/airuntimesecurity.io
+repo_name: JonathanCGill/airuntimesecurity.io
+edit_uri: edit/main/docs/
 
 docs_dir: docs
 site_dir: site
@@ -50,6 +52,15 @@ theme:
 plugins:
   - search
   - meta
+  - git-revision-date-localized:
+      enable_creation_date: false
+      fallback_to_build_date: true
+      type: date
+  - social:
+      cards_layout_options:
+        background_color: "#1a1a2e"
+        color: "#ffffff"
+        font_family: Inter
 
 markdown_extensions:
   - tables
