@@ -1,194 +1,186 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680">
-  <defs>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0a0e1a"/>
-      <stop offset="100%" stop-color="#1a1e3a"/>
-    </linearGradient>
-  </defs>
+<svg width="100%" viewBox="0 0 680 920" role="img" xmlns="http://www.w3.org/2000/svg">
+<title style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">MASO framework architecture with contract governance and Deviance Judge</title>
+<desc style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">Multi-Agent Security Operations framework showing six control domains, ATCBG contract layer, four-state deviation model, Deviance Judge, three tiers, and PACE resilience</desc>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
 
-  <!-- Background -->
-  <rect width="1200" height="680" fill="url(#bgGrad)"/>
+<!-- Title -->
+<text x="340" y="28" text-anchor="middle" style="font-size:16px;fill:rgb(20, 20, 19);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:500;text-anchor:middle;dominant-baseline:auto">MASO: Multi-Agent Security Operations</text>
+<text x="340" y="46" text-anchor="middle" style="fill:rgb(61, 61, 58);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:auto">Securing AI agent-to-agent interaction</text>
 
-  <!-- Scanline grid effect -->
-  <g opacity="0.03" stroke="#ffffff" stroke-width="0.5">
-    <line x1="0" y1="20" x2="1200" y2="20"/><line x1="0" y1="40" x2="1200" y2="40"/>
-    <line x1="0" y1="60" x2="1200" y2="60"/><line x1="0" y1="80" x2="1200" y2="80"/>
-    <line x1="0" y1="100" x2="1200" y2="100"/><line x1="0" y1="120" x2="1200" y2="120"/>
-    <line x1="0" y1="140" x2="1200" y2="140"/><line x1="0" y1="160" x2="1200" y2="160"/>
-    <line x1="0" y1="180" x2="1200" y2="180"/><line x1="0" y1="200" x2="1200" y2="200"/>
-    <line x1="0" y1="220" x2="1200" y2="220"/><line x1="0" y1="240" x2="1200" y2="240"/>
-    <line x1="0" y1="260" x2="1200" y2="260"/><line x1="0" y1="280" x2="1200" y2="280"/>
-    <line x1="0" y1="300" x2="1200" y2="300"/><line x1="0" y1="320" x2="1200" y2="320"/>
-    <line x1="0" y1="340" x2="1200" y2="340"/><line x1="0" y1="360" x2="1200" y2="360"/>
-    <line x1="0" y1="380" x2="1200" y2="380"/><line x1="0" y1="400" x2="1200" y2="400"/>
-    <line x1="0" y1="420" x2="1200" y2="420"/><line x1="0" y1="440" x2="1200" y2="440"/>
-    <line x1="0" y1="460" x2="1200" y2="460"/><line x1="0" y1="480" x2="1200" y2="480"/>
-    <line x1="0" y1="500" x2="1200" y2="500"/><line x1="0" y1="520" x2="1200" y2="520"/>
-    <line x1="0" y1="540" x2="1200" y2="540"/><line x1="0" y1="560" x2="1200" y2="560"/>
-    <line x1="0" y1="580" x2="1200" y2="580"/><line x1="0" y1="600" x2="1200" y2="600"/>
-    <line x1="0" y1="620" x2="1200" y2="620"/><line x1="0" y1="640" x2="1200" y2="640"/>
-    <line x1="0" y1="660" x2="1200" y2="660"/>
-  </g>
+<!-- Problem box -->
+<g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <rect x="40" y="62" width="600" height="48" rx="8" stroke-width="0.5" style="fill:rgb(250, 236, 231);stroke:rgb(153, 60, 29);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="340" y="80" text-anchor="middle" dominant-baseline="central" style="fill:rgb(113, 43, 19);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">Emergent multi-agent failures</text>
+  <text x="340" y="96" text-anchor="middle" dominant-baseline="central" style="fill:rgb(153, 60, 29);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">Poisoned handoffs · Transitive authority · Hallucination amplification · False consensus</text>
+</g>
 
-  <!-- ==================== -->
-  <!-- SINGLE CHATBOT SECTION -->
-  <!-- ==================== -->
+<line x1="340" y1="110" x2="340" y2="130" marker-end="url(#arrow)" style="fill:none;stroke:rgb(115, 114, 108);color:rgb(0, 0, 0);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
 
-  <!-- Section header -->
-  <text x="600" y="52" text-anchor="middle" fill="#667788" font-family="'Roboto Mono', 'Courier New', monospace" font-size="13" letter-spacing="3">-- SINGLE CHATBOT SECURITY --</text>
-  <line x1="250" y1="62" x2="950" y2="62" stroke="#667788" stroke-width="0.5" opacity="0.4"/>
+<!-- Six domains header -->
+<text x="340" y="146" text-anchor="middle" dominant-baseline="central" style="fill:rgb(20, 20, 19);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">Six control domains (93 controls)</text>
 
-  <!-- Single chatbot flow boxes -->
-  <!-- USER (left) -->
-  <rect x="80" y="90" width="120" height="50" rx="4" fill="none" stroke="#4a90d9" stroke-width="1.5"/>
-  <text x="140" y="120" text-anchor="middle" fill="#4a90d9" font-family="'Roboto Mono', 'Courier New', monospace" font-size="14" font-weight="bold">USER</text>
+<!-- Domain boxes - row 1 -->
+<g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <rect x="40" y="160" width="190" height="50" rx="8" stroke-width="0.5" style="fill:rgb(238, 237, 254);stroke:rgb(83, 74, 183);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="135" y="178" text-anchor="middle" dominant-baseline="central" style="fill:rgb(60, 52, 137);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">0. Epistemic integrity</text>
+  <text x="135" y="196" text-anchor="middle" dominant-baseline="central" style="fill:rgb(83, 74, 183);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">Prompts, goals, truth chain</text>
+</g>
+<g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <rect x="245" y="160" width="190" height="50" rx="8" stroke-width="0.5" style="fill:rgb(230, 241, 251);stroke:rgb(24, 95, 165);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="340" y="178" text-anchor="middle" dominant-baseline="central" style="fill:rgb(12, 68, 124);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">1. Identity &amp; access</text>
+  <text x="340" y="196" text-anchor="middle" dominant-baseline="central" style="fill:rgb(24, 95, 165);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">NHI, zero-trust, scoped creds</text>
+</g>
+<g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <rect x="450" y="160" width="190" height="50" rx="8" stroke-width="0.5" style="fill:rgb(225, 245, 238);stroke:rgb(15, 110, 86);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="545" y="178" text-anchor="middle" dominant-baseline="central" style="fill:rgb(8, 80, 65);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">2. Data protection</text>
+  <text x="545" y="196" text-anchor="middle" dominant-baseline="central" style="fill:rgb(15, 110, 86);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">Fencing, DLP, RAG integrity</text>
+</g>
 
-  <!-- Arrow USER -> GUARDRAIL -->
-  <line x1="200" y1="115" x2="275" y2="115" stroke="#4a90d9" stroke-width="1.5" opacity="0.6"/>
-  <text x="237" y="110" text-anchor="middle" fill="#4a90d9" font-family="'Roboto Mono', 'Courier New', monospace" font-size="14">--&gt;</text>
+<!-- Domain boxes - row 2 -->
+<g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <rect x="40" y="220" width="190" height="50" rx="8" stroke-width="0.5" style="fill:rgb(250, 238, 218);stroke:rgb(133, 79, 11);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="135" y="238" text-anchor="middle" dominant-baseline="central" style="fill:rgb(99, 56, 6);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">3. Execution control</text>
+  <text x="135" y="256" text-anchor="middle" dominant-baseline="central" style="fill:rgb(133, 79, 11);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">Sandbox, blast radius, gates</text>
+</g>
+<g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <rect x="245" y="220" width="190" height="50" rx="8" stroke-width="0.5" style="fill:rgb(234, 243, 222);stroke:rgb(59, 109, 17);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="340" y="238" text-anchor="middle" dominant-baseline="central" style="fill:rgb(39, 80, 10);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">4. Observability</text>
+  <text x="340" y="256" text-anchor="middle" dominant-baseline="central" style="fill:rgb(59, 109, 17);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">Immutable logs, drift detection</text>
+</g>
+<g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <rect x="450" y="220" width="190" height="50" rx="8" stroke-width="0.5" style="fill:rgb(241, 239, 232);stroke:rgb(95, 94, 90);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="545" y="238" text-anchor="middle" dominant-baseline="central" style="fill:rgb(68, 68, 65);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">5. Supply chain</text>
+  <text x="545" y="256" text-anchor="middle" dominant-baseline="central" style="fill:rgb(95, 94, 90);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">AIBOM, model risk, deps</text>
+</g>
 
-  <!-- GUARDRAIL -->
-  <rect x="275" y="90" width="160" height="50" rx="4" fill="none" stroke="#92fe9d" stroke-width="1.5"/>
-  <text x="355" y="120" text-anchor="middle" fill="#92fe9d" font-family="'Roboto Mono', 'Courier New', monospace" font-size="14" font-weight="bold">GUARDRAIL</text>
+<line x1="340" y1="280" x2="340" y2="300" marker-end="url(#arrow)" style="fill:none;stroke:rgb(115, 114, 108);color:rgb(0, 0, 0);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
 
-  <!-- Arrow GUARDRAIL -> LLM -->
-  <line x1="435" y1="115" x2="510" y2="115" stroke="#92fe9d" stroke-width="1.5" opacity="0.6"/>
-  <text x="472" y="110" text-anchor="middle" fill="#92fe9d" font-family="'Roboto Mono', 'Courier New', monospace" font-size="14">--&gt;</text>
+<!-- ATCBG Contract layer - outer container -->
+<g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <rect x="40" y="304" width="600" height="252" rx="12" stroke-width="0.5" style="fill:rgb(251, 234, 240);stroke:rgb(153, 53, 86);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="340" y="324" text-anchor="middle" dominant-baseline="central" style="fill:rgb(114, 36, 62);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">ATCBG: Agentic task contract and behavioural governance</text>
+</g>
 
-  <!-- LLM -->
-  <rect x="510" y="90" width="120" height="50" rx="4" fill="none" stroke="#ff6b35" stroke-width="1.5"/>
-  <text x="570" y="120" text-anchor="middle" fill="#ff6b35" font-family="'Roboto Mono', 'Courier New', monospace" font-size="14" font-weight="bold">LLM</text>
+<!-- Contract governance row -->
+<g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <rect x="60" y="340" width="175" height="50" rx="8" stroke-width="0.5" style="fill:rgb(238, 237, 254);stroke:rgb(83, 74, 183);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="147" y="356" text-anchor="middle" dominant-baseline="central" style="fill:rgb(60, 52, 137);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">Solution contract</text>
+  <text x="147" y="374" text-anchor="middle" dominant-baseline="central" style="fill:rgb(83, 74, 183);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">Intent, outcome, means</text>
+</g>
 
-  <!-- Arrow LLM -> JUDGE -->
-  <line x1="630" y1="115" x2="705" y2="115" stroke="#ff6b35" stroke-width="1.5" opacity="0.6"/>
-  <text x="667" y="110" text-anchor="middle" fill="#ff6b35" font-family="'Roboto Mono', 'Courier New', monospace" font-size="14">--&gt;</text>
+<line x1="235" y1="365" x2="248" y2="365" marker-end="url(#arrow)" style="fill:none;stroke:rgb(115, 114, 108);color:rgb(0, 0, 0);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
 
-  <!-- JUDGE -->
-  <rect x="705" y="90" width="120" height="50" rx="4" fill="none" stroke="#f093fb" stroke-width="1.5"/>
-  <text x="765" y="120" text-anchor="middle" fill="#f093fb" font-family="'Roboto Mono', 'Courier New', monospace" font-size="14" font-weight="bold">JUDGE</text>
+<g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <rect x="252" y="340" width="175" height="50" rx="8" stroke-width="0.5" style="fill:rgb(238, 237, 254);stroke:rgb(83, 74, 183);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="339" y="356" text-anchor="middle" dominant-baseline="central" style="fill:rgb(60, 52, 137);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">Agent contracts</text>
+  <text x="339" y="374" text-anchor="middle" dominant-baseline="central" style="fill:rgb(83, 74, 183);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">Inherit, cannot exceed</text>
+</g>
 
-  <!-- Arrow JUDGE -> USER -->
-  <line x1="825" y1="115" x2="900" y2="115" stroke="#f093fb" stroke-width="1.5" opacity="0.6"/>
-  <text x="862" y="110" text-anchor="middle" fill="#f093fb" font-family="'Roboto Mono', 'Courier New', monospace" font-size="14">--&gt;</text>
+<line x1="427" y1="365" x2="440" y2="365" marker-end="url(#arrow)" style="fill:none;stroke:rgb(115, 114, 108);color:rgb(0, 0, 0);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
 
-  <!-- USER (right) -->
-  <rect x="900" y="90" width="120" height="50" rx="4" fill="none" stroke="#4a90d9" stroke-width="1.5"/>
-  <text x="960" y="120" text-anchor="middle" fill="#4a90d9" font-family="'Roboto Mono', 'Courier New', monospace" font-size="14" font-weight="bold">USER</text>
+<g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <rect x="444" y="340" width="175" height="50" rx="8" stroke-width="0.5" style="fill:rgb(225, 245, 238);stroke:rgb(15, 110, 86);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="531" y="356" text-anchor="middle" dominant-baseline="central" style="fill:rgb(8, 80, 65);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">Contract library</text>
+  <text x="531" y="374" text-anchor="middle" dominant-baseline="central" style="fill:rgb(15, 110, 86);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">Versioned, auditable</text>
+</g>
 
-  <!-- Dimmed label -->
-  <text x="600" y="175" text-anchor="middle" fill="#445566" font-family="'Roboto Mono', 'Courier New', monospace" font-size="11" letter-spacing="1">Linear chain. Single trust boundary. Single point of failure.</text>
+<!-- Four-state deviation model -->
+<text x="340" y="412" text-anchor="middle" dominant-baseline="central" style="fill:rgb(61, 61, 58);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">Four-state deviation model</text>
 
-  <!-- ===================== -->
-  <!-- DIVIDER -->
-  <!-- ===================== -->
-  <line x1="100" y1="205" x2="1100" y2="205" stroke="#ff6b35" stroke-width="0.5" stroke-dasharray="4,4" opacity="0.4"/>
+<g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <rect x="60" y="424" width="130" height="40" rx="8" stroke-width="0.5" style="fill:rgb(234, 243, 222);stroke:rgb(59, 109, 17);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="125" y="446" text-anchor="middle" dominant-baseline="central" style="fill:rgb(39, 80, 10);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">Normal</text>
+</g>
+<g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <rect x="200" y="424" width="130" height="40" rx="8" stroke-width="0.5" style="fill:rgb(250, 238, 218);stroke:rgb(133, 79, 11);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="265" y="446" text-anchor="middle" dominant-baseline="central" style="fill:rgb(99, 56, 6);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">Exec failure</text>
+</g>
+<g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <rect x="340" y="424" width="130" height="40" rx="8" stroke-width="0.5" style="fill:rgb(250, 236, 231);stroke:rgb(153, 60, 29);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="405" y="446" text-anchor="middle" dominant-baseline="central" style="fill:rgb(113, 43, 19);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">Visible failure</text>
+</g>
+<g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <rect x="480" y="424" width="140" height="40" rx="8" stroke-width="0.5" style="fill:rgb(252, 235, 235);stroke:rgb(163, 45, 45);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="550" y="440" text-anchor="middle" dominant-baseline="central" style="fill:rgb(121, 31, 31);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">Creative sub.</text>
+  <text x="550" y="456" text-anchor="middle" dominant-baseline="central" style="fill:rgb(163, 45, 45);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">Highest priority</text>
+</g>
 
-  <!-- ==================== -->
-  <!-- MASO SECTION -->
-  <!-- ==================== -->
+<!-- Deviance Judge + Plan detection -->
+<g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <rect x="60" y="480" width="280" height="56" rx="8" stroke-width="0.5" style="fill:rgb(230, 241, 251);stroke:rgb(24, 95, 165);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="200" y="500" text-anchor="middle" dominant-baseline="central" style="fill:rgb(12, 68, 124);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">Deviance Judge</text>
+  <text x="200" y="518" text-anchor="middle" dominant-baseline="central" style="fill:rgb(24, 95, 165);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">Read-only, evaluates contract compliance</text>
+</g>
+<g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <rect x="356" y="480" width="264" height="56" rx="8" stroke-width="0.5" style="fill:rgb(250, 238, 218);stroke:rgb(133, 79, 11);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="488" y="500" text-anchor="middle" dominant-baseline="central" style="fill:rgb(99, 56, 6);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">Plan detection</text>
+  <text x="488" y="518" text-anchor="middle" dominant-baseline="central" style="fill:rgb(133, 79, 11);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">Blocked tool attempts = recon signal</text>
+</g>
 
-  <!-- Section header -->
-  <text x="600" y="240" text-anchor="middle" fill="#ff6b35" font-family="'Roboto Mono', 'Courier New', monospace" font-size="13" font-weight="bold" letter-spacing="3">-- MULTI-AGENT SECURITY OPERATIONS (MASO) --</text>
-  <line x1="200" y1="250" x2="1000" y2="250" stroke="#ff6b35" stroke-width="0.5" opacity="0.4"/>
+<!-- Message bus -->
+<line x1="340" y1="556" x2="340" y2="576" marker-end="url(#arrow)" style="fill:none;stroke:rgb(115, 114, 108);color:rgb(0, 0, 0);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
 
-  <!-- ===== TOP ROW: Agent pipeline ===== -->
+<g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <rect x="80" y="580" width="520" height="36" rx="18" stroke-width="0.5" style="fill:rgb(251, 234, 240);stroke:rgb(153, 53, 86);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="340" y="600" text-anchor="middle" dominant-baseline="central" style="fill:rgb(114, 36, 62);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">Inter-agent message bus (zero-trust, authenticated, logged)</text>
+</g>
 
-  <!-- USER -->
-  <rect x="55" y="280" width="130" height="55" rx="4" fill="none" stroke="#4a90d9" stroke-width="1.5"/>
-  <text x="120" y="313" text-anchor="middle" fill="#4a90d9" font-family="'Roboto Mono', 'Courier New', monospace" font-size="14" font-weight="bold">USER</text>
+<!-- Tiers -->
+<line x1="340" y1="616" x2="340" y2="640" marker-end="url(#arrow)" style="fill:none;stroke:rgb(115, 114, 108);color:rgb(0, 0, 0);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
 
-  <!-- Arrow -->
-  <line x1="185" y1="307" x2="270" y2="307" stroke="#4a90d9" stroke-width="1.5" opacity="0.6"/>
-  <text x="227" y="302" text-anchor="middle" fill="#4a90d9" font-family="'Roboto Mono', 'Courier New', monospace" font-size="14">--&gt;</text>
+<text x="340" y="656" text-anchor="middle" dominant-baseline="central" style="fill:rgb(20, 20, 19);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">Three implementation tiers</text>
 
-  <!-- GATEKEEPER_AGENT -->
-  <rect x="270" y="280" width="220" height="55" rx="4" fill="none" stroke="#00c9ff" stroke-width="1.5"/>
-  <text x="380" y="313" text-anchor="middle" fill="#00c9ff" font-family="'Roboto Mono', 'Courier New', monospace" font-size="13" font-weight="bold">GATEKEEPER_AGENT</text>
+<g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <rect x="40" y="668" width="190" height="50" rx="8" stroke-width="0.5" style="fill:rgb(230, 241, 251);stroke:rgb(24, 95, 165);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="135" y="686" text-anchor="middle" dominant-baseline="central" style="fill:rgb(12, 68, 124);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">Tier 1: Supervised</text>
+  <text x="135" y="704" text-anchor="middle" dominant-baseline="central" style="fill:rgb(24, 95, 165);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">Human in the loop</text>
+</g>
+<g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <rect x="245" y="668" width="190" height="50" rx="8" stroke-width="0.5" style="fill:rgb(238, 237, 254);stroke:rgb(83, 74, 183);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="340" y="686" text-anchor="middle" dominant-baseline="central" style="fill:rgb(60, 52, 137);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">Tier 2: Managed</text>
+  <text x="340" y="704" text-anchor="middle" dominant-baseline="central" style="fill:rgb(83, 74, 183);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">Semi-autonomous</text>
+</g>
+<g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <rect x="450" y="668" width="190" height="50" rx="8" stroke-width="0.5" style="fill:rgb(250, 236, 231);stroke:rgb(153, 60, 29);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="545" y="686" text-anchor="middle" dominant-baseline="central" style="fill:rgb(113, 43, 19);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">Tier 3: Autonomous</text>
+  <text x="545" y="704" text-anchor="middle" dominant-baseline="central" style="fill:rgb(153, 60, 29);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">Full agentic operation</text>
+</g>
 
-  <!-- Arrow -->
-  <line x1="490" y1="307" x2="565" y2="307" stroke="#00c9ff" stroke-width="1.5" opacity="0.6"/>
-  <text x="527" y="302" text-anchor="middle" fill="#00c9ff" font-family="'Roboto Mono', 'Courier New', monospace" font-size="14">--&gt;</text>
+<line x1="230" y1="693" x2="243" y2="693" marker-end="url(#arrow)" style="fill:none;stroke:rgb(115, 114, 108);color:rgb(0, 0, 0);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<line x1="435" y1="693" x2="448" y2="693" marker-end="url(#arrow)" style="fill:none;stroke:rgb(115, 114, 108);color:rgb(0, 0, 0);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
 
-  <!-- PLANNING_AGENT -->
-  <rect x="565" y="280" width="210" height="55" rx="4" fill="none" stroke="#92fe9d" stroke-width="1.5"/>
-  <text x="670" y="313" text-anchor="middle" fill="#92fe9d" font-family="'Roboto Mono', 'Courier New', monospace" font-size="13" font-weight="bold">PLANNING_AGENT</text>
+<!-- PACE -->
+<line x1="340" y1="728" x2="340" y2="752" marker-end="url(#arrow)" style="fill:none;stroke:rgb(115, 114, 108);color:rgb(0, 0, 0);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
 
-  <!-- Arrow -->
-  <line x1="775" y1="307" x2="850" y2="307" stroke="#92fe9d" stroke-width="1.5" opacity="0.6"/>
-  <text x="812" y="302" text-anchor="middle" fill="#92fe9d" font-family="'Roboto Mono', 'Courier New', monospace" font-size="14">--&gt;</text>
+<text x="340" y="768" text-anchor="middle" dominant-baseline="central" style="fill:rgb(20, 20, 19);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">PACE resilience model</text>
 
-  <!-- EXECUTOR_AGENT -->
-  <rect x="850" y="280" width="210" height="55" rx="4" fill="none" stroke="#ff6b35" stroke-width="1.5"/>
-  <text x="955" y="313" text-anchor="middle" fill="#ff6b35" font-family="'Roboto Mono', 'Courier New', monospace" font-size="13" font-weight="bold">EXECUTOR_AGENT</text>
+<g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <rect x="40" y="782" width="145" height="40" rx="8" stroke-width="0.5" style="fill:rgb(225, 245, 238);stroke:rgb(15, 110, 86);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="112" y="804" text-anchor="middle" dominant-baseline="central" style="fill:rgb(8, 80, 65);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">Primary</text>
+</g>
+<g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <rect x="196" y="782" width="145" height="40" rx="8" stroke-width="0.5" style="fill:rgb(234, 243, 222);stroke:rgb(59, 109, 17);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="268" y="804" text-anchor="middle" dominant-baseline="central" style="fill:rgb(39, 80, 10);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">Alternate</text>
+</g>
+<g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <rect x="352" y="782" width="145" height="40" rx="8" stroke-width="0.5" style="fill:rgb(250, 238, 218);stroke:rgb(133, 79, 11);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="424" y="804" text-anchor="middle" dominant-baseline="central" style="fill:rgb(99, 56, 6);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">Contingency</text>
+</g>
+<g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <rect x="508" y="782" width="132" height="40" rx="8" stroke-width="0.5" style="fill:rgb(252, 235, 235);stroke:rgb(163, 45, 45);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="574" y="804" text-anchor="middle" dominant-baseline="central" style="fill:rgb(121, 31, 31);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">Emergency</text>
+</g>
 
-  <!-- ===== VERTICAL CONNECTORS ===== -->
+<line x1="185" y1="802" x2="194" y2="802" marker-end="url(#arrow)" style="fill:none;stroke:rgb(115, 114, 108);color:rgb(0, 0, 0);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<line x1="341" y1="802" x2="350" y2="802" marker-end="url(#arrow)" style="fill:none;stroke:rgb(115, 114, 108);color:rgb(0, 0, 0);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<line x1="497" y1="802" x2="506" y2="802" marker-end="url(#arrow)" style="fill:none;stroke:rgb(115, 114, 108);color:rgb(0, 0, 0);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
 
-  <!-- Pipe from GATEKEEPER down -->
-  <line x1="380" y1="335" x2="380" y2="380" stroke="#00c9ff" stroke-width="1.5" opacity="0.5"/>
-  <text x="380" y="370" text-anchor="middle" fill="#00c9ff" font-family="'Roboto Mono', 'Courier New', monospace" font-size="12">|</text>
-  <text x="380" y="382" text-anchor="middle" fill="#00c9ff" font-family="'Roboto Mono', 'Courier New', monospace" font-size="10">V</text>
+<!-- Footer -->
+<text x="340" y="852" text-anchor="middle" style="fill:rgb(61, 61, 58);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:auto">Maps to: OWASP LLM Top 10 · Agentic Security Initiative · 8 epistemic risks (EP-01 to EP-08)</text>
+<text x="340" y="870" text-anchor="middle" style="fill:rgb(61, 61, 58);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:auto">Open source · airuntimesecurity.io</text>
 
-  <!-- Pipe from PLANNING down -->
-  <line x1="670" y1="335" x2="670" y2="380" stroke="#92fe9d" stroke-width="1.5" opacity="0.5"/>
-  <text x="670" y="370" text-anchor="middle" fill="#92fe9d" font-family="'Roboto Mono', 'Courier New', monospace" font-size="12">|</text>
-  <text x="670" y="382" text-anchor="middle" fill="#92fe9d" font-family="'Roboto Mono', 'Courier New', monospace" font-size="10">V</text>
-
-  <!-- Pipe from EXECUTOR down -->
-  <line x1="955" y1="335" x2="955" y2="380" stroke="#ff6b35" stroke-width="1.5" opacity="0.5"/>
-  <text x="955" y="370" text-anchor="middle" fill="#ff6b35" font-family="'Roboto Mono', 'Courier New', monospace" font-size="12">|</text>
-  <text x="955" y="382" text-anchor="middle" fill="#ff6b35" font-family="'Roboto Mono', 'Courier New', monospace" font-size="10">V</text>
-
-  <!-- ===== MASO HUB ROW ===== -->
-
-  <!-- MASO HUB 1 (Gatekeeper) -->
-  <rect x="280" y="390" width="200" height="130" rx="6" fill="#0d1225" stroke="#00c9ff" stroke-width="1.5"/>
-  <rect x="280" y="390" width="200" height="3" rx="1" fill="#00c9ff"/>
-  <text x="380" y="418" text-anchor="middle" fill="#ffffff" font-family="'Roboto Mono', 'Courier New', monospace" font-size="13" font-weight="bold">MASO HUB</text>
-  <line x1="310" y1="428" x2="450" y2="428" stroke="#334455" stroke-width="0.5"/>
-  <text x="380" y="450" text-anchor="middle" fill="#f093fb" font-family="'Roboto Mono', 'Courier New', monospace" font-size="12">Judge</text>
-  <text x="380" y="475" text-anchor="middle" fill="#ff4444" font-family="'Roboto Mono', 'Courier New', monospace" font-size="12">Kill_Switch</text>
-  <text x="380" y="500" text-anchor="middle" fill="#667788" font-family="'Roboto Mono', 'Courier New', monospace" font-size="10">OISpec | Guardrails</text>
-
-  <!-- MASO HUB 2 (Planning) -->
-  <rect x="570" y="390" width="200" height="130" rx="6" fill="#0d1225" stroke="#92fe9d" stroke-width="1.5"/>
-  <rect x="570" y="390" width="200" height="3" rx="1" fill="#92fe9d"/>
-  <text x="670" y="418" text-anchor="middle" fill="#ffffff" font-family="'Roboto Mono', 'Courier New', monospace" font-size="13" font-weight="bold">MASO HUB</text>
-  <line x1="600" y1="428" x2="740" y2="428" stroke="#334455" stroke-width="0.5"/>
-  <text x="670" y="450" text-anchor="middle" fill="#f093fb" font-family="'Roboto Mono', 'Courier New', monospace" font-size="12">Judge</text>
-  <text x="670" y="475" text-anchor="middle" fill="#ffaa00" font-family="'Roboto Mono', 'Courier New', monospace" font-size="12">IAM_Check</text>
-  <text x="670" y="500" text-anchor="middle" fill="#667788" font-family="'Roboto Mono', 'Courier New', monospace" font-size="10">OISpec | Guardrails</text>
-
-  <!-- MASO HUB 3 (Executor) -->
-  <rect x="855" y="390" width="200" height="130" rx="6" fill="#0d1225" stroke="#ff6b35" stroke-width="1.5"/>
-  <rect x="855" y="390" width="200" height="3" rx="1" fill="#ff6b35"/>
-  <text x="955" y="418" text-anchor="middle" fill="#ffffff" font-family="'Roboto Mono', 'Courier New', monospace" font-size="13" font-weight="bold">MASO HUB</text>
-  <line x1="885" y1="428" x2="1025" y2="428" stroke="#334455" stroke-width="0.5"/>
-  <text x="955" y="450" text-anchor="middle" fill="#f093fb" font-family="'Roboto Mono', 'Courier New', monospace" font-size="12">Judge</text>
-  <text x="955" y="475" text-anchor="middle" fill="#00c9ff" font-family="'Roboto Mono', 'Courier New', monospace" font-size="12">Tool_Check</text>
-  <text x="955" y="500" text-anchor="middle" fill="#667788" font-family="'Roboto Mono', 'Courier New', monospace" font-size="10">OISpec | Guardrails</text>
-
-  <!-- ===== CONTROL PLANE CONNECTIONS ===== -->
-
-  <!-- Connection Hub1 <-> Hub2 -->
-  <line x1="480" y1="455" x2="570" y2="455" stroke="#ff6b35" stroke-width="1.5" stroke-dasharray="6,3" opacity="0.7"/>
-  <text x="525" y="448" text-anchor="middle" fill="#ff6b35" font-family="'Roboto Mono', 'Courier New', monospace" font-size="8" letter-spacing="1">CONTROL_PLANE</text>
-
-  <!-- Connection Hub2 <-> Hub3 -->
-  <line x1="770" y1="455" x2="855" y2="455" stroke="#ff6b35" stroke-width="1.5" stroke-dasharray="6,3" opacity="0.7"/>
-  <text x="812" y="448" text-anchor="middle" fill="#ff6b35" font-family="'Roboto Mono', 'Courier New', monospace" font-size="8" letter-spacing="1">CONTROL_PLANE</text>
-
-  <!-- Arrow decorations on control plane -->
-  <text x="485" y="460" text-anchor="start" fill="#ff6b35" font-family="'Roboto Mono', 'Courier New', monospace" font-size="10">&lt;</text>
-  <text x="562" y="460" text-anchor="end" fill="#ff6b35" font-family="'Roboto Mono', 'Courier New', monospace" font-size="10">&gt;</text>
-  <text x="775" y="460" text-anchor="start" fill="#ff6b35" font-family="'Roboto Mono', 'Courier New', monospace" font-size="10">&lt;</text>
-  <text x="850" y="460" text-anchor="end" fill="#ff6b35" font-family="'Roboto Mono', 'Courier New', monospace" font-size="10">&gt;</text>
-
-  <!-- ===== BOTTOM ANNOTATION ===== -->
-  <line x1="100" y1="555" x2="1100" y2="555" stroke="#334455" stroke-width="0.5" opacity="0.4"/>
-
-  <text x="600" y="585" text-anchor="middle" fill="#667788" font-family="'Roboto Mono', 'Courier New', monospace" font-size="11" letter-spacing="1">Every agent gets its own judge. Every hub enforces independently.</text>
-  <text x="600" y="605" text-anchor="middle" fill="#667788" font-family="'Roboto Mono', 'Courier New', monospace" font-size="11" letter-spacing="1">No agent polices itself. The control plane coordinates. PACE degrades gracefully.</text>
-
-  <!-- Decorative prompt cursor -->
-  <text x="600" y="645" text-anchor="middle" fill="#ff6b35" font-family="'Roboto Mono', 'Courier New', monospace" font-size="11" opacity="0.5">maso@control-plane:~$ _</text>
 </svg>
