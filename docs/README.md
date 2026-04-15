@@ -102,18 +102,18 @@ Nine role-specific entry points. Each one frames AI runtime security through the
 
 ## Four Control Layers
 
-Each layer operates independently. No single failure compromises the system.
+A runtime control plane for AI behaviour. Each layer operates independently, and each can run in **detect-only** mode before you graduate it to **enforcing**. No single failure compromises the system.
 
 <div class="control-layers" markdown>
 <div class="grid cards" markdown>
 
 -   **Guardrails**
 
-    Fast, deterministic boundaries: content policies, scope constraints, tool-use permissions. Catches the obvious failures at machine speed.
+    Fast, deterministic boundaries: content policies, scope constraints, tool-use permissions. Catches the obvious failures at machine speed. *~10ms per check.*
 
 -   **Model-as-Judge**
 
-    A separate model evaluates outputs against policy, context, and intent before they reach users. Catches the subtle failures guardrails miss.
+    A separate model evaluates outputs against policy, context, and intent before they reach users. Catches the subtle failures guardrails miss. *~500ms to 5s, sync or async by risk tier.*
 
 -   **Human Oversight**
 
@@ -126,7 +126,7 @@ Each layer operates independently. No single failure compromises the system.
 </div>
 </div>
 
-[How the layers work together](what-is-ai-runtime-security.md)
+[How the layers work together](what-is-ai-runtime-security.md) · [End-to-end walkthrough: the Chevrolet $1 chatbot](walkthrough-chevrolet-1-dollar.md) · [Cost & latency by tier](extensions/technical/cost-and-latency.md)
 
 ---
 

@@ -101,6 +101,7 @@ nav:
 
   - Start:
     - Where to Begin: start.md
+    - "Walkthrough: Chevrolet $1 Chatbot": walkthrough-chevrolet-1-dollar.md
     - Reading Paths: reading-paths.md
     - AIRSLite: minimum-viable-airs.md
     - Quick Start: QUICK_START.md

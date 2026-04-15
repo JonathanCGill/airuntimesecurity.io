@@ -49,6 +49,21 @@ AI Runtime Security is built on layered, independent controls that compensate fo
 
 Each layer operates independently. No single failure compromises the system.
 
+## Detect-Only and Enforcing Postures
+
+AIRS is a runtime control plane for AI behaviour. Like any control plane, each layer can run in **detect-only** mode (observe, log, alert) or **enforcing** mode (block, escalate, halt). The posture is a deployment decision, not a property of the framework.
+
+| Layer | Detect-only posture | Enforcing posture |
+|-------|---------------------|-------------------|
+| **Guardrails** | Log pattern matches; let requests through | Block requests that match high-confidence patterns |
+| **Model-as-Judge** | Evaluate outputs after delivery (async), flag for review | Evaluate before delivery (sync), block or rewrite failing outputs |
+| **Human Oversight** | Sample interactions for review; no blocking authority | Approval required for defined action classes before execution |
+| **Circuit Breakers** | Fire alerts on threshold breaches | Trip the system into a PACE fallback posture automatically |
+
+Most organisations deploy detect-only first, measure false-positive rates and latency, and graduate individual layers to enforcement as they earn confidence. The [Chevrolet $1 walkthrough](walkthrough-chevrolet-1-dollar.md) shows what enforcing mode catches. The [maturity levels](strategy/maturity-levels.md) describe how teams progress from one posture to the other.
+
+Typical added latency is ~10ms for guardrails and 500ms to 5s for the Judge. Full cost and latency modelling by risk tier is in [Cost & Latency](extensions/technical/cost-and-latency.md).
+
 ## Relationship to Existing Security Domains
 
 AI Runtime Security does not replace existing security disciplines. It extends them into a domain they were not designed to cover.
