@@ -47,7 +47,7 @@ Each layer operates independently. No single failure compromises the system.
 
 AI security focuses almost entirely on the model layer: training data, prompt injection, pre-deployment red-teaming. This misses the point. The risk that matters is what the model *does* at runtime, in production, with real data and real users. Guardrails alone are a single point of failure. Process gates slow delivery without reducing harm. In every other security domain we layer controls and assume any single one will fail. AI security has not caught up.
 
-[:octicons-arrow-right-24: Why AI security is a runtime problem](insights/why-ai-security-is-a-runtime-problem.md)
+[Why AI security is a runtime problem](insights/why-ai-security-is-a-runtime-problem.md)
 
 ---
 
@@ -59,19 +59,19 @@ AI security focuses almost entirely on the model layer: training data, prompt in
 
     Seven controls you can implement in an afternoon. Enough runtime safety to go live, enough observability to learn, enough structure to decide where to invest next.
 
-    [:octicons-arrow-right-24: Minimum Viable AIRS](minimum-viable-airs.md)
+    [Minimum Viable AIRS](minimum-viable-airs.md)
 
 -   **Know Your Role?**
 
     Entry points for CISOs, architects, risk teams, CIOs, product owners, AI engineers, compliance, and insider threat teams. Each page tells you what matters for your role, why, and where to start.
 
-    [:octicons-arrow-right-24: Stakeholder views](stakeholders/index.md)
+    [Stakeholder views](stakeholders/index.md)
 
 -   **Want the Full Framework?**
 
     Reading paths organised by depth and interest. Pick a track and follow it.
 
-    [:octicons-arrow-right-24: Start here](reading-paths.md)
+    [Start here](reading-paths.md)
 
 </div>
 
@@ -83,7 +83,7 @@ When agents coordinate autonomously, every single-agent risk compounds. An injec
 
 MASO adds ten control domains, three implementation tiers, and PACE resilience to handle what single-agent controls cannot: inter-agent communication integrity, non-human identity management, execution containment, and kill switch architecture.
 
-[:octicons-arrow-right-24: MASO Framework](maso/index.md) · [:octicons-arrow-right-24: Interactive Demo](maso/demo.md)
+[MASO Framework](maso/index.md) · [Interactive Demo](maso/demo.md)
 
 ---
 
@@ -108,7 +108,7 @@ The *why* before the *how*. Each article identifies a specific problem that the 
 
 **Analysis:** [What works](insights/what-works.md) · [What scales](insights/what-scales.md) · [State of reality](insights/state-of-reality.md) · [The constraint curve](insights/the-constraint-curve.md)
 
-[:octicons-arrow-right-24: All insights](insights/index.md)
+[All insights](insights/index.md)
 
 ---
 
@@ -128,13 +128,13 @@ The framework maps to EU AI Act (Articles 9, 14, 15), NIST AI RMF, ISO 42001, OW
 
     Shifts security left, embedding it into AI systems from the start rather than bolting it on after deployment.
 
-    [:octicons-arrow-right-24: aisecuredbydesign.io](https://aisecuredbydesign.io/)
+    [aisecuredbydesign.io](https://aisecuredbydesign.io/)
 
 -   **MASO Learning Site**
 
     Structured guides, walkthroughs, and practical examples for the Multi-Agent Security Operations framework.
 
-    [:octicons-arrow-right-24: airuntimesecurity.co.za](https://airuntimesecurity.co.za)
+    [airuntimesecurity.co.za](https://airuntimesecurity.co.za)
 
 </div>
 
