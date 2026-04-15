@@ -40,6 +40,42 @@ Framework tags use these categories:
 
 <!-- NEWS_START -->
 
+### 2026-04-07: Anthropic Claude Mythos Preview Autonomously Discovers Thousands of Zero-Day Vulnerabilities
+
+**Tags**: Judge, Agentic, Circuit Breaker, Supply Chain
+
+Anthropic announced Claude Mythos Preview and Project Glasswing, a consortium (AWS, Apple, Broadcom, Cisco, CrowdStrike, Google, JPMorgan Chase, the Linux Foundation, Microsoft, NVIDIA, Palo Alto Networks, Anthropic) using a new access-restricted model to find and patch vulnerabilities in critical software. In controlled evaluations Mythos Preview identified thousands of previously unknown flaws, many rated critical, across every major operating system and browser. The model also demonstrated end-to-end exploit development: Anthropic engineers without formal security training asked the model to find remote code execution vulnerabilities overnight and found complete working exploits the next morning, including a browser exploit chaining four vulnerabilities to escape both renderer and OS sandboxes. Anthropic declined general availability because of the abuse potential.
+
+**Framework relevance**: Mythos Preview directly reinforces the [Temporal Decay](insights/temporal-decay.md) and speed-asymmetry arguments: the gap between offensive capability and human-speed defence is closing, which tightens the latency budget for the [Judge](core/controls.md) layer and raises the bar for [Circuit Breaker](PACE-RESILIENCE.md) automation. The consortium's access model is a live example of [Privileged Agent Governance](maso/controls/privileged-agent-governance.md) at the provider layer: a capability too dangerous for open distribution is gated by identity, audit, and scope. The announcement also sharpens the case for [Supply Chain](maso/controls/supply-chain.md) vulnerability monitoring, since the same capability in the wrong hands will find zero-days faster than patch cycles can close them.
+
+**Source**: [Claude Mythos Preview](https://red.anthropic.com/2026/mythos-preview/) · [Help Net Security analysis](https://www.helpnetsecurity.com/2026/04/15/anthropic-claude-mythos-ai-vulnerability-discovery/)
+
+---
+
+### 2026-04-03: CVE-2026-32211 | Azure MCP Server Authentication Flaw Leaks Sensitive Data (CVSS 9.1)
+
+**Tags**: IAM, Agentic, Supply Chain, Data Protection
+
+Microsoft disclosed CVE-2026-32211, a critical missing-authentication flaw (CWE-306) in the Azure MCP Server (`@azure-devops/mcp` on npm). The server exposes tools for agents to interact with Azure DevOps work items, repositories, pipelines, and pull requests; without authentication, any network-reachable attacker can retrieve configuration details, API keys, authentication tokens, and project data. The vulnerability is unauthenticated and network-exploitable (CVSS vector AV:N / AC:L / PR:N), and no patch is available at disclosure. Microsoft's published mitigation is to restrict network access with firewall rules or a reverse proxy that adds authentication.
+
+**Framework relevance**: The flaw is a textbook case of the [MCP problem](insights/the-mcp-problem.md): the protocol everyone is adopting gives agents tool access without authentication, authorisation, or monitoring. It maps directly to [IAM Governance](core/iam-governance.md) controls IAM-01 (authenticate all entities) and IAM-04 (constrain agent tool invocation), and to [Infrastructure IAM](infrastructure/controls/identity-and-access.md). The recommended mitigation (network-level scoping while the MCP server itself is unauthenticated) is precisely the [Environment Containment](maso/environment-containment.md) pattern: the agent-facing component cannot be trusted, so the network around it enforces the boundary.
+
+**Source**: [CVE-2026-32211 advisory](https://cvefeed.io/vuln/detail/CVE-2026-32211) · [Windows News analysis](https://windowsnews.ai/article/cve-2026-32211-critical-azure-mcp-server-authentication-flaw-exposes-sensitive-data-cvss-91.409622)
+
+---
+
+### 2026-04-03: 135,000 OpenClaw Instances Exposed, ClawHub Skills Marketplace Now Hosts 824+ Malicious Entries
+
+**Tags**: Agentic, Supply Chain, IAM, Observability
+
+Multiple vendors published new telemetry on the OpenClaw ecosystem. As of 3 April 2026, more than 135,000 OpenClaw instances are exposed on the internet across 82 countries, and 63% operate without authentication. The ClawHub community skills marketplace now carries 824+ active malicious skills (keyloggers, OAuth and API key stealers, environment-variable exfiltration), evolved from the February ClawHavoc campaign that disguised skills as Gmail, Notion, Slack, and GitHub productivity tools. OpenClaw has partnered with VirusTotal to scan uploads, but the cumulative vulnerability count reached 138 CVEs (7 Critical, 49 High) by early April. Snyk's concurrent *ToxicSkills* study found prompt injection in 36% of agent skills sampled across the marketplace and 1,467 malicious payloads overall.
+
+**Framework relevance**: This is the [Agent Supply Chain Crisis](insights/the-agent-supply-chain-crisis.md) playing out in production. Unauthenticated exposed instances map to [IAM-01](infrastructure/controls/identity-and-access.md) failures; skill-marketplace compromise maps to [Supply Chain](maso/controls/supply-chain.md) controls SUP-02 (assess risk before adoption), SUP-05 (audit tool and plugin supply chain), and SUP-07 (maintain AI-BOM). The 63% no-auth figure is a hard data point for the [Observability](maso/controls/observability.md) argument that organisations cannot govern agents they have not inventoried. The 36% prompt-injection rate in skills provides empirical grounding for Agentic Controls extended to skill execution: static pre-install scanning, signed manifests, [sandbox patterns](infrastructure/agentic/sandbox-patterns.md) for skill runtimes.
+
+**Source**: [The OpenClaw Security Crisis: 135,000 Exposed AI Agents](https://dev.to/waxell/the-openclaw-security-crisis-135000-exposed-ai-agents-and-the-runtime-governance-gap-e26) · [Snyk ToxicSkills study](https://snyk.io/blog/toxicskills-malicious-ai-agent-skills-clawhub/)
+
+---
+
 ### 2026-04-02: Google Publishes Layered Defense Strategy Against Indirect Prompt Injection in Workspace
 
 **Tags**: Guardrails, Agentic, Human Oversight
