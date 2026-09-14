@@ -25,6 +25,25 @@ valid if {
 	count(violations) == 0
 }
 
+# The same undefined-is-not-false problem applies one level up, to the token
+# object itself. If `input.token` is absent (or is not an object), every rule
+# below that reads through it is undefined, the violation set comes back empty,
+# and `valid` is true. Reading the claim set through `token_claims` means a
+# request with no token is checked against `{}`, so every required claim is
+# reported missing instead of silently skipped.
+default token_claims := {}
+
+token_claims := input.token if is_object(input.token)
+
+violations contains "policy input is missing the token object to validate" if {
+	not "token" in object.keys(input)
+}
+
+violations contains "token claim set is not an object" if {
+	"token" in object.keys(input)
+	not is_object(input.token)
+}
+
 # Every check below tests a claim's *value*. In Rego a body that references an
 # absent field is undefined rather than false, so without these presence rules a
 # token that simply omits `exp`, `iat`, `scopes`, `sid`, or `sub` produces an
@@ -33,15 +52,15 @@ required_claims := {"sub", "exp", "iat", "scopes", "sid"}
 
 violations contains sprintf("token missing required claim: %s", [claim]) if {
 	some claim in required_claims
-	not claim in object.keys(input.token)
+	not claim in object.keys(token_claims)
 }
 
 violations contains "token missing the act (delegation actor) claim" if {
-	not "act" in object.keys(input.token)
+	not "act" in object.keys(token_claims)
 }
 
 violations contains "token scopes claim is not a set of strings" if {
-	"scopes" in object.keys(input.token)
+	"scopes" in object.keys(token_claims)
 	not is_array(input.token.scopes)
 	not is_set(input.token.scopes)
 }
@@ -68,7 +87,7 @@ violations contains "token missing a required scope" if {
 }
 
 violations contains "token does not propagate an originating principal" if {
-	"act" in object.keys(input.token)
+	"act" in object.keys(token_claims)
 	not input.token.act.sub # RFC 8693 actor / delegation claim
 }
 

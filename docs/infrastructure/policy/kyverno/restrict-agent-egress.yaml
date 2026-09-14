@@ -77,18 +77,41 @@ spec:
             jmesPath: '"metadata"."labels"."airs.io/egress" || ''unlabelled'''
         # Count rather than GET the policy by name: a GET on a missing object
         # is an API error, whereas a list returns an empty set.
+        #
+        # The name alone proves nothing. A tenant can create a NetworkPolicy
+        # called default-deny-egress that selects no pods, omits Egress from
+        # policyTypes, or opens every destination, and a name-only count would
+        # accept it while the generated policy is absent or still reconciling.
+        # So the filter below matches on the facts that make the object the
+        # policy rule 1 produces: Kyverno's generated-resource ownership labels,
+        # and the default-deny shape itself (all pods selected, Egress governed,
+        # exactly one rule, no destination restriction beyond the DNS ports).
+        # The ports literal must stay in step with the generate block above.
         - name: denyEgressPolicyCount
           apiCall:
             urlPath: "/apis/networking.k8s.io/v1/namespaces/{{ request.namespace }}/networkpolicies"
-            jmesPath: "items[?metadata.name == 'default-deny-egress'] | length(@)"
+            jmesPath: >-
+              items[?
+              metadata.name == 'default-deny-egress' &&
+              metadata.labels."app.kubernetes.io/managed-by" == 'kyverno' &&
+              metadata.labels."generate.kyverno.io/policy-name" == 'restrict-agent-egress' &&
+              metadata.labels."generate.kyverno.io/rule-name" == 'generate-default-deny-egress' &&
+              spec.podSelector == `{}` &&
+              spec.policyTypes == `["Egress"]` &&
+              length(spec.egress || `[]`) == `1` &&
+              length(spec.egress[0].to || `[]`) == `0` &&
+              spec.egress[0].ports == `[{"protocol":"UDP","port":53},{"protocol":"TCP","port":53}]`
+              ] | length(@)
       validate:
         message: >-
           NET-04: an agent-sandbox pod may only run in a namespace labelled
           airs.io/egress=controlled that carries the generated
           default-deny-egress NetworkPolicy. Namespace label is
-          '{{ namespaceEgress }}' and {{ denyEgressPolicyCount }} matching
-          NetworkPolicy was found. Label the namespace and let rule 1 generate
-          the policy; a pod-level label does not substitute for either.
+          '{{ namespaceEgress }}' and {{ denyEgressPolicyCount }} NetworkPolicy
+          matching the generated default-deny shape was found. Label the
+          namespace and let rule 1 generate the policy; neither a pod-level
+          label nor a hand-written NetworkPolicy that merely reuses the name
+          substitutes for it.
         deny:
           conditions:
             any:
