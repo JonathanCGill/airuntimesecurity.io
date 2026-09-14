@@ -93,7 +93,7 @@ The session-level intent analysis (§6, added in v0.9.0) assumes sessions are di
 
 **Where the framework breaks:**
 
-MASO's 212 controls assume predictable interaction patterns: agents communicating through defined channels with known protocols. But as agent systems become more complex, **emergent behaviors** become possible: two agents that individually operate within policy may produce a combined behavior that violates policy. Not because either was compromised, but because their interaction creates an unanticipated state.
+MASO's 225 controls assume predictable interaction patterns: agents communicating through defined channels with known protocols. But as agent systems become more complex, **emergent behaviors** become possible: two agents that individually operate within policy may produce a combined behavior that violates policy. Not because either was compromised, but because their interaction creates an unanticipated state.
 
 This is Charles Perrow's "normal accidents" theory applied to AI: in sufficiently complex, tightly coupled systems, unexpected interactions between components produce failures that no component-level analysis would predict.
 

@@ -1,6 +1,6 @@
 ---
 as_at: "2026-07-04"
-description: "MASO emergent risk register: 35 risks across nine categories mapped to MASO controls and OWASP, with gap analysis and prioritised remediation."
+description: "MASO emergent risk register: 36 risks across nine categories mapped to MASO controls and OWASP, with gap analysis and prioritised remediation."
 ---
 
 # MASO (Multi-Agent Security Operations) Emergent Risk Register
@@ -9,13 +9,13 @@ description: "MASO emergent risk register: 35 risks across nine categories mappe
 
 ## Review Findings
 
-The source risk table identifies 35 emergent risks across nine categories. Comparison against the ten MASO control domains and the OWASP dual mapping reveals three classes of coverage:
+The source risk table identifies 35 emergent risks across nine categories, with one added since (SM-03, outward harm). Comparison against the ten MASO control domains and the OWASP dual mapping reveals three classes of coverage:
 
 **MASO already strong (no new controls needed):** Cross-agent prompt injection, confused deputy, privilege escalation by delegation, tool-chain injection, role drift, goal drift, memory poisoning, provenance loss, cost blowouts. These map directly to existing MASO controls that are equal to or stronger than the source table's mitigations.
 
 **MASO partially covers but needs amendment (9 amendments):** Secrets leakage, logging as breach vector, RAG poisoning, latency compounding, automation bias, accountability blur, role drift testing, goal drift judge criteria. The MASO controls address the attack vector but miss a specific dimension the source table identifies.
 
-**Genuine gaps requiring new controls (22 new controls):** The entire epistemic category (9 risks), two coordination risks (deadlock/livelock, oscillation), both safety/misuse risks, both governance risks, two operational risks (partial failure, token exhaustion), and two inference-side risks (membership inference, timing side-channel). These are emergent multi-agent failure modes with no direct OWASP equivalent. The source table's mitigations are sound starting points; MASO needs to formalise them.
+**Genuine gaps requiring new controls (23 new controls):** The entire epistemic category (9 risks), two coordination risks (deadlock/livelock, oscillation), both safety/misuse risks, both governance risks, two operational risks (partial failure, token exhaustion), and two inference-side risks (membership inference, timing side-channel). These are emergent multi-agent failure modes with no direct OWASP equivalent. The source table's mitigations are sound starting points; MASO needs to formalise them.
 
 The most significant finding: **the epistemic risks are the highest-priority gap.** A multi-agent system can fail catastrophically on groupthink, hallucination amplification, or uncertainty stripping with no external attacker present. Current MASO controls are oriented toward adversarial threats (OWASP) and operational resilience (PACE). They do not address information-processing failures between agents.
 
@@ -65,6 +65,7 @@ These overlap significantly with the OWASP Agentic Top 10. MASO controls are gen
 |----|------|----------|---------|--------|----------------------|-------------|---------|
 | SM-01 | **Cumulative harm via decomposition** | Each agent's individual output is benign. Combined outputs enable a harmful outcome. Planning agent breaks a harmful task into harmless-looking subtasks that individually pass guardrails. | Policy enforcement at each step in context of the broader orchestration goal, not just the individual subtask. Orchestrator's original task specification available to each agent's guardrails. | Detect risky step sequences: pattern matching for known harmful decomposition patterns. | Judge evaluates the aggregate plan, not just individual steps. Can refuse based on cumulative risk even when each step passes individually. | **Partial.** Layer 1 guardrails are per-agent. EC-2.5 evaluates outputs but may lack visibility into the aggregate plan. | **NEW: SM-C01** Aggregate harm assessment. Judge evaluation includes full task plan context, not just individual output. For multi-step plans, judge evaluates whole plan before execution. Tier 2+. |
 | SM-02 | **Persuasion optimisation / social engineering** | Agents iterating on messaging to maximise user compliance: A/B testing persuasion techniques, escalating emotional appeal, manufacturing urgency. Can occur without adversarial intent if agents optimise for "task completion." | Explicit guardrail limits: no coercion, no manipulation, no manufactured urgency. Purpose constraints: agents must not optimise for persuasion unless explicitly approved. | Monitor for persuasion patterns: escalating emotional language, repeated prompts, urgency signals not correlating with actual deadlines. | Judge scores outputs for manipulativeness and coercion. Outputs exceeding threshold are blocked. | **Gap.** ASI09 addresses trust dynamics but not iterative persuasion optimisation. | **NEW: SM-C02** Anti-manipulation guardrail. Outputs directed at humans must not employ escalating persuasion, manufactured urgency, or emotional manipulation. Judge criteria include manipulativeness score. Tier 1+. |
+| SM-03 | **Outward harm to uninvolved third parties** | An agent pursuing a legitimate task imposes cost on a party with no relationship to the deployment: writing to someone else's site, creating accounts, consuming a volunteer's time, or leaving content a third party must clean up. Every outcome control in MASO is scoped to the operator's own systems, data, and users, so a run can be fully within policy internally and still be the cause of somebody else's incident. There is no attacker and no compromise to remediate. | Writes to systems outside the operator's control are a separate, denied-by-default action class with named destinations (EC-2.21). Impact assessment covers parties outside the deployment, not just inside it (EC-2.7). | Correlate destinations across independent runs: repeated convergence of unrelated runs on the same third-party surface is the signature (OB-3.6). First write to a new external destination alerts regardless of volume. | Judge evaluates the aggregate plan for impact on parties outside the deployment, and treats an action whose cost falls entirely on an uninvolved third party as escalation-worthy even when the task itself is authorised. | **Gap.** SM-01 (EC-2.7) assesses cumulative harm but is framed around the operator's own users and systems. No control records harm inflicted outward, and no remediation path names the affected party. | **NEW: SM-C03** Outward harm accounting. Third-party impact is assessed before execution, residual state left on systems the operator does not own is recorded with a named owner, and notification of the affected party is part of remediation (EC-3.7). Tier 2+. |
 
 ### Data Risks
 
@@ -109,7 +110,7 @@ These target the model's inference endpoint rather than its behaviour. They sit 
 
 ## Consolidated Amendment Summary
 
-### New Controls (22)
+### New Controls (23)
 
 | ID | Name | Domain | Tier | Source Risk |
 |----|------|--------|------|-------------|
@@ -126,6 +127,7 @@ These target the model's inference endpoint rather than its behaviour. They sit 
 | CR-C02 | Decision commit protocol | Execution Control | 2+ | CR-02 Oscillation |
 | SM-C01 | Aggregate harm assessment | Execution Control | 2+ | SM-01 Cumulative harm |
 | SM-C02 | Anti-manipulation guardrail | Execution Control | 1+ | SM-02 Persuasion optimisation |
+| SM-C03 | Outward harm accounting | Execution Control | 2+ | SM-03 Outward harm to third parties |
 | GV-C01 | Decision traceability | Observability | 2+ | GV-01 Non-determinism |
 | GV-C02 | Quality-over-completion evaluation | Execution Control | 2+ | GV-02 Metric gaming |
 | OP-C01 | Tool completion attestation | Execution Control | 2+ | OP-03 Partial failure |
@@ -157,13 +159,13 @@ These target the model's inference endpoint rather than its behaviour. They sit 
 | Epistemic | 9 | 0 | 0 | 9 |
 | Coordination | 4 | 2 | 2 | 2 |
 | Security | 6 | 4 | 2 | 0 |
-| Safety/Misuse | 2 | 0 | 0 | 2 |
+| Safety/Misuse | 3 | 0 | 0 | 3 |
 | Data | 3 | 2 | 1 | 0 |
 | Governance | 2 | 0 | 0 | 2 |
 | Operational | 4 | 1 | 1 | 2 |
 | Human Factors | 2 | 0 | 2 | 0 |
 | Inference-Side | 3 | 0 | 1 | 2 |
-| **Total** | **35** | **9** | **9** | **22** |
+| **Total** | **36** | **9** | **9** | **23** |
 
 ### Key Observation
 
