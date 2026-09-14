@@ -80,6 +80,7 @@ The rest of the library, grouped by theme. Expand the section you need. If you a
     | Article | One-line summary |
     |---------|-----------------|
     | [When Agents Talk to Agents](when-agents-talk-to-agents.md) | Multi-agent systems have accountability gaps. |
+    | [The Channel You Do Not Own](the-channel-you-do-not-own.md) | Agents with no bus between them coordinated through a public wiki. Any writable surface is an inter-agent channel, so the boundary is egress, not inspection. |
     | [Agentic Drift](agentic-drift.md) | Objectives, context, and tools drift away from declared intent over time. |
     | [The Orchestrator Problem](the-orchestrator-problem.md) | The most powerful agents in your system have the least controls applied to them. |
     | [The Long-Horizon Problem](the-long-horizon-problem.md) | Security properties you validated on day one may not hold on day thirty. Time itself is an attack vector. |

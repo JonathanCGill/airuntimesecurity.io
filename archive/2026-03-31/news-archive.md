@@ -9,6 +9,67 @@ Past news items from the [AI Runtime Security News](../../docs/news.md) page. It
 ---
 
 <!-- ARCHIVE_START -->
+
+### 2026-06-15: Chained LiteLLM Gateway Flaws (CVSS 9.9) Put the Multi-Agent Control Plane at Risk
+
+**Tags**: Supply Chain, IAM, MASO
+
+*Obsidian Security* disclosed three chained vulnerabilities in **LiteLLM**, the open-source model gateway, tracked as CVE-2026-47101, CVE-2026-47102, and CVE-2026-40217 and described as a CVSS 9.9 path from a low-privilege user to administrator access and remote code execution. LiteLLM matters disproportionately because it is the language-model gateway for CrewAI, DSPy, Microsoft GraphRAG, and dozens of other agent frameworks, so a single compromised gateway sits in front of many agents at once. The disclosure follows CISA adding a related AI-gateway flaw, CVE-2026-42271, to its Known Exploited Vulnerabilities catalogue on June 8, 2026.
+
+**Framework relevance**: A shared gateway is a chokepoint whose compromise reaches every agent routed through it, the connective tissue that [MASO](../../docs/maso/README.md) supply chain and IAM controls are meant to protect. The low-privilege-to-admin path is an [IAM Governance](../../docs/core/iam-governance.md) failure: the gateway holds the keys to every downstream model, so it is a high-value machine identity that needs scoped credentials, rotation, and isolation, not a flat trust boundary. The breadth of affected frameworks is [ET-13 (Agent Ecosystem Supply Chain Compromise at Scale)](../../docs/maso/threat-intelligence/emerging-threats.md#et-13-agent-ecosystem-supply-chain-compromise-at-scale) in practice, and the CISA KEV listing makes [Supply Chain](../../docs/maso/controls/supply-chain.md) control SC-3.1 (continuous vulnerability scanning of AI infrastructure, not just models) a near-term requirement. Connects to [Securing the Connective Tissue](../../docs/insights/securing-the-connective-tissue.md).
+
+**Source**: [Penligent: LiteLLM Vulnerability Chain Turns AI Gateways Into a Control Plane Risk](https://www.penligent.ai/hackinglabs/litellm-vulnerability-chain/) &middot; [CISA Known Exploited Vulnerabilities Catalog](https://www.cisa.gov/known-exploited-vulnerabilities-catalog)
+
+---
+
+### 2026-06-14: Real World AI Security Conference at Stanford (June 23-25) Flagged for Future Coverage
+
+**Tags**: Agentic, MASO
+
+Stanford's Security Lab is hosting the Real World AI Security Conference at the Arrillaga Alumni Center, June 23-25, 2026, bringing together researchers and practitioners focused on production AI security failures rather than theoretical risk. No findings to report yet.
+
+**Framework relevance**: Flagged here as a likely source for upcoming roundups. Sessions on production incidents and agentic system failures are the kind of primary material this page draws on.
+
+**Source**: [Real World AI Security Conference 2026](https://seclab.stanford.edu/RealWorldAIsec)
+
+---
+
+### 2026-06-02: US Executive Order Establishes Voluntary AI Cybersecurity Benchmarking and Vulnerability Clearinghouse
+
+**Tags**: Risk Tiers, Supply Chain, MASO
+
+On June 2, 2026, the US President signed *Promoting Advanced Artificial Intelligence Innovation and Security*, directing the development of a voluntary framework for benchmarking and reviewing frontier AI models against cybersecurity risk criteria. The order explicitly states it does not create mandatory licensing, pre-clearance, or permitting requirements for AI development or deployment. It also directs Treasury, NSA, and CISA to stand up an AI cybersecurity clearinghouse for identifying and coordinating fixes for vulnerabilities found in AI systems, and directs the Department of Justice to prioritise enforcement against AI-enabled cybercrime.
+
+**Framework relevance**: The clearinghouse, if implemented as described, would function as a patch-coordination channel specific to AI systems, comparable in concept to CISA's Known Exploited Vulnerabilities catalogue but for AI model and tooling CVEs. For [Supply Chain](../../docs/maso/controls/supply-chain.md), this is a potential future external feed for SC-3.1 (continuous vulnerability scanning), though the order is voluntary and creates no enforcement mechanism on its own. The benchmarking framework being voluntary means it does not change [Risk Tier](../../docs/core/risk-tiers.md) classification requirements directly, but a government-recognised benchmark would give Tier 2/3 deployments an external reference point for model selection. Worth tracking as the clearinghouse stands up: this is the kind of coordination mechanism [ET-17 (Regulatory Fragmentation)](../../docs/maso/threat-intelligence/emerging-threats.md#et-17-regulatory-fragmentation-and-compliance-velocity) anticipated as a partial counterweight.
+
+**Source**: [The White House: Promoting Advanced Artificial Intelligence Innovation and Security](https://www.whitehouse.gov/presidential-actions/2026/06/promoting-advanced-artificial-intelligence-innovation-and-security/)
+
+---
+
+### 2026-06-02: Microsoft Build 2026 - Agent 365 SDK Reaches General Availability, Execution Containers SDK in Early Preview
+
+**Tags**: Agentic, IAM, Supply Chain
+
+At Build 2026, Microsoft announced that the Agent 365 SDK has reached general availability, providing per-agent identity, registration, and lifecycle management for agents built on Microsoft's stack. The Microsoft Execution Containers (MXC) SDK, which provides sandboxed execution environments for agent-initiated code, was also announced but remains in early preview, not general availability. Both are part of a broader push to secure agentic workflows across the development lifecycle, alongside updates to Defender and Entra for agent identity.
+
+**Framework relevance**: Agent 365 SDK reaching GA is further vendor confirmation that per-agent [Non-Human Identity](../../docs/maso/controls/identity-and-access.md) (IA-2.1) is a shipping product category, not just a framework recommendation organisations have to build themselves. MXC's sandboxed execution model maps to [Execution Control](../../docs/maso/controls/execution-control.md) and [Environment Containment](../../docs/maso/environment-containment.md), but its early-preview status means it shouldn't yet be relied on as a sole containment control in Tier 2/3 deployments. Organisations adopting either SDK should still apply the same vetting (SC-2.2, SC-2.3) they'd apply to any other agent framework dependency: the framework-level RCE vulnerabilities disclosed in LangChain, LangGraph, and Microsoft's own Semantic Kernel earlier in 2026 (see [Agent Supply Chain Crisis](../../docs/insights/the-agent-supply-chain-crisis.md)) all involved the orchestration SDK itself, the same category Agent 365 and MXC sit in.
+
+**Source**: [Microsoft: Build 2026 - Securing code, agents, and models across the development lifecycle](https://www.microsoft.com/en-us/security/blog/2026/06/02/microsoft-build-2026-securing-code-agents-and-models-across-the-development-lifecycle/)
+
+---
+
+### 2026-06-01: SymJack and TrustFall Break the Coding-Agent Fleet With a Single Technique Each
+
+**Tags**: Supply Chain, Agentic, MASO
+
+*Adversa AI*'s June agentic security roundup (published June 1, 2026) details two disclosures that hit the AI coding-agent ecosystem in May. **SymJack** (disclosed May 26) is a symlink-hijack remote code execution that compromised six AI coding agents through one shared file-handling flaw, and **TrustFall** (disclosed May 7) is a one-click RCE that reached Claude Code, Cursor, Gemini CLI, and GitHub Copilot by exploiting a regressed trust-confirmation dialog that had previously gated risky actions. Adversa frames both as products of an "agentic coding gold rush" that is shipping autonomy faster than the surrounding controls mature.
+
+**Framework relevance**: One technique compromising six agent products simultaneously is the cross-fleet blast radius that [MASO](../../docs/maso/README.md) supply chain and containment controls exist to bound: a shared dependency or shared design flaw turns a single bug into an estate-wide event, the pattern catalogued in [ET-13 (Agent Ecosystem Supply Chain Compromise at Scale)](../../docs/maso/threat-intelligence/emerging-threats.md#et-13-agent-ecosystem-supply-chain-compromise-at-scale) and [ET-27 (Coding-agent-as-initial-access-vector)](../../docs/maso/threat-intelligence/emerging-threats.md#et-27-coding-agent-as-initial-access-vector). TrustFall is the sharper lesson for [Human Oversight](../../docs/core/controls.md): a confirmation dialog that silently regresses removes an approval gate without anyone noticing, which is why [Execution Control](../../docs/maso/controls/execution-control.md) treats approval prompts as enforced policy at the host, not UI the agent or a refactor can bypass. Reinforces [Environment Containment](../../docs/maso/environment-containment.md) and [Infrastructure Beats Instructions](../../docs/insights/infrastructure-beats-instructions.md): the host running the agent is part of its blast radius.
+
+**Source**: [Adversa AI: Top Agentic AI Security Resources, June 2026](https://adversa.ai/blog/top-agentic-ai-security-resources-june-2026/)
+
+---
+
 ### 2026-05-22: TrapDoor Supply Chain Campaign Weaponizes CLAUDE.md and .cursorrules Files Against AI Developer Ecosystems
 
 **Tags**: Supply Chain, Agentic, Memory & Context
@@ -111,7 +172,7 @@ MITRE released ATLAS v5.4.0 and CTID Secure AI v2, adding agent-specific techniq
 
 CISA, NSA, ASD, CCCS, NCSC-NZ, and NCSC-UK published the first coordinated multi-government guidance on agentic AI security. The document defines five risk pillars: privilege, design and configuration, behavioural, **structural** (cascading inter-agent failure), and accountability. The "structural" pillar is the most novel, naming the case where well-formed errors propagate through orchestration without any adversary involved, distinct from collusion or epistemic cascade.
 
-**Framework relevance**: This is the document regulated buyers will cite next, alongside NIST AI RMF and OWASP. It is now listed in [Validated Against Real Incidents](../../docs/validated-against.md) and the [Standards Alignment](../../docs/README.md#standards-alignment) table. The structural risk pillar surfaces a pattern that the AIRS framework partially covers under [Epistemic Cascading Failure](../../docs/maso/threat-intelligence/emerging-threats.md#et-05-epistemic-cascading-failure) but that benefits from a clean restatement; it informs the new ET-28 entry in the Emerging Threats catalogue.
+**Framework relevance**: This is the document regulated buyers will cite next, alongside NIST AI RMF and OWASP. It is now listed in [Validated Against Real Incidents](../../docs/validated-against.md) and the [Standards Alignment](../../docs/maturity.md#3-standards-alignment) table. The structural risk pillar surfaces a pattern that the AIRS framework partially covers under [Epistemic Cascading Failure](../../docs/maso/threat-intelligence/emerging-threats.md#et-05-epistemic-cascading-failure) but that benefits from a clean restatement; it informs the new ET-28 entry in the Emerging Threats catalogue.
 
 **Source**: [CISA: Secure Adoption of Agentic AI](https://www.cisa.gov/news-events/news/cisa-us-and-international-partners-release-guide-secure-adoption-agentic-ai) · [Joint guide PDF](https://media.defense.gov/2026/Apr/30/2003922823/-1/-1/0/CAREFUL%20ADOPTION%20OF%20AGENTIC%20AI%20SERVICES_FINAL.PDF)
 
