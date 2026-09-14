@@ -49,13 +49,23 @@ within(bound, value) if {
 	regex.match(bound.pattern, value)
 }
 
-# When a call is delegated, the callee may not exceed the caller's grant:
-# the requested tool must also be present in the delegating agent's manifest.
-# No delegation means no violation.
+# When a call is delegated, the effective permission is the INTERSECTION of the
+# caller's grant and the callee's, so two things must hold. The delegating agent
+# must hold the tool at all, and the parameters must sit inside the delegator's
+# bounds as well as the callee's. Checking only the tool name lets a callee with
+# a wider range act outside what its delegator was ever granted, which is the
+# privilege escalation this rule exists to stop. No delegation means no
+# violation.
 delegation_violation if {
 	input.call.delegated_from != null
 	caller := input.manifest[input.call.delegated_from]
 	not input.call.tool in object.keys(caller)
+}
+
+delegation_violation if {
+	input.call.delegated_from != null
+	caller_tool := input.manifest[input.call.delegated_from][input.call.tool]
+	not params_within_bounds(caller_tool, input.call.parameters)
 }
 
 decision := {
@@ -67,4 +77,4 @@ decision := {
 
 reason := "tool call within declared manifest and parameter bounds" if allow
 
-reason := "tool, action, or parameter outside declared manifest (default deny)" if not allow
+reason := "tool, action, or parameter outside declared manifest, or outside the delegator's grant (default deny)" if not allow

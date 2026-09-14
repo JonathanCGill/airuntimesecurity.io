@@ -128,10 +128,22 @@ domains:
 
     ```bash
     # Fail a pipeline if a service tagged CRITICAL is missing a mandatory control.
-    yq '.domains[].controls[] | select(.min_tier == 1) | .id' controls.yaml \
-      > required-controls.txt
-    comm -23 required-controls.txt implemented-controls.txt \
-      && echo "All baseline controls implemented."
+    # min_tier is the LOWEST tier a control applies from, so a CRITICAL service
+    # inherits every control at or below its own tier, not just the Tier 1 baseline.
+    yq '.domains[].controls[] | select(.min_tier <= 3) | .id' controls.yaml \
+      | sort > required-controls.txt
+    sort implemented-controls.txt > implemented-controls.sorted.txt
+
+    # comm exits 0 whether or not it printed anything, so test the output itself
+    # rather than chaining on its status, or the gate reports success while
+    # printing the controls that are missing.
+    missing="$(comm -23 required-controls.txt implemented-controls.sorted.txt)"
+    if [ -n "$missing" ]; then
+      echo "Missing mandatory controls for a CRITICAL service:" >&2
+      echo "$missing" >&2
+      exit 1
+    fi
+    echo "All mandatory controls implemented."
     ```
 
 ## Versioning

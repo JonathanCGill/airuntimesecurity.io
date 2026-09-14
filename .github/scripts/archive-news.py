@@ -5,6 +5,7 @@ The archive lives outside the MkDocs source tree and is read on GitHub, so
 relative links inside archived items are rewritten to point back into `docs/`.
 """
 
+import posixpath
 import re
 import sys
 from datetime import date, timedelta
@@ -19,18 +20,34 @@ ITEM_PATTERN = re.compile(r"^### (\d{4}-\d{2}-\d{2}): ")
 CUTOFF = date.today() - timedelta(days=90)
 
 LINK_PATTERN = re.compile(r"\]\(([^)\s]+)\)")
-# Paths that are already absolute, external, or anchor-only are left alone.
-SKIP_PREFIXES = ("http://", "https://", "#", "mailto:", "/", "../")
+# Absolute, external, and anchor-only targets are already location-independent.
+SKIP_PREFIXES = ("http://", "https://", "#", "mailto:", "/")
+
+# Every relative target in a news item is written relative to docs/news.md, so
+# it is resolved against `docs/` and re-expressed relative to the archive file.
+# This includes parent-relative targets such as `../README.md`, which resolve to
+# the repository root from docs/news.md and would silently point at
+# archive/2026-03-31/README.md if they were copied across unchanged.
+NEWS_DIR = "docs"
+ARCHIVE_DIR = "archive/2026-03-31"
 
 
 def rewrite_links(text: str) -> str:
-    """Rewrite docs-relative links so they resolve from the archive directory."""
+    """Rewrite links written relative to docs/news.md so they resolve from the archive."""
 
     def repl(match: re.Match[str]) -> str:
         target = match.group(1)
         if target.startswith(SKIP_PREFIXES):
             return match.group(0)
-        return f"]({'../../docs/'}{target})"
+
+        path, sep, anchor = target.partition("#")
+        if not path:
+            return match.group(0)
+
+        # Resolve against docs/, then re-express relative to the archive directory.
+        resolved = posixpath.normpath(posixpath.join(NEWS_DIR, path))
+        rebased = posixpath.relpath(resolved, ARCHIVE_DIR)
+        return f"]({rebased}{sep}{anchor})"
 
     return LINK_PATTERN.sub(repl, text)
 

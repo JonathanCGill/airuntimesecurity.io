@@ -98,7 +98,7 @@ At 100 agents, the potential delegation graph has up to ~10,000 edges. Even if m
 
 - **Policy complexity.** Each delegation rule specifies: source agent, target agent, permitted scope, maximum permissions, time limit. At 100 agents, the policy set may contain thousands of rules. Auditing this manually is not feasible.
 - **Delegation mandates at speed.** At Tier 3, every delegation creates a cryptographically signed mandate (source, scope, permissions, time limit, expected output). If agents delegate tasks hundreds of times per minute, the signing and validation overhead may become a latency bottleneck.
-- **Transitive path detection.** IA-2.4 prohibits transitive permissions, but detecting a transitive path through 4–5 intermediate agents requires graph analysis on every delegation request. The computational cost of this analysis grows with graph size.
+- **Transitive path detection.** IA-2.4 prohibits transitive permissions, but detecting a transitive path through four or five intermediate agents requires graph analysis on every delegation request. The computational cost of this analysis grows with graph size.
 
 ### What to Assess
 

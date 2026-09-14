@@ -25,6 +25,31 @@ valid if {
 	count(violations) == 0
 }
 
+# Every check below tests a claim's *value*. In Rego a body that references an
+# absent field is undefined rather than false, so without these presence rules a
+# token that simply omits `exp`, `iat`, `scopes`, `sid`, or `sub` produces an
+# empty violation set and is accepted. Absence is a violation, not a pass.
+required_claims := {"sub", "exp", "iat", "scopes", "sid"}
+
+violations contains sprintf("token missing required claim: %s", [claim]) if {
+	some claim in required_claims
+	not claim in object.keys(input.token)
+}
+
+violations contains "token missing the act (delegation actor) claim" if {
+	not "act" in object.keys(input.token)
+}
+
+violations contains "token scopes claim is not a set of strings" if {
+	"scopes" in object.keys(input.token)
+	not is_array(input.token.scopes)
+	not is_set(input.token.scopes)
+}
+
+violations contains "policy input is missing session_id to bind against" if {
+	not "session_id" in object.keys(input)
+}
+
 violations contains "token expired" if {
 	input.token.exp <= input.now
 }
@@ -43,6 +68,7 @@ violations contains "token missing a required scope" if {
 }
 
 violations contains "token does not propagate an originating principal" if {
+	"act" in object.keys(input.token)
 	not input.token.act.sub # RFC 8693 actor / delegation claim
 }
 
@@ -50,8 +76,13 @@ violations contains "token not bound to the current session" if {
 	input.token.sid != input.session_id
 }
 
+# `subject` is looked up defensively. Reading input.token.sub directly makes the
+# whole decision undefined for a token that omits it, so a malformed token would
+# yield no decision at all rather than an explicit deny with its reasons.
+subject := object.get(input, ["token", "sub"], "<absent>")
+
 decision := {
 	"valid": valid,
-	"subject": input.token.sub,
+	"subject": subject,
 	"violations": violations,
 }

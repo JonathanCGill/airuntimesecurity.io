@@ -6,9 +6,14 @@
 #   1. generate  - materialise a default-deny-egress NetworkPolicy in any
 #                  namespace labelled airs.io/egress=controlled, so egress must be
 #                  opened explicitly per destination rather than left open.
-#   2. validate  - refuse admission of an agent-sandbox pod unless it declares the
-#                  label airs.io/egress=controlled, proving it opts in to the
-#                  controlled posture above.
+#   2. validate  - refuse admission of an agent-sandbox pod unless the NAMESPACE
+#                  carries airs.io/egress=controlled and the generated
+#                  default-deny-egress NetworkPolicy is actually present.
+#                  A pod label alone is not sufficient: the pod author controls
+#                  its own labels, so trusting one lets a sandbox self-certify
+#                  into an unlabelled namespace where rule 1 never fired and no
+#                  NetworkPolicy exists. The namespace label and the generated
+#                  policy are the facts the pod cannot forge.
 #
 # Apply with: kubectl apply -f restrict-agent-egress.yaml
 apiVersion: kyverno.io/v1
@@ -55,7 +60,7 @@ spec:
                     port: 53
                   - protocol: TCP
                     port: 53
-    - name: agent-sandbox-must-opt-in-to-controlled-egress
+    - name: agent-sandbox-namespace-must-be-controlled
       match:
         any:
           - resources:
@@ -64,12 +69,32 @@ spec:
               selector:
                 matchLabels:
                   airs.io/workload: agent-sandbox
+      context:
+        # The namespace label is set by a cluster admin, not by the pod author.
+        - name: namespaceEgress
+          apiCall:
+            urlPath: "/api/v1/namespaces/{{ request.namespace }}"
+            jmesPath: '"metadata"."labels"."airs.io/egress" || ''unlabelled'''
+        # Count rather than GET the policy by name: a GET on a missing object
+        # is an API error, whereas a list returns an empty set.
+        - name: denyEgressPolicyCount
+          apiCall:
+            urlPath: "/apis/networking.k8s.io/v1/namespaces/{{ request.namespace }}/networkpolicies"
+            jmesPath: "items[?metadata.name == 'default-deny-egress'] | length(@)"
       validate:
         message: >-
-          NET-04: an agent-sandbox pod must declare the label
-          airs.io/egress=controlled and run in a namespace with the matching
-          default-deny egress NetworkPolicy.
-        pattern:
-          metadata:
-            labels:
-              airs.io/egress: controlled
+          NET-04: an agent-sandbox pod may only run in a namespace labelled
+          airs.io/egress=controlled that carries the generated
+          default-deny-egress NetworkPolicy. Namespace label is
+          '{{ namespaceEgress }}' and {{ denyEgressPolicyCount }} matching
+          NetworkPolicy was found. Label the namespace and let rule 1 generate
+          the policy; a pod-level label does not substitute for either.
+        deny:
+          conditions:
+            any:
+              - key: "{{ namespaceEgress }}"
+                operator: NotEquals
+                value: controlled
+              - key: "{{ denyEgressPolicyCount }}"
+                operator: Equals
+                value: 0

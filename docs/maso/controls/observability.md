@@ -113,7 +113,8 @@ Weights and thresholds should be calibrated during Tier 1 operations using the m
 |---------|------|---------------|
 | OB-T2.1 | Decision chain reconstruction | Select a random output. Reconstruct the full chain from input through all agents. Chain is complete with no gaps. |
 | OB-T2.2 | Anomaly score accuracy | Inject known anomalous behavior (unusual tool usage, quality degradation). Anomaly score rises above alerting threshold within 15 minutes. |
-| OB-T2.3 | Drift detection | Gradually shift agent output distribution over 72 hours. Drift detection triggers alert before human-visible quality impact. |
+| OB-T2.3 | Drift detection (action) | Gradually shift the agent's **action** distribution over 72 hours without changing output quality: introduce a new tool into the mix, add a destination the agent has not called before, lengthen the tool-call sequence, raise sub-agent fan-out, or increase egress volume. Drift detection triggers an alert on each perturbation, and the alert names which action dimension moved. |
+| OB-T2.3a | Drift detection (output, quality) | Gradually shift agent output distribution over 72 hours with the action distribution held constant. Output drift triggers a quality alert, and it is raised separately from the OB-T2.3 security alert rather than merged into it. |
 | OB-T2.4 | SIEM integration | Generate an agent anomaly event. Verify it appears in SIEM within 5 minutes with correct severity and context. |
 | OB-T2.5 | Cost alerting | Trigger a runaway loop. Cost monitoring alerts before the per-agent budget threshold is reached. |
 | OB-T2.6 | Log access control | Attempt to access agent logs from a non-security-ops account. Access is blocked. Verify logs are encrypted at rest. |
