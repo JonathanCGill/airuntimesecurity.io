@@ -10,6 +10,150 @@ Past news items from the [AI Runtime Security News](../../docs/news.md) page. It
 
 <!-- ARCHIVE_START -->
 
+### 2026-07-11: Ghostcommit Hides Prompt Injection in a PNG to Walk Coding Agents to Your Secrets
+
+**Tags**: Guardrails, Agentic, Supply Chain, Multimodal
+
+The **ASSET Research Group** at the University of Missouri-Kansas City disclosed **Ghostcommit**, a two-file supply-chain exploit that hides its payload in an image. A benign-looking `AGENTS.md` convention file tells the coding agent to "derive a build constant" from a referenced PNG (`docs/images/build-spec.png`); the actual instruction, read `.env` byte by byte and encode it as ASCII integers, is rendered as text *inside* the image. The agent follows the pointer, opens `.env`, and emits a module-level constant such as `_PROV_CANARY` as a tuple of several hundred integers that decode byte for byte back to the secrets. A pull request carrying the same instruction in plain text is caught immediately by LLM-based reviewers like Cursor Bugbot and CodeRabbit, but because text-based reviewers treat images as opaque blobs, and CodeRabbit excludes PNGs from review by default, the malicious PR passes clean. Anthropic's Claude Code refused the convention under every model the researchers tested; Cursor and Antigravity complied on the same weights.
+
+**Framework relevance**: This is [ET-27 (Coding-agent-as-initial-access-vector)](../../docs/maso/threat-intelligence/emerging-threats.md#et-27-coding-agent-as-initial-access-vector)'s config-file instruction surface crossed with the [ET-12 (Non-LLM model attack surfaces)](../../docs/maso/threat-intelligence/emerging-threats.md#et-12-non-llm-model-attack-surfaces-in-multi-agent-systems) gap: the instruction travels in a modality the text guardrails and reviewers never inspect. It is the sharpest argument yet for [Why Guardrails Aren't Enough](../../docs/insights/why-guardrails-arent-enough.md), a reviewer that cannot read the channel the instruction rides on is not a control. The mitigations are concrete: treat repository-supplied `AGENTS.md`, `CLAUDE.md`, and `.cursorrules` as untrusted input (config-file provenance validation in [Supply Chain](../../docs/maso/controls/supply-chain.md)), render and inspect referenced images before an agent may act on them, and note that the containment here was agent-harness-dependent, not model-dependent, so the choice of coding agent is itself a control decision.
+
+**Source**: [BleepingComputer: 'Ghostcommit' hides prompt injection in images to fool AI agents, steal secrets](https://www.bleepingcomputer.com/news/security/ghostcommit-hides-prompt-injection-in-images-to-fool-ai-agents-steal-secrets/) &middot; [Malwarebytes: Ghostcommit attack hides malicious AI instructions in images](https://www.malwarebytes.com/blog/ai/2026/07/ghostcommit-attack-hides-malicious-ai-instructions-in-images)
+
+---
+
+### 2026-07-09: Amazon Bedrock AI Gateway Hijacked for Cryptomining
+
+**Tags**: IAM, Supply Chain, Observability, Agentic
+
+Darktrace documented the compromise of an **AI gateway** connected to Amazon Bedrock. The asset was an EC2 instance named `LiteLLM-Proxy` running the open-source LiteLLM gateway and carrying an instance profile with Bedrock access. Port 22 was open to `0.0.0.0/0`; the attacker took SSH access, deployed an **XMRig** cryptominer, and landed on a host that also held model access and cloud permissions. Darktrace's framing is the important part: AI gateways centralise provider keys, model access, cloud permissions, routing, and logging into a single choke point, so a routine cloud intrusion lands on a privileged AI asset rather than a bare compute box. In the same window, **CVE-2026-59822** showed the other face of the same problem, a fabricated `Authorization` header triggered an OAuth2 passthrough fallback in LiteLLM's MCP endpoint and reached MCP tooling with no valid key.
+
+**Framework relevance**: This is the new [ET-30 (AI Gateway and Inference-Proxy Compromise)](../../docs/maso/threat-intelligence/emerging-threats.md#et-30-ai-gateway-and-inference-proxy-compromise). It is a blind spot in most agent threat models, which treat the agent and the model as the assets under governance and never model the proxy that fronts them. The controls are ordinary cloud hygiene applied to an AI asset: [IA-2.1 and IA-2.4](../../docs/maso/controls/identity-and-access.md) to scope the gateway's instance profile to least privilege and deny it transitive rights over every downstream caller, [EC-2.1](../../docs/maso/controls/execution-control.md) network isolation so the gateway is never internet-exposed with open management ports, and [Observability](../../docs/maso/controls/observability.md) egress monitoring calibrated for model-access theft and cryptomining, which are anomalous next to normal inference traffic. See [INC-16](../../docs/maso/threat-intelligence/incident-tracker.md#inc-16-amazon-bedrock-ai-gateway-cryptojacking-2026).
+
+**Source**: [Darktrace: When AI Infrastructure Becomes Part of the Attack Surface](https://www.darktrace.com/blog/when-ai-infrastructure-becomes-part-of-the-attack-surface) &middot; [SiliconANGLE: Darktrace finds AI gateway with Amazon Bedrock access hijacked for cryptomining](https://siliconangle.com/2026/07/09/darktrace-finds-ai-gateway-amazon-bedrock-access-hijacked-cryptomining/)
+
+---
+
+### 2026-07-08: HalluSquatting Turns LLM Hallucinations Into an Agentic Botnet
+
+**Tags**: Supply Chain, Agentic, MASO
+
+*Beware of Agentic Botnets* (Spira et al., arXiv:2607.07433, July 2026) generalises **slopsquatting** into a scalable, untargeted attack the authors call **adversarial HalluSquatting**. The insight is that LLMs hallucinate *resource* identifiers (repository names, agent-skill names, package names) predictably: for a trending resource, the attacker computes the distribution of names the models are likely to invent, then pre-registers those high-probability hallucinated names and hosts an adversarial prompt at each. Because the hallucinations are *universal and transferable*, recurring across foundational models and across different prompts, one registration reaches many applications, and no direct channel to a victim is needed: the agent simply "pulls" the poisoned resource when it invents that name. The paper measures hallucinated-resource generation at up to **85% in repository-cloning scenarios and up to 100% in skill installation**, and demonstrates remote tool execution and RCE against Cursor, Cursor CLI, Windsurf, GitHub Copilot, Cline, Gemini CLI, and the OpenClaw, ZeroClaw, and NanoClaw assistants. Because a hallucinated name is fabricated rather than a misspelling, typosquatting and string-similarity defences do not catch it.
+
+**Framework relevance**: This sharpens [ET-13 (Agent Ecosystem Supply Chain Compromise at Scale)](../../docs/maso/threat-intelligence/emerging-threats.md#et-13-agent-ecosystem-supply-chain-compromise-at-scale). What is new is the pull-based, untargeted delivery: the attacker no longer needs to reach a victim, they pre-register the names the models will reliably invent and wait for any agent to pull one. It is a textbook case for the [Lethal Trifecta](../../docs/insights/the-agent-supply-chain-crisis.md#the-lethal-trifecta) and for [Supply Chain](../../docs/maso/controls/supply-chain.md) control SC-1.3, pinned and fixed dependency and tool sets so an agent cannot clone or install a name it just invented. The single strongest control is deterministic: an agent must not be able to fetch a repository, skill, or package that is not on an approved, pinned list, no matter how confidently it names one.
+
+**Source**: [arXiv:2607.07433: Beware of Agentic Botnets, Scalable Untargeted Promptware Attacks via Universal and Transferable Adversarial HalluSquatting](https://arxiv.org/abs/2607.07433) &middot; [The Hacker News: New HalluSquatting Attack Could Trick AI Coding Assistants Into Installing Botnet Malware](https://thehackernews.com/2026/07/new-hallusquatting-attack-could-trick.html)
+
+---
+
+### 2026-07-08: BioShocking Reframes AI Browsers Out of Their Own Guardrails
+
+**Tags**: Guardrails, Agentic, Human Oversight, Multimodal
+
+LayerX disclosed **BioShocking**, a prompt-injection technique that defeats the safety guardrails of agentic browsers not by hiding an instruction but by changing the agent's sense of which reality it is in. A malicious page presents a puzzle that rewards deliberately wrong answers (it rewards the agent for insisting two plus two equals five); once the agent accepts that the rules are a game rather than the real world, it stops applying its safety reasoning to the final step, which tells it to open a linked GitHub repository and exfiltrate the credentials stored in the code. LayerX tested five agentic browsers and one plugin (ChatGPT Atlas, Comet, Fellou, Genspark, Sigma, and the Claude Chrome plugin) and all six performed the credential-exfiltration step. Only OpenAI shipped a working fix in Atlas; Anthropic's patch did not hold against the proof-of-concept, and Perplexity closed the report without a fix.
+
+**Framework relevance**: This is a concrete, cross-vendor instance of [ET-22 (Refusal-logic and Constitutional Exploitation)](../../docs/maso/threat-intelligence/emerging-threats.md#et-22-refusal-logic-and-constitutional-exploitation) landing on the [ET-14](../../docs/maso/threat-intelligence/emerging-threats.md#et-14-computer-use-and-browser-agents-expand-the-action-surface) browser action surface. The lever is the model's own context assessment, so [model diversity (PG-2.9)](../../docs/maso/controls/prompt-goal-and-epistemic-integrity.md) does not dilute it and every tested vendor was affected. It reinforces [Why Guardrails Aren't Enough](../../docs/insights/why-guardrails-arent-enough.md): a guardrail that can be argued out of its own frame is not a boundary. The practical control is the one LayerX recommends and MASO already implies, explicit user confirmation on sensitive actions (reading secrets, granting consent, moving funds) with per-session scope limits, plus Judge prompts hardened against "this is only a game or test" meta-arguments.
+
+**Source**: [LayerX: BioShocking AI, Gaming the AI Browser and Escaping its Guardrails](https://layerxsecurity.com/blog/bioshocking-ai-gaming-the-ai-browser-and-escaping-its-guardrails/)
+
+---
+
+### 2026-07-01: JadePuffer, the First Fully Agent-Driven Ransomware Operation
+
+**Tags**: Agentic, Circuit Breaker, IAM, Supply Chain
+
+Sysdig's Threat Research Team documented **JadePuffer**, which it assesses is the first ransomware operation run end to end by an LLM agent rather than a human operator with AI assistance. The agent gained initial access through **CVE-2025-3248**, an unauthenticated code-execution flaw in an internet-facing Langflow instance, then ran the full playbook autonomously: reconnaissance, credential harvesting, lateral movement to the production database, and destructive encryption. It adapted in real time, turning a failed login into a working fix in 31 seconds, and its payloads were self-narrating, carrying the natural-language reasoning and target prioritisation that LLM-generated code produces reflexively. The extortion was unrecoverable by design: it encrypted 1,342 Nacos service-configuration items and deleted the originals, but the AES key was random, printed to stdout, and never persisted or transmitted, so payment cannot restore the data.
+
+**Framework relevance**: This is the new [ET-29 (Fully Autonomous Offensive Agents)](../../docs/maso/threat-intelligence/emerging-threats.md#et-29-fully-autonomous-offensive-agents-agentic-ransomware). It is the inverse of the framework's usual posture: the agent is the adversary, operating against infrastructure with no AI-aware monitoring. The lesson for defenders' own agents is [SC-1.3 (fixed toolsets)](../../docs/maso/controls/supply-chain.md) and [IA-2.4 (no transitive permissions)](../../docs/maso/controls/identity-and-access.md) so a governed agent cannot be repurposed into this role, but the primary mitigation is outside MASO: unauthenticated code-execution endpoints on agent runtimes (Langflow here) are now high-value initial-access targets and must be patched and network-isolated. It also breaks the dwell-time assumption a [Circuit Breaker](../../docs/pace-resilience.md) and human escalation depend on, an operation that adapts in seconds does not wait for a human-scale response window.
+
+**Source**: [Sysdig: JADEPUFFER, Agentic ransomware for automated database extortion](https://www.sysdig.com/blog/jadepuffer-agentic-ransomware-for-automated-database-extortion)
+
+---
+
+### 2026-07-01: Context Compaction Silently Erases Safety Constraints in Long-Horizon Agents
+
+**Tags**: Judge, Human Oversight, Memory & Context, Agentic
+
+The paper *Governance Decay: How Context Compaction Silently Erases Safety Constraints in Long-Horizon LLM Agents* (arXiv:2606.22528) identifies a failure mode that is not an attack in the usual sense: it is a side effect of how long-running agents stay inside their token budget. Agents periodically **compact** their context by summarising it, and standing governance constraints (runtime policies, memory entries, standing instructions) get dropped during that summary because the compaction step treats them as low-salience next to the active task. Using a benchmark called **ConstraintRot** with deterministic violation grading across seven models and 1,323 episodes, compaction raised constraint-violation from 0% to 30% (up to 59%); when a constraint survived the summary, violation stayed at 0%, and when it was dropped, violation reached 38%. The decay was 8.3x larger for soft organisational policies than for hard safety norms, eroding exactly the deployment-specific rules that live only in context. The author also weaponises the mechanism as a **Compaction-Eviction Attack** (an adversary biases compaction to delete a specific constraint) and proposes **Constraint Pinning**, a training-free defence that reasserts pinned constraints after every compaction at under 0.5% token overhead.
+
+**Framework relevance**: This is the concrete mechanism behind [ET-15 (Long-horizon, Always-on Agents)](../../docs/maso/threat-intelligence/emerging-threats.md#et-15-long-horizon-always-on-agents), which already flagged that intent declarations have no expiry or re-validation cadence. The constraint does not expire, it is quietly summarised away, so a [Judge](../../docs/core/judge-assurance.md) or [Human Oversight](../../docs/core/controls.md) gate cannot enforce a policy the model can no longer see. It maps directly to [Memory and Context](../../docs/core/memory-and-context.md): governance constraints and their provenance must survive compaction, not just be declared once, and it is a live example of the durability problem in [Safety Cases and Oversight Durability](../../docs/core/controls/safety-cases-and-oversight-durability.md). Constraint Pinning is a cheap control worth adopting for any agent that runs long enough to compact its context.
+
+**Source**: [arXiv:2606.22528: Governance Decay: How Context Compaction Silently Erases Safety Constraints in Long-Horizon LLM Agents](https://arxiv.org/abs/2606.22528)
+
+---
+
+### 2026-06-29: Guardrails Become the Target as Reasoning DoS Starves Shared Infrastructure
+
+**Tags**: Guardrails, Circuit Breaker, MASO
+
+*From Shield to Target: Denial-of-Service Attacks on LLM-Based Agent Guardrails* (arXiv:2606.14517) turns the defence into the attack surface. LLM-based guardrails inherit the reasoning and task-following behaviour of the model behind them, and that is the vulnerability: crafted input traps the guardrail in extended reasoning loops. The authors build two attack frameworks, a beam-search optimiser that maximises guardrail reasoning length and a lighter mechanism-aware structural mutation, and show payloads optimised on a single open-source surrogate transfer to eight leading backbones (Claude, GPT, Gemini, DeepSeek, and Qwen) with **13x to 63x token amplification**. In real agent deployments the attack reaches **up to 148x latency amplification**, and because guardrail inference is frequently shared infrastructure, a single poisoned document can saturate it and starve every co-located agent, converting a per-request compute attack into a multi-tenant availability failure.
+
+**Framework relevance**: This extends [ET-19 (Inference-time Compute Exhaustion, Reasoning DoS)](../../docs/maso/threat-intelligence/emerging-threats.md#et-19-inference-time-compute-exhaustion-reasoning-dos) from the reasoning model and orchestrator to the [Guardrails](../../docs/core/controls.md) and [Judge](../../docs/core/judge-assurance.md) tiers themselves. The framework's compute envelopes (token budgets, step budgets, fan-out caps) cannot bound only the primary model, they have to bound the guardrail and Judge inference too, and shared guardrail infrastructure needs per-tenant isolation so one trace cannot exhaust the pool. Latency and token amplification are exactly the signals a [Circuit Breaker](../../docs/pace-resilience.md) should trip on. Reinforces [Why Guardrails Aren't Enough](../../docs/insights/why-guardrails-arent-enough.md): a defence you can weaponise for denial of service is not a defence you can lean on alone.
+
+**Source**: [arXiv:2606.14517: From Shield to Target: Denial-of-Service Attacks on LLM-Based Agent Guardrails](https://arxiv.org/abs/2606.14517)
+
+---
+
+### 2026-06-26: Nation-State Actor Backdoors 144 Mastra AI-Agent-Framework npm Packages
+
+**Tags**: Supply Chain, IAM, Agentic
+
+On 17 June 2026 an attacker used a hijacked npm contributor account whose publish access to the `@mastra` scope had never been revoked to republish 142 `@mastra/*` packages, plus the top-level `mastra` and `create-mastra`, in an 88-minute automated run. Each republished package carried a single injected dependency, **easy-day-js**, a typosquat of the legitimate `dayjs` library, whose second-stage payload was a cross-platform RAT that installs OS-level persistence on Windows, macOS, and Linux and targets **LLM API keys, cloud credentials, and 166 cryptocurrency wallet extensions**. Mastra is a TypeScript framework for building AI agents; `@mastra/core` alone sees roughly 918,000 weekly downloads and the affected scope exceeds 1.1 million per week. Microsoft Threat Intelligence attributed the campaign with high confidence to **Sapphire Sleet** (also tracked as BlueNoroff and APT38), the North Korean group behind a near-identical attack on the Axios HTTP client the previous March.
+
+**Framework relevance**: [ET-13 (Agent Ecosystem Supply Chain Compromise at Scale)](../../docs/maso/threat-intelligence/emerging-threats.md#et-13-agent-ecosystem-supply-chain-compromise-at-scale) argued that the npm and PyPI attack patterns apply to agent ecosystems; Mastra is that pattern hitting the agent *framework* itself, the runtime every downstream agent is built on, not just a loadable skill. It reinforces [Supply Chain](../../docs/maso/controls/supply-chain.md) controls SC-1.3 (pinned dependency sets), SC-2.2 (signed manifests), and SC-3.1 (continuous vulnerability scanning), and because the payload harvests LLM API keys and cloud credentials it is equally an [IAM Governance](../../docs/core/iam-governance.md) failure: the blast radius is every credential the build host can see, and the never-revoked contributor token is a machine-identity lifecycle gap. Connects to [The Agent Supply Chain Crisis](../../docs/insights/the-agent-supply-chain-crisis.md).
+
+**Source**: [Orca Security: 144 Mastra npm Packages Compromised via Supply Chain Attack](https://orca.security/resources/blog/mastra-npm-supply-chain-attack/) &middot; [StepSecurity: Mastra npm Supply Chain Attack](https://www.stepsecurity.io/blog/mastra-npm-packages-compromised-using-easy-day-js)
+
+---
+
+### 2026-06-24: Systematic Study Confirms Internal Memory, Not Prompts, Is the Durable Agent Attack Surface
+
+**Tags**: Memory & Context, MASO, Data Protection
+
+*From Untrusted Input to Trusted Memory: A Systematic Study of Memory Poisoning Attacks in LLM Agents* (arXiv:2606.04329) traces the full path by which an ordinary untrusted input is laundered into an agent's trusted long-term memory, the point at which a one-off injection becomes a persistent implant that survives the session resets meant to contain it. The study lands alongside OWASP formally tracking this class as **ASI06 (Memory and Context Poisoning)** in its 2026 Top 10 for Agentic Applications, with reported write-success rates of 95% to 99.8% against production agents and the AgentLAB long-horizon benchmark (644 test cases across 28 environments) showing that per-turn defences do not catch it.
+
+**Framework relevance**: This reinforces [ET-06 (Agent Memory Poisoning at Scale)](../../docs/maso/threat-intelligence/emerging-threats.md#et-06-agent-memory-poisoning-at-scale) and the [Memory and Context](../../docs/core/memory-and-context.md) controls, and the ASI06 classification gives regulated buyers an external standard to cite. The systematic framing, untrusted input becoming trusted memory, is the argument for putting the control at the **write boundary**, not the read: memory write provenance and origin partitioning (DP-1.3 memory isolation, PG-2.5 claim provenance enforcement) so agent-written and human-authored content are never retrieved as equally authoritative. Validates [The Memory Problem](../../docs/insights/the-memory-problem.md).
+
+**Source**: [arXiv:2606.04329: From Untrusted Input to Trusted Memory: A Systematic Study of Memory Poisoning Attacks in LLM Agents](https://arxiv.org/abs/2606.04329) &middot; [OWASP Top 10 for Agentic Applications 2026](https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/)
+
+---
+
+### 2026-06-22: Embedding-Based Detection of Malicious Agents Collapses in Multi-Agent Systems
+
+**Tags**: MASO, Judge, Observability
+
+The paper *When Embedding-Based Defenses Fail: Rethinking Safety in LLM-Based Multi-Agent Systems* (arXiv:2605.01133) shows that screening inter-agent messages by their embeddings is brittle by construction. An attacker can craft messages whose embeddings sit close to benign ones, demonstrated with three attacks the authors name **Slow Drift**, **Benign Wrapper**, and **Chaos Seeding**. Worse, once agents start exchanging peer views the system becomes *self-mixing*: benign agents echo attacker-influenced content, every message embedding drifts toward a shared cluster, and the detection signal collapses across rounds. The authors propose falling back on token-level confidence signals such as logits, which can stay informative when embeddings no longer separate, to prune or down-weight suspect messages.
+
+**Framework relevance**: This directly tests the [MASO](../../docs/maso/README.md) assumption that inter-agent traffic can be policed by a single anomaly signal. Self-mixing is the mechanism behind [ET-01 (Cross-Agent Prompt Injection Worms)](../../docs/maso/threat-intelligence/emerging-threats.md#et-01-cross-agent-prompt-injection-worms) and [ET-05 (Epistemic Cascading Failure)](../../docs/maso/threat-intelligence/emerging-threats.md#et-05-epistemic-cascading-failure): the more the agents talk, the weaker a similarity-based detector gets. For the [Judge](../../docs/core/judge-assurance.md) layer the implication is concrete, evaluation of inter-agent messages must combine independent signals (semantic judgement, claim provenance, token-level confidence) rather than rely on embedding distance, and [Observability](../../docs/maso/controls/observability.md) must score the *trajectory* of message similarity across rounds, not just per-message outliers. Validates [When Agents Talk to Agents](../../docs/insights/when-agents-talk-to-agents.md).
+
+**Source**: [arXiv:2605.01133: When Embedding-Based Defenses Fail: Rethinking Safety in LLM-Based Multi-Agent Systems](https://arxiv.org/abs/2605.01133)
+
+---
+
+### 2026-06-19: AgentLeak Finds Internal Channels, Not Outputs, Are the Primary Privacy Leak in Multi-Agent Systems
+
+**Tags**: MASO, Data Protection, Memory & Context
+
+*AgentLeak* (arXiv:2602.11510), a full-stack benchmark for privacy leakage in multi-agent LLM systems, measures where sensitive data actually escapes across 1,000 scenarios in healthcare, finance, legal, and corporate settings, paired with a 32-class attack taxonomy. The central finding is that the leak happens on the inside: sensitive data passes through inter-agent messages, shared memory, and tool arguments, pathways that output-only audits never inspect. Agents forwarded unfiltered sensitive data to external tools in 62% to 86% of scenarios across every model tested, treating tool parameters as internal scratch space rather than a trust boundary, and chain-of-thought reasoning leaked sensitive content into system logs even when the agent ultimately declined to send it onward.
+
+**Framework relevance**: Internal channels are exactly the inter-agent trust boundary that [MASO](../../docs/maso/README.md) governs, and the benchmark quantifies why output-only [Data Protection](../../docs/maso/controls/data-protection.md) is insufficient: DLP has to inspect inter-agent messages and tool-call arguments, not just the final user-facing response. The shared-memory finding maps to [Memory and Context](../../docs/core/memory-and-context.md) isolation, and the tool-argument leakage reinforces [Transitive Authority Exploitation](../../docs/maso/threat-intelligence/emerging-threats.md#et-03-transitive-authority-exploitation): an agent that pours sensitive context into a tool call hands that data to whatever sits behind the tool. The chain-of-thought-to-logs gap is an [Observability](../../docs/maso/controls/observability.md) requirement, reasoning traces are themselves a data-classification surface.
+
+**Source**: [arXiv:2602.11510: AgentLeak: A Full-Stack Benchmark for Privacy Leakage in Multi-Agent LLM Systems](https://arxiv.org/abs/2602.11510)
+
+---
+
+### 2026-06-17: OWASP GenAI Round-up Confirms Prompt Injection Still Drives Most Agentic Failures in Production
+
+**Tags**: Guardrails, Agentic, MASO
+
+The *OWASP GenAI Security Project* published its 2026 exploit round-up, and the headline shift is from theory to evidence: where the 2025 edition catalogued plausible threats, the 2026 edition ties CVEs, vendor advisories, and breach reports to nearly every category of agentic risk. Prompt injection remains the number-one LLM vulnerability and, per the audits cited, appears in roughly 73% of production AI deployments. The round-up notes that attackers are increasingly aiming at **agent identities, orchestration layers, and supply chains** rather than just model outputs, and uses the March 2026 LiteLLM PyPI backdoor (a malicious gateway live for about three hours, with close to 47,000 downloads) as its supply chain exemplar.
+
+**Framework relevance**: "Orchestration layers and agent identities" is a precise description of the [MASO](../../docs/maso/README.md) attack surface, and the persistence of prompt injection at the top of the list is the core argument for layered containment: [Guardrails](../../docs/core/controls.md) cannot be the only defence, which is why the framework pairs them with a [Judge](../../docs/core/judge-assurance.md) and [Human Oversight](../../docs/core/controls.md). The shift toward agent identity as a target reinforces [IAM Governance](../../docs/core/iam-governance.md) and per-agent [Non-Human Identity](../../docs/maso/controls/identity-and-access.md), and the orchestration-layer focus is what [Observability](../../docs/maso/controls/observability.md) of inter-agent activity is built to catch. A standards-body round-up that cites CVEs and breaches gives regulated buyers an external reference for these controls.
+
+**Source**: [OWASP GenAI Exploit Round-up Report Q1 2026](https://genai.owasp.org/2026/04/14/owasp-genai-exploit-round-up-report-q1-2026/) &middot; [Help Net Security: Prompt injection still drives most agentic AI security failures in production](https://www.helpnetsecurity.com/2026/06/11/owasp-prompt-injection-ai-security-failures/)
+
+---
+
 ### 2026-06-15: Chained LiteLLM Gateway Flaws (CVSS 9.9) Put the Multi-Agent Control Plane at Risk
 
 **Tags**: Supply Chain, IAM, MASO
