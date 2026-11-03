@@ -51,6 +51,15 @@ The emerging companion to the LLM Top 10, focused specifically on multi-agent an
 
 - [OWASP GenAI Project](https://genai.owasp.org/)
 
+### OWASP Agentic Skills Top 10 (2026)
+
+An OWASP Incubator project covering the ten most critical risks in agent skills, the instruction-and-code packages (`SKILL.md`, `skill.json`, plugin manifests) that agents load from registries such as ClawHub and skills.sh: (1) Malicious Skills, (2) Supply Chain Compromise, (3) Over-Privileged Skills, (4) Insecure Metadata, (5) Untrusted External Instructions, (6) Weak Isolation, (7) Update Drift, (8) Poor Scanning, (9) No Governance, (10) Cross-Platform Reuse.
+
+MASO maps all ten in the [Framework Reference](maso/reference.md#owasp-agentic-skills-top-10-2026). The mapping is why the Supply Chain domain now treats skills as their own component class rather than as tools.
+
+- [OWASP Agentic Skills Top 10](https://owasp.org/www-project-agentic-skills-top-10/)
+- [OWASP Agentic Skills Top 10 on GitHub](https://github.com/OWASP/www-project-agentic-skills-top-10)
+
 ### OWASP AI Exchange
 
 300+ pages of free, evolving guidance on securing AI systems. Awarded OWASP Flagship project status in March 2025. Through an official liaison partnership, its content feeds directly into standards for the EU AI Act (70 pages contributed), ISO/IEC 27090 (AI security), and ISO/IEC 27091 (AI privacy).

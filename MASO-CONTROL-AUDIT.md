@@ -1,6 +1,6 @@
 # MASO Control Catalogue — Audit / Trim List
 
-**As-at: 2026-07-04.** Point-in-time snapshot. Verify current requirements against official sources before relying on this.
+**As-at: 2026-11-03.** Point-in-time snapshot. Verify current requirements against official sources before relying on this.
 
 Working document. Every defined control ID with its title, grouped by the eleven domains.
 Trim entries that are sub-controls rather than top-level controls, then the headline number follows from the count.
@@ -14,14 +14,14 @@ _Not part of the published site (lives outside `docs/`)._
 | Execution Control | EC | 33 |
 | Observability | OB | 17 |
 | Prompt, Goal & Epistemic Integrity | PG | 22 |
-| Supply Chain | SC | 13 |
+| Supply Chain | SC | 19 |
 | Objective Intent | OI | 18 |
 | Privileged Agent Governance | PA | 19 |
 | Model Cognition Assurance | MC | 21 |
 | Agentic Task Mandate | AT | 25 |
-| **Core total (11 domains)** | | **212** |
+| **Core total (11 domains)** | | **218** |
 | Environment Containment (cross-cutting) | ENV | 24 |
-| **With ENV** | | **236** |
+| **With ENV** | | **242** |
 
 ## Summary
 
@@ -160,21 +160,27 @@ _Not part of the published site (lives outside `docs/`)._
 - [ ] **PG-3.5** Challenger agent
 - [ ] **PG-3.6** Prompt leakage red team
 
-## Supply Chain (SC) — 13
+## Supply Chain (SC) — 19
 
 - [ ] **SC-1.1** Model inventory
 - [ ] **SC-1.2** Tool inventory
 - [ ] **SC-1.3** Fixed toolsets
 - [ ] **SC-1.4** RAG source inventory
+- [ ] **SC-1.5** Skill inventory and installation control
 - [ ] **SC-2.1** AIBOM per agent
 - [ ] **SC-2.2** Signed tool manifests
 - [ ] **SC-2.3** MCP server allow-listing
 - [ ] **SC-2.4** Runtime integrity checks
+- [ ] **SC-2.5** Skill definition validation
+- [ ] **SC-2.6** Per-skill permission manifest
+- [ ] **SC-2.7** External instruction pinning
+- [ ] **SC-2.8** Skill version and source pinning
 - [ ] **SC-3.1** Model version pinning
 - [ ] **SC-3.2** Automated rollback
 - [ ] **SC-3.3** Continuous dependency scanning
 - [ ] **SC-3.4** A2A trust chain validation
 - [ ] **SC-3.5** CI/CD pipeline integrity
+- [ ] **SC-3.6** Behavioural skill evaluation
 
 ## Objective Intent (OI) — 18
 
@@ -304,8 +310,8 @@ Controls are numbered by tier: X-1.n = Tier 1 (Supervised), X-2.n = Tier 2 (Mana
 
 | Tier | Adds | Cumulative |
 |---|--:|--:|
-| Tier 1 (Supervised) | 61 | 61 |
-| Tier 2 (Managed) | 96 | 157 |
-| Tier 3 (Autonomous) | 55 | 212 |
+| Tier 1 (Supervised) | 62 | 62 |
+| Tier 2 (Managed) | 100 | 162 |
+| Tier 3 (Autonomous) | 56 | 218 |
 
-A Tier 1 deployment applies 61 controls, not 212. The full catalogue is the Tier-3 maximum.
+A Tier 1 deployment applies 62 controls, not 218. The full catalogue is the Tier-3 maximum.

@@ -276,15 +276,16 @@ The **AgentBaiting** escalation (Island, August 2026) inverts the delivery direc
 
 **Emerging variant, Trust-tiered skill poisoning:** Malicious skills designed to pass initial vetting by behaving benignly under test conditions but activating harmful behaviour only when the agent operates with elevated permissions or accesses specific data types.
 
-**MASO controls:** SC-1.3 (fixed toolsets, prevents runtime discovery), SC-2.2 (signed tool manifests), SC-2.3 (MCP server allow-listing), SC-3.1 (cryptographic trust chain)
+**MASO controls:** SC-1.3 (fixed toolsets, prevents runtime discovery), SC-1.5 (skill inventory, no direct installs from public registries), SC-2.2 (signed tool manifests), SC-2.3 (MCP server allow-listing), SC-2.5 (skill definition validation), SC-2.6 (per-skill permission manifest), SC-2.7 (external instruction pinning), SC-2.8 (skill version and source pinning), SC-3.6 (behavioural skill evaluation)
 
-OWASP tracks this class separately from ASI04 (Agentic Supply Chain) via the **[Agentic Skills Top 10](https://owasp.org/www-project-agentic-skills-top-10/)** (AST01-AST10), scoped specifically to the SKILL.md / marketplace pattern. Use the **Lethal Trifecta** (private-data access + untrusted-content exposure + external-communication ability) as the per-skill triage heuristic - see [The Agent Supply Chain Crisis](../../insights/the-agent-supply-chain-crisis.md#the-lethal-trifecta).
+OWASP tracks this class separately from ASI04 (Agentic Supply Chain) via the **[Agentic Skills Top 10](https://owasp.org/www-project-agentic-skills-top-10/)** (AST01-AST10), scoped specifically to the SKILL.md / marketplace pattern. The full AST01-AST10 mapping to MASO controls is in the [Framework Reference](../reference.md#owasp-agentic-skills-top-10-2026). Use the **Lethal Trifecta** (private-data access + untrusted-content exposure + external-communication ability) as the per-skill triage heuristic - see [The Agent Supply Chain Crisis](../../insights/the-agent-supply-chain-crisis.md#the-lethal-trifecta).
 
-**Gap in current controls:** SC-1.3 (fixed toolsets) is the strongest defence but limits agent flexibility. For organisations that need runtime skill discovery, the current controls assume registries are curated. The OpenClaw incident shows this assumption is invalid for public registries. MASO should:
+**Gap in current controls:** SC-1.3 (fixed toolsets) is the strongest defence but limits agent flexibility. The earlier controls assumed registries were curated, which the OpenClaw incident showed to be invalid for public registries. The November 2026 mapping against the OWASP Agentic Skills Top 10 closed the two main gaps recorded here:
 
-- Explicitly distinguish between private curated registries (lower risk) and public registries (high risk, require per-skill vetting even with signing)
-- Add behavioural evaluation of skills in sandboxed execution before granting production access (beyond static signing verification)
-- Reference Microsoft's Agent Governance Toolkit's Agent Marketplace for an implementation pattern (Ed25519 signing, manifest verification, trust-tiered capability gating)
+- Private curated registries are now distinguished from public ones: SC-1.5 bars direct installs from public registries, so a public skill reaches production only after it is copied into a curated registry and reviewed.
+- Behavioural evaluation of skills in sandboxed execution, under elevated-permission conditions to catch trust-tiered poisoning, is now SC-3.6, with signing and scanning treated as inputs rather than the approval gate.
+
+What remains open is runtime discovery from public registries. MASO does not assure it at any tier. Microsoft's Agent Governance Toolkit Agent Marketplace (Ed25519 signing, manifest verification, trust-tiered capability gating) is a useful implementation pattern for the curated-registry side.
 
 **Assessment:** High likelihood. This is the agent equivalent of the npm/PyPI supply chain attacks that the software industry has been managing for a decade. The same patterns (typosquatting, name confusion, dependency confusion) apply with the added risk that agent skills are loaded dynamically and can influence agent reasoning.
 
