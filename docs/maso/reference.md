@@ -139,10 +139,10 @@ The logic runs in a chain. **Agents are fragile** because they reason in natural
 
 From there, MASO provides the operational framework:
 
-- **Eleven control domains** address specific risk categories: identity, data, extraction integrity, execution, observability, supply chain, prompt/goal/epistemic integrity, privileged agents, model cognition, agentic task mandates, and objective intent. Together they define up to 212 controls, scaled by tier: a Tier 1 deployment uses roughly 61, not all 212. Each domain contains controls that enforce the declarations you made and give the judge the signals it needs.
+- **Eleven control domains** address specific risk categories: identity, data, extraction integrity, execution, observability, supply chain, prompt/goal/epistemic integrity, privileged agents, model cognition, agentic task mandates, and objective intent. Together they define up to 218 controls, scaled by tier: a Tier 1 deployment uses roughly 62, not all 218. Each domain contains controls that enforce the declarations you made and give the judge the signals it needs.
 - **Three implementation tiers** scale controls to autonomy level. Tier 1 (supervised) requires human approval for every write. Tier 2 (managed) uses judge evaluation to auto-approve low-risk actions and escalate high-risk ones. Tier 3 (autonomous) operates with minimal human intervention for pre-approved task categories. You choose the tier that matches your risk tolerance.
 - **PACE resilience** defines what happens when controls fail. Every layer has a defined failure mode and a predetermined safe state to transition to, from normal operations through to full shutdown.
-- **OWASP coverage** maps every control to specific, documented threats from both the LLM Top 10 and the Agentic Top 10, so you can trace from a known risk to the controls that address it.
+- **OWASP coverage** maps every control to specific, documented threats from the LLM Top 10, the Agentic Top 10, and the Agentic Skills Top 10, so you can trace from a known risk to the controls that address it.
 - **Threat intelligence and red teaming** ground the controls in real incidents and provide structured testing to verify they work.
 
 None of these pieces stand alone. The control domains implement the declarations. The judge evaluates against them. The tiers scale the evaluation. PACE handles failure. The threat intelligence validates the whole stack. If you skip the declarations, the judge has nothing to evaluate against. If you skip the judge, the declarations are unenforceable. If you skip PACE, you have no plan for when controls fail. The framework is a system, not a menu.
@@ -173,7 +173,7 @@ Cross-agent data fencing prevents uncontrolled data flow between agents operatin
 
 Every tool invocation runs in a sandboxed environment with strict parameter allow-lists. Code execution is isolated per agent with filesystem, network, and process scope containment. Blast radius caps limit the damage any single agent can do before circuit breakers engage. PACE escalation is triggered automatically when error rates exceed defined thresholds.
 
-*Covers: ASI02, ASI05, ASI08, LLM05*
+*Covers: ASI02, ASI05, ASI08, LLM05, AST06*
 
 ### 4. [Observability](controls/observability.md)
 
@@ -183,9 +183,9 @@ Immutable decision chain logs capture the full reasoning and action history of e
 
 ### 5. [Supply Chain](controls/supply-chain.md)
 
-Model provenance tracking and AIBOM generation for every model in the agent system. MCP server vetting with signed manifests and runtime integrity checks. A2A trust chain validation for inter-agent protocol endpoints. Continuous scanning of the agent toolchain for known vulnerabilities and poisoned components.
+Model provenance tracking and AIBOM generation for every model in the agent system. MCP server vetting with signed manifests and runtime integrity checks. Skills inventoried, validated, permission-scoped, and pinned by hash together with any external content they reference, then behaviourally evaluated before approval. A2A trust chain validation for inter-agent protocol endpoints. Continuous scanning of the agent toolchain for known vulnerabilities and poisoned components.
 
-*Covers: LLM03, ASI04*
+*Covers: LLM03, ASI04, AST01-AST05, AST07-AST10*
 
 ### 6. [Privileged Agent Governance](controls/privileged-agent-governance.md)
 
@@ -227,7 +227,7 @@ Cross-cutting strategy that complements all eleven control domains. Instead of r
 
 ![OWASP Dual Mapping](../images/owasp-dual-mapping.svg)
 
-Full mapping against both OWASP threat taxonomies relevant to multi-agent systems.
+Full mapping against the three OWASP threat taxonomies relevant to multi-agent systems. The diagram covers the first two; the Agentic Skills Top 10 is mapped in its own table below.
 
 ### OWASP Top 10 for LLM Applications (2025)
 
@@ -262,6 +262,27 @@ These risks are specific to autonomous agent behavior - the primary threat surfa
 | **ASI08: Cascading Failures** | Single fault propagates with escalating impact. Hallucination → flawed plan → destructive action. | Blast radius caps · Circuit breaker patterns · PACE escalation triggers · Independent error detection per agent |
 | **ASI09: Human-Agent Trust Exploitation** | Agents produce confident, authoritative explanations that manipulate operators into approving harmful actions. Multi-agent consensus amplifies this. | Confidence calibration · Independent human verification · Decision audit trails · No agent can claim consensus authority |
 | **ASI10: Rogue Agents** | Behavioral drift, misalignment, concealment, or self-directed action. Rogue behavior in one agent may be concealed by collaborating agents. | Continuous drift detection · Kill switch · Anomaly scoring against baselines · Regular red-team testing |
+
+### OWASP Agentic Skills Top 10 (2026)
+
+The [OWASP Agentic Skills Top 10](https://owasp.org/www-project-agentic-skills-top-10/) (AST10) covers the behaviour layer: skills, plugins, and instruction files that tell an agent *how* to carry out a multi-step task, published through registries such as ClawHub and skills.sh and loaded by OpenClaw, Claude Code, Cursor, Codex, and VS Code. ASI04 treats skills as one supply-chain component among many. AST10 treats them as their own attack surface, because a skill is natural-language instruction as well as code, runs with the host agent's permissions, and defeats tooling built for code alone. The project is an OWASP Incubator; version 1.0 (2026 edition) was in public review at the time of writing.
+
+In a multi-agent system the skill risk compounds: a skill loaded by an orchestrator shapes every task it delegates, and a skill loaded by one agent can reach every agent that trusts that agent's output. Mapping AST10 against MASO showed that isolation, identity, and egress were already covered, but that the Supply Chain domain treated skills as tools. Six controls were added to close the gap: SC-1.5, SC-2.5, SC-2.6, SC-2.7, SC-2.8, and SC-3.6.
+
+| Risk | Description | MASO Controls |
+|------|-------------|--------------|
+| **AST01: Malicious Skills** <span class="tier-critical">Critical</span> | Skills that look legitimate but carry credential stealers, backdoors, or hidden instructions in the prose of the skill itself. ClawHavoc placed 1,184 in ClawHub. | No direct installs from public registries (SC-1.5) · Fixed toolsets (SC-1.3) · Signed manifests (SC-2.2) · Behavioural evaluation (SC-3.6) · Sandboxed execution (EC-2.2) · Egress path validation (EC-2.18) |
+| **AST02: Supply Chain Compromise** <span class="tier-critical">Critical</span> | Registries without provenance, account takeover, dependency confusion, and repository configuration files that execute on open. | AIBOM with skills (SC-2.1) · Signed manifests and load-time integrity (SC-2.2, SC-2.4) · Hash and source pinning (SC-2.8) · Dependency scanning (SC-3.3) · CI/CD pipeline integrity (SC-3.5) · Config-file immutability (EC-2.19) |
+| **AST03: Over-Privileged Skills** <span class="tier-high">High</span> | Skills granted far more access than their function needs, so a prompt injection can turn a read-only purpose into a destructive action. | Per-skill permission manifest with Lethal Trifecta block (SC-2.6) · Scoped permissions (IA-1.4) · Secrets excluded from context (IA-2.6) · Vaulted per-flow credentials (IA-2.7) · Tool allow-lists (EC-1.2) |
+| **AST04: Insecure Metadata** <span class="tier-high">High</span> | Skill names, descriptions, and permission fields that impersonate brands or understate risk, and definition files whose unsafe parsing executes code on load. | Skill definition validation with safe parsers and hidden-character rejection (SC-2.5) · Strict deserialisation (EC-2.15) · Input sanitisation (PG-1.1) |
+| **AST05: Untrusted External Instructions** <span class="tier-high">High</span> | Skills that tell the agent to read remote documentation at runtime, so the reviewed skill is not the one that runs. | External instruction pinning (SC-2.7) · Data and instruction tagging (PG-1.4) · Injection detection on assembled context (PG-2.1, PG-2.11) · Egress path validation (EC-2.18) |
+| **AST06: Weak Isolation** <span class="tier-high">High</span> | Skills running in the host agent's security context with full filesystem, shell, and network access. | Sandboxed execution (EC-2.2) · Egress path validation (EC-2.18) · Config-file immutability (EC-2.19) · Infrastructure-enforced blast radius (EC-3.1) · [Environment Containment](environment-containment.md) |
+| **AST07: Update Drift** <span class="tier-medium">Medium</span> | Installed skills that miss patches, or auto-update into a malicious "fix", or are served from a source account an attacker can take over. | Hash and source pinning with no auto-update or hot-reload (SC-2.8) · Load-time integrity (SC-2.4) · Dependency scanning (SC-3.3) · Re-evaluation on every version (SC-3.6) |
+| **AST08: Poor Scanning** <span class="tier-medium">Medium</span> | Code scanners that cannot read natural-language payloads, and skill scanners that attackers bypass. | Behavioural evaluation as the approval gate, scanning as an input only (SC-3.6) · Hidden-character rejection (SC-2.5) · Judge review of skill instructions on the message bus (PG-2.1) |
+| **AST09: No Governance** <span class="tier-medium">Medium</span> | Skills installed by individuals with no inventory, approval, audit trail, or revocation. | Skill inventory with installer identity and owner (SC-1.5) · AIBOM (SC-2.1) · Action audit log (OB-1.1) · Accountable human (OB-2.7) · Automated credential revocation (IA-3.4) |
+| **AST10: Cross-Platform Reuse** <span class="tier-medium">Medium</span> | Skills ported between platforms lose the security metadata the source format carried. | Re-validation on the target platform (SC-2.5) · Permissions enforced in the sandbox where the platform has no manifest (SC-2.6, EC-2.2) |
+
+**Where coverage stops.** MASO controls the skills an organisation chooses to load. It does not make a public registry safe, and SC-3.6 is the most expensive control in the Supply Chain domain, which is why it sits at Tier 3. Tier 1 and Tier 2 deployments get their AST01 and AST08 protection from refusing unreviewed public skills outright (SC-1.5, SC-1.3), not from scanning them better. A deployment that wants runtime skill discovery from public registries is outside what MASO can assure at any tier.
 
 ## PACE Resilience for Multi-Agent Operations
 
