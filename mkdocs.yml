@@ -160,6 +160,7 @@ nav:
       - Worked Examples: maso/examples/worked-examples.md
       - 100-Agent Stress Test: maso/stress-test/100-agent-stress-test-overview.md
       - E-commerce Stress Test: maso/stress-test/ecommerce-10k-stress-test.md
+      - "Tabletop Drill: Current Cyber Events": maso/stress-test/cyber-events-tabletop-drill.md
       - Judge Proliferation Review: maso/reviews/stakeholder-review-judge-proliferation.md
       - MASO 2.0 Roadmap: maso/maso-2.0-anticipated-changes.md
 

@@ -35,6 +35,14 @@ Worked examples, 100-agent and 10k e-commerce stress tests, OWASP mappings, and 
 
     [:octicons-arrow-right-24: See the scenario](../stress-test/ecommerce-10k-stress-test.md)
 
+-   :material-shield-alert-outline:{ .lg .middle } **Tabletop Drill: Current Cyber Events**
+
+    ---
+
+    Eleven real events from July to October 2026, attacks on agents and attacks by agents, replayed as injects against a Tier 2 deployment. Scored stage by stage, with seven findings where MASO has no answer yet.
+
+    [:octicons-arrow-right-24: Run the drill](../stress-test/cyber-events-tabletop-drill.md)
+
 -   :material-scale-balance:{ .lg .middle } **Judge Proliferation Review**
 
     ---

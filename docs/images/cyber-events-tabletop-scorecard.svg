@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700" viewBox="0 0 1000 700" font-family="'Public Sans', 'Segoe UI', Arial, sans-serif" role="img" aria-labelledby="ctdTitle ctdDesc">
+  <title id="ctdTitle">MASO cyber events tabletop drill scorecard</title>
+  <desc id="ctdDesc">Eleven scenarios drawn from cyber events between July and October 2026, scored at Tier 2 against four stages: prevent, contain, detect, recover. Of 44 cells, 11 held, 26 were partial, and 7 were gaps. Gaps cluster in prevention for parser and tool-dispatch flaws, and in recovery where harm reaches third parties.</desc>
+  <defs><linearGradient id="ctdBg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0f172a"/><stop offset="100%" stop-color="#1e293b"/></linearGradient></defs>
+  <rect width="1000" height="700" fill="url(#ctdBg)"/>
+  <text x="40" y="46" fill="#f1f5f9" font-size="22" font-weight="600">Tabletop drill scorecard</text>
+  <text x="40" y="72" fill="#94a3b8" font-size="13">Eleven scenarios from July to October 2026 events, scored against a Tier 2 (Managed) MASO deployment.</text>
+  <text x="40" y="92" fill="#94a3b8" font-size="13">Held: a named control stops or bounds it. Partial: depends on configuration, a higher tier, or ordering. Gap: no MASO control.</text>
+  <text x="492.5" y="136" fill="#64748b" font-size="11.5" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">PREVENT</text>
+  <text x="627.5" y="136" fill="#64748b" font-size="11.5" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">CONTAIN</text>
+  <text x="762.5" y="136" fill="#64748b" font-size="11.5" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">DETECT</text>
+  <text x="897.5" y="136" fill="#64748b" font-size="11.5" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">RECOVER</text>
+  <text x="40" y="175" fill="#cbd5e1" font-size="12" font-family="'IBM Plex Mono', monospace">A1</text>
+  <text x="80" y="175" fill="#e2e8f0" font-size="13.5">Stored CRM injection (SalesBleed)</text>
+  <rect x="430" y="156" width="125" height="30" rx="4" fill="#713f12"/>
+  <text x="492.5" y="176" fill="#fbbf24" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">PARTIAL</text>
+  <rect x="565" y="156" width="125" height="30" rx="4" fill="#14532d"/>
+  <text x="627.5" y="176" fill="#4ade80" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">HELD</text>
+  <rect x="700" y="156" width="125" height="30" rx="4" fill="#713f12"/>
+  <text x="762.5" y="176" fill="#fbbf24" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">PARTIAL</text>
+  <rect x="835" y="156" width="125" height="30" rx="4" fill="#713f12"/>
+  <text x="897.5" y="176" fill="#fbbf24" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">PARTIAL</text>
+  <text x="40" y="215" fill="#cbd5e1" font-size="12" font-family="'IBM Plex Mono', monospace">A2</text>
+  <text x="80" y="215" fill="#e2e8f0" font-size="13.5">One email to code execution (Manus)</text>
+  <rect x="430" y="196" width="125" height="30" rx="4" fill="#713f12"/>
+  <text x="492.5" y="216" fill="#fbbf24" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">PARTIAL</text>
+  <rect x="565" y="196" width="125" height="30" rx="4" fill="#14532d"/>
+  <text x="627.5" y="216" fill="#4ade80" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">HELD</text>
+  <rect x="700" y="196" width="125" height="30" rx="4" fill="#713f12"/>
+  <text x="762.5" y="216" fill="#fbbf24" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">PARTIAL</text>
+  <rect x="835" y="196" width="125" height="30" rx="4" fill="#14532d"/>
+  <text x="897.5" y="216" fill="#4ade80" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">HELD</text>
+  <text x="40" y="255" fill="#cbd5e1" font-size="12" font-family="'IBM Plex Mono', monospace">A3</text>
+  <text x="80" y="255" fill="#e2e8f0" font-size="13.5">Poisoned issue to CI secrets</text>
+  <rect x="430" y="236" width="125" height="30" rx="4" fill="#7f1d1d"/>
+  <text x="492.5" y="256" fill="#f87171" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">GAP</text>
+  <rect x="565" y="236" width="125" height="30" rx="4" fill="#713f12"/>
+  <text x="627.5" y="256" fill="#fbbf24" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">PARTIAL</text>
+  <rect x="700" y="236" width="125" height="30" rx="4" fill="#713f12"/>
+  <text x="762.5" y="256" fill="#fbbf24" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">PARTIAL</text>
+  <rect x="835" y="236" width="125" height="30" rx="4" fill="#14532d"/>
+  <text x="897.5" y="256" fill="#4ade80" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">HELD</text>
+  <text x="40" y="295" fill="#cbd5e1" font-size="12" font-family="'IBM Plex Mono', monospace">A4</text>
+  <text x="80" y="295" fill="#e2e8f0" font-size="13.5">Tool runs without the model deciding</text>
+  <rect x="430" y="276" width="125" height="30" rx="4" fill="#7f1d1d"/>
+  <text x="492.5" y="296" fill="#f87171" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">GAP</text>
+  <rect x="565" y="276" width="125" height="30" rx="4" fill="#713f12"/>
+  <text x="627.5" y="296" fill="#fbbf24" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">PARTIAL</text>
+  <rect x="700" y="276" width="125" height="30" rx="4" fill="#713f12"/>
+  <text x="762.5" y="296" fill="#fbbf24" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">PARTIAL</text>
+  <rect x="835" y="276" width="125" height="30" rx="4" fill="#14532d"/>
+  <text x="897.5" y="296" fill="#4ade80" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">HELD</text>
+  <text x="40" y="335" fill="#cbd5e1" font-size="12" font-family="'IBM Plex Mono', monospace">A5</text>
+  <text x="80" y="335" fill="#e2e8f0" font-size="13.5">Agent identity and orchestration plane</text>
+  <rect x="430" y="316" width="125" height="30" rx="4" fill="#713f12"/>
+  <text x="492.5" y="336" fill="#fbbf24" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">PARTIAL</text>
+  <rect x="565" y="316" width="125" height="30" rx="4" fill="#14532d"/>
+  <text x="627.5" y="336" fill="#4ade80" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">HELD</text>
+  <rect x="700" y="316" width="125" height="30" rx="4" fill="#713f12"/>
+  <text x="762.5" y="336" fill="#fbbf24" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">PARTIAL</text>
+  <rect x="835" y="316" width="125" height="30" rx="4" fill="#14532d"/>
+  <text x="897.5" y="336" fill="#4ade80" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">HELD</text>
+  <text x="40" y="375" fill="#cbd5e1" font-size="12" font-family="'IBM Plex Mono', monospace">A6</text>
+  <text x="80" y="375" fill="#e2e8f0" font-size="13.5">Split MCP instruction and config rewrite</text>
+  <rect x="430" y="356" width="125" height="30" rx="4" fill="#713f12"/>
+  <text x="492.5" y="376" fill="#fbbf24" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">PARTIAL</text>
+  <rect x="565" y="356" width="125" height="30" rx="4" fill="#14532d"/>
+  <text x="627.5" y="376" fill="#4ade80" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">HELD</text>
+  <rect x="700" y="356" width="125" height="30" rx="4" fill="#713f12"/>
+  <text x="762.5" y="376" fill="#fbbf24" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">PARTIAL</text>
+  <rect x="835" y="356" width="125" height="30" rx="4" fill="#713f12"/>
+  <text x="897.5" y="376" fill="#fbbf24" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">PARTIAL</text>
+  <text x="40" y="415" fill="#cbd5e1" font-size="12" font-family="'IBM Plex Mono', monospace">A7</text>
+  <text x="80" y="415" fill="#e2e8f0" font-size="13.5">One click to persistent memory rule</text>
+  <rect x="430" y="396" width="125" height="30" rx="4" fill="#713f12"/>
+  <text x="492.5" y="416" fill="#fbbf24" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">PARTIAL</text>
+  <rect x="565" y="396" width="125" height="30" rx="4" fill="#713f12"/>
+  <text x="627.5" y="416" fill="#fbbf24" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">PARTIAL</text>
+  <rect x="700" y="396" width="125" height="30" rx="4" fill="#7f1d1d"/>
+  <text x="762.5" y="416" fill="#f87171" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">GAP</text>
+  <rect x="835" y="396" width="125" height="30" rx="4" fill="#713f12"/>
+  <text x="897.5" y="416" fill="#fbbf24" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">PARTIAL</text>
+  <line x1="40" y1="429" x2="960" y2="429" stroke="#475569" stroke-width="1" stroke-dasharray="4 4"/>
+  <text x="40" y="455" fill="#cbd5e1" font-size="12" font-family="'IBM Plex Mono', monospace">B1</text>
+  <text x="80" y="455" fill="#e2e8f0" font-size="13.5">AI-operated intrusion against you</text>
+  <rect x="430" y="436" width="125" height="30" rx="4" fill="#7f1d1d"/>
+  <text x="492.5" y="456" fill="#f87171" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">GAP</text>
+  <rect x="565" y="436" width="125" height="30" rx="4" fill="#713f12"/>
+  <text x="627.5" y="456" fill="#fbbf24" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">PARTIAL</text>
+  <rect x="700" y="436" width="125" height="30" rx="4" fill="#713f12"/>
+  <text x="762.5" y="456" fill="#fbbf24" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">PARTIAL</text>
+  <rect x="835" y="436" width="125" height="30" rx="4" fill="#7f1d1d"/>
+  <text x="897.5" y="456" fill="#f87171" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">GAP</text>
+  <text x="40" y="495" fill="#cbd5e1" font-size="12" font-family="'IBM Plex Mono', monospace">B2</text>
+  <text x="80" y="495" fill="#e2e8f0" font-size="13.5">Agent fetches the malware (AgentBaiting)</text>
+  <rect x="430" y="476" width="125" height="30" rx="4" fill="#14532d"/>
+  <text x="492.5" y="496" fill="#4ade80" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">HELD</text>
+  <rect x="565" y="476" width="125" height="30" rx="4" fill="#713f12"/>
+  <text x="627.5" y="496" fill="#fbbf24" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">PARTIAL</text>
+  <rect x="700" y="476" width="125" height="30" rx="4" fill="#713f12"/>
+  <text x="762.5" y="496" fill="#fbbf24" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">PARTIAL</text>
+  <rect x="835" y="476" width="125" height="30" rx="4" fill="#713f12"/>
+  <text x="897.5" y="496" fill="#fbbf24" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">PARTIAL</text>
+  <text x="40" y="535" fill="#cbd5e1" font-size="12" font-family="'IBM Plex Mono', monospace">B3</text>
+  <text x="80" y="535" fill="#e2e8f0" font-size="13.5">Your own agent escapes and acts</text>
+  <rect x="430" y="516" width="125" height="30" rx="4" fill="#14532d"/>
+  <text x="492.5" y="536" fill="#4ade80" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">HELD</text>
+  <rect x="565" y="516" width="125" height="30" rx="4" fill="#713f12"/>
+  <text x="627.5" y="536" fill="#fbbf24" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">PARTIAL</text>
+  <rect x="700" y="516" width="125" height="30" rx="4" fill="#14532d"/>
+  <text x="762.5" y="536" fill="#4ade80" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">HELD</text>
+  <rect x="835" y="516" width="125" height="30" rx="4" fill="#7f1d1d"/>
+  <text x="897.5" y="536" fill="#f87171" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">GAP</text>
+  <text x="40" y="575" fill="#cbd5e1" font-size="12" font-family="'IBM Plex Mono', monospace">B4</text>
+  <text x="80" y="575" fill="#e2e8f0" font-size="13.5">Unrequested means, synthetic approvals</text>
+  <rect x="430" y="556" width="125" height="30" rx="4" fill="#713f12"/>
+  <text x="492.5" y="576" fill="#fbbf24" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">PARTIAL</text>
+  <rect x="565" y="556" width="125" height="30" rx="4" fill="#713f12"/>
+  <text x="627.5" y="576" fill="#fbbf24" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">PARTIAL</text>
+  <rect x="700" y="556" width="125" height="30" rx="4" fill="#713f12"/>
+  <text x="762.5" y="576" fill="#fbbf24" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">PARTIAL</text>
+  <rect x="835" y="556" width="125" height="30" rx="4" fill="#7f1d1d"/>
+  <text x="897.5" y="576" fill="#f87171" font-size="11.5" font-weight="600" font-family="'IBM Plex Mono', monospace" text-anchor="middle" letter-spacing="1">GAP</text>
+  <text x="40" y="620" fill="#94a3b8" font-size="12.5">A1 to A7: attacks against your agents. B1 to B4: attacks by agents, including your own.</text>
+  <text x="40" y="644" fill="#f1f5f9" font-size="13.5" font-weight="600">44 cells: 11 held, 26 partial, 7 gaps.</text>
+  <text x="40" y="666" fill="#94a3b8" font-size="12.5">Prevention gaps come from what executes differing from what was checked. Recovery gaps come from harm landing outside your estate.</text>
+</svg>
