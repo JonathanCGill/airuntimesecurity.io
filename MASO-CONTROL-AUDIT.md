@@ -8,7 +8,7 @@ Trim entries that are sub-controls rather than top-level controls, then the head
 _Not part of the published site (lives outside `docs/`)._
 | Domain | Prefix | Count |
 |---|---|--:|
-| Identity & Access | IA | 20 |
+| Identity & Access | IA | 25 |
 | Data Protection | DP | 15 |
 | Extraction Integrity | EI | 15 |
 | Execution Control | EC | 36 |
@@ -19,20 +19,22 @@ _Not part of the published site (lives outside `docs/`)._
 | Privileged Agent Governance | PA | 19 |
 | Model Cognition Assurance | MC | 21 |
 | Agentic Task Mandate | AT | 26 |
-| **Core total (11 domains)** | | **233** |
+| **Core total (11 domains)** | | **238** |
 | Environment Containment (cross-cutting) | ENV | 24 |
-| **With ENV** | | **257** |
+| **With ENV** | | **262** |
 
 ## Summary
 
 
-## Identity & Access (IA) — 20
+## Identity & Access (IA) — 25
 
 - [ ] **IA-1.1** Agent identifier
 - [ ] **IA-1.2** No shared credentials
 - [ ] **IA-1.3** No orchestrator inheritance
 - [ ] **IA-1.4** Scoped permissions
 - [ ] **IA-1.5** Managed secret storage
+- [ ] **IA-1.6** No secrets in MCP client configuration
+- [ ] **IA-1.7** No credential-bearing tool interfaces
 - [ ] **IA-2.1** Non-Human Identity (NHI)
 - [ ] **IA-2.2** Short-lived credentials
 - [ ] **IA-2.3** Mutual authentication
@@ -42,12 +44,15 @@ _Not part of the published site (lives outside `docs/`)._
 - [ ] **IA-2.7** Vaulted per-flow credential brokering
 - [ ] **IA-2.8** Tool-boundary secret injection
 - [ ] **IA-2.9** Secret redaction at ingress and persistence
+- [ ] **IA-2.10** MCP server credential custody
+- [ ] **IA-2.11** No MCP token passthrough
 - [ ] **IA-3.1** Sub-hour rotation (all)
 - [ ] **IA-3.2** Behavioral binding
 - [ ] **IA-3.3** Delegation mandates
 - [ ] **IA-3.4** Automated credential revocation
 - [ ] **IA-3.5** Sender-constrained tokens
 - [ ] **IA-3.6** Canary credentials
+- [ ] **IA-3.7** Secret access correlation
 
 ## Data Protection (DP) — 15
 
@@ -325,8 +330,8 @@ Controls are numbered by tier: X-1.n = Tier 1 (Supervised), X-2.n = Tier 2 (Mana
 
 | Tier | Adds | Cumulative |
 |---|--:|--:|
-| Tier 1 (Supervised) | 64 | 64 |
-| Tier 2 (Managed) | 111 | 175 |
-| Tier 3 (Autonomous) | 58 | 233 |
+| Tier 1 (Supervised) | 66 | 66 |
+| Tier 2 (Managed) | 113 | 179 |
+| Tier 3 (Autonomous) | 59 | 238 |
 
-A Tier 1 deployment applies 64 controls, not 233. The full catalogue is the Tier-3 maximum.
+A Tier 1 deployment applies 66 controls, not 238. The full catalogue is the Tier-3 maximum.

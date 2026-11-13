@@ -84,7 +84,7 @@ The AI Bill of Materials is the supply chain equivalent of an SBOM (Software Bil
 | Model-as-Judge | Model-as-Judge (must differ from task model) | `OpenAI / gpt-4o / chat/completions` |
 | Tools | List of tools with versions and manifest hashes | `[{name: "document-reader", version: "2.1.3", hash: "sha256:abc..."}]` |
 | Skills | Skills, plugins, and hooks with spec `name`, content hash of the whole skill directory, source registry, pinned external references, and permission manifest hash | `[{name: "report-formatter", hash: "sha256:mno...", registry: "internal", external_refs: [{url: "https://...", hash: "sha256:pqr..."}]}]` |
-| MCP Servers | Connected MCP servers with endpoint and manifest hash | `[{name: "internal-search", endpoint: "https://...", hash: "sha256:def..."}]` |
+| MCP Servers | Connected MCP servers with endpoint, manifest hash, workload identity, and the secrets each may read (references only, never values) | `[{name: "internal-search", endpoint: "https://...", hash: "sha256:def...", identity: "arn:aws:iam::...:role/mcp-search", secrets: ["arn:aws:secretsmanager:...:secret:search-api-..."]}]` |
 | RAG Sources | Knowledge bases with integrity checksums | `[{name: "policy-docs", checksum: "sha256:ghi...", last_verified: "2026-02-14"}]` |
 | Dependencies | Runtime libraries and framework versions | `[{name: "langchain", version: "0.3.12"}]` |
 | Last Updated | Timestamp of AIBOM generation | `2026-02-15T08:00:00Z` |
@@ -103,7 +103,9 @@ MCP (Model Context Protocol) servers extend agent capabilities by providing tool
 |-------|-------------|
 | Source verification | Who built it? Is the source code available for review? |
 | Manifest inspection | Do the tool descriptions match the actual tool behavior? Are parameter schemas well-defined? |
-| Credential handling | Does the tool request credentials as parameters? (Red flag - credentials should be injected by the platform, not passed by the agent.) |
+| Credential handling | Does any tool take a credential as a parameter or return one in its result? Does the server expose a "get secret" style tool? (Red flag for both: credentials are held by the server or injected by the platform, never passed or seen by the agent. [IA-1.7](identity-and-access.md)) |
+| Secret custody | Where does the server get its downstream credentials? It should read them from a secrets store under its own workload identity, scoped to named secrets ([IA-2.10](identity-and-access.md)), not from environment variables set in the client configuration ([IA-1.6](identity-and-access.md)) |
+| Token handling | Does the server validate that client tokens were issued for it, and does it avoid forwarding them downstream? Token passthrough is a rejection ([IA-2.11](identity-and-access.md)) |
 | Network behavior | What external endpoints does the MCP server contact? Are they documented and expected? |
 | Data handling | What data does the MCP server access, store, or transmit? Does it comply with the agent's data classification? |
 | Update mechanism | How is the MCP server updated? Can updates change tool behavior without notice? |

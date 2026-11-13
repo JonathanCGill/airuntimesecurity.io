@@ -118,7 +118,7 @@ When multiple LLMs collaborate, delegate, and take autonomous actions, new failu
 - **Delegation creates transitive authority**, permissions transfer implicitly through delegation chains nobody designed
 - **Failures look like success**, the most dangerous outputs are well-formatted, confident, unanimously agreed, and wrong
 
-The **[MASO Framework](docs/maso/)** extends the foundation into multi-agent orchestration: 233 controls across 11 domains, 3 implementation tiers (supervised → managed → autonomous), full OWASP coverage for the LLM, Agentic, and Agentic Skills top 10s, plus 35 emergent risks that have no OWASP equivalent, including epistemic failures like groupthink and synthetic corroboration that no other framework formally addresses.
+The **[MASO Framework](docs/maso/)** extends the foundation into multi-agent orchestration: 238 controls across 11 domains, 3 implementation tiers (supervised → managed → autonomous), full OWASP coverage for the LLM, Agentic, and Agentic Skills top 10s, plus 35 emergent risks that have no OWASP equivalent, including epistemic failures like groupthink and synthetic corroboration that no other framework formally addresses.
 
 **→ [Enter MASO](docs/maso/)**
 
