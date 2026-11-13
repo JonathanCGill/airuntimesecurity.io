@@ -1,6 +1,6 @@
 # MASO Control Catalogue — Audit / Trim List
 
-**As-at: 2026-11-03.** Point-in-time snapshot. Verify current requirements against official sources before relying on this.
+**As-at: 2026-11-13.** Point-in-time snapshot. Verify current requirements against official sources before relying on this.
 
 Working document. Every defined control ID with its title, grouped by the eleven domains.
 Trim entries that are sub-controls rather than top-level controls, then the headline number follows from the count.
@@ -8,40 +8,51 @@ Trim entries that are sub-controls rather than top-level controls, then the head
 _Not part of the published site (lives outside `docs/`)._
 | Domain | Prefix | Count |
 |---|---|--:|
-| Identity & Access | IA | 14 |
+| Identity & Access | IA | 25 |
 | Data Protection | DP | 15 |
 | Extraction Integrity | EI | 15 |
-| Execution Control | EC | 33 |
+| Execution Control | EC | 36 |
 | Observability | OB | 17 |
-| Prompt, Goal & Epistemic Integrity | PG | 22 |
-| Supply Chain | SC | 19 |
+| Prompt, Goal & Epistemic Integrity | PG | 24 |
+| Supply Chain | SC | 22 |
 | Objective Intent | OI | 18 |
 | Privileged Agent Governance | PA | 19 |
 | Model Cognition Assurance | MC | 21 |
-| Agentic Task Mandate | AT | 25 |
-| **Core total (11 domains)** | | **218** |
+| Agentic Task Mandate | AT | 26 |
+| **Core total (11 domains)** | | **238** |
 | Environment Containment (cross-cutting) | ENV | 24 |
-| **With ENV** | | **242** |
+| **With ENV** | | **262** |
 
 ## Summary
 
 
-## Identity & Access (IA) — 14
+## Identity & Access (IA) — 25
 
 - [ ] **IA-1.1** Agent identifier
 - [ ] **IA-1.2** No shared credentials
 - [ ] **IA-1.3** No orchestrator inheritance
 - [ ] **IA-1.4** Scoped permissions
+- [ ] **IA-1.5** Managed secret storage
+- [ ] **IA-1.6** No secrets in MCP client configuration
+- [ ] **IA-1.7** No credential-bearing tool interfaces
 - [ ] **IA-2.1** Non-Human Identity (NHI)
 - [ ] **IA-2.2** Short-lived credentials
 - [ ] **IA-2.3** Mutual authentication
 - [ ] **IA-2.4** No transitive permissions
 - [ ] **IA-2.5** Orchestrator privilege separation
 - [ ] **IA-2.6** Secrets exclusion from context
+- [ ] **IA-2.7** Vaulted per-flow credential brokering
+- [ ] **IA-2.8** Tool-boundary secret injection
+- [ ] **IA-2.9** Secret redaction at ingress and persistence
+- [ ] **IA-2.10** MCP server credential custody
+- [ ] **IA-2.11** No MCP token passthrough
 - [ ] **IA-3.1** Sub-hour rotation (all)
 - [ ] **IA-3.2** Behavioral binding
 - [ ] **IA-3.3** Delegation mandates
 - [ ] **IA-3.4** Automated credential revocation
+- [ ] **IA-3.5** Sender-constrained tokens
+- [ ] **IA-3.6** Canary credentials
+- [ ] **IA-3.7** Secret access correlation
 
 ## Data Protection (DP) — 15
 
@@ -79,7 +90,7 @@ _Not part of the published site (lives outside `docs/`)._
 - [ ] **EI-3.3** Field-level reconstructability
 - [ ] **EI-3.4** Synthetic document detection
 
-## Execution Control (EC) — 33
+## Execution Control (EC) — 36
 
 - [ ] **EC-1.1** Human approval gate
 - [ ] **EC-1.2** Tool allow-lists
@@ -108,6 +119,9 @@ _Not part of the published site (lives outside `docs/`)._
 - [ ] **EC-2.15** Serialisation boundary validation
 - [ ] **EC-2.16** Context rotation with structured state preservation
 - [ ] **EC-2.17** Judge context isolation
+- [ ] **EC-2.18** Egress path validation
+- [ ] **EC-2.19** Config-file immutability
+- [ ] **EC-2.20** Scenario and content egress validation
 - [ ] **EC-3.1** Infrastructure-enforced blast radius
 - [ ] **EC-3.2** Self-healing circuit breakers
 - [ ] **EC-3.3** Multi-model cross-validation
@@ -135,7 +149,7 @@ _Not part of the published site (lives outside `docs/`)._
 - [ ] **OB-3.4** Cross-agent correlation
 - [ ] **OB-3.5** Decision traceability
 
-## Prompt, Goal & Epistemic Integrity (PG) — 22
+## Prompt, Goal & Epistemic Integrity (PG) — 24
 
 - [ ] **PG-1.1** Input sanitisation per agent
 - [ ] **PG-1.2** System prompt isolation
@@ -153,6 +167,8 @@ _Not part of the published site (lives outside `docs/`)._
 - [ ] **PG-2.8** Assumption isolation
 - [ ] **PG-2.9** Model diversity policy
 - [ ] **PG-2.10** Inter-agent clarification protocol
+- [ ] **PG-2.11** Assembled-context evaluation
+- [ ] **PG-2.12** Control-reasoning non-disclosure
 - [ ] **PG-3.1** Multi-layer injection defence
 - [ ] **PG-3.2** Goal integrity hash chain
 - [ ] **PG-3.3** Constraint fidelity check
@@ -160,13 +176,14 @@ _Not part of the published site (lives outside `docs/`)._
 - [ ] **PG-3.5** Challenger agent
 - [ ] **PG-3.6** Prompt leakage red team
 
-## Supply Chain (SC) — 19
+## Supply Chain (SC) — 22
 
 - [ ] **SC-1.1** Model inventory
 - [ ] **SC-1.2** Tool inventory
 - [ ] **SC-1.3** Fixed toolsets
 - [ ] **SC-1.4** RAG source inventory
 - [ ] **SC-1.5** Skill inventory and installation control
+- [ ] **SC-1.6** Agent Skills format conformance
 - [ ] **SC-2.1** AIBOM per agent
 - [ ] **SC-2.2** Signed tool manifests
 - [ ] **SC-2.3** MCP server allow-listing
@@ -175,6 +192,8 @@ _Not part of the published site (lives outside `docs/`)._
 - [ ] **SC-2.6** Per-skill permission manifest
 - [ ] **SC-2.7** External instruction pinning
 - [ ] **SC-2.8** Skill version and source pinning
+- [ ] **SC-2.9** Skill secret hygiene
+- [ ] **SC-2.10** Skill invocation-time execution
 - [ ] **SC-3.1** Model version pinning
 - [ ] **SC-3.2** Automated rollback
 - [ ] **SC-3.3** Continuous dependency scanning
@@ -249,7 +268,7 @@ _Not part of the published site (lives outside `docs/`)._
 - [ ] **MC-3.4** Residual risk quantification
 - [ ] **MC-3.5** Independent vendor audit rights
 
-## Agentic Task Mandate (AT) — 25
+## Agentic Task Mandate (AT) — 26
 
 - [ ] **AT-1.1** Solution mandate declaration
 - [ ] **AT-1.2** Agent mandate declaration
@@ -273,6 +292,7 @@ _Not part of the published site (lives outside `docs/`)._
 - [ ] **AT-2.13** Judge verdict schema
 - [ ] **AT-2.14** Vendor agentic capability disclosure
 - [ ] **AT-2.15** Activation-layer residual risk declaration
+- [ ] **AT-2.16** Mandate-environment reconciliation
 - [ ] **AT-3.1** Cross-session drift detection
 - [ ] **AT-3.2** Judge evaluation scope
 - [ ] **AT-3.3** Judge independence
@@ -310,8 +330,8 @@ Controls are numbered by tier: X-1.n = Tier 1 (Supervised), X-2.n = Tier 2 (Mana
 
 | Tier | Adds | Cumulative |
 |---|--:|--:|
-| Tier 1 (Supervised) | 62 | 62 |
-| Tier 2 (Managed) | 100 | 162 |
-| Tier 3 (Autonomous) | 56 | 218 |
+| Tier 1 (Supervised) | 66 | 66 |
+| Tier 2 (Managed) | 113 | 179 |
+| Tier 3 (Autonomous) | 59 | 238 |
 
-A Tier 1 deployment applies 62 controls, not 218. The full catalogue is the Tier-3 maximum.
+A Tier 1 deployment applies 66 controls, not 238. The full catalogue is the Tier-3 maximum.

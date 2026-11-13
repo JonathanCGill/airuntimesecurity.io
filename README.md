@@ -2,7 +2,7 @@
 
 ## AI systems don't just have vulnerabilities. They have behaviors.
 
-[![Controls: 200+](https://img.shields.io/badge/Controls-200%2B-blue?style=flat-square)](docs/foundations/) [![Red Team: 16 scenarios](https://img.shields.io/badge/Red%20Team-16%20scenarios-blue?style=flat-square)](docs/maso/red-team/red-team-playbook.md) [![OWASP: Full Coverage](https://img.shields.io/badge/OWASP-Full_Coverage-brightgreen?style=flat-square)](docs/maso/controls/risk-register.md) [![PACE Resilience](https://img.shields.io/badge/PACE-Resilience-orange?style=flat-square)](docs/PACE-RESILIENCE.md) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![Controls: 200+](https://img.shields.io/badge/Controls-200%2B-blue?style=flat-square)](docs/foundations/) [![Red Team: 16 scenarios](https://img.shields.io/badge/Red%20Team-16%20scenarios-blue?style=flat-square)](docs/maso/red-team/red-team-playbook.md) [![OWASP: Full Coverage](https://img.shields.io/badge/OWASP-Full_Coverage-brightgreen?style=flat-square)](docs/maso/controls/risk-register.md) [![PACE Resilience](https://img.shields.io/badge/PACE-Resilience-orange?style=flat-square)](docs/pace-resilience.md) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 **A practical, open-source framework for securing AI systems at runtime, where prompt injection, model manipulation, and agent drift actually happen.**
 
@@ -33,7 +33,7 @@ The industry is converging on the same answer independently. NVIDIA NeMo, AWS Be
 
 **Guardrails prevent. Judge detects. Humans decide. Circuit breakers contain.**
 
-Each control layer catches what the others miss. Remove any of the three and you have a gap; the circuit breaker trips on accumulated failure and anomaly signals to contain what those tripwires surface, so it depends on the layers emitting telemetry rather than acting as a catch-all for silent bypasses. The Judge is a probabilistic control, an LLM evaluating another LLM, and recent research (HiddenLayer, arXiv 2504.11168, intent laundering) shows commercial guardrail-and-judge stacks can be bypassed at near-100% rates by an adversary who can probe them. Treat the Judge as a layer that raises the attacker's cost, not as a peer of deterministic policy enforcement; pair it with capability tokens, infrastructure-level scoping, and network-layer DLP wherever the action is consequential. The framework pairs every control with a **[PACE resilience architecture](docs/PACE-RESILIENCE.md)**, Primary, Alternate, Contingency, Emergency, so when a layer degrades, the system transitions to a predetermined safe state rather than failing silently.
+Each control layer catches what the others miss. Remove any of the three and you have a gap; the circuit breaker trips on accumulated failure and anomaly signals to contain what those tripwires surface, so it depends on the layers emitting telemetry rather than acting as a catch-all for silent bypasses. The Judge is a probabilistic control, an LLM evaluating another LLM, and recent research (HiddenLayer, arXiv 2504.11168, intent laundering) shows commercial guardrail-and-judge stacks can be bypassed at near-100% rates by an adversary who can probe them. Treat the Judge as a layer that raises the attacker's cost, not as a peer of deterministic policy enforcement; pair it with capability tokens, infrastructure-level scoping, and network-layer DLP wherever the action is consequential. The framework pairs every control with a **[PACE resilience architecture](docs/pace-resilience.md)**, Primary, Alternate, Contingency, Emergency, so when a layer degrades, the system transitions to a predetermined safe state rather than failing silently.
 
 ![Single-Agent Security Architecture](docs/images/single-agent-architecture.svg)
 
@@ -43,7 +43,7 @@ Each control layer catches what the others miss. Remove any of the three and you
 **→** [Security Leaders view](docs/stakeholders/security-leaders.md) | [Risk & Governance view](docs/stakeholders/risk-and-governance.md)
 
 **Architects** working out where controls go in the AI pipeline, what they cost, and what happens when they fail.
-**→** [Enterprise Architects view](docs/stakeholders/enterprise-architects.md) | [Quick Start](docs/QUICK_START.md), zero to working controls in 30 minutes
+**→** [Enterprise Architects view](docs/stakeholders/enterprise-architects.md) | [Quick Start](docs/quick-start.md), zero to working controls in 30 minutes
 
 **Engineers** building AI systems who want implementation patterns, not slide decks. Guardrail configs, Judge prompts, integration code.
 **→** [AI Engineers view](docs/stakeholders/ai-engineers.md) | [Integration Guide](docs/maso/integration/integration-guide.md), LangGraph, AutoGen, CrewAI, Bedrock
@@ -58,10 +58,10 @@ airs assess
 | I want to... | Go to |
 | --- | --- |
 | **Install the SDK and start coding** | **[SDK Documentation](docs/sdk/README.md)**, `pip install airs` and build security in |
-| **Get started in 30 minutes** | **[Quick Start](docs/QUICK_START.md)**, from zero to working controls |
+| **Get started in 30 minutes** | **[Quick Start](docs/quick-start.md)**, from zero to working controls |
 | **Secure a single-model AI system** | **[Foundation Framework](docs/foundations/)**, three-layer behavioural pattern with risk tiers and PACE resilience |
-| **Secure a multi-agent system** | **[MASO Framework](docs/maso/)**, 10 control domains, 3 implementation tiers, full OWASP dual coverage |
-| **Deploy low-risk AI fast** | **[Fast Lane](docs/FAST-LANE.md)**, self-certification for internal, read-only, no regulated data |
+| **Secure a multi-agent system** | **[MASO Framework](docs/maso/)**, 11 control domains, 3 implementation tiers, full OWASP dual coverage |
+| **Deploy low-risk AI fast** | **[Fast Lane](docs/fast-lane.md)**, self-certification for internal, read-only, no regulated data |
 
 
 <details>
@@ -74,9 +74,9 @@ airs assess
 | What these controls cost and how to manage latency | [Cost & Latency](docs/extensions/technical/cost-and-latency.md), sampling strategies, latency budgets, tiered evaluation cascade |
 | What happens when the Judge is wrong | [Judge Assurance](docs/core/judge-assurance.md), accuracy metrics, calibration, adversarial testing, fail-safe mechanisms |
 | How the Judge can be attacked | [When the Judge Can Be Fooled](docs/core/when-the-judge-can-be-fooled.md), output crafting, judge manipulation, mitigations by tier |
-| Securing the AI supply chain | [Supply Chain Controls](docs/maso/controls/supply-chain.md), AIBOM, signed manifests, MCP vetting, model provenance |
+| Securing the AI supply chain | [Supply Chain Controls](docs/maso/controls/supply-chain.md), AIBOM, signed manifests, MCP vetting, model provenance, agent skills |
 | Human operator fatigue and automation bias | [Human Factors](docs/strategy/human-factors.md), skill development, alert fatigue, challenge rate testing |
-| Risks that emerge when agents collaborate | [Emergent Risk Register](docs/maso/controls/risk-register.md), 34 risks across 9 categories, with coverage assessment |
+| Risks that emerge when agents collaborate | [Emergent Risk Register](docs/maso/controls/risk-register.md), 35 risks across 9 categories, with coverage assessment |
 
 </details>
 
@@ -87,23 +87,23 @@ airs assess
 
 | I want to... | Start here |
 | --- | --- |
-| Get the one-page reference | [Cheat Sheet](docs/CHEATSHEET.md), classify, control, fail posture, test |
+| Get a proportionate control checklist | [Select Your Controls](docs/select.md), declare what your AI does and take away a matching checklist |
 | Classify a system by risk | [Risk Tiers](docs/core/risk-tiers.md) |
 | Quantify AI risk for board reporting | [Risk Assessment](docs/core/risk-assessment.md) |
 | Align AI with business strategy | [From Strategy to Production](docs/strategy/) |
 | Understand organisational maturity for AI security | [Maturity Levels](docs/strategy/maturity-levels.md) |
-| See the entire framework on one map | [Tube Map](docs/TUBE-MAP.md) |
-| Understand PACE resilience | [PACE Methodology](docs/PACE-RESILIENCE.md) |
+| See the entire framework on one map | [MASO Tube Map](docs/maso/reference.md) |
+| Understand PACE resilience | [PACE Methodology](docs/pace-resilience.md) |
 | Run adversarial tests on agents | [Red Team Playbook](docs/maso/red-team/red-team-playbook.md) |
 | Implement in LangGraph, AutoGen, CrewAI, or Bedrock | [Integration Guide](docs/maso/integration/integration-guide.md) |
 | See one transaction end-to-end with every log event | [Runtime Telemetry Reference](docs/extensions/technical/runtime-telemetry-reference.md) |
 | Enforce controls at infrastructure level | [Infrastructure Controls](docs/infrastructure/) |
 | See real incidents mapped to controls | [Incident Tracker](docs/maso/threat-intelligence/incident-tracker.md) |
 | See MASO applied in finance, healthcare, or energy | [Worked Examples](docs/maso/examples/worked-examples.md) |
-| Navigate by role | [Framework Map](docs/FRAMEWORK-MAP.md) |
-| Understand what's validated and what's not | [Maturity & Validation](docs/MATURITY.md) |
+| Navigate by goal | [Reading Paths](docs/reading-paths.md) |
+| Understand what's validated and what's not | [Maturity & Validation](docs/maturity.md) |
 | Map to compliance requirements | [Compliance & Legal view](docs/stakeholders/compliance-and-legal.md) |
-| See all references and further reading | [References & Sources](docs/REFERENCES.md) |
+| See all references and further reading | [References & Sources](docs/references.md) |
 
 </details>
 
@@ -118,7 +118,7 @@ When multiple LLMs collaborate, delegate, and take autonomous actions, new failu
 - **Delegation creates transitive authority**, permissions transfer implicitly through delegation chains nobody designed
 - **Failures look like success**, the most dangerous outputs are well-formatted, confident, unanimously agreed, and wrong
 
-The **[MASO Framework](docs/maso/)** extends the foundation into multi-agent orchestration: 128 controls across 7 domains, 3 implementation tiers (supervised → managed → autonomous), full OWASP coverage for both LLM and Agentic top 10s, plus 34 emergent risks that have no OWASP equivalent, including epistemic failures like groupthink and synthetic corroboration that no other framework formally addresses.
+The **[MASO Framework](docs/maso/)** extends the foundation into multi-agent orchestration: 238 controls across 11 domains, 3 implementation tiers (supervised → managed → autonomous), full OWASP coverage for the LLM, Agentic, and Agentic Skills top 10s, plus 35 emergent risks that have no OWASP equivalent, including epistemic failures like groupthink and synthetic corroboration that no other framework formally addresses.
 
 **→ [Enter MASO](docs/maso/)**
 
@@ -143,6 +143,8 @@ Three constraints strategies routinely underestimate: **[Data Reality](docs/stra
 | --- | --- |
 | [OWASP LLM Top 10 (2025)](https://owasp.org/www-project-top-10-for-large-language-model-applications/) | Full mapping across foundation + MASO |
 | [OWASP Agentic Top 10 (2026)](https://genai.owasp.org/) | Full mapping in MASO |
+| [OWASP Agentic Skills Top 10](https://owasp.org/www-project-agentic-skills-top-10/) | AST01-AST10 mapped to MASO controls |
+| [Agent Skills specification](https://agentskills.io/specification) | `SKILL.md` format baseline for MASO supply chain controls, with a Claude Code platform profile |
 | [NIST AI RMF](https://www.nist.gov/itl/ai-risk-management-framework) | Govern, Map, Measure, Manage |
 | [ISO 42001](https://www.iso.org/standard/81230.html) | AI management system alignment |
 | [CSA AI Controls Matrix (AICM)](https://cloudsecurityalliance.org/artifacts/ai-controls-matrix-v1-1) | Domain crosswalk; five-actor shared responsibility model adopted for build-vs-consume |
@@ -191,11 +193,11 @@ Three constraints strategies routinely underestimate: **[Data Reality](docs/stra
 │   ├── README.md                      # Site homepage
 │   ├── foundations/                   # Single-model AI security framework
 │   ├── maso/                          # Multi-Agent Security Operations (MASO)
-│   │   ├── controls/                  # 6 domain specifications + risk register
+│   │   ├── controls/                  # 11 domain specifications + risk register
 │   │   ├── implementation/            # 3 tier guides (supervised, managed, autonomous)
 │   │   ├── threat-intelligence/       # Incident tracker + emerging threats
-│   │   ├── red-team/                  # Adversarial test playbook (13 scenarios)
-│   │   ├── integration/              # LangGraph, AutoGen, CrewAI, AWS Bedrock patterns
+│   │   ├── red-team/                  # Adversarial test playbook (16 scenarios)
+│   │   ├── integration/               # LangGraph, AutoGen, CrewAI, AWS Bedrock patterns
 │   │   └── examples/                  # Financial services, healthcare, critical infrastructure
 │   ├── stakeholders/                  # Role-based entry points
 │   ├── core/                          # Risk tiers, controls, IAM governance, checklists
@@ -209,7 +211,7 @@ Three constraints strategies routinely underestimate: **[Data Reality](docs/stra
 │   ├── core/                          # Models, controls registry, risk classifier
 │   ├── runtime/                       # Three-layer pipeline, PACE, circuit breaker
 │   └── integrations/                  # FastAPI middleware
-├── tests/                             # 52 tests
+├── tests/                             # 196 tests
 ├── examples/                          # Quick start + FastAPI example app
 ├── pyproject.toml                     # Python package configuration
 ├── overrides/                         # MkDocs Material theme overrides
