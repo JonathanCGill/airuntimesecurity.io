@@ -261,4 +261,3 @@ That is not judge hell. That is a manageable evaluation architecture. But MASO n
     - [Judge Assurance](../../core/judge-assurance.md)
     - [Cost and Latency](../../extensions/technical/cost-and-latency.md)
     - [Distilling the Judge into an SLM](../../extensions/technical/distill-judge-slm.md)
-    - [MASO 2.0 Anticipated Changes](../maso-2.0-anticipated-changes.md)

@@ -64,6 +64,7 @@ Reorganised the site into a product-shaped structure with five top-level tabs (*
 
 ### Removed
 
+- **MASO 2.0 Anticipated Changes page** (`maso/maso-2.0-anticipated-changes.md`). Removed from the site and nav, with a redirect to the MASO Framework Reference. Links from `maso/reference.md`, `maso/evidence/index.md`, `maso/distributed-architecture.md`, the Judge Proliferation Review, and the threat intelligence review were removed or repointed (ET-18 and ET-20 links now go to `emerging-threats.md`).
 - **Hand-maintained `docs/sitemap.xml`** (1,054 lines). It was overwritten on every build by MkDocs' auto-generated sitemap and missed 56 pages including the new Start and Library landings.
 - **Dead CSS** (~120 lines): `.home-subtitle`, `.home-tldr`, `.home-primary-cta`, `.home-paths`, `.home-path`, `.pull-quote`. All leftover from the pre-reorganisation Home page and not referenced anywhere.
 

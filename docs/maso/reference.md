@@ -356,12 +356,11 @@ Every control in MASO is grounded in observed or demonstrated attack patterns:
 | [100-Agent Stress Test](stress-test/100-agent-stress-test-overview.md) | Tabletop methodology for identifying framework breakpoints as agent count grows from single digits to 100+. Eight stress dimensions covering epistemic cascade depth, delegation graph complexity, cross-cluster PACE cascades, observability volume, provider concentration, data boundary enforcement, kill switch practicality, and compound attack surfaces |
 | [E-commerce 10k Stress Test](stress-test/ecommerce-10k-stress-test.md) | Scenario-specific stress test: MASO under an e-commerce deployment with 10,000 concurrent agents |
 
-## Reviews and Roadmap
+## Reviews and Architecture
 
 | Document | Purpose |
 |----------|---------|
 | [Judge Proliferation Review](reviews/stakeholder-review-judge-proliferation.md) | Stakeholder review of whether the framework risks "judge hell", and the governance mechanisms that prevent it |
-| [MASO 2.0 Roadmap](maso-2.0-anticipated-changes.md) | Anticipated changes to AI and the framework: where MASO breaks, what MASO 2.0 must address |
 | [Distributed Security Architecture](distributed-architecture.md) | How Layer 2 becomes a combination of reviewing controls, security sidecars, a hardened inter-agent bus, and Agent-to-Agent IAM with action gating, instead of a central Model-as-Judge chokepoint |
 
 ## Regulatory Alignment
@@ -447,7 +446,6 @@ It extends into multi-agent territory by addressing multi-model orchestration se
 ```
 README.md                              # This document
 environment-containment.md             # Environment containment strategy
-maso-2.0-anticipated-changes.md        # Forward-looking roadmap
 controls/
 ├── prompt-goal-and-epistemic-integrity.md
 ├── identity-and-access.md
@@ -482,25 +480,6 @@ reviews/
 └── stakeholder-review-judge-proliferation.md
 distributed-architecture.md            # Layer 2 as a combination of reviewing controls, not a single Judge
 ```
-
-## MASO 2.0: Anticipated Changes
-
-**[Anticipated Changes to AI and Framework: MASO 2.0](maso-2.0-anticipated-changes.md)**
-
-Six AI capability trajectories that will stress or break the current framework, with architectural responses and a phased roadmap:
-
-| Evolution Vector | Framework Impact | MASO 2.0 Response |
-|-----------------|-----------------|-------------------|
-| **Judge ceiling** | Primary models exceed Judge evaluation capability | Verifiable action constraints, evidence-based reasoning, domain-specific verification oracles, ensemble Judge |
-| **Human oversight scaling** | Transaction review becomes untenable at agent scale | Humans shift to governance over review, outcome-based oversight, automated escalation triage |
-| **Session boundary dissolution** | Persistent/ambient agents invalidate session-based analysis | Continuous behavioral streams, intent inheritance, memory integrity as core control |
-| **Multi-agent emergent behaviors** | Fleet interactions produce unanticipated states | Interaction graph analysis, fleet-level baselines, composition constraints, emergent behavior simulation |
-| **AI-vs-AI adversarial dynamics** | Offensive AI outpaces human-speed defense updates | Continuous adversarial simulation, adaptive guardrails, Judge unpredictability |
-| **Regulatory divergence** | Jurisdictions impose conflicting requirements | Jurisdiction-aware control profiles, compliance evidence automation |
-
-Three-phase roadmap: Extend (0–6 months) → Architect (6–18 months) → Paradigm shift (18–36 months).
-
-The architectural response to the Judge ceiling and multi-agent emergent behaviors vectors is detailed in [Distributed Security Architecture](distributed-architecture.md): Layer 2 becomes a combination of reviewing controls, security sidecars, a hardened inter-agent bus, and Agent-to-Agent IAM with action gating, so no single Model-as-Judge is a chokepoint on every agent-to-agent hop.
 
 <div class="learning-callout" markdown>
 

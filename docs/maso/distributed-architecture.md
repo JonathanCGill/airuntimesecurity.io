@@ -31,7 +31,7 @@ Consider a single user request that an orchestrator decomposes into a research t
 
 One user request now costs 4 Judge calls: 5-12 seconds of added latency and $0.04-0.20 of added token spend, before the orchestrator has produced anything. At fleet scale this is the same demand-side curve described in [Token Management as a Runtime Security Control](../extensions/technical/token-economics.md#token-management-as-a-runtime-security-control): every additional agent-to-agent hop multiplies the Judge's contribution to context fill, queue depth, and shared-GPU contention. The control meant to keep the system safe becomes the reason it falls over.
 
-This sharpens two evolution vectors from [MASO 2.0 Anticipated Changes](maso-2.0-anticipated-changes.md): the **Judge Ceiling** (vector 1, where Judge cost and latency stop scaling with primary model capability) and **Multi-Agent Emergent Behaviours** (vector 4, where per-hop evaluation cannot keep pace with fleet-level interaction). It is also the architectural answer the [Judge Proliferation Review](reviews/stakeholder-review-judge-proliferation.md) calls for when it says the tactical judge should be "infrastructure, not a service."
+This sharpens two pressures on the framework: the **Judge Ceiling**, where Judge cost and latency stop scaling with primary model capability, and **Multi-Agent Emergent Behaviours**, where per-hop evaluation cannot keep pace with fleet-level interaction. It is also the architectural answer the [Judge Proliferation Review](reviews/stakeholder-review-judge-proliferation.md) calls for when it says the tactical judge should be "infrastructure, not a service."
 
 The fix is the one described above: stop treating Layer 2 as a single model's job, and push the combination of reviewing controls down to where each hop actually happens.
 
@@ -67,7 +67,7 @@ The [Secure Inter-Agent Message Bus](README.md#three-layer-defence) is already M
 
 ### Schema Enforcement
 
-[PG-1.4](controls/prompt-goal-and-epistemic-integrity.md) already requires inter-agent messages to carry a `{type: "data" | "instruction" | "claim"}` tag. The bus enforces this as a hard gate: if an agent that is supposed to emit structured, typed messages suddenly starts emitting free-form natural language, the bus drops the connection rather than forwarding a degraded message. A schema violation on the bus is treated as a compromise indicator, not a formatting bug, the same posture [ET-20](maso-2.0-anticipated-changes.md#2026-q2-threat-driven-additions) recommends for steganographic agent-to-agent channels: canonicalise to a typed intent representation, and treat any reversion to free text as suspicious.
+[PG-1.4](controls/prompt-goal-and-epistemic-integrity.md) already requires inter-agent messages to carry a `{type: "data" | "instruction" | "claim"}` tag. The bus enforces this as a hard gate: if an agent that is supposed to emit structured, typed messages suddenly starts emitting free-form natural language, the bus drops the connection rather than forwarding a degraded message. A schema violation on the bus is treated as a compromise indicator, not a formatting bug, the same posture [ET-20](threat-intelligence/emerging-threats.md#et-20-steganographic-agent-to-agent-communication) recommends for steganographic agent-to-agent channels: canonicalise to a typed intent representation, and treat any reversion to free text as suspicious.
 
 ### Jailbreak Contagion Detection
 
@@ -75,7 +75,7 @@ An attacker rarely targets the privileged Execution Agent directly. They comprom
 
 | Bus control | Extends | Failure mode it catches |
 |--------------|---------|--------------------------|
-| Schema enforcement, drop on violation | [PG-1.4](controls/prompt-goal-and-epistemic-integrity.md), [ET-20](maso-2.0-anticipated-changes.md#2026-q2-threat-driven-additions) | Compromised agent reverting to free-text instructions |
+| Schema enforcement, drop on violation | [PG-1.4](controls/prompt-goal-and-epistemic-integrity.md), [ET-20](threat-intelligence/emerging-threats.md#et-20-steganographic-agent-to-agent-communication) | Compromised agent reverting to free-text instructions |
 | Mutual authentication (NHI) | [IA-2.3](controls/identity-and-access.md) | Spoofed agent identity on the bus |
 | Jailbreak-contagion classifier | [ASI01/ASI07](README.md#owasp-top-10-for-agentic-applications-2026), [EP-03](controls/prompt-goal-and-epistemic-integrity.md) | Injection passed from a compromised agent to a downstream peer |
 
@@ -90,7 +90,7 @@ No single agent in the mesh holds both broad read access and privileged write cr
 - A **Read Agent** (for example, the email-triage agent in our hop example) holds a wide but read-only NHI scope. It can be compromised by a poisoned inbound message without that compromise translating into a transaction.
 - An **Execute Agent** holds the narrow, privileged credentials, for example the API keys for the banking core. It accepts no inbound natural language at all.
 
-This is [ET-18 (NHI sprawl)](maso-2.0-anticipated-changes.md#2026-q2-threat-driven-additions) applied structurally: every agent spawned for a task gets an ephemeral, scoped credential with parent-child lineage, and the Execute Agent's credential is never in scope for any agent upstream of it.
+This is [ET-18 (NHI sprawl)](threat-intelligence/emerging-threats.md#et-18-non-human-identity-sprawl-from-dynamic-sub-agent-spawning) applied structurally: every agent spawned for a task gets an ephemeral, scoped credential with parent-child lineage, and the Execute Agent's credential is never in scope for any agent upstream of it.
 
 ### Gating the Handoff
 
@@ -98,7 +98,7 @@ If the Read Agent determines a transaction is needed, it cannot call the privile
 
 | Action gating element | Extends | Role |
 |------------------------|---------|------|
-| Separation of duties (Read Agent / Execute Agent) | [ET-18](maso-2.0-anticipated-changes.md#2026-q2-threat-driven-additions), [IA-2.5](controls/identity-and-access.md) | No single agent can complete an attack chain alone |
+| Separation of duties (Read Agent / Execute Agent) | [ET-18](threat-intelligence/emerging-threats.md#et-18-non-human-identity-sprawl-from-dynamic-sub-agent-spawning), [IA-2.5](controls/identity-and-access.md) | No single agent can complete an attack chain alone |
 | Ephemeral, scoped NHI per agent | [IA-2.1](controls/identity-and-access.md), [IA-2.2](controls/identity-and-access.md) | Limits blast radius of a compromised Read Agent |
 | Signed delegation mandate | [IA-3.3](controls/identity-and-access.md) | Defines the scope, limits, and expected output of the handoff |
 | Policy compliance check (sidecar, before execution) | [Execution Control](controls/execution-control.md#action-classification-rules-tier-2) | Fourth reviewing control: structural check, independent of the requesting agent's reasoning |
@@ -115,11 +115,10 @@ Put together, the three patterns change where MASO's enforcement effort sits, no
 
 A Model-as-Judge between every agent-to-agent hop is a theoretical control: correct in principle, unworkable at the latency and cost a multi-agent fleet actually runs at. The fix is not to remove the Judge, it is to stop treating it as Layer 2's only control. Pushed to the edge as sidecars, a hardened bus, and Agent-to-Agent IAM, the combination of reviewing controls, deterministic scanners, a semantic firewall, a policy compliance check, and Model-as-Judge, run at machine speed and at the point where they are cheapest to enforce. Each does the part of the evaluation it is best at: scanners catch what is mechanically wrong, the semantic firewall catches what is adversarially shaped, the policy compliance check catches what a request has no authority to ask for, and the Judge catches what is genuinely novel.
 
-This is the same "constrain regardless" principle from [MASO 2.0 Anticipated Changes](maso-2.0-anticipated-changes.md#the-deeper-architectural-question), applied one layer down: constrain the **handoff**, not just the **action**.
+This is the "constrain regardless" principle applied one layer down: constrain the **handoff**, not just the **action**.
 
 !!! info "References"
     - [MASO Framework](README.md)
-    - [MASO 2.0 Anticipated Changes](maso-2.0-anticipated-changes.md)
     - [Judge Proliferation Review](reviews/stakeholder-review-judge-proliferation.md)
     - [Distilling the Judge into an SLM](../extensions/technical/distill-judge-slm.md)
     - [Identity & Access](controls/identity-and-access.md)

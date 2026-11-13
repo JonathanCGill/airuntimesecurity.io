@@ -432,7 +432,7 @@ Three standards documents published since February affect the framework's [Valid
 
 ### 6. What is unchanged
 
-The three-layer model, PACE resilience, infrastructure-beats-instructions, the MASO message bus posture, and the risk tier structure all hold. None of the Q2 evidence contradicts them. The next major framework revision (MASO 2.0) remains the right vehicle for the deeper changes already scoped in [maso-2.0-anticipated-changes.md](../maso-2.0-anticipated-changes.md); this addendum is incremental, not architectural.
+The three-layer model, PACE resilience, infrastructure-beats-instructions, the MASO message bus posture, and the risk tier structure all hold. None of the Q2 evidence contradicts them. The next major framework revision (MASO 2.0) remains the right vehicle for deeper architectural changes; this addendum is incremental, not architectural.
 
 ## Sources
 

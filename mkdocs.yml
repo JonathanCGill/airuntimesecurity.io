@@ -56,6 +56,7 @@ plugins:
         FAST-LANE.md: fast-lane.md
         IMPLEMENTATION_GUIDE.md: implementation-guide.md
         MATURITY.md: maturity.md
+        maso/maso-2.0-anticipated-changes.md: maso/reference.md
         maso/maso-2.0-distributed-architecture.md: maso/distributed-architecture.md
         PACE-RESILIENCE.md: pace-resilience.md
         QUICK_START.md: quick-start.md
@@ -161,7 +162,6 @@ nav:
       - 100-Agent Stress Test: maso/stress-test/100-agent-stress-test-overview.md
       - E-commerce Stress Test: maso/stress-test/ecommerce-10k-stress-test.md
       - Judge Proliferation Review: maso/reviews/stakeholder-review-judge-proliferation.md
-      - MASO 2.0 Roadmap: maso/maso-2.0-anticipated-changes.md
 
   - ASO:
     - aso/index.md
