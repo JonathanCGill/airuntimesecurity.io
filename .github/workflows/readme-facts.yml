@@ -1,0 +1,25 @@
+name: README facts
+
+# Fails when README figures (control counts, risks, scenarios, tests) drift
+# from the files that define them, or when a README link points nowhere.
+# Fix locally with: python .github/scripts/readme_facts.py --write
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Check README figures and links
+        run: python .github/scripts/readme_facts.py --check

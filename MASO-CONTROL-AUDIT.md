@@ -14,14 +14,14 @@ _Not part of the published site (lives outside `docs/`)._
 | Execution Control | EC | 36 |
 | Observability | OB | 17 |
 | Prompt, Goal & Epistemic Integrity | PG | 24 |
-| Supply Chain | SC | 21 |
+| Supply Chain | SC | 22 |
 | Objective Intent | OI | 18 |
 | Privileged Agent Governance | PA | 19 |
 | Model Cognition Assurance | MC | 21 |
 | Agentic Task Mandate | AT | 26 |
-| **Core total (11 domains)** | | **232** |
+| **Core total (11 domains)** | | **233** |
 | Environment Containment (cross-cutting) | ENV | 24 |
-| **With ENV** | | **256** |
+| **With ENV** | | **257** |
 
 ## Summary
 
@@ -171,7 +171,7 @@ _Not part of the published site (lives outside `docs/`)._
 - [ ] **PG-3.5** Challenger agent
 - [ ] **PG-3.6** Prompt leakage red team
 
-## Supply Chain (SC) — 21
+## Supply Chain (SC) — 22
 
 - [ ] **SC-1.1** Model inventory
 - [ ] **SC-1.2** Tool inventory
@@ -188,6 +188,7 @@ _Not part of the published site (lives outside `docs/`)._
 - [ ] **SC-2.7** External instruction pinning
 - [ ] **SC-2.8** Skill version and source pinning
 - [ ] **SC-2.9** Skill secret hygiene
+- [ ] **SC-2.10** Skill invocation-time execution
 - [ ] **SC-3.1** Model version pinning
 - [ ] **SC-3.2** Automated rollback
 - [ ] **SC-3.3** Continuous dependency scanning
@@ -325,7 +326,7 @@ Controls are numbered by tier: X-1.n = Tier 1 (Supervised), X-2.n = Tier 2 (Mana
 | Tier | Adds | Cumulative |
 |---|--:|--:|
 | Tier 1 (Supervised) | 64 | 64 |
-| Tier 2 (Managed) | 110 | 174 |
-| Tier 3 (Autonomous) | 58 | 232 |
+| Tier 2 (Managed) | 111 | 175 |
+| Tier 3 (Autonomous) | 58 | 233 |
 
-A Tier 1 deployment applies 64 controls, not 232. The full catalogue is the Tier-3 maximum.
+A Tier 1 deployment applies 64 controls, not 233. The full catalogue is the Tier-3 maximum.
