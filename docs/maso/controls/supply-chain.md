@@ -1,13 +1,14 @@
 ---
-as_at: "2026-11-03"
-description: "MASO supply chain controls: inventorying, vetting, and integrity-verifying every model, tool, MCP server, skill, and plugin in multi-agent AI systems. Maps to OWASP LLM03, ASI04, and the Agentic Skills Top 10."
+as_at: "2026-11-13"
+description: "MASO supply chain controls: inventorying, vetting, and integrity-verifying every model, tool, MCP server, skill, and plugin in multi-agent AI systems. Maps to OWASP LLM03, ASI04, the Agentic Skills Top 10, and the Agent Skills open specification."
 ---
 
 # MASO (Multi-Agent Security Operations) Control Domain: Supply Chain
 
 > Part of the [MASO Framework](../README.md) · Control Specifications
 > Covers: LLM03 (Supply Chain Vulnerabilities) · ASI04 (Agentic Supply Chain) · AST01-AST10 (OWASP Agentic Skills Top 10, see [mapping](../reference.md#owasp-agentic-skills-top-10-2026))
-> Also covers: HF-02 (Accountability - AIBOM component)
+> Also covers: HF-02 (Accountability - AIBOM component) · SR-05 (Secrets Leakage, skill packages)
+> Conforms to: [Agent Skills specification](https://agentskills.io/specification) (`SKILL.md` format, see [conformance](#agent-skills-specification-conformance))
 
 ## Principle
 
@@ -21,7 +22,7 @@ Every component in the agent system - models, tools, MCP servers, skills, RAG so
 
 **Model provider changes propagate silently.** When a model provider updates their model (version change, fine-tuning update, safety filter modification), every agent using that model is affected simultaneously. If the update introduces a regression - reduced safety filtering, changed behavior on edge cases, or degraded quality - the agents inherit the regression with no notice.
 
-**Skills are instructions, not just code.** An agent skill (a `SKILL.md` package, a plugin, a hook, or an agent configuration file such as `CLAUDE.md` or `.cursorrules`) bundles natural-language instructions with optional scripts and runs with the full permissions of the agent that loads it. Signing and dependency scanning were built for code. They say nothing about prose that tells the agent to read `~/.ssh` and post it somewhere, or about a URL the skill tells the agent to read at runtime. OWASP's [Agentic Skills Top 10](https://owasp.org/www-project-agentic-skills-top-10/) (AST10) catalogues the resulting risk class. Controls SC-1.5, SC-2.5 to SC-2.8, and SC-3.6 below exist because of it. In a multi-agent system the exposure compounds: one poisoned skill loaded by an orchestrator shapes every task it delegates.
+**Skills are instructions, not just code.** An agent skill (a `SKILL.md` package, a plugin, a hook, or an agent configuration file such as `CLAUDE.md` or `.cursorrules`) bundles natural-language instructions with optional scripts and runs with the full permissions of the agent that loads it. Signing and dependency scanning were built for code. They say nothing about prose that tells the agent to read `~/.ssh` and post it somewhere, or about a URL the skill tells the agent to read at runtime. OWASP's [Agentic Skills Top 10](https://owasp.org/www-project-agentic-skills-top-10/) (AST10) catalogues the resulting risk class. Controls SC-1.5, SC-1.6, SC-2.5 to SC-2.9, and SC-3.6 below exist because of it. In a multi-agent system the exposure compounds: one poisoned skill loaded by an orchestrator shapes every task it delegates.
 
 **Credential harvesting through tool manifests.** A poisoned tool manifest can describe a tool that requires "authentication tokens" as parameters. The agent, following its instructions to use the tool, passes credentials to the attacker's endpoint. This is a supply chain attack that doesn't require compromising the agent's code - only its tool configuration.
 
@@ -35,7 +36,8 @@ Every component in the agent system - models, tools, MCP servers, skills, RAG so
 | **SC-1.2** Tool inventory | Every tool available to every agent is documented: name, source, version, permission scope | No undocumented tool integrations. |
 | **SC-1.3** Fixed toolsets | Agents use a predefined, static set of tools. No runtime discovery or dynamic composition | New tools require a change request and security review. |
 | **SC-1.4** RAG source inventory | Every RAG/vector database is documented per agent: source, update frequency, access controls | Enables traceability when poisoning is suspected. |
-| **SC-1.5** Skill inventory and installation control | Every skill, plugin, hook, and instruction-bearing configuration file loaded by any agent is inventoried with source, version, content hash, installer identity, and accountable owner. Only the platform team installs skills; individual users and agents cannot | Skills from public registries are not installed directly: they are copied into a private curated registry after review, and agents load only from that registry. Ownership is reassigned or the skill revoked when its owner leaves. Addresses AST01, AST02, AST09. |
+| **SC-1.5** Skill inventory and installation control | Every skill, plugin, hook, and instruction-bearing configuration file loaded by any agent is inventoried with source, version, content hash, installer identity, and accountable owner. Only the platform team installs skills; individual users and agents cannot | The content hash covers the whole skill directory (`SKILL.md` plus every file under `scripts/`, `references/`, and `assets/`), not `SKILL.md` alone, because bundled scripts and reference files are loaded or executed on activation. Skills from public registries are not installed directly: they are copied into a private curated registry after review, and agents load only from that registry. Ownership is reassigned or the skill revoked when its owner leaves. Addresses AST01, AST02, AST09. |
+| **SC-1.6** Agent Skills format conformance | Every skill entering the curated registry conforms to the [Agent Skills specification](https://agentskills.io/specification) and passes the reference validator (`skills-ref validate`) before it is inventoried. Non-conforming skills are rejected, not repaired at load | The validator is the floor, not the security review: it confirms the format that SC-2.5 then inspects. Conformance gives every client in a multi-agent estate the same reading of the same skill, which is what makes a single review and a single hash meaningful across agents. See [Agent Skills specification conformance](#agent-skills-specification-conformance). Addresses AST04, AST10. |
 
 ### Tier 2 - Managed
 
@@ -47,10 +49,11 @@ All Tier 1 controls remain active, plus:
 | **SC-2.2** Signed tool manifests | Tool manifests cryptographically signed; agents reject unsigned or tampered manifests | Signing key managed by the platform team, not the tool provider. |
 | **SC-2.3** MCP server allow-listing | Agents can only connect to pre-approved MCP servers | Allow-list maintained by the AI security team. New MCP servers require vetting before addition. |
 | **SC-2.4** Runtime integrity checks | Tool, MCP server, and skill integrity verified at load time against signed manifests | Integrity failure blocks loading and triggers an alert. |
-| **SC-2.5** Skill definition validation | Skill metadata and definition files (`SKILL.md` front matter, `skill.json`, `manifest.json`, `package.json`) are validated against a strict schema with safe parsers before load. Hidden characters, encoded instruction blocks, and names or publishers that impersonate a known brand are rejected | No unsafe deserialisation (for example PyYAML `!!python/object` tags). Reject zero-width Unicode, bidirectional control characters, and unexplained base64 in instruction text. A skill ported from another platform is re-validated on the target platform, never assumed equivalent. Applies [EC-2.15](execution-control.md) strict parsing to the load path. Addresses AST04, AST10. |
-| **SC-2.6** Per-skill permission manifest | Each skill declares the minimum filesystem paths, network destinations, shell access, and credentials it needs. The platform enforces the manifest at runtime; the skill cannot widen it | A skill's effective permissions are the intersection of its manifest and the agent's own scope ([IA-1.4](identity-and-access.md)), never the agent's full scope. A skill whose manifest grants all three legs of the Lethal Trifecta (private data, untrusted content, external communication) is blocked unless a named owner approves it with an egress allow-list. Where the target platform has no manifest format, the permissions are enforced in the sandbox instead ([EC-2.2](execution-control.md)). Addresses AST03, AST10. |
+| **SC-2.5** Skill definition validation | Skill metadata and definition files (`SKILL.md` front matter, `skill.json`, `manifest.json`, `package.json`) are validated against a strict schema with safe parsers before load. For `SKILL.md` the schema is the Agent Skills specification with unknown front-matter keys rejected. Hidden characters, encoded instruction blocks, and names or publishers that impersonate a known brand are rejected. File references resolve inside the skill directory | No unsafe deserialisation (for example PyYAML `!!python/object` tags). Reject zero-width Unicode, bidirectional control characters, and unexplained base64 in instruction text. The `description` field gets the same hidden-character and injection checks as the body: it is loaded into every agent's context at start-up, before the skill is ever activated. Reject absolute paths, `..` segments, and symlinks that leave the skill root. A skill ported from another platform is re-validated on the target platform, never assumed equivalent. Applies [EC-2.15](execution-control.md) strict parsing to the load path. Addresses AST04, AST10. |
+| **SC-2.6** Per-skill permission manifest | Each skill declares the minimum filesystem paths, network destinations, shell access, and credentials it needs. The platform enforces the manifest at runtime; the skill cannot widen it | A skill's effective permissions are the intersection of its manifest and the agent's own scope ([IA-1.4](identity-and-access.md)), never the agent's full scope. A skill whose manifest grants all three legs of the Lethal Trifecta (private data, untrusted content, external communication) is blocked unless a named owner approves it with an egress allow-list. Where the target platform has no manifest format, the permissions are enforced in the sandbox instead ([EC-2.2](execution-control.md)). The skill's own `allowed-tools` and `compatibility` fields are author claims: the reviewer compares them with the approved manifest, and the manifest held by the registry is what is enforced. Addresses AST03, AST10. |
 | **SC-2.7** External instruction pinning | Content a skill directs the agent to read at runtime (remote documentation, runbooks, schemas, scripts) is either inlined into the reviewed skill or pinned by content hash and verified on every fetch. Unpinned external content is tagged as data, not instruction | A signed skill that points at a mutable URL is only as trustworthy as whoever controls that URL tomorrow. Hash mismatch fails closed and triggers re-vetting. Fetched content carries `type: "data"` under [PG-1.4](prompt-goal-and-epistemic-integrity.md). Addresses AST05. |
 | **SC-2.8** Skill version and source pinning | Skills are pinned by content hash, not by name, tag, or `latest`. Auto-update and hot-reload are disabled. Any new version, change of maintainer, or change of ownership of the source account or repository re-enters review | A "patch" release is an unverified new artefact until reviewed. A skill served from a repository whose owner account was deleted or transferred is treated as compromised until re-vetted. Addresses AST02, AST07. |
+| **SC-2.9** Skill secret hygiene | Skill packages contain no secrets: no API keys, tokens, passwords, private keys, connection strings, or `.env` files anywhere in the skill directory or its front matter. Skill scripts obtain credentials only from the platform broker at execution time, scoped to the skill's permission manifest (SC-2.6). Skill instructions that direct the agent to read, print, export, or pass a credential are rejected | Run secret scanning over every file in the skill directory at intake and on every version (SC-2.8). A secret found in a skill is treated as exposed: it is revoked and rotated, not just removed from the package, because the package has already been distributed. Credential access goes through [IA-2.7](identity-and-access.md) brokering and [IA-2.8](identity-and-access.md) tool-boundary injection, so a skill script never reads the host agent's environment, keychain, or credential files. Addresses AST01, AST03, SR-05. |
 
 ### Tier 3 - Autonomous
 
@@ -79,7 +82,7 @@ The AI Bill of Materials is the supply chain equivalent of an SBOM (Software Bil
 | Fallback Model | Backup model for PACE Alternate phase | `Google / gemini-2.0-flash / v1` |
 | Model-as-Judge | Model-as-Judge (must differ from task model) | `OpenAI / gpt-4o / chat/completions` |
 | Tools | List of tools with versions and manifest hashes | `[{name: "document-reader", version: "2.1.3", hash: "sha256:abc..."}]` |
-| Skills | Skills, plugins, and hooks with content hash, source registry, pinned external references, and permission manifest hash | `[{name: "report-formatter", hash: "sha256:mno...", registry: "internal", external_refs: [{url: "https://...", hash: "sha256:pqr..."}]}]` |
+| Skills | Skills, plugins, and hooks with spec `name`, content hash of the whole skill directory, source registry, pinned external references, and permission manifest hash | `[{name: "report-formatter", hash: "sha256:mno...", registry: "internal", external_refs: [{url: "https://...", hash: "sha256:pqr..."}]}]` |
 | MCP Servers | Connected MCP servers with endpoint and manifest hash | `[{name: "internal-search", endpoint: "https://...", hash: "sha256:def..."}]` |
 | RAG Sources | Knowledge bases with integrity checksums | `[{name: "policy-docs", checksum: "sha256:ghi...", last_verified: "2026-02-14"}]` |
 | Dependencies | Runtime libraries and framework versions | `[{name: "langchain", version: "0.3.12"}]` |
@@ -109,6 +112,26 @@ MCP (Model Context Protocol) servers extend agent capabilities by providing tool
 
 **Re-vetting triggers:** Any update to the MCP server, change in maintainer, security advisory affecting the server's dependencies, or a 6-month periodic review - whichever comes first.
 
+## Agent Skills Specification Conformance
+
+The [Agent Skills specification](https://agentskills.io/specification) is the open format for `SKILL.md` packages, adopted across Claude Code, Codex, Cursor, VS Code, and other agent clients. MASO does not redefine the format. It treats conformance as the entry condition (SC-1.6) and layers security controls on each part of the format. The table records how each element of the specification is handled.
+
+| Spec element | What the specification requires | MASO handling |
+|---|---|---|
+| Directory | A folder whose name matches the skill `name`, containing `SKILL.md` and optional `scripts/`, `references/`, `assets/` | Whole directory hashed and inventoried (SC-1.5), signed and verified at load (SC-2.2, SC-2.4), pinned by hash (SC-2.8), scanned for secrets (SC-2.9) |
+| `name` | Required. 1 to 64 characters, lowercase letters, digits, and hyphens, no leading, trailing, or consecutive hyphens, matches the directory name | Validated (SC-1.6). Checked for brand and publisher impersonation and look-alike names of approved skills (SC-2.5) |
+| `description` | Required. 1 to 1,024 characters, says what the skill does and when to use it | Loaded into every agent's start-up context, so it is an instruction surface before activation. Hidden-character and injection checks (SC-2.5, [PG-1.1](prompt-goal-and-epistemic-integrity.md)) |
+| `license` | Optional. Licence name or a reference to a bundled licence file | Recorded in the inventory and AIBOM (SC-1.5, SC-2.1) |
+| `compatibility` | Optional. Up to 500 characters on environment needs such as products, system packages, or network access | Network needs compared with the approved egress allow-list ([EC-2.18](execution-control.md)). A mismatch blocks approval |
+| `metadata` | Optional. A map of string keys to string values | Parsed with safe parsers only (SC-2.5). Never a place for secrets (SC-2.9) or for permission grants |
+| `allowed-tools` | Optional and experimental. Space-delimited list of pre-approved tools; support varies by client | Treated as an author claim. Enforcement comes from the registry-held permission manifest and the sandbox (SC-2.6, [EC-2.2](execution-control.md)), never from the field alone |
+| Body | Markdown instructions, kept short; detail moved to referenced files | Judge review of instructions (PG-2.1). Instructions to fetch remote content are pinned or inlined (SC-2.7) |
+| File references | Relative paths from the skill root, kept one level deep | Resolved inside the skill root only; traversal and escaping symlinks rejected (SC-2.5) |
+| Progressive disclosure | `name` and `description` loaded at start-up, the body on activation, other files on demand | Every stage is a load event: integrity is verified at each one, not only at start-up (SC-2.4) |
+| Validation | `skills-ref validate` reference tool | Required at intake as the floor (SC-1.6). Security validation (SC-2.5) and behavioural evaluation (SC-3.6) follow it |
+
+**Conformance is necessary, not sufficient.** A skill can conform to the specification and still carry a credential stealer in its scripts or a hidden instruction in its description. The specification defines a format. It does not define trust, signing, or permissions, which is why SC-2.2, SC-2.6, SC-2.9, and SC-3.6 sit on top of it.
+
 ## Testing Criteria
 
 ### Tier 1 Tests
@@ -119,6 +142,7 @@ MCP (Model Context Protocol) servers extend agent capabilities by providing tool
 | SC-T1.2 | Fixed toolset enforcement | Attempt to add a tool to an agent's configuration without going through the change process. Attempt is blocked or detected. |
 | SC-T1.3 | Inventory freshness | Verify inventories have been reviewed within the last 30 days. |
 | SC-T1.4 | Unauthorised skill installation | As a non-platform user, and separately via an agent instruction, attempt to install a skill from a public registry. Installation is blocked and logged. |
+| SC-T1.5 | Format conformance | Submit skills with a `name` that does not match its directory, an uppercase `name`, a `description` over 1,024 characters, and an unknown front-matter key. All four fail `skills-ref validate` and are rejected before inventory. |
 
 ### Tier 2 Tests
 
@@ -133,6 +157,8 @@ MCP (Model Context Protocol) servers extend agent capabilities by providing tool
 | SC-T2.7 | Permission manifest enforcement | Load a skill whose manifest allows one directory, then instruct the agent (directly and via injected content) to have the skill read outside it and reach an undeclared host. Both are blocked. |
 | SC-T2.8 | External reference drift | Change the content behind a hash-pinned URL that a skill references. The fetch fails closed and the skill is flagged for re-vetting. |
 | SC-T2.9 | Skill update drift | Publish a new version of an approved skill upstream, and separately transfer ownership of its source repository. Neither change reaches a running agent without review. |
+| SC-T2.10 | Secrets in skill packages | Submit skills with an API key in a file under `scripts/`, a token in a `metadata` value, a committed `.env` file, and an instruction telling the agent to print its environment variables. All four are rejected at intake. |
+| SC-T2.11 | Skill path escape | Submit a skill whose body references `../../.ssh/id_rsa` and one with a symlink under `references/` pointing outside the skill root. Both are rejected at validation. |
 
 ### Tier 3 Tests
 
@@ -150,7 +176,7 @@ MCP (Model Context Protocol) servers extend agent capabilities by providing tool
 |-------|-----------|
 | **Initial** | No inventory of models, tools, skills, or RAG sources. Agents use whatever tools are available. MCP servers and skills added without review. |
 | **Managed** | Model, tool, and RAG inventories maintained. Fixed toolsets enforced. Changes go through a documented process. |
-| **Defined** | AIBOM per agent. Signed tool manifests. MCP server allow-listing with vetting process. Runtime integrity checks. Skills validated, permission-scoped, and pinned by hash, including their external references. |
+| **Defined** | AIBOM per agent. Signed tool manifests. MCP server allow-listing with vetting process. Runtime integrity checks. Skills conform to the Agent Skills specification, are validated, permission-scoped, secret-free, and pinned by hash, including their external references. |
 | **Quantitatively Managed** | AIBOM accuracy measured (deployed vs. documented). Manifest verification failure rate tracked. MCP vetting completion time measured. |
 | **Optimising** | Model version pinning with automated rollback. Continuous dependency scanning. A2A trust chain validation. Behavioural evaluation of every skill version before approval. AIBOM generation fully automated in CI/CD pipeline. |
 
@@ -174,7 +200,14 @@ MCP (Model Context Protocol) servers extend agent capabilities by providing tool
 
 **Approving a skill without checking it against the Lethal Trifecta.** A skill that combines access to private data (credentials, wallet files), exposure to untrusted content (its own instructions, retrieved documents), and the ability to communicate externally (network egress) has everything it needs to exfiltrate silently - this combination is what made the ClawHub/OpenClaw skills dangerous. OWASP's [Agentic Skills Top 10](https://owasp.org/www-project-agentic-skills-top-10/) (AST01-AST10) tracks this class separately from ASI04. Vet each skill against the trifecta explicitly before approval, not just against signing and provenance. SC-2.6 makes this enforceable: a manifest that grants all three legs is blocked by default. See [The Agent Supply Chain Crisis](../../insights/the-agent-supply-chain-crisis.md#the-lethal-trifecta).
 
+**Trusting `allowed-tools` as a permission boundary.** The Agent Skills specification marks `allowed-tools` as experimental, and clients differ in whether and how they honour it. It is written by the skill's author, so a malicious skill declares whatever it needs. Use it as a review input that should match the approved manifest, and enforce permissions from the registry and the sandbox (SC-2.6).
+
 **Allowing agents to discover tools at runtime.** Dynamic tool discovery is the defining feature of MCP-based agent frameworks and the defining vulnerability of their supply chain. At Tier 1 and Tier 2, tool discovery must be disabled in favour of static allow-lists. Even at Tier 3, discovery should be limited to pre-approved registries with signed manifests.
 
 **Treating the model provider as a runtime backstop.** Provider-side abuse monitoring, terms of service, and acceptable-use policies are governance controls, not runtime controls. The April 2026 Mexican government breach used Claude Code across 34 sessions, 1,088 prompts, and 5,317 commands without provider-side intervention interrupting the engagement. The OX Security MCP STDIO disclosure (April 2026) showed Anthropic explicitly declining to change a vulnerable protocol, declaring sanitisation a developer responsibility. Operators must assume that provider monitoring will not catch sustained misuse and that protocol-level fixes are not on a predictable timeline. Every supply chain claim must be enforceable by the operator: signed manifests verified locally, MCP gateways under operator control, and runtime integrity checks that do not depend on the provider's cooperation.
 
+!!! info "References"
+    - [Agent Skills specification](https://agentskills.io/specification)
+    - [OWASP Agentic Skills Top 10](https://owasp.org/www-project-agentic-skills-top-10/)
+    - [OWASP Top 10 for Agentic Applications (ASI04: Agentic Supply Chain)](https://genai.owasp.org/)
+    - [SLSA: Supply-chain Levels for Software Artifacts](https://slsa.dev/)
