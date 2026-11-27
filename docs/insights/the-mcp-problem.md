@@ -228,5 +228,6 @@ This reinforces Risk 1 above (tool descriptions are untrusted input), but extend
 - [Agentic Task Mandate](../maso/controls/agentic-task-mandate.md) - The four-state deviation model for detecting tool behaviour that diverges from its mandate
 - [Behavioural Anomaly Detection](../extensions/technical/behavioral-anomaly-detection.md) - Runtime detection of tool-call patterns that deviate from baseline
 - [Infrastructure Beats Instructions](infrastructure-beats-instructions.md) - Why prompt-based security fails and deterministic enforcement works
+- [Prompt and Configuration Management](https://aisecuredbydesign.io/building/devops/prompt-and-config-management/) - Pinning tool definitions by hash before deployment, so rug pulls are caught at load time (Secure by Design)
 - [RAG Is Your Biggest Attack Surface](rag-is-your-biggest-attack-surface.md) - Another data path that bypasses traditional access controls
 

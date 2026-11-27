@@ -313,6 +313,8 @@ The following threats reflect trends visible in production deployments and resea
 
 **Gap in current controls:** SC-1.3 assumes actions can be enumerated. Computer-use breaks that. MASO needs DOM event allow-listing, screenshot diff observability, and per-origin scoping for browser agents.
 
+**Pre-deployment design:** Sandbox, dedicated account, credential broker, domain allowlist, and controller-enforced approval for consequential actions are set out in [Computer-Use and Browser Agents](https://aisecuredbydesign.io/core/computer-use-agents/) on Secure by Design.
+
 **Assessment:** High likelihood. Computer-use is shipping; the controls have not caught up.
 
 ### ET-15: Long-horizon, Always-on Agents

@@ -14,7 +14,7 @@ When an AI agent delegates a task to another agent, the delegation creates a cha
 
 These five controls enforce the principle that delegation reduces permissions (never increases them), maintains a linked audit trail, limits chain depth, requires explicit authorisation, and propagates the original user identity through the entire chain.
 
-## DEL-01 - Enforce Least Delegation (No Privilege Escalation)
+## DEL-01: Enforce Least Delegation (No Privilege Escalation)
 
 **Risk Tiers:** Tier 2+ (agentic)
 
@@ -40,7 +40,7 @@ The effective permissions at any point in a delegation chain must be the interse
 | **Judge** | Judge can evaluate whether delegation patterns are consistent with intended task scope, detecting attempts to route through higher-privilege agents. |
 | **Human Oversight** | The permission intersection model is auditable - reviewers can trace exactly what permissions were effective at each point in the chain and verify no escalation occurred. |
 
-## DEL-02 - Maintain Complete Audit Trail Across Chains
+## DEL-02: Maintain Complete Audit Trail Across Chains
 
 **Risk Tiers:** Tier 2+ (agentic)
 
@@ -67,7 +67,7 @@ Every delegation chain must produce a linked, chronological audit trail that all
 | **Judge** | The complete chain audit trail is a primary input for Judge evaluation of multi-agent workflows. The Judge can assess whether the chain's collective behavior was appropriate. |
 | **Human Oversight** | End-to-end chain reconstruction is essential for human reviewers. Without it, multi-agent systems are opaque and unaccountable. |
 
-## DEL-03 - Limit Delegation Depth
+## DEL-03: Limit Delegation Depth
 
 **Risk Tiers:** Tier 2+ (agentic)
 
@@ -94,7 +94,7 @@ Constrain the maximum depth of delegation chains to prevent unbounded recursive 
 | **Judge** | Shorter chains are easier for the Judge to evaluate comprehensively. Depth limits ensure that chain complexity remains within the Judge's effective evaluation capacity. |
 | **Human Oversight** | Depth limits ensure that delegation chains remain tractable for human review. A chain of depth 15 is effectively unauditable. |
 
-## DEL-04 - Require Explicit Delegation Authorisation
+## DEL-04: Require Explicit Delegation Authorisation
 
 **Risk Tiers:** Tier 2+ (agentic)
 
@@ -120,7 +120,7 @@ Delegation between agents must be explicitly authorised. An agent's ability to i
 | **Judge** | Judge can verify that all delegations in a chain match the declared authorisation, detecting any delegation that bypassed the manifest. |
 | **Human Oversight** | Delegation manifests give human reviewers a complete map of agent-to-agent trust relationships, enabling review of the system's actual delegation topology. |
 
-## DEL-05 - Propagate User Identity Through Chains
+## DEL-05: Propagate User Identity Through Chains
 
 **Risk Tiers:** Tier 2+ (agentic)
 

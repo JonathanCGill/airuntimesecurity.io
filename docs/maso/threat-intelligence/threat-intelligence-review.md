@@ -322,6 +322,8 @@ These are threats that have emerged or been formalised since the framework's cur
 
 **Impact on proposals:** SC controls should include output validation for code-generating agents that cross-checks referenced packages against known-good registries before installation. This is a case where the agent's own output becomes a supply chain attack vector.
 
+**Pre-runtime coverage:** For code written by coding assistants and agents during development, registry proxies, dependency allowlists, and new-package review are covered in [AI-Assisted Development](https://aisecuredbydesign.io/building/devops/ai-assisted-development/) on Secure by Design. The runtime gap for agents that install packages in production remains.
+
 ### 3.6 Credential Harvesting via RAG (MITRE ATLAS)
 
 **Source:** MITRE ATLAS (October 2025) - "RAG Credential Harvesting"
