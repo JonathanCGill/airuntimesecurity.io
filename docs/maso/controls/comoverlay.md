@@ -193,7 +193,7 @@ The **margin** is the distance of the worst parameter from its hard limit, toget
 | ALERT not acknowledged within the escalation window | ESCALATE to the next named human |
 | ESCALATE not acknowledged within a second window | Move to the workflow's predefined safe state (EC-2.22) and keep escalating |
 
-The escalation window is set per workflow and must be shorter than the time to limit it protects. Triggers clear only after the condition stays below 80% of its trigger level for five consecutive cycles.
+Escalation windows are set per workflow. Together, the first window, the second window, and the time to enter the safe state must fit within the time to limit they protect. Checking each window on its own is not enough: with 60 seconds to limit, two 40-second windows each pass but delay containment to 80 seconds. Where the sequence cannot fit, the workflow must either classify an immediate pause as safe (EC-2.21) so containment does not wait for escalation, or lower its ALERT threshold so escalation starts earlier. Triggers clear only after the condition stays below 80% of its trigger level for five consecutive cycles.
 
 Every REPORT and ALERT carries four things: the posture as it is, what is wrong, what the monitor cannot tell, and the **safest expected action** for the current stage from the profile.
 
