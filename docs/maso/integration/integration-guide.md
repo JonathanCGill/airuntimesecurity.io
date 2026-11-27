@@ -153,7 +153,7 @@ Regardless of framework, implement these controls first:
 8. DLP on inter-agent messages - detect sensitive data in agent-to-agent communication
 
 **Priority 3 (Tier 3):**
-9. Independent observability agent with kill switch authority
+9. Independent observability agent (advisory only, no kill switch authority)
 10. Challenger agent for epistemic validation
 11. Cryptographic goal integrity verification
 12. Model diversity enforcement

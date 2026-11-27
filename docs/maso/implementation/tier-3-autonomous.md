@@ -37,7 +37,7 @@ Key architectural changes from Tier 2:
 
 **Encrypted message bus.** Inter-agent messages are signed (Tier 2) and encrypted in transit using NHI certificates. Message content is protected even if bus infrastructure is compromised.
 
-**Autonomous monitoring and response.** The monitoring layer executes PACE Primary↔Alternate transitions without human involvement: detect anomalous agent, isolate, activate backup, return to Primary on stabilisation. Human involvement is only required for Contingency and Emergency transitions.
+**Autonomous monitoring and response.** The enforcement point executes PACE Primary↔Alternate steps without human involvement where each step is classified safe for the workflow under [EC-2.21](../controls/execution-control.md): detect anomalous agent, pause it, and, where classified safe, activate backup and return to Primary on stabilisation. Credential revocation, kills, and rollbacks always need a human, as does every step in payment and safety-critical workflows other than pausing, alerting, and the predefined safe state. This follows the stricter [Comoverlay response rule](../controls/comoverlay.md#8-response-rule).
 
 **Physically isolated kill switch.** The Emergency shutdown operates on a separate network path with its own authentication, and can terminate all agents even if the agent control plane is compromised. Tested regularly with an immutable audit log stored independently.
 
@@ -54,7 +54,7 @@ Key architectural changes from Tier 2:
 - **Credential rotation under 1 hour for all agents.** No agent holds credentials for longer than 60 minutes, regardless of privilege level. High-privilege agents (those with write access to production systems) rotate credentials every 15 minutes.
 - **Behavioral binding on NHI.** The NHI is not just a static certificate - it includes a behavioral profile. If an agent's behavior deviates significantly from its NHI-bound profile (e.g., an agent defined as "read-heavy, low-latency" starts making high-volume write calls), the NHI system flags the mismatch independently of the drift detection system, providing a second detection layer.
 - **Delegation mandates.** When Agent A delegates a task to Agent B, a signed delegation mandate is created that explicitly defines: the scope of the delegated task, the maximum permissions Agent B can use for this task, the time limit for completion, and the expected output format. Agent B cannot exceed the mandate scope.
-- **Automated credential revocation on anomaly.** If the monitoring system detects anomalous behavior, the NHI system can revoke the agent's credentials within 30 seconds without human intervention - faster than the full PACE transition sequence.
+- **Automated credential suspension on anomaly.** If the monitoring system detects anomalous behavior, the gateway suspends use of the agent's credentials within 30 seconds without human intervention, where suspension is classified safe for the workflow (EC-2.21). Suspension is reversible and contains the agent. Revocation, which is not reversible, requires a human decision.
 
 **Implementation checklist:**
 
@@ -64,7 +64,7 @@ Key architectural changes from Tier 2:
 - [ ] NHI behavioral mismatch detection tested independently of drift detection.
 - [ ] Delegation mandates implemented for all inter-agent task assignments.
 - [ ] Delegation mandate enforcement tested (exceed scope → block + alert).
-- [ ] Automated credential revocation tested (anomaly → revoke within 30 seconds).
+- [ ] Automated credential suspension tested (anomaly → suspended within 30 seconds), and revocation confirmed to require a human.
 
 ### 2. Data Protection - Tier 3 Requirements
 
@@ -88,7 +88,7 @@ Key architectural changes from Tier 2:
 **All Tier 2 controls remain active, plus:**
 
 - **Infrastructure-enforced blast radius caps.** The underlying platform (not the agent or orchestrator) prevents any agent from exceeding its defined impact scope, analogous to OS-level resource limits a process cannot override.
-- **Autonomous circuit breaker with self-healing.** Circuit breaker engages, PACE P→A transition fires automatically, backup agent activates, system returns to Primary on stabilisation. Maximum 3 self-healing cycles in 24 hours before auto-escalation to Contingency.
+- **Autonomous circuit breaker with self-healing.** Circuit breaker engages, PACE P→A transition fires automatically, backup agent activates, system returns to Primary on stabilisation. Maximum 3 self-healing cycles in 24 hours before auto-escalation to Contingency. Each step runs automatically only where classified safe under EC-2.21.
 - **Multi-model cross-validation for high-consequence actions.** High-consequence outputs validated by both the Model-as-Judge and a second independent model. Disagreement triggers human escalation.
 - **Time-boxing on all autonomous operations.** Every autonomous task has a maximum execution time. Expiry triggers pause, state capture, and reassignment or escalation.
 
@@ -126,7 +126,7 @@ Key architectural changes from Tier 2:
 **All Tier 2 controls remain active, plus:**
 
 - **Continuous dependency scanning.** The agent toolchain (models, tools, MCP servers, libraries, orchestration framework) is continuously scanned for known vulnerabilities. New CVEs affecting any component trigger automated assessment and, if severity warrants, automatic PACE escalation.
-- **Model version pinning with automated rollback.** Each agent is pinned to a specific model version. If the model provider pushes an update, the system does not automatically adopt it. Updates go through a testing pipeline that validates the new version against the agent's behavioral baselines before deployment. If a deployed version shows regression, automated rollback to the previous version is triggered.
+- **Model version pinning with automated rollback.** Each agent is pinned to a specific model version. If the model provider pushes an update, the system does not automatically adopt it. Updates go through a testing pipeline that validates the new version against the agent's behavioral baselines before deployment. If a deployed version shows regression, the previous version is proposed for rollback automatically and kept deployable, and a human approves the rollback. Rollback is a change to a live system, so it is never automatic under the stricter [Comoverlay response rule](../controls/comoverlay.md#8-response-rule).
 - **A2A trust chain validation.** For agent systems that interact with external agent systems (via A2A protocols or similar), the trust chain is validated end-to-end. External agents must present verifiable identities and operate within agreed-upon interaction mandates. Unverified external agents are blocked.
 - **Supply chain incident response.** A specific incident response procedure exists for supply chain compromises (e.g., a model provider is breached, an MCP server is compromised). The procedure includes: immediate isolation of the affected component, assessment of exposure scope, activation of alternative components, and notification chain.
 
@@ -136,7 +136,7 @@ Key architectural changes from Tier 2:
 - [ ] CVE severity mapping to PACE escalation thresholds defined.
 - [ ] Model version pinning in place for all agents.
 - [ ] Model update testing pipeline operational and documented.
-- [ ] Automated model rollback tested.
+- [ ] Model rollback path tested: regression detected automatically, previous version deployable, rollback approved by a human.
 - [ ] A2A trust chain validation implemented for any external agent interactions.
 - [ ] Supply chain incident response procedure documented and tabletop tested.
 
@@ -152,7 +152,7 @@ All agents autonomous within pre-approved task categories, all ten MASO control 
 
 **Trigger:** Same as Tier 2 (drift score > 60, circuit breaker, Model-as-Judge blocks).
 
-**Autonomous response (no human involvement):**
+**Autonomous response (no human involvement, for each step classified safe under EC-2.21; otherwise the agent is paused and the remaining steps wait for a human):**
 
 1. Anomalous agent isolated.
 2. Backup agent activated with progressive permissions (starts read-only, gains write after demonstrating baseline-normal behavior).
@@ -179,7 +179,7 @@ All agents autonomous within pre-approved task categories, all ten MASO control 
 - Automated notification to the incident response team, security leadership, and (for regulated industries) the regulatory notification assessment team.
 - Automated preservation of the independent observability agent's logs as an untampered evidence source.
 
-**Transition authority:** CISO, incident commander, or the independent observability agent if it detects conditions that require immediate shutdown and no human is available within 5 minutes (this "observability-triggered Emergency" is a Tier 3 capability - the independent monitoring agent has kill switch authority as a safety net).
+**Transition authority:** CISO or incident commander. If no human responds through the escalation chain, the enforcement point moves the workflow to its predefined safe state ([EC-2.22](../controls/execution-control.md)) and keeps escalating. The independent observability agent is advisory only and has no kill switch authority (OB-3.3), under the stricter [Comoverlay response rule](../controls/comoverlay.md#8-response-rule).
 
 **Recovery (E→P):** Same as Tier 2, with the additional requirement that the adversarial testing programme includes the incident scenario in its next test cycle.
 
@@ -248,7 +248,7 @@ All Tier 1 and Tier 2 tests remain valid and should be re-executed. Additional T
 
 **Autonomous operation tests:**
 
-1. **Self-healing cycle test:** Inject anomalous behavior, confirm P→A automated transition, confirm backup stabilisation, confirm automatic A→P return.
+1. **Self-healing cycle test:** Inject anomalous behavior, confirm that P→A steps classified safe under EC-2.21 run automatically and others wait for a human, confirm backup stabilisation, confirm return to Primary.
 2. **Self-healing limit test:** Trigger the self-healing cycle limit and confirm automatic escalation to Contingency.
 3. **Time-box expiry test:** Start a task with a tight time box, allow it to expire, and confirm the system pauses, captures state, and escalates appropriately.
 4. **Infrastructure blast radius enforcement test:** From within an agent's execution environment, attempt every known technique to exceed the configured blast radius. Confirm infrastructure-level block for all attempts.
@@ -288,7 +288,7 @@ Tier 3 systems can regress to lower tiers. This is by design: regression is a sa
 - Delegation mandates: The Monitoring Agent can delegate enrichment requests to the Investigation Agent (read-only scope, maximum 10,000 lookups/hour). The Investigation Agent can delegate classification requests to the Decision Agent (read-only scope). The Decision Agent can delegate responses to the Action Agent (write scope limited to: block card, hold funds < $50,000, or flag for human review).
 - Actions above $50,000 require multi-model cross-validation. The Model-as-Judge and a second independent model must both approve. Disagreement routes to the human fraud team.
 - Blast radius caps: The Action Agent can block a maximum of 50 cards per hour and hold funds on a maximum of 100 accounts per hour. Exceeding these caps triggers automatic PACE escalation regardless of decision quality.
-- The independent observability agent monitors all four agents from separate infrastructure. It has its own kill switch authority.
+- The independent observability agent monitors all four agents from separate infrastructure. It is advisory only: it alerts the fraud operations lead with the safest expected action, and has no kill switch authority. This is a payment workflow, so automated responses are limited to pausing, alerting, and the predefined safe state.
 - Memory decay: Agent persistent memory expires after 72 hours. Longer-term patterns are maintained in the bank's existing fraud analytics platform, not in agent memory.
 
 **PACE in action (autonomous self-healing):**

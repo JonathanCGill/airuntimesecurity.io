@@ -56,6 +56,10 @@ The combination of **access to private data**, **exposure to untrusted content**
 
 Meta's **Agents Rule of Two**: within one session, an agent should hold no more than two of (A) processing untrusted input, (B) access to sensitive systems or private data, and (C) the ability to change state or communicate externally. A session that needs all three must not run autonomously and requires human approval or equivalent validation. It is a design-time rule, enforced at runtime by the tool gateway, credentials, and network controls. See [Injection-Resistant Design](https://aisecuredbydesign.io/core/injection-resistant-design/#the-agents-rule-of-two).
 
+### Comoverlay
+
+**Contextual Model Overlay.** A runtime monitor that compares an expected model of what a system should be doing, selected by context, with a trust-weighted estimate of what it is doing. It reports the posture, what is wrong, and what it cannot tell, and it advises without commanding. Its response rule keeps credential revocation, kills, and rollbacks with people. See [Expected vs Real Monitoring](maso/controls/comoverlay.md).
+
 ## Resilience and operating models
 
 ### PACE

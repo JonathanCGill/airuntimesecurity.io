@@ -59,6 +59,14 @@ Eleven domains cover what agents do to data, to tools, to each other, and to the
 
     [:octicons-arrow-right-24: Open](observability.md)
 
+-   **Expected vs Real Monitoring (Comoverlay)**
+
+    ---
+
+    Comparing what agents should be doing with what they are doing, reporting what the monitor cannot see, and keeping responses that can cause loss with people. Spans Observability and Execution Control.
+
+    [:octicons-arrow-right-24: Open](comoverlay.md)
+
 -   **Supply Chain**
 
     ---
