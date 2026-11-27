@@ -5,11 +5,33 @@ description: Agentic AI incidents and research, each with a verdict on whether M
 
 # AI Runtime Security News
 
-*Every fortnight, the field runs a live experiment against the framework. This page records the result, including the times MASO would not have stopped it.*
+*Every fortnight, the field runs a live experiment against AI agents in production. This page records each result and asks the same question every time: would MASO have stopped it?*
 
-Incidents, research, and developments in AI runtime security, weighted toward agentic and multi-agent systems. Every item answers one question first: **would [MASO (Multi-Agent Security Operations)](maso/README.md) have stopped this, and with which control?** Newest items first. You can follow the page through its [Atom feed](https://airuntimesecurity.io/feed.xml).
+<!-- NEWS_SCORELINE -->
 
-*Items older than three months move to the [News Archive](https://github.com/JonathanCGill/airuntimesecurity.io/blob/main/archive/2026-03-31/news-archive.md).*
+## Why MASO helps
+
+Where MASO would have prevented or contained an incident on this page, it is almost never because of a better prompt or a smarter filter. It is because of controls that sit outside the model: limits on what an agent's identity can reach, which network paths it can use, which actions need a person, and how fast its credentials die. Those controls hold even when the model is fooled, because they never asked the model's permission. That is the design premise of [MASO (Multi-Agent Security Operations)](maso/README.md), and the incidents keep bearing it out.
+
+The controls doing the most work across the incidents on this page:
+
+<!-- NEWS_TOP_CONTROLS -->
+
+## Where MASO stops
+
+MASO governs the agents you run. It does not patch a zero-day, stop an attacker's own agents, fix a vendor's code, or make a model trustworthy. When an incident lands in one of those places, the verdict says **Not prevented** and the entry names who owns the problem instead, using the boundaries in [Scope and Responsibilities](core/scope-and-responsibilities.md). Where a gap belongs to nobody, the entry says that too.
+
+<!-- NEWS_LIMITS -->
+
+## Why the framework may help you
+
+The verdicts above assume the named controls are in place as specified. That is the condition, and it is why the honest word is *may*. What the framework gives you, if you adopt it, is three things you can check against this page:
+
+- **A way to read each incident as your own.** For any entry, you can ask whether the controls that would have stopped it exist in your estate today. Each control page lists the incidents that cite it, so the question runs both ways.
+- **An owner for every gap.** Where MASO would not have helped, the entry names the function that should have. The [RACI](core/scope-and-responsibilities.md#raci-for-runtime-activities) turns that into named roles for your own agents.
+- **A place to start.** Most prevented and contained incidents trace back to a small set of identity, egress, and action controls. Scoped permissions arrive at [Tier 1](maso/implementation/tier-1-supervised.md). Egress validation, credential brokering, and short-lived credentials arrive at [Tier 2](maso/implementation/tier-2-managed.md), which is the tier these incidents argue for once agents act with real authority.
+
+You can follow the page through its [Atom feed](https://airuntimesecurity.io/feed.xml). *Items older than three months move to the [News Archive](https://github.com/JonathanCGill/airuntimesecurity.io/blob/main/archive/2026-03-31/news-archive.md).*
 
 ## The scorecard
 
