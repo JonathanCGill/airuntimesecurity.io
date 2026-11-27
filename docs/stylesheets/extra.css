@@ -327,28 +327,17 @@ img[src$=".svg"] {
   color: var(--md-default-fg-color);
 }
 
-/* News is the only part of the site that changes every fortnight: give its
-   tab weight, and a red "New" pill while the latest item is recent. */
-.md-header-tabs__link--news {
+/* News is the only part of the site that changes every fortnight: make its
+   tab stand out in bold red. */
+.md-header-tabs__link--news,
+.md-header-tabs__link--news:hover {
   font-weight: 700;
-  color: var(--md-default-fg-color);
+  color: #b3261e;
 }
-.md-header-tabs__new {
-  display: inline-block;
-  margin-left: 0.35rem;
-  padding: 0.1rem 0.4rem;
-  border-radius: 999px;
-  background: #b3261e;
-  color: #fff;
-  font-family: var(--md-code-font);
-  font-size: 0.55rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  vertical-align: 0.1rem;
+[data-md-color-scheme="slate"] .md-header-tabs__link--news,
+[data-md-color-scheme="slate"] .md-header-tabs__link--news:hover {
+  color: #e5534b;
 }
-.md-header-tabs__new[hidden] { display: none; }
-[data-md-color-scheme="slate"] .md-header-tabs__new { background: #e5534b; }
 
 /* Hide inline tabs on mobile, drawer takes over */
 @media (max-width: 76.25em) {
