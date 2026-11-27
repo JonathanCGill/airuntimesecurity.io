@@ -15,6 +15,7 @@ Cross-jurisdiction standards that apply wherever the framework is deployed.
 | [ISO 42001 Alignment](iso-42001-alignment.md) | ISO 42001 AI management system alignment. |
 | [ISO 42001 Clause Mapping](iso-42001-clause-mapping.md) | Detailed clause-by-clause mapping against the framework. |
 | [ISO 27001 Alignment](iso-27001-alignment.md) | ISO 27001 information security alignment. |
+| [ISO/IEC 27090 Alignment](iso-27090-alignment.md) | AI security threats and compromises guidance, mapped to runtime controls with gap analysis. |
 | [NIST IR 8596 Alignment](nist-ir-8596-alignment.md) | Cyber AI Profile alignment review and gap analysis. |
 | [ETSI SAI Alignment](etsi-sai-alignment.md) | ETSI Securing AI standards alignment. |
 | [CSA AICM Alignment](csa-aicm-alignment.md) | AI Controls Matrix domain crosswalk, shared responsibility model, and CBRA. |

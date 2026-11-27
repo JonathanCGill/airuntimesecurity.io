@@ -17,8 +17,9 @@ Real-time controls that block known-bad inputs and outputs.
 | **Encoding detection** | Obfuscated attacks (Base64, hex, Unicode) |
 | **PII detection** | Personal data in prompts |
 | **Content policy** | Prohibited request types |
-| **Rate limiting** | Abuse, enumeration |
+| **Rate limiting** | Abuse, enumeration, and query-series probing for model extraction, model inversion or membership inference (throttle per identity to hinder experimentation, not just to protect capacity) |
 | **Length limits** | Context stuffing |
+| **Per-request compute budget** | Inputs crafted to make one request far more expensive than normal: runaway reasoning, recursive tool loops, oversized generations. Abort when the time, token or cost budget is exceeded |
 
 **Processing flow:**
 
@@ -164,6 +165,63 @@ Humans review findings, make decisions, remain accountable.
 | Volume limits | Prevent fatigue |
 | Inter-rater checks | Measure consistency |
 
+## Operating the Layers Together
+
+The three layers are not independent. They share inputs, they feed each other, and they all wear out. Four practices keep them working as a system.
+
+### Detect Probing, Not Just Volume
+
+Some attacks look like ordinary use, one query at a time. **Model extraction** rebuilds a copy of your model from its answers. **Model inversion** reconstructs training data from outputs. **Membership inference** works out whether a specific record was in the training set. None of these needs a malicious-looking prompt, so input guardrails will not see them. They show up only in the *series* of queries from one identity.
+
+| Signal (per identity, over time) | Possible attack |
+|----------------------------------|-----------------|
+| Queries spread systematically across the input space, too uniform or too random for real use | Model extraction |
+| Long runs of near-identical inputs with small, steady changes | Model inversion, evasion search |
+| Repeated queries about specific records or individuals, with attention to confidence or exact wording | Membership inference, training data extraction |
+| Sustained volume just under the rate limit | Any of the above, deliberately paced |
+
+Two consequences for control design:
+
+- **Throttle to hinder experimentation, not just to protect capacity.** A rate limit sized for load will be far too generous to stop someone running thousands of probes over a week. Set per-identity limits on experimentation separately from capacity limits, and look at windows of days as well as minutes.
+- **Give away less.** Withholding confidence scores, probabilities and other detail the user does not need makes all three attacks slower and less accurate.
+
+This matters most when the model is proprietary or fine-tuned, or when its training or fine-tuning data includes personal or confidential records. For a general-purpose hosted model with no custom training, the provider carries most of this risk.
+
+### Test the Stack as a Set
+
+Changing one layer changes what the others see. A stricter input guardrail alters the traffic the Judge is calibrated on. A new output filter can remove the signal anomaly detection relies on. A tighter rate limit pushes attackers into slower probing that a short detection window misses. Retraining a model to resist one attack can make it weaker against another.
+
+When any layer changes, re-run the full regression set (known-bad cases, legitimate traffic, Judge agreement checks) against the whole stack, not just the layer that changed. Treat guardrail rules, firewall taxonomies, Judge prompts and thresholds as versioned configuration, so you can tell which change caused a shift.
+
+### Every Control Decays
+
+Models drift, and so do the controls around them. Guardrail classifiers, semantic firewall intent models and Judges are all models or rule sets tuned to a moment in time. Attackers adapt to them, traffic shifts, and vendors update the models underneath. A control that blocked 95% of a known attack at launch may block much less a year later with nothing in your logs to show it.
+
+Track the effectiveness of each layer, not just its activity:
+
+| Layer | Effectiveness measure | Method |
+|-------|----------------------|--------|
+| Guardrails | Detection rate on a held-back known-bad set; false positive rate on real traffic | Replay the labelled set on a schedule and after every rule or model change |
+| Semantic firewall | Intent classification accuracy | Same, with paraphrased and translated variants |
+| Judge | Agreement with human labels | See [Judge Assurance](judge-assurance.md) |
+| Human oversight | Canary catch rate, review time | See *Prevent Rubber-Stamping* above |
+
+A fall in block rate is ambiguous: it can mean fewer attacks or a weaker control. Only replaying a fixed labelled set tells you which. Revalidate before putting any retuned or replaced control back into service. See [Temporal Decay](../insights/temporal-decay.md) and [Safety Cases and Oversight Durability](controls/safety-cases-and-oversight-durability.md).
+
+### Attack or Failure?
+
+The controls respond to behaviour, whatever caused it. That is the right default: a harmful output is blocked whether an attacker caused it or not. But once an incident is contained, the cause decides the fix, so incident handling needs an explicit triage step.
+
+| Likely cause | Typical evidence | Response |
+|--------------|-----------------|----------|
+| **Attack** (injection, poisoning, probing) | Crafted inputs, unusual sources, concentrated on certain identities or content, correlated with other security events | Contain, preserve evidence, hunt for related activity, treat through security incident process |
+| **Drift or staleness** | Gradual change across all users, correlates with time or a model or data update | Revalidate, retune or roll back |
+| **Data or engineering defect** | Starts at a deployment or pipeline change, reproducible | Fix and redeploy through change control |
+| **Excessive agency** | Agent acted within its permissions but outside intent | Reduce scope and permissions; redesign the task |
+| **Overreliance** | Output was flagged or uncertain but acted on by users | Change the interface, training or approval design |
+
+Poisoning in particular can look like drift for a long time. If a shift cannot be explained by a known change, investigate it as a possible attack before writing it off as drift.
+
 ## Going Deeper
 
 | Topic | Document |
@@ -187,9 +245,13 @@ Humans review findings, make decisions, remain accountable.
 6. **Enhanced guardrails** - Add ML detection
 7. **Judge operational** - Drive workflows
 8. **Continuous tuning** - Improve from findings
+9. **Stack regression testing** - Replay labelled sets against all layers on a schedule and after any change
 
 
 
 ---
 
 *At fleet scale:* these three layers extend into the space between agents. See [MASO](../maso/README.md) for the multi-agent version.
+
+!!! info "References"
+    - [ISO/IEC 27090:2026, Addressing security threats and compromises to AI systems](https://www.iso.org/standard/27090) (see [ISO/IEC 27090 Alignment](../extensions/regulatory/iso-27090-alignment.md))

@@ -90,7 +90,7 @@ Limit what the agent can access and do - technically, not via prompts.
 | **Network allowlist** | Agent can only reach approved endpoints |
 | **Data views** | Agent sees only authorised data subset |
 | **Action allowlist** | Only permitted actions can execute |
-| **Resource caps** | Hard limits on compute, API calls, cost |
+| **Resource caps** | Hard limits on compute, API calls, cost, per request and per session. These are a security control as well as a cost control: inputs can be crafted to make an agent loop or reason far beyond normal |
 | **Time limits** | Maximum execution duration |
 
 ### 2. Action Validation

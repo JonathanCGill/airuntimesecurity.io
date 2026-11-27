@@ -90,6 +90,12 @@ This framework's governance layer is designed to be compatible with ISO/IEC 4200
 
 - [ISO/IEC 42001](https://www.iso.org/standard/81230.html)
 
+### ISO/IEC 27090:2026 - Addressing Security Threats and Compromises to AI Systems
+
+Guidance from ISO/IEC JTC 1/SC 27, published October 2026. Catalogues AI-specific compromise types (data poisoning, evasion, membership inference, model exfiltration, model inversion, direct model poisoning, sensitive output, prompt injection, and injection in output) with detection and mitigation for each, plus guidance on how mitigations interact and decay over time. Not certifiable; designed to extend an ISO/IEC 27001 ISMS. See [ISO/IEC 27090 Alignment](extensions/regulatory/iso-27090-alignment.md).
+
+- [ISO/IEC 27090](https://www.iso.org/standard/27090)
+
 ### Google Secure AI Framework (SAIF)
 
 Launched June 2023. Built around four pillars: Secure Development, Secure Deployment, Secure Execution, and Secure Monitoring. Includes a free SAIF Risk Assessment questionnaire. Google used SAIF principles to help form the Coalition for Secure AI (CoSAI).
