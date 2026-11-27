@@ -43,13 +43,6 @@ Worked examples, 100-agent and 10k e-commerce stress tests, OWASP mappings, and 
 
     [:octicons-arrow-right-24: Read the review](../reviews/stakeholder-review-judge-proliferation.md)
 
--   :material-map-marker-path:{ .lg .middle } **MASO 2.0 Roadmap**
-
-    ---
-
-    Where the framework is going next, and the anticipated changes as multi-agent systems mature.
-
-    [:octicons-arrow-right-24: See the roadmap](../maso-2.0-anticipated-changes.md)
 
 </div>
 
