@@ -117,6 +117,19 @@ This is correct - security requirements shouldn't be weakened by competitive pre
 - Parallelise control implementation with system development (don't build sequentially)
 - Accept that some competitive speed comes from accepting lower tiers - which means less capability, not less security
 
+### 5. Transparency Versus Reconnaissance
+
+Regulation, customers and good practice push towards openness about how AI systems work: model cards, system descriptions, published control designs. Every detail published also helps an attacker. Knowing which model sits underneath, what the guardrails look for, or which features drive a decision makes attacks cheaper to design and test. ISO/IEC 27090 makes the same point and asks organisations to minimise technical detail that helps attackers while still meeting transparency obligations.
+
+The framework says what controls to run. It does not say how much to tell people about them.
+
+**What to do:**
+
+- Describe *what* the system does, its limits and how decisions can be challenged. Keep *how* the controls detect attacks (rules, thresholds, taxonomies, Judge prompts) internal.
+- Classify technical documentation about AI systems as an information asset, with the same handling rules as other security-sensitive material.
+- Keep error messages and refusals generic, so the system does not tell a prober which control fired.
+- Review what is published, including conference talks and engineering blog posts, against what it would teach an attacker.
+
 ## Where the Framework Constrains Strategy
 
 These are genuine tensions - places where the framework's requirements conflict with what strategy would prefer.

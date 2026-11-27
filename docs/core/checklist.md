@@ -43,6 +43,8 @@ description: "Phase-by-phase implementation checklist for AI security controls c
 - [ ] Content policy applied
 - [ ] Rate limiting set
 - [ ] Input length limits set
+- [ ] Per-request time, token and cost budget enforced
+- [ ] Per-identity probing detection and experimentation limits set (if model or training data is sensitive)
 
 ### Output Guardrails
 - [ ] Content filtering enabled
@@ -123,11 +125,14 @@ description: "Phase-by-phase implementation checklist for AI security controls c
 - [ ] Judge prompt refinement
 - [ ] Threshold adjustment based on data
 - [ ] New attack pattern incorporation
+- [ ] Guardrail, firewall and Judge effectiveness replayed against labelled sets on a schedule
+- [ ] Full stack regression-tested after any layer change
 
 ### Review
 - [ ] Quarterly control effectiveness review
 - [ ] Annual risk tier re-assessment
 - [ ] Incident lessons incorporated
+- [ ] Incident triage separates attack from drift, defect, excessive agency and overreliance
 - [ ] Regulatory changes assessed
 
 ## Agent-Specific (if applicable)

@@ -91,35 +91,35 @@ Clause 5.5 and Annex B.3 and B.4 cover poisoned pre-trained models, trojaned mod
 
 ## Gaps the standard exposes in AIRS
 
-These are areas where 27090 makes a point the framework does not yet make clearly enough.
+These are areas where 27090 made a point the framework did not make clearly enough. Each is now addressed in the core controls, as noted below.
 
 ### 1. Query-pattern abuse detection
 
 Model exfiltration (6.5), model inversion (6.6) and membership inference (6.4) all work through legitimate-looking queries. The standard's detection advice for all three is per-caller analysis of query series: frequency, ordering, diversity, coverage of the input space, and sequences of small perturbations with rising confidence (6.4.3, 6.5.3, 6.6.3, 7.7.2). Clause 7.8 makes a distinction worth adopting: **throttling to hinder experimentation** is a security control, separate from rate limiting to prevent overload, and should be tuned per user.
 
-AIRS lists rate limiting as an input control for "abuse, enumeration" but does not treat probing for the model, its training data or its weaknesses as a distinct pattern. The fix is to add per-identity query-series analytics to [Behavioural Anomaly Detection](../technical/behavioral-anomaly-detection.md) and to set experimentation thresholds separately from capacity limits, at least for systems that serve proprietary or fine-tuned models or were trained on personal data.
+**Now addressed in:** [Detect Probing, Not Just Volume](../../core/controls.md#detect-probing-not-just-volume), the probing detection row in the [risk tier control matrix](../../core/risk-tiers.md#input-guardrails), and the [checklist](../../core/checklist.md). Implementation detail for per-identity analytics belongs in [Behavioural Anomaly Detection](../technical/behavioral-anomaly-detection.md).
 
 ### 2. Mitigations interfere with each other
 
 Clause 7.2 points out that adding a mitigation can weaken another or degrade performance, and recommends re-verifying the whole set of mitigations each time one is added. Clause 7.3 adds that related mitigations at different life cycle stages have to be consistent with each other, for example training data checks and inference-time filtering.
 
-The standard is thinking of mitigations that involve retraining. The same applies to runtime layers. A stricter input guardrail changes what the Judge sees, a new output filter can mask the signal anomaly detection relies on, and a tighter rate limit can push attackers into slower probing that escapes per-window detection. AIRS should state that the control stack is tested as a set, not one layer at a time, when any layer changes.
+The standard is thinking of mitigations that involve retraining. The same applies to runtime layers. A stricter input guardrail changes what the Judge sees, a new output filter can mask the signal anomaly detection relies on, and a tighter rate limit can push attackers into slower probing that escapes per-window detection. **Now addressed in:** [Test the Stack as a Set](../../core/controls.md#test-the-stack-as-a-set), and step 9 of the controls implementation order.
 
 ### 3. Controls decay
 
-Clause 7.4 says mitigation effectiveness deteriorates over time just as model performance does, and calls for operational monitoring of mitigation effectiveness and revalidation before redeployment. This supports [Temporal Decay](../../insights/temporal-decay.md) and the treatment of oversight as a depreciating asset in [Safety Cases and Oversight Durability](../../core/controls/safety-cases-and-oversight-durability.md). It is worth making explicit that guardrail classifiers and Judge models are mitigations in exactly this sense and need the same effectiveness monitoring as the primary model.
+Clause 7.4 says mitigation effectiveness deteriorates over time just as model performance does, and calls for operational monitoring of mitigation effectiveness and revalidation before redeployment. This supports [Temporal Decay](../../insights/temporal-decay.md) and the treatment of oversight as a depreciating asset in [Safety Cases and Oversight Durability](../../core/controls/safety-cases-and-oversight-durability.md). Guardrail classifiers and Judge models are mitigations in exactly this sense and need the same effectiveness monitoring as the primary model. **Now addressed in:** [Every Control Decays](../../core/controls.md#every-control-decays).
 
 ### 4. Resource-exhaustion inputs
 
-Annex B.2 describes inputs crafted to make each query far more expensive in time or energy than normal, which generic denial-of-service detection will not catch. The standard recommends per-query time or energy monitoring, aborting queries that exceed a budget, and sizing for worst-case rather than average cost. It notes this has to be designed in, not bolted on. [Economic Governance](../technical/economic-governance.md) and [Token Economics](../technical/token-economics.md) cover cost control, but per-request compute budgets should be listed as a security control too, especially for reasoning models and agent loops.
+Annex B.2 describes inputs crafted to make each query far more expensive in time or energy than normal, which generic denial-of-service detection will not catch. The standard recommends per-query time or energy monitoring, aborting queries that exceed a budget, and sizing for worst-case rather than average cost. It notes this has to be designed in, not bolted on. [Economic Governance](../technical/economic-governance.md) and [Token Economics](../technical/token-economics.md) cover cost control, but per-request compute budgets should be treated as a security control too, especially for reasoning models and agent loops. **Now addressed in:** the per-request compute budget input guardrail in [Controls](../../core/controls.md#input-guardrails), the [risk tier control matrix](../../core/risk-tiers.md#input-guardrails), and resource caps in [Agentic controls](../../core/agentic.md).
 
 ### 5. Attack or failure?
 
-Clause 6.11.3.1 recommends deciding whether unwanted behaviour has a security cause before choosing a response, and lists the common non-attack causes: poor training data, model drift, engineering mistakes, overreliance and excessive agency. AIRS controls respond to behaviour regardless of cause, which is the right default at runtime. The incident process should still include an explicit triage step, because the remediation is different: an attack calls for containment and threat hunting, while drift or excessive agency calls for redesign.
+Clause 6.11.3.1 recommends deciding whether unwanted behaviour has a security cause before choosing a response, and lists the common non-attack causes: poor training data, model drift, engineering mistakes, overreliance and excessive agency. AIRS controls respond to behaviour regardless of cause, which is the right default at runtime. The incident process should still include an explicit triage step, because the remediation is different: an attack calls for containment and threat hunting, while drift or excessive agency calls for redesign. **Now addressed in:** [Attack or Failure?](../../core/controls.md#attack-or-failure)
 
 ### 6. Transparency versus attacker reconnaissance
 
-Clauses 6.3.4 and 6.11.2.5 caution that publishing technical detail about an AI system helps attackers tailor their attacks, and that this has to be balanced against transparency obligations. This is a real tension for organisations that publish system cards or detailed control descriptions, and it belongs in [Framework Tensions](../../strategy/framework-tensions.md).
+Clauses 6.3.4 and 6.11.2.5 caution that publishing technical detail about an AI system helps attackers tailor their attacks, and that this has to be balanced against transparency obligations. This is a real tension for organisations that publish system cards or detailed control descriptions. **Now addressed in:** [Framework Tensions: Transparency Versus Reconnaissance](../../strategy/framework-tensions.md#5-transparency-versus-reconnaissance).
 
 ## Threat coverage summary
 

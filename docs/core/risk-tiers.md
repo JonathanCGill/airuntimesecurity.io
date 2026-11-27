@@ -63,6 +63,10 @@ Minimal impact, non-sensitive context.
 | PII detection | - | Warn | Block | Block + alert |
 | Content policy | Basic | Standard | Strict | Maximum |
 | Rate limiting | Standard | Standard | Strict | Strict + anomaly |
+| Per-request compute budget | Standard | Standard | Enforced + alert | Enforced + alert |
+| Probing detection (per-identity query series) | - | Conditional | Conditional | Required |
+
+**Probing detection** is conditional below CRITICAL: required when the model is proprietary or fine-tuned, or when its training data includes personal or confidential records. See [Detect Probing, Not Just Volume](controls.md#detect-probing-not-just-volume).
 
 ### Output Guardrails
 
