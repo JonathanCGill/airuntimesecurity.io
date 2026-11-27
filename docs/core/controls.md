@@ -17,7 +17,7 @@ Real-time controls that block known-bad inputs and outputs.
 | **Encoding detection** | Obfuscated attacks (Base64, hex, Unicode) |
 | **PII detection** | Personal data in prompts |
 | **Content policy** | Prohibited request types |
-| **Rate limiting** | Abuse, enumeration |
+| **Rate limiting** | Abuse, enumeration, and query-series probing for model extraction, model inversion or membership inference (throttle per identity to hinder experimentation, not just to protect capacity) |
 | **Length limits** | Context stuffing |
 
 **Processing flow:**
