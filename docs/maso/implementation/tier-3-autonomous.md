@@ -257,7 +257,7 @@ All Tier 1 and Tier 2 tests remain valid and should be re-executed. Additional T
 
 5. **Kill switch under load:** Activate the kill switch while the system is operating at peak load. Measure time to full termination (SLA: under 30 seconds).
 6. **Kill switch with compromised control plane:** Simulate a compromised agent control plane (e.g., the orchestrator is unresponsive). Confirm the physically isolated kill switch still works.
-7. **Observability-triggered Emergency:** Simulate conditions where the independent observability agent should trigger Emergency (e.g., detected rogue behavior + no human response within 5 minutes). Confirm the observability agent activates the kill switch.
+7. **Unanswered escalation:** Simulate detected rogue behaviour with no human response through the escalation chain. Confirm the enforcement point moves the workflow to its predefined safe state (EC-2.22) within the time to limit, that escalation to people continues, and that the kill switch is not activated without a human. Confirm the independent observability agent has no path to the kill switch.
 
 **Long-window detection tests:**
 
