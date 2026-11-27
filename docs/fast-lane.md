@@ -20,7 +20,7 @@ The Fast Lane is the framework's answer. It defines a set of **qualification cri
 
 All four must be true. If any one fails, the deployment takes the standard path through [Risk Tiers](core/risk-tiers.md).
 
-![Fast Lane Qualification Gate](images/fast-lane-qualification.svg)
+![Fast Lane Qualification Gate](images/fast-lane-qualification.svg){ .arch-diagram }
 
 | # | Criterion | What It Means | Why It Matters |
 |---|---|---|---|
@@ -143,7 +143,7 @@ Fast Lane deployments should be reviewed annually to confirm they still meet all
 
 The Fast Lane sits below Tier 1. It's not a separate classification - it's a **pre-qualification** that exempts a deployment from the full Tier 1 assessment process.
 
-![Fast Lane to Tier 3 Progression](images/fast-lane-tier-progression.svg)
+![Fast Lane to Tier 3 Progression](images/fast-lane-tier-progression.svg){ .arch-diagram }
 
 If a Fast Lane deployment is re-assessed and found to need Tier 1 controls, the gap is small: add a Judge (even sampling at 10-20%), define a proper PACE plan with transition triggers, and schedule quarterly testing. The usage logs from the Fast Lane period provide the baseline data to calibrate the Judge.
 

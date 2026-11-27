@@ -24,7 +24,7 @@ You've secured applications, networks, identities, and data for years. AI breaks
 
 Three layers, applied proportionately by risk:
 
-![Three-Layer Control Stack](../images/three-layer-stack.svg)
+![Three-Layer Control Stack](../images/three-layer-stack.svg){ .arch-diagram }
 
 This isn't a product recommendation. It's a **pattern** your teams implement with whatever tooling fits your environment. The framework describes *what needs to be true* at each layer and *how to verify it*.
 

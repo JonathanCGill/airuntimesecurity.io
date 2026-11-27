@@ -158,7 +158,7 @@ What has been missing: clear guidance on *why* this pattern is necessary and *ho
 
 ### Architecture Overview
 
-![Architecture Overview](../images/architecture-overview.svg)
+![Architecture Overview](../images/architecture-overview.svg){ .arch-diagram }
 
 ## Extensions
 

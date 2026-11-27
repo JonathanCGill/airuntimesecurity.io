@@ -24,7 +24,7 @@ The framework's entire control model flows from the use case. The [risk tier](..
 
 A workable use case definition answers ten questions. Each directly determines a control requirement.
 
-![Use Case Definition Model](../images/strategy-use-case-model.svg)
+![Use Case Definition Model](../images/strategy-use-case-model.svg){ .arch-diagram }
 
 | # | Question | What It Determines | Framework Connection |
 |---|----------|-------------------|---------------------|

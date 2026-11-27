@@ -1,6 +1,6 @@
 ---
 title: Glossary and Unified Taxonomy
-description: "The single canonical definition source for terms shared across airuntimesecurity.io and aisecuredbydesign.io: PACE, MASO, ASO, risk tiers, the control layers, the circuit breaker, and the 80-control ID scheme."
+description: "The single canonical definition source for terms shared across airuntimesecurity.io and aisecuredbydesign.io: PACE, MASO, ASO, risk tiers, the control layers, the circuit breaker, and the 85-control ID scheme."
 ---
 
 # Glossary and Unified Taxonomy
@@ -45,6 +45,16 @@ The intent-level check that sits between Guardrails and Model-as-Judge, catching
 ### Circuit breaker
 
 The containment failsafe behind the three layers. When guardrails, the Judge, and human oversight are all overwhelmed or bypassed, the circuit breaker trips and routes to a non-AI path, freezes actions, or kills the session. It operates at the infrastructure layer, independent of the AI stack, and maps to **PACE Emergency**. It contains rather than evaluates, so it is not itself a behavioural layer.
+
+## Agent design principles
+
+### Lethal trifecta
+
+The combination of **access to private data**, **exposure to untrusted content**, and **a way to communicate externally** in one AI system or session. With all three present, a prompt injection can turn into data exfiltration. Term coined by Simon Willison. Removing any one leg closes the path. Design patterns that do this are on [aisecuredbydesign.io](https://aisecuredbydesign.io/core/injection-resistant-design/).
+
+### Rule of Two
+
+Meta's **Agents Rule of Two**: within one session, an agent should hold no more than two of (A) processing untrusted input, (B) access to sensitive systems or private data, and (C) the ability to change state or communicate externally. A session that needs all three must not run autonomously and requires human approval or equivalent validation. It is a design-time rule, enforced at runtime by the tool gateway, credentials, and network controls. See [Injection-Resistant Design](https://aisecuredbydesign.io/core/injection-resistant-design/#the-agents-rule-of-two).
 
 ## Resilience and operating models
 
@@ -92,9 +102,9 @@ A self-certification path for genuinely low-risk systems (internal, read-only, n
 
 ## Infrastructure controls
 
-### Infrastructure controls (the 80)
+### Infrastructure controls (the 85)
 
-The 80 technical controls that make behavioural security enforceable, across identity, logging, network, data, secrets, supply chain, incident response, and four agentic domains. airuntimesecurity.io is authoritative for their definitions; aisecuredbydesign.io mirrors them into the pre-runtime lifecycle. See the [Infrastructure Controls Reference](infrastructure/reference.md) and the [machine-readable catalog](infrastructure/catalog/README.md).
+The 85 technical controls that make behavioural security enforceable, across identity, logging, network, data, secrets, supply chain, incident response, and four agentic domains. airuntimesecurity.io is authoritative for their definitions; aisecuredbydesign.io mirrors them into the pre-runtime lifecycle. See the [Infrastructure Controls Reference](infrastructure/reference.md) and the [machine-readable catalog](infrastructure/catalog/README.md).
 
 ### Control ID scheme
 

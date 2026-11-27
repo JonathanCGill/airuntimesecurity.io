@@ -20,7 +20,7 @@ Traditional threat modelling (STRIDE, PASTA, etc.) applies, but AI introduces un
 
 ## The AI Data Flow
 
-![AI Data Flow Supply Chain](../../images/ai-data-flow-supply-chain.svg)
+![AI Data Flow Supply Chain](../../images/ai-data-flow-supply-chain.svg){ .arch-diagram }
 
 Every box in this diagram is an attack surface. Every arrow is a data flow that can be manipulated.
 
@@ -296,7 +296,7 @@ Add AI-specific considerations to each category:
 
 Build hierarchical attack paths showing how threats branch into specific techniques, and map controls to each:
 
-![Attack Tree Example](../../images/attack-tree-pii.svg)
+![Attack Tree Example](../../images/attack-tree-pii.svg){ .arch-diagram }
 
 Attack trees help you:
 - Identify all paths to a threat goal

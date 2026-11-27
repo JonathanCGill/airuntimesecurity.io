@@ -6,7 +6,7 @@ description: "You cannot govern AI you cannot see. The scale of shadow AI in ent
 
 > *Sustaining oversight requires knowing what AI solutions are running. Most enterprises don't.*
 
-![Enterprise AI Visibility](../images/insight-visibility-problem.svg)
+![Enterprise AI Visibility](../images/insight-visibility-problem.svg){ .arch-diagram }
 
 The most sophisticated control framework in the world is irrelevant if you don't know what AI systems are running in your organisation. Before guardrails, before judges, before PACE resilience - there's a prerequisite: **visibility**.
 
@@ -67,7 +67,7 @@ But financial loss is only part of the picture. Lack of visibility also means:
 
 ## What Visibility Actually Requires
 
-![AI Visibility Maturity Model](../images/insight-visibility-maturity.svg)
+![AI Visibility Maturity Model](../images/insight-visibility-maturity.svg){ .arch-diagram }
 
 Effective AI visibility isn't a single tool or a one-time inventory. It's a sustained capability that operates across four levels of maturity:
 
@@ -129,7 +129,7 @@ At this level, you have:
 
 > Governance without measurement is aspiration. Governance with measurement is management.
 
-![AI Governance KPI Dashboard](../images/insight-visibility-kpis.svg)
+![AI Governance KPI Dashboard](../images/insight-visibility-kpis.svg){ .arch-diagram }
 
 Only **30% of companies using AI track governance performance through formal indicators** (World Economic Forum, 2023). Only **15% of boards receive AI-related metrics** (McKinsey, 2025). This means most organisations are governing AI by opinion, not evidence.
 

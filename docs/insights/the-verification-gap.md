@@ -46,7 +46,7 @@ A confident hallucination passes every check:
 
 Not all verification is equal. Approaches vary in their independence from the LLM being verified:
 
-![Verification Spectrum](../images/verification-gap.svg)
+![Verification Spectrum](../images/verification-gap.svg){ .arch-diagram }
 
 ### Fully Dependent (No Independent Verification)
 - **Self-assessment**: Model evaluates its own output

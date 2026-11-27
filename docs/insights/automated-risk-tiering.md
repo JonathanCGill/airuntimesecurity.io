@@ -28,7 +28,7 @@ The [Fast Lane](../fast-lane.md) was designed to solve this for low-risk deploym
 
 ## The Automated Path
 
-![Automated Risk Tiering Flow](../images/automated-risk-tiering.svg)
+![Automated Risk Tiering Flow](../images/automated-risk-tiering.svg){ .arch-diagram }
 
 The flow has three phases. Each one removes a manual step that currently exists in most organisations' implementation of risk frameworks.
 

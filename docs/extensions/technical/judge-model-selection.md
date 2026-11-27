@@ -8,7 +8,7 @@ Principles for choosing the right model to evaluate your AI system. These princi
 
 ## The Core Principles
 
-![Model-as-Judge Selection](../../images/judge-model-selection.svg)
+![Model-as-Judge Selection](../../images/judge-model-selection.svg){ .arch-diagram }
 
 Four principles, in order of priority:
 
@@ -216,7 +216,7 @@ For high-stakes evaluations, we use an ensemble approach called "LLM-as-a-Jury".
 
 ### Implementation
 
-![Judge Ensemble Flow](../../images/judge-ensemble-flow.svg)
+![Judge Ensemble Flow](../../images/judge-ensemble-flow.svg){ .arch-diagram }
 
 **Aggregation rules:**
 - Unanimous PASS → PASS

@@ -8,7 +8,7 @@ This guide points you to resources for implementing AI security controls. We don
 
 ## The Pattern
 
-![AI Security Control Pattern](images/control-pattern.svg)
+![AI Security Control Pattern](images/control-pattern.svg){ .arch-diagram }
 
 | Component | Purpose |
 |-----------|---------|

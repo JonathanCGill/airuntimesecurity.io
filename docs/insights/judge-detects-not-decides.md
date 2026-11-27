@@ -65,7 +65,7 @@ This isn't a technicality. It's the difference between defensible governance and
 
 The Judge operates **after the fact**, reviewing what has already happened:
 
-![Judge Async Flow](../images/judge-async-flow.svg)
+![Judge Async Flow](../images/judge-async-flow.svg){ .arch-diagram }
 
 The transaction completes before the Judge evaluates. The Judge informs future action; it doesn't gate current action.
 

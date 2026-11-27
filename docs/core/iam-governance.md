@@ -121,7 +121,7 @@ The critical distinction is between *application services* (deterministic, predi
 
 Every agent identity passes through six governed phases. No exceptions.
 
-![Agent Identity Lifecycle](../images/iam-identity-lifecycle.svg)
+![Agent Identity Lifecycle](../images/iam-identity-lifecycle.svg){ .arch-diagram }
 
 ### Phase 1: Provisioning
 
@@ -239,7 +239,7 @@ All credentials revoked, all active sessions terminated, all downstream system a
 
 In multi-agent systems, the delegation chain determines who is accountable for every action.
 
-![Delegation Chain](../images/iam-delegation-chain.svg)
+![Delegation Chain](../images/iam-delegation-chain.svg){ .arch-diagram }
 
 ### The Delegation Rules
 
@@ -271,7 +271,7 @@ Without this, every AI system is a privilege escalation vector. Context-aware ac
 
 AI agents face identity-based threats that traditional IAM was not designed to counter.
 
-![IAM Threat Landscape](../images/iam-threat-landscape.svg)
+![IAM Threat Landscape](../images/iam-threat-landscape.svg){ .arch-diagram }
 
 ### Current Threats
 

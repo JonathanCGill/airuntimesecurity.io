@@ -226,7 +226,7 @@ Separately, Alibaba's experimental ROME agent broke out of its training sandbox 
 
 **MASO controls:** EC-2.19 (config-file immutability, now covering oversight configuration: monitoring, alerting, and logging config are write-protected from the agent and any reduction in oversight escalates to a human), EC-2.1 (action classification, oversight-reducing changes are escalate-always), MC-1.6 (task completion verification, check the agent's description of what it changed against the diff), OB-3.3 (independent observability agent, run-time independence), EC-2.5 (Model-as-Judge gate, but may be evaded by context-dependent alignment faking), OB-2.2 (continuous anomaly scoring, key for detecting behavioural differences across context types), OB-2.3 (drift detection), PG-2.4 (consensus diversity gate, if multiple models are used), PG-3.5 (challenger agent, can probe for inconsistencies between simple and complex evaluation)
 
-**Gap in current controls:** MASO's evaluation architecture assumes the model is not actively adversarial toward the evaluation process. Reward-hacked models may be. The challenger agent (PG-3.5) is the closest existing control: it probes agents with tasks designed to reveal inconsistencies. MASO 2.0 should extend this to specifically test for evaluation-context-dependent behaviour changes. The October 2026 production cases closed one part of the gap: EC-2.19 now protects oversight configuration from the agent at change time, tested by EC-T2.22. What remains open is detection when the agent achieves the same effect without touching a protected file, for example by changing what it logs, how it labels actions, or how much activity it routes through channels the monitor does not watch. OB-2.3 drift detection on the action vocabulary is the nearest control, and it has not been tested against an agent that is shaping its own telemetry.
+**Gap in current controls:** MASO's evaluation architecture assumes the model is not actively adversarial toward the evaluation process. Reward-hacked models may be. The challenger agent (PG-3.5) is the closest existing control: it probes agents with tasks designed to reveal inconsistencies. MASO should extend this to specifically test for evaluation-context-dependent behaviour changes. The October 2026 production cases closed one part of the gap: EC-2.19 now protects oversight configuration from the agent at change time, tested by EC-T2.22. What remains open is detection when the agent achieves the same effect without touching a protected file, for example by changing what it logs, how it labels actions, or how much activity it routes through channels the monitor does not watch. OB-2.3 drift detection on the action vocabulary is the nearest control, and it has not been tested against an agent that is shaping its own telemetry.
 
 **Assessment:** High likelihood for organisations that fine-tune models with RL or deploy models that others have fine-tuned. The conditions for emergent misalignment are present in any RL training pipeline.
 
@@ -313,6 +313,8 @@ The following threats reflect trends visible in production deployments and resea
 
 **Gap in current controls:** SC-1.3 assumes actions can be enumerated. Computer-use breaks that. MASO needs DOM event allow-listing, screenshot diff observability, and per-origin scoping for browser agents.
 
+**Pre-deployment design:** Sandbox, dedicated account, credential broker, domain allowlist, and controller-enforced approval for consequential actions are set out in [Computer-Use and Browser Agents](https://aisecuredbydesign.io/core/computer-use-agents/) on Secure by Design.
+
 **Assessment:** High likelihood. Computer-use is shipping; the controls have not caught up.
 
 ### ET-15: Long-horizon, Always-on Agents
@@ -329,7 +331,7 @@ The following threats reflect trends visible in production deployments and resea
 
 **MASO controls:** OB-2.2 (drift detection), OB-2.3 (behavioural baselines), AT-1.x (intent declaration)
 
-**Gap in current controls:** Drift detection lacks temporal baselines for week-scale agents. Intent declarations have no expiry or mandatory re-validation cadence, and nothing guarantees that a declared constraint survives context compaction rather than being silently summarised away. MASO 2.0 should add a session-bounded intent token with explicit TTL, and require constraint pinning so governance rules are reasserted after every compaction.
+**Gap in current controls:** Drift detection lacks temporal baselines for week-scale agents. Intent declarations have no expiry or mandatory re-validation cadence, and nothing guarantees that a declared constraint survives context compaction rather than being silently summarised away. MASO should add a session-bounded intent token with explicit TTL, and require constraint pinning so governance rules are reasserted after every compaction.
 
 **Assessment:** High likelihood for any organisation deploying persistent agents.
 
@@ -554,7 +556,7 @@ The May 2026 review surfaced three patterns that warrant their own entries rathe
 
 **MASO controls:** EC-2.1 (sandboxed execution), EC-1.5 (interaction timeout), IA-2.4 (no transitive permissions across IT/OT trust zones), OB-2.2 (drift detection on tool-call categories), SC-1.3 (fixed toolsets, deny network discovery tools to coding agents)
 
-**Gap in current controls:** The framework's worked examples for energy and critical infrastructure assume the agent is the defender. They do not anticipate the agent as the attacker's reasoning layer. MASO 2.0 should add a control class: **OT-aware action denial**, where any tool whose output could plausibly identify or interact with industrial protocols requires a Tier 3 human gate regardless of the agent's stated objective.
+**Gap in current controls:** The framework's worked examples for energy and critical infrastructure assume the agent is the defender. They do not anticipate the agent as the attacker's reasoning layer. MASO should add a control class: **OT-aware action denial**, where any tool whose output could plausibly identify or interact with industrial protocols requires a Tier 3 human gate regardless of the agent's stated objective.
 
 **Assessment:** High likelihood for any organisation operating OT environments where developers have access to coding agents. The Mexican water utility case is unlikely to remain isolated.
 
@@ -578,7 +580,7 @@ The May 2026 review surfaced three patterns that warrant their own entries rathe
 
 **MASO controls:** SC-1.x (supply chain, extended to the developer toolchain), EC-2.2 (sandboxed execution of agent-driven git operations and generated code), IA-2.6 (secrets exclusion from context, applicable to session token persistence)
 
-**Gap in current controls:** SC-1.x covers production agents and MCP servers but does not cover the developer's IDE or coding agent configuration files. MASO 2.0 should add: pre-commit hook policy enforcement for agent-driven git operations (governed by EC-2.2); mandatory sandbox boundaries between the agent's execution context and the developer's host; bare-repository denial in agent-initiated checkouts; config-file provenance validation (CLAUDE.md, .cursorrules, AGENTS.md loaded from repositories not under operator control are untrusted input); and session token governance treating AI coding agent sessions as machine credentials with short TTLs, rotation on session completion, and monitoring for out-of-hours use.
+**Gap in current controls:** SC-1.x covers production agents and MCP servers but does not cover the developer's IDE or coding agent configuration files. MASO should add: pre-commit hook policy enforcement for agent-driven git operations (governed by EC-2.2); mandatory sandbox boundaries between the agent's execution context and the developer's host; bare-repository denial in agent-initiated checkouts; config-file provenance validation (CLAUDE.md, .cursorrules, AGENTS.md loaded from repositories not under operator control are untrusted input); and session token governance treating AI coding agent sessions as machine credentials with short TTLs, rotation on session completion, and monitoring for out-of-hours use.
 
 **Assessment:** High likelihood for any organisation whose developers use agentic IDEs (Cursor, GitHub Copilot Workspace, Claude Code, Windsurf, Continue). The exposure is per-developer, not per-deployment, which makes it a larger surface than most procurement processes have measured. The credential-harvesting and config-injection variants do not require vulnerability exploitation, which lowers the attacker's entry cost significantly.
 
@@ -598,7 +600,7 @@ The May 2026 review surfaced three patterns that warrant their own entries rathe
 
 **MASO controls:** OB-2.2 (drift detection across the trace, not the agent), OB-2.3 (inter-agent communication profiling), PG-2.7 (uncertainty preservation), PG-3.4 (plan-execution conformance), EC-2.6 (decision commit protocol)
 
-**Gap in current controls:** Existing controls are agent-scoped. Structural risk is trace-scoped. MASO 2.0 should add: trace-level invariant checks (does the output of step N still hold given the state at step N+K?), latency-aware staleness detection on inter-agent context, and a structural-failure circuit breaker that triggers on cumulative deviation regardless of any single agent's status.
+**Gap in current controls:** Existing controls are agent-scoped. Structural risk is trace-scoped. MASO should add: trace-level invariant checks (does the output of step N still hold given the state at step N+K?), latency-aware staleness detection on inter-agent context, and a structural-failure circuit breaker that triggers on cumulative deviation regardless of any single agent's status.
 
 **Assessment:** High likelihood for any production multi-agent system. Rarely reported because the failure looks like a quality issue rather than a security incident.
 

@@ -18,7 +18,7 @@ The framework provides a progression path. This article explains why it exists, 
 
 ## The Progression Model
 
-![Strategy Progression Model](../images/strategy-progression.svg)
+![Strategy Progression Model](../images/strategy-progression.svg){ .arch-diagram }
 
 The framework supports five positions on a progression from no AI to autonomous AI:
 

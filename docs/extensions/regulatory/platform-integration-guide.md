@@ -10,7 +10,7 @@ This guide explains how to operationalise a centralised AI governance function a
 
 ## Integration Architecture
 
-![Platform Integration](../../images/platform-integration.svg)
+![Platform Integration](../../images/platform-integration.svg){ .arch-diagram }
 
 ## The Challenge
 
@@ -34,7 +34,7 @@ A centralised governance function must:
 
 ### AGO Control Plane
 
-![AGO Control Plane - Multi-Platform Governance](../../images/ago-control-plane-multiplatform.svg)
+![AGO Control Plane - Multi-Platform Governance](../../images/ago-control-plane-multiplatform.svg){ .arch-diagram }
 
 ### Platform Adapters
 
@@ -95,7 +95,7 @@ patterns:
 
 ### Deployment Workflow
 
-![Guardrail Deployment Workflow](../../images/guardrail-deployment-workflow.svg)
+![Guardrail Deployment Workflow](../../images/guardrail-deployment-workflow.svg){ .arch-diagram }
 
 ## Judge Integration
 
@@ -111,7 +111,7 @@ patterns:
 
 For platforms without native Judge capability:
 
-![AGO Judge Service](../../images/ago-judge-service.svg)
+![AGO Judge Service](../../images/ago-judge-service.svg){ .arch-diagram }
 
 ### Platform-Specific Judge Configuration
 
@@ -215,7 +215,7 @@ eval_suite = Evals.create_suite(
 
 ### Unified Queue Architecture
 
-![Unified HITL Architecture](../../images/unified-hitl-architecture.svg)
+![Unified HITL Architecture](../../images/unified-hitl-architecture.svg){ .arch-diagram }
 
 ### Finding Normalisation
 
@@ -269,7 +269,7 @@ Different platforms produce different finding formats. AGO normalises:
 
 ### Centralised Log Architecture
 
-![Centralised Log Aggregation](../../images/centralised-log-aggregation.svg)
+![Centralised Log Aggregation](../../images/centralised-log-aggregation.svg){ .arch-diagram }
 
 ### Log Schema Normalisation
 

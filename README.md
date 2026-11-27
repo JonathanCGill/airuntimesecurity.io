@@ -201,7 +201,7 @@ Three constraints strategies routinely underestimate: **[Data Reality](docs/stra
 │   │   └── examples/                  # Financial services, healthcare, critical infrastructure
 │   ├── stakeholders/                  # Role-based entry points
 │   ├── core/                          # Risk tiers, controls, IAM governance, checklists
-│   ├── infrastructure/                # 80 technical controls, 11 domains
+│   ├── infrastructure/                # 85 technical controls, 11 domains
 │   ├── extensions/                    # Regulatory, templates, worked examples
 │   ├── insights/                      # Analysis articles and emerging challenges
 │   ├── strategy/                      # AI strategy, alignment, data, human factors

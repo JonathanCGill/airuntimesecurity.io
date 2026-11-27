@@ -14,7 +14,7 @@ The strategy section has ten articles. Each one does its job. Business Alignment
 
 But readers tell us the same thing: they can follow each article individually, and still not see how they connect. The stages in [From Idea to Production](idea-to-production.md) define the process. This article tells the story - how decisions made early constrain what happens later, how monitoring findings feed back into strategy, and why the lifecycle is a loop, not a line.
 
-![The Thread](../images/strategy-thread.svg)
+![The Thread](../images/strategy-thread.svg){ .arch-diagram }
 
 ## Phase 1: Strategy - Knowing What Problem You're Solving
 
@@ -225,7 +225,7 @@ Each of these is a scope change. Each one potentially changes the risk tier. Eac
 
 When monitoring surfaces a signal that suggests the system has moved beyond its original parameters:
 
-![Return Loop Process](../images/strategy-return-loop.svg)
+![Return Loop Process](../images/strategy-return-loop.svg){ .arch-diagram }
 
 ### Who Owns the Loop
 

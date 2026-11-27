@@ -24,7 +24,7 @@ The Output Evaluator is a solution architecture that addresses the first two bli
 
 The Output Evaluator operates at three timescales simultaneously:
 
-![Output Evaluator Timescales](../../images/output-evaluator-timescales.svg)
+![Output Evaluator Timescales](../../images/output-evaluator-timescales.svg){ .arch-diagram }
 
 ### Layer 1: Real-Time Pre-Action Evaluation
 

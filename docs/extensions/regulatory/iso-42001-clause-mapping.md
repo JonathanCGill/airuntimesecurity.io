@@ -76,7 +76,7 @@ This document provides detailed mapping of the framework's technical controls an
 
 **Framework Implementation:**
 
-![Operational Risk Assessment](../../images/iso42001-risk-assessment.svg)
+![Operational Risk Assessment](../../images/iso42001-risk-assessment.svg){ .arch-diagram }
 
 **Platform Support:**
 
@@ -239,7 +239,7 @@ This document provides detailed mapping of the framework's technical controls an
 
 **Corrective Action Workflow:**
 
-![Corrective Action Workflow](../../images/iso42001-corrective-action.svg)
+![Corrective Action Workflow](../../images/iso42001-corrective-action.svg){ .arch-diagram }
 
 **Corrective Action by Control:**
 

@@ -20,7 +20,7 @@ Agentic AI systems can't be stopped the way you stop a web server. When you shut
 
 "Turn it off" is not a resilience plan. It's a panic response that creates orphaned transactions, locked resources, and confused downstream systems. The degradation path provides structured alternatives between "fully autonomous" and "completely stopped."
 
-![Agentic AI Graceful Degradation Path](../images/pace-degradation-path.svg)
+![Agentic AI Graceful Degradation Path](../images/pace-degradation-path.svg){ .arch-diagram }
 
 ## The Five Degradation Phases
 

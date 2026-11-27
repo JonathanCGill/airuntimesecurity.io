@@ -6,11 +6,11 @@ description: Infrastructure controls that enforce AI behavioral security across 
 
 # Infrastructure Controls Reference
 
-*The complete 80-control infrastructure reference across identity, logging, network, data, secrets, supply chain, and incident response. New here? Start with the [Infrastructure overview](README.md).*
+*The complete 85-control infrastructure reference across identity, logging, network, data, secrets, supply chain, and incident response. New here? Start with the [Infrastructure overview](README.md).*
 
 **The infrastructure layer that makes behavioral AI security enforceable.**
 
-Companion to [AI Runtime Security](https://github.com/JonathanCGill/airuntimesecurity.io), which defines the three-layer behavioral security pattern (Guardrails, Model-as-Judge, Human Oversight). This section defines 80 technical infrastructure controls that underpin that pattern. Each control specifies which risk tiers it applies to, so you can quickly identify what you need and deselect what you do not.
+Companion to [AI Runtime Security](https://github.com/JonathanCGill/airuntimesecurity.io), which defines the three-layer behavioral security pattern (Guardrails, Model-as-Judge, Human Oversight). This section defines 85 technical infrastructure controls that underpin that pattern. Each control specifies which risk tiers it applies to, so you can quickly identify what you need and deselect what you do not.
 
 ## The Problem
 
@@ -28,19 +28,19 @@ You cannot enforce behavioral security controls on infrastructure you do not con
 
 ### How Technical Controls Enable the Three-Layer Pattern
 
-![Relationship to Parent Framework](diagrams/relationship-to-parent.svg)
+![Relationship to Parent Framework](diagrams/relationship-to-parent.svg){ .arch-diagram }
 
 ### IAM Control Architecture
 
-![IAM Control Layers](diagrams/iam-control-layers.svg)
+![IAM Control Layers](diagrams/iam-control-layers.svg){ .arch-diagram }
 
 ### Logging Pipeline and Detection Architecture
 
-![Logging Architecture](diagrams/logging-architecture.svg)
+![Logging Architecture](diagrams/logging-architecture.svg){ .arch-diagram }
 
 ### Network Zone Architecture
 
-![Network Zones](diagrams/network-zones.svg)
+![Network Zones](diagrams/network-zones.svg){ .arch-diagram }
 
 ## Control Domains
 
@@ -121,7 +121,7 @@ Context window isolation, short-lived tokens, centralised vault, credential scan
 | SEC-07 | Protect model endpoint credentials | All |
 | SEC-08 | Scan code and config for embedded credentials | All |
 
-### [Supply Chain](agentic/supply-chain.md) - 8 controls
+### [Supply Chain](agentic/supply-chain.md) - 10 controls
 
 Model provenance, risk assessment, RAG data integrity, fine-tuning security, tool supply chain, safety model integrity, AI-BOM, and vulnerability monitoring.
 
@@ -135,6 +135,8 @@ Model provenance, risk assessment, RAG data integrity, fine-tuning security, too
 | SUP-06 | Verify guardrail and safety model integrity | All |
 | SUP-07 | Maintain AI component inventory (AI-BOM) | All |
 | SUP-08 | Monitor for model and dependency vulnerabilities | All |
+| SUP-09 | Release prompts and configuration through a versioned evaluation gate | All |
+| SUP-10 | Track model retirement and re-qualify successors before cutover | All |
 
 ### [Incident Response](controls/incident-response.md) - 8 controls
 
@@ -155,7 +157,7 @@ AI-specific incident categories, detection triggers, containment procedures, rol
 
 Additional controls for systems where AI agents invoke tools, generate code, delegate to other agents, or take autonomous actions.
 
-### [Tool Access Controls](agentic/tool-access-controls.md) - 6 controls
+### [Tool Access Controls](agentic/tool-access-controls.md) - 7 controls
 
 | Control | Purpose |
 |---------|---------|
@@ -165,8 +167,9 @@ Additional controls for systems where AI agents invoke tools, generate code, del
 | TOOL-04 | Classify tool actions by reversibility and impact |
 | TOOL-05 | Rate-limit tool invocations per agent and per tool |
 | TOOL-06 | Log every tool invocation with full context |
+| TOOL-07 | Pin tool definitions by hash and reject unapproved changes |
 
-### [Session & Scope](controls/session-and-scope.md) - 5 controls
+### [Session & Scope](controls/session-and-scope.md) - 6 controls
 
 | Control | Purpose |
 |---------|---------|
@@ -175,6 +178,7 @@ Additional controls for systems where AI agents invoke tools, generate code, del
 | SESS-03 | Limit session scope to a declared task |
 | SESS-04 | Implement progressive trust within sessions |
 | SESS-05 | Clean up session state on termination |
+| SESS-06 | Limit each session to two of untrusted input, sensitive access, and outbound action |
 
 ### [Delegation Chains](agentic/delegation-chains.md) - 5 controls
 
@@ -186,7 +190,7 @@ Additional controls for systems where AI agents invoke tools, generate code, del
 | DEL-04 | Require explicit delegation authorisation |
 | DEL-05 | Propagate user identity through chains |
 
-### [Sandbox Patterns](agentic/sandbox-patterns.md) - 6 controls
+### [Sandbox Patterns](agentic/sandbox-patterns.md) - 7 controls
 
 | Control | Purpose |
 |---------|---------|
@@ -196,6 +200,7 @@ Additional controls for systems where AI agents invoke tools, generate code, del
 | SAND-04 | Enforce resource limits on execution |
 | SAND-05 | Prevent persistent state escaping sessions |
 | SAND-06 | Scan generated code before execution |
+| SAND-07 | Isolate coding and computer-use agents from production credentials and open egress |
 
 ## Regulatory & Standards Mappings
 
@@ -203,7 +208,7 @@ Every control maps to the three-layer behavioral model and to established standa
 
 | Mapping | Coverage |
 |---------|----------|
-| [Controls → Three Layers](mappings/controls-to-three-layers.md) | All 80 controls × Guardrails, Judge, and Human Oversight |
+| [Controls → Three Layers](mappings/controls-to-three-layers.md) | All 85 controls × Guardrails, Judge, and Human Oversight |
 | [ISO 42001 Annex A](mappings/iso42001-annex-a.md) | Full Annex A technical infrastructure mapping |
 | [NIST AI RMF](mappings/nist-ai-rmf.md) | 51 subcategories across Govern, Map, Measure, Manage |
 | [NIST SP 800-218A](mappings/nist-sp800-218a.md) | Secure software development practices applied to AI |
@@ -232,7 +237,7 @@ Fourteen SVG diagrams covering IAM architecture, logging pipelines, network zone
 4. **Practitioner-focused.** Written for security architects and engineers, not executive summaries.
 5. **Agentic-aware.** Agent-specific controls are treated as first-class concerns, not afterthoughts.
 6. **Infrastructure beats instructions.** Security controls are enforced via deterministic infrastructure (gateways, network policy, vaults), never via prompt instructions that can be overridden.
-7. **AI controls add to your existing security, they don't replace it.** These 80 controls address AI-specific risks. Your organisation's existing DLP (inbound and outbound), API gateways, database access controls, IAM, SIEM, network segmentation, secure coding practices, and incident response capabilities all still apply - and all still catch failures that AI-specific controls miss. Defence in depth includes everything outside this framework.
+7. **AI controls add to your existing security, they don't replace it.** These 85 controls address AI-specific risks. Your organisation's existing DLP (inbound and outbound), API gateways, database access controls, IAM, SIEM, network segmentation, secure coding practices, and incident response capabilities all still apply - and all still catch failures that AI-specific controls miss. Defence in depth includes everything outside this framework.
 
 ## Repo Structure
 

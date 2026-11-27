@@ -24,6 +24,7 @@ The longer a session runs, the greater the blast radius if compromised. Session 
 | SESS-03 | Limit the scope of each session to a declared task | Tier 2+ (agentic) |
 | SESS-04 | Implement progressive trust within sessions | Tier 3+ (agentic) |
 | SESS-05 | Clean up session state on termination | Tier 2+ (agentic) |
+| SESS-06 | Limit each session to two of untrusted input, sensitive access, and outbound action | All (agentic) |
 
 ## SESS-01: Session Boundaries
 
@@ -109,6 +110,23 @@ When a session terminates (normally or abnormally), all session state must be cl
 
 For abnormal termination (crash, timeout, forced kill), cleanup must still occur - design for crash-safe cleanup.
 
+## SESS-06: Rule of Two per Session
+
+An agent session must not hold all three of the following at once:
+
+- **(A) Untrusted input:** it reads content an attacker can influence, such as web pages, inbound email, uploaded files, retrieved documents, tool output, or messages from other agents.
+- **(B) Sensitive access:** it can reach private data, internal systems, or credentials.
+- **(C) Outbound action:** it can change state or communicate externally, including sending messages, writing records, calling external APIs, or rendering links and images that cause outbound requests.
+
+This is Meta's **Agents Rule of Two**, applied as an infrastructure control. With all three present, an injected instruction has everything it needs to exfiltrate data or cause harm, and no guardrail is reliable enough to be the only barrier.
+
+- **Declared per session type:** Each session type declares which of A, B, and C it holds. The declaration is reviewed at design time and recorded with the tool manifest (TOOL-01).
+- **Enforced in infrastructure:** The tool gateway, credential issuer, and egress proxy enforce the declaration. A session that has read untrusted content loses access to the tools, credentials, or destinations that would complete the third leg. Instructions in the system prompt do not count as enforcement.
+- **All three requires approval:** Where a task genuinely needs all three, each action that completes the set requires human approval (IAM-05) or an isolation pattern that removes a leg, such as dual LLM or plan-then-execute.
+- **Untrusted by default:** Tool output, retrieved documents, memory, and messages from other agents are treated as untrusted input unless their provenance is verified.
+
+The design patterns that satisfy this control are set out in [Injection-Resistant Design](https://aisecuredbydesign.io/core/injection-resistant-design/#the-agents-rule-of-two).
+
 ## Platform-Neutral Implementation Checklist
 
 - [ ] Session boundaries defined (time, token, action, scope, credential expiry)
@@ -117,6 +135,7 @@ For abnormal termination (crash, timeout, forced kill), cleanup must still occur
 - [ ] Session scope declared and enforced via authorization gateway
 - [ ] Progressive trust implemented for Tier 3+ systems
 - [ ] Session cleanup verified for normal and abnormal termination
+- [ ] Each session type declares which Rule of Two properties it holds, enforced by gateway, credentials, and egress
 - [ ] Session metadata logged for forensics and drift detection
 - [ ] Cross-session data correlation attacks considered in threat model
 
@@ -137,7 +156,7 @@ When a customer authenticates to your application and interacts with an AI agent
 
 ### What You Must Design
 
-The framework gives you the agent-side controls (SESS-01 through SESS-05). For customer-facing systems, you must additionally answer:
+The framework gives you the agent-side controls (SESS-01 through SESS-06). For customer-facing systems, you must additionally answer:
 
 | Question | Why It Matters |
 |----------|---------------|

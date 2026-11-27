@@ -43,7 +43,7 @@ AI system components must be deployed into defined network zones with explicit t
 
 ### Zone Definitions
 
-![AI Network Zones](../diagrams/network-zones.svg)
+![AI Network Zones](../diagrams/network-zones.svg){ .arch-diagram }
 
 **Zone 1 - Ingress:** API gateway, load balancers, WAF. This is the only zone exposed to consumers (users, applications). All traffic enters here.
 
@@ -87,7 +87,7 @@ Guardrails are only effective if every request and response passes through them.
 
 ### Architecture Pattern
 
-![Guardrail Bypass Prevention](../diagrams/guardrail-bypass-prevention.svg)
+![Guardrail Bypass Prevention](../diagrams/guardrail-bypass-prevention.svg){ .arch-diagram }
 
 ### Verification
 
@@ -118,7 +118,7 @@ When AI agents invoke tools, they generate outbound network traffic to tool endp
 
 ### Egress Proxy Architecture
 
-![Agent Egress Controls](../diagrams/agent-egress-proxy.svg)
+![Agent Egress Controls](../diagrams/agent-egress-proxy.svg){ .arch-diagram }
 
 All agent-initiated outbound traffic must pass through an egress proxy that enforces:
 

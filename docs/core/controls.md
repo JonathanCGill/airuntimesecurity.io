@@ -22,7 +22,7 @@ Real-time controls that block known-bad inputs and outputs.
 
 **Processing flow:**
 
-![Input Processing Flow](../images/input-processing-flow.svg)
+![Input Processing Flow](../images/input-processing-flow.svg){ .arch-diagram }
 
 ### Output Guardrails
 
@@ -86,7 +86,7 @@ Evaluation of interactions for quality and policy compliance. The Judge can be a
 
 ### Architecture
 
-![Judge Architecture - Simple and Two-Tier](../images/judge-simple-flow.svg)
+![Judge Architecture - Simple and Two-Tier](../images/judge-simple-flow.svg){ .arch-diagram }
 
 ### Evaluation Criteria
 
@@ -124,7 +124,7 @@ The Judge will make mistakes.
 
 Humans review findings, make decisions, remain accountable.
 
-![HITL Architecture](../images/hitl-architecture.svg)
+![HITL Architecture](../images/hitl-architecture.svg){ .arch-diagram }
 
 ### Triggers
 

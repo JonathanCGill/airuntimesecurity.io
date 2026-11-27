@@ -48,7 +48,7 @@ LangGraph's graph-based execution model maps well to MASO's control architecture
 
 **Guardrails (PG-1.1):** Implement as a dedicated node that runs before each agent node. The guardrail node validates input against known-bad patterns and returns sanitised content to the next node. Use conditional edges to route flagged content to a review path.
 
-![LangGraph Guardrail Flow](../../images/langgraph-guardrail-flow.svg)
+![LangGraph Guardrail Flow](../../images/langgraph-guardrail-flow.svg){ .arch-diagram }
 
 **Message source tagging (PG-1.4):** Extend the graph state schema to include a `source_type` field (instruction | data | user | agent). Each node that adds content to the state must tag it. The Judge node validates that data-tagged content is not treated as instruction.
 

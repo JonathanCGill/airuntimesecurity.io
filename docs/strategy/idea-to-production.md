@@ -24,7 +24,7 @@ This article defines the complete process. Every stage has a clear output that f
 
 ## The End-to-End Flow
 
-![Idea to Production Flow](../images/strategy-idea-to-production.svg)
+![Idea to Production Flow](../images/strategy-idea-to-production.svg){ .arch-diagram }
 
 Eight stages. Each produces a defined output. Each has guardrails that prevent mistakes, detect gaps, and absorb failure if stages are rushed or skipped.
 
@@ -117,7 +117,7 @@ This stage explicitly evaluates alternatives. The framework's [first control](..
 
 ### The Tool Selection Decision Tree
 
-![Tool Selection Decision Tree](../images/strategy-tool-selection.svg)
+![Tool Selection Decision Tree](../images/strategy-tool-selection.svg){ .arch-diagram }
 
 | Question | If Yes | If No |
 |----------|--------|-------|
@@ -408,7 +408,7 @@ Systems should be retired when:
 
 ## The Complete Lifecycle - Summary
 
-![Idea to Production Pipeline](../images/idea-to-production-pipeline.svg)
+![Idea to Production Pipeline](../images/idea-to-production-pipeline.svg){ .arch-diagram }
 
 ## How the Framework Maps to This Flow
 

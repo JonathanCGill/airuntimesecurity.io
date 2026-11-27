@@ -66,7 +66,7 @@ What boundaries does the agent operate within? Constraints define the walls of t
 
 ## Phase 2: Constrain
 
-With intent, outcomes, and constraints declared, build the agent to match.
+With intent, outcomes, and constraints declared, build the agent to match. Decide early which sessions read untrusted content and keep them away from sensitive access and outbound channels: the [Rule of Two](glossary.md#rule-of-two) and the isolation patterns in [Injection-Resistant Design](https://aisecuredbydesign.io/core/injection-resistant-design/) cost little at this stage and a rewrite later.
 
 ### Specialise the Agent
 

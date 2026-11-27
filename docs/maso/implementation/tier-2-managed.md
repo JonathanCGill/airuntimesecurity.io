@@ -28,7 +28,7 @@ Most regulated enterprises will operate at Tier 2 for their production multi-age
 
 ## Architecture at Tier 2
 
-![Tier 2 Architecture](../../images/tier-2-architecture.svg)
+![Tier 2 Architecture](../../images/tier-2-architecture.svg){ .arch-diagram }
 
 Key architectural changes from Tier 1:
 
@@ -212,7 +212,7 @@ Requires a formal post-incident review confirming:
 
 Tier 2 provides technical controls for the majority of OWASP risks. The combination of NHI, signed message bus, Model-as-Judge, and continuous monitoring closes most of the gaps left open at Tier 1.
 
-![Tier 2 OWASP Coverage](../../images/tier-2-owasp-coverage.svg)
+![Tier 2 OWASP Coverage](../../images/tier-2-owasp-coverage.svg){ .arch-diagram }
 
 **Remaining gaps at Tier 2:**
 
@@ -236,7 +236,7 @@ Tier 2 shifts the human role from gatekeeper to supervisor, reducing per-action 
 
 Tier 2 costs shift from predominantly labour (Tier 1) to a mix of labour and technical infrastructure.
 
-![Tier 2 Cost Indicators](../../images/tier-2-cost.svg)
+![Tier 2 Cost Indicators](../../images/tier-2-cost.svg){ .arch-diagram }
 
 The cost increase from Tier 1 is substantial but is typically justified by the operational throughput gain - agents can now process work without per-action human gating, which in many use cases represents a 5–20x throughput increase.
 

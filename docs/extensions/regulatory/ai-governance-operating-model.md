@@ -26,7 +26,7 @@ This operating model integrates:
 
 ## Governance Architecture
 
-![Governance Architecture](../../images/governance-architecture.svg)
+![Governance Architecture](../../images/governance-architecture.svg){ .arch-diagram }
 
 ## Three Lines Model for AI
 
@@ -104,7 +104,7 @@ This matters most for:
 
 ### Organisation Structure
 
-![Governance Function Structure](../../images/governance-function-structure.svg)
+![Governance Function Structure](../../images/governance-function-structure.svg){ .arch-diagram }
 
 ### AI Governance Office (AGO) Teams
 
@@ -226,7 +226,7 @@ This matters most for:
 
 **Queue Structure:**
 
-![HITL Queue Structure](../../images/hitl-queue-structure.svg)
+![HITL Queue Structure](../../images/hitl-queue-structure.svg){ .arch-diagram }
 
 ## ISO 42001 Alignment
 
@@ -317,7 +317,7 @@ AGO conducts:
 
 **Risk Assessment Integration:**
 
-![Risk Assessment Flow](../../images/risk-assessment-flow.svg)
+![Risk Assessment Flow](../../images/risk-assessment-flow.svg){ .arch-diagram }
 
 **6.2 AI management system objectives**
 
@@ -490,7 +490,7 @@ When nonconformity identified:
 
 **Improvement Cycle:**
 
-![Continuous Improvement Cycle](../../images/continuous-improvement-cycle.svg)
+![Continuous Improvement Cycle](../../images/continuous-improvement-cycle.svg){ .arch-diagram }
 
 ## Operating Rhythm
 
@@ -542,7 +542,7 @@ When nonconformity identified:
 
 ### Centralised Control Plane
 
-![AGO Centralised Control Plane](../../images/centralised-control-plane.svg)
+![AGO Centralised Control Plane](../../images/centralised-control-plane.svg){ .arch-diagram }
 
 ### Multi-Platform Scenario
 

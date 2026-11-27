@@ -31,6 +31,7 @@ The standard controls (guardrails, tool permissions) are necessary but insuffici
 | SAND-04 | Enforce resource limits on sandbox execution | All (code-gen agents) |
 | SAND-05 | Prevent persistent state from sandbox escaping the session | Tier 2+ (code-gen agents) |
 | SAND-06 | Scan generated code before execution | Tier 2+ (code-gen agents) |
+| SAND-07 | Isolate coding and computer-use agents from production credentials and open egress | All (coding and computer-use agents) |
 
 ## SAND-01: Isolated Execution Environments
 
@@ -160,6 +161,20 @@ Before agent-generated code is executed, scan it for dangerous patterns.
 
 Code scanning catches known dangerous patterns but is inherently incomplete - the sandbox resource limits and isolation are the primary controls. Code scanning is defence in depth, not a replacement for sandboxing.
 
+## SAND-07: Isolate Coding and Computer-Use Agents
+
+Coding agents that run shell commands and computer-use agents that operate a desktop or browser act with whatever access their environment holds, and both read large amounts of untrusted content. They must run in an environment built for that.
+
+| Requirement | Description |
+|-------------|-------------|
+| **Dedicated environment** | The agent runs in an ephemeral container, VM, or cloud sandbox, never directly on a workstation or in a user's everyday browser profile. |
+| **No production credentials** | The environment holds no production secrets, cloud admin roles, or long-lived tokens. Credentials are short-lived, scoped, and where possible injected by a broker so the model never sees them. |
+| **Egress allowlist** | Outbound traffic goes through a proxy with a task-specific allowlist (SAND-03, NET-04). |
+| **No blanket auto-approve** | Modes that skip permission prompts are allowed only in environments that meet the requirements above. |
+| **Action approval** | Consequential actions, including pushing to protected branches, payments, sending messages, and entering credentials, require human approval enforced outside the agent's environment. |
+
+Pre-deployment design guidance is in [AI-Assisted Development](https://aisecuredbydesign.io/building/devops/ai-assisted-development/#coding-agent-permissions) and [Computer-Use and Browser Agents](https://aisecuredbydesign.io/core/computer-use-agents/#reference-architecture).
+
 ## Why Container Isolation Alone Is Not Enough
 
 Research from the University of Oxford and the UK AI Security Institute demonstrates that frontier LLMs can escape standard container sandboxes when common misconfigurations are present. Their **SandboxEscapeBench** benchmark tested 18 escape scenarios across orchestration, runtime, and kernel layers and found that top-tier models (Opus 4.5, GPT-5) solve easy misconfiguration scenarios at near-100% rates and achieve roughly 40% success on harder runtime and kernel exploits.
@@ -180,6 +195,7 @@ For the full analysis, see [The Sandbox Escape Problem](../../insights/the-sandb
 - [ ] Resource limits enforced at OS level (CPU, memory, disk, processes)
 - [ ] Sandbox environments ephemeral - no persistent state across executions
 - [ ] Pre-execution code scanning for dangerous patterns
+- [ ] Coding and computer-use agents run in dedicated environments with no production credentials
 - [ ] Sandbox execution logged with code, output, resource usage, and duration
 - [ ] Sandbox escape attempts detected and classified as security incidents
 

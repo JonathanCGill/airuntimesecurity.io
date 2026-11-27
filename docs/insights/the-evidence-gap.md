@@ -91,7 +91,7 @@ The empirical evidence is stark. Researchers [tested 36 LLM-integrated applicati
 
 This doesn't invalidate layered defence. It contextualises it. The three-layer model is not a solution to prompt injection; it's a strategy for managing a risk that current AI architecture cannot eliminate. Defence-in-depth reduces the probability and blast radius of successful attacks. It doesn't prevent them.
 
-Meta's ["Rule of Two"](https://simonwillison.net/2025/Nov/2/new-prompt-injection-papers/) offers a pragmatic design principle: never allow an LLM that processes untrusted input to also have direct access to sensitive actions. This infrastructure-level separation - which aligns with the framework's "infrastructure beats instructions" principle - is currently the most robust available mitigation.
+Meta's ["Agents Rule of Two"](https://ai.meta.com/blog/practical-ai-agent-security/) offers a pragmatic design principle: within a single session, an agent should hold no more than two of three properties, namely processing untrusted input, access to sensitive systems or data, and the ability to change state or communicate externally. A session that needs all three requires human approval. See the [Rule of Two](../glossary.md#rule-of-two) and the design patterns on [Secure by Design](https://aisecuredbydesign.io/core/injection-resistant-design/). This infrastructure-level separation - which aligns with the framework's "infrastructure beats instructions" principle - is currently the most robust available mitigation.
 
 ## Multi-Agent Systems: Where Theory Outpaces Practice
 

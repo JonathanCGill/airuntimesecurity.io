@@ -101,7 +101,6 @@ RULES = [
     ("README.md", r"tests/ +# (\d+) tests", ["tests"]),
     ("docs/maso/reference.md", r"Together they define up to (\d+) controls", ["controls"]),
     ("docs/maso/reference.md", r"a Tier 1 deployment uses roughly (\d+), not all (\d+)\.", ["tier1", "controls"]),
-    ("docs/maso/maso-2.0-anticipated-changes.md", r"MASO's (\d+) controls", ["controls"]),
     ("MASO-CONTROL-AUDIT.md", r"\| \*\*Core total \(11 domains\)\*\* \| \| \*\*(\d+)\*\* \|", ["controls"]),
     ("MASO-CONTROL-AUDIT.md", r"\| \*\*With ENV\*\* \| \| \*\*(\d+)\*\* \|", ["with_env"]),
     ("MASO-CONTROL-AUDIT.md", r"\| Tier 1 \(Supervised\) \| (\d+) \| (\d+) \|", ["tier1", "tier1"]),

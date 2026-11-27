@@ -39,7 +39,7 @@ That's it. All POST requests to `/ai/*`, `/chat/*`, and `/completion/*` are now 
 
 The middleware intercepts the request/response cycle:
 
-![FastAPI Middleware Flow](../images/sdk-fastapi-middleware-flow.svg)
+![FastAPI Middleware Flow](../images/sdk-fastapi-middleware-flow.svg){ .arch-diagram }
 
 ## Configuration
 

@@ -174,13 +174,13 @@ This is where the framework's control model is specifically designed to comply:
 
 The framework's three-layer model directly supports Article 14:
 
-![EU AI Act Article 14 - Human Oversight](../../images/eu-ai-act-article14.svg)
+![EU AI Act Article 14 - Human Oversight](../../images/eu-ai-act-article14.svg){ .arch-diagram }
 
 ### Risk Management (Article 9)
 
 The framework provides comprehensive risk management:
 
-![EU AI Act Article 9 - Risk Management System](../../images/eu-ai-act-article9.svg)
+![EU AI Act Article 9 - Risk Management System](../../images/eu-ai-act-article9.svg){ .arch-diagram }
 
 ## Evidence Package for Regulators
 

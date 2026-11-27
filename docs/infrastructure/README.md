@@ -9,9 +9,9 @@ nav_active: framework
   <div class="airs-wrap">
     <p class="airs-eyebrow airs-eyebrow--accent airs-hero__eyebrow">Infrastructure &middot; The layer underneath</p>
     <h1 class="airs-hero__title">You can't enforce on infrastructure you don't <em class="is-accent">control.</em></h1>
-    <p class="airs-hero__lead">The framework tells you <strong>what</strong> to enforce. This layer is <strong>how</strong>: 80 technical controls across identity, logging, network, data, secrets, supply chain, and incident response, each tagged with the risk tiers it applies to.</p>
+    <p class="airs-hero__lead">The framework tells you <strong>what</strong> to enforce. This layer is <strong>how</strong>: 85 technical controls across identity, logging, network, data, secrets, supply chain, and incident response, each tagged with the risk tiers it applies to.</p>
     <div class="airs-btns">
-      <a class="airs-btn airs-btn--primary" href="/infrastructure/reference/">Browse all 80 controls &rarr;</a>
+      <a class="airs-btn airs-btn--primary" href="/infrastructure/reference/">Browse all 85 controls &rarr;</a>
       <a class="airs-btn airs-btn--secondary" href="/infrastructure/mappings/controls-to-three-layers/">See the mappings</a>
     </div>
   </div>
@@ -85,7 +85,7 @@ nav_active: framework
       </a>
       <a class="airs-card" href="/infrastructure/reference/">
         <p class="airs-card__title">Full control reference</p>
-        <p class="airs-card__body">All 80 controls in detail, the design principles, and the diagram library.</p>
+        <p class="airs-card__body">All 85 controls in detail, the design principles, and the diagram library.</p>
         <span class="airs-card__more">Open the reference &rarr;</span>
       </a>
     </div>

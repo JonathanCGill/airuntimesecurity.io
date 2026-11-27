@@ -26,7 +26,7 @@ You don't need governance theory. You need an architecture reference.
 
 Every AI request passes through a pipeline. Controls intercept at specific points:
 
-![Pipeline Control Flow](../images/pipeline-control-flow.svg)
+![Pipeline Control Flow](../images/pipeline-control-flow.svg){ .arch-diagram }
 
 **Key architectural decisions:**
 - Judge runs **asynchronously** for most tiers (doesn't block response). Runs **synchronously** for CRITICAL tier (blocks until evaluated)
@@ -46,7 +46,7 @@ Before adding AI-specific controls, map what you already have:
 | Logging / SIEM | Request/response metadata | No semantic evaluation, no decision chain audit |
 | Content delivery | Response caching, edge logic | No output quality evaluation |
 
-The framework fills the gaps, not replaces the stack. See [Infrastructure Controls](../infrastructure/README.md) for the 80-control mapping.
+The framework fills the gaps, not replaces the stack. See [Infrastructure Controls](../infrastructure/README.md) for the 85-control mapping.
 
 ### Architecture patterns by deployment type
 
@@ -90,7 +90,7 @@ Wire these as **health checks and circuit breakers** in your service mesh or orc
 |---|---|---|
 | 1 | [Controls](../core/controls.md) | Three-layer pattern with implementation detail - the core architectural reference |
 | 2 | [Risk Tiers](../core/risk-tiers.md) | Determines your control requirements - different tiers, different architectures |
-| 3 | [Infrastructure Controls](../infrastructure/README.md) | 80 controls across 11 domains - what to enforce at infrastructure level |
+| 3 | [Infrastructure Controls](../infrastructure/README.md) | 85 controls across 11 domains - what to enforce at infrastructure level |
 | 4 | [Cost & Latency](../extensions/technical/cost-and-latency.md) | Budget the evaluation layer - latency vs. coverage trade-offs |
 | 5 | [PACE Resilience](../pace-resilience.md) | Fail postures as architecture decisions |
 

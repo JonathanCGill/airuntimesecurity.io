@@ -4,7 +4,7 @@ description: "Phase-by-phase implementation checklist for AI security controls c
 
 # Implementation Checklist
 
-![Implementation Architecture](../images/implementation-architecture.svg)
+![Implementation Architecture](../images/implementation-architecture.svg){ .arch-diagram }
 
 ## Phase 1: Foundation
 

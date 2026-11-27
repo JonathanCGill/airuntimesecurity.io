@@ -51,7 +51,7 @@ HITBP does not replace HITL or the three-layer pattern. It extends them by recog
 
 ### The Architecture
 
-![HITBP Architecture - AI Control Zone and Business Process Zone](../../images/hitbp-architecture.svg)
+![HITBP Architecture - AI Control Zone and Business Process Zone](../../images/hitbp-architecture.svg){ .arch-diagram }
 
 The AI makes its decision. Guardrails, Judge, and (where required) HITL operate as normal. The output enters the business process. At the next natural human decision point, a person - who is doing their job, not supervising the AI - encounters the output in context. If something is wrong, they catch it before the decision is fully committed.
 
@@ -99,7 +99,7 @@ HITBP without feedback is just a safety net. With feedback, it becomes a control
 
 ### The Feedback Architecture
 
-![HITBP Feedback Loop - Corrections route to Guardrails, Judge, and Model](../../images/hitbp-feedback-loop.svg)
+![HITBP Feedback Loop - Corrections route to Guardrails, Judge, and Model](../../images/hitbp-feedback-loop.svg){ .arch-diagram }
 
 When a human in the business process catches a problem:
 

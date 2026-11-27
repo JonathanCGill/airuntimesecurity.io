@@ -17,7 +17,7 @@ og_description: Analysis of when LLM constraints become counterproductive, with 
 
 Every constraint applied to an LLM reduces both risk and capability simultaneously. The relationship is not linear. Early constraints deliver outsized security gains at minimal capability cost. Late constraints deliver marginal safety improvements while destroying the versatility that justified using an LLM in the first place.
 
-![The Constraint Curve](../images/insight-constraint-curve.svg)
+![The Constraint Curve](../images/insight-constraint-curve.svg){ .arch-diagram }
 
 The graph shows three curves that tell the story:
 

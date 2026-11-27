@@ -22,7 +22,7 @@ Automation bias, deskilling, and accountability gaps are risks that emerge from 
 
 AI systems require skills across three domains - and most organisations have significant gaps in at least two.
 
-![Human Factors Skills Map](../images/strategy-human-factors.svg)
+![Human Factors Skills Map](../images/strategy-human-factors.svg){ .arch-diagram }
 
 | Skill Domain | Who Needs It | Current Gap |
 |--------------|-------------|-------------|

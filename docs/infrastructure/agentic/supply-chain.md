@@ -12,7 +12,7 @@ description: Security controls establishing verification, provenance, and integr
 
 AI supply chains extend far beyond traditional software dependencies. They include foundation models with opaque training data, fine-tuning datasets that can introduce backdoors, RAG knowledge bases that become part of the model's effective reasoning, third-party tools and plugins that agents invoke autonomously, and guardrail/safety models that are themselves machine learning systems. Compromise at any point in this chain can undermine every downstream security control.
 
-These eight controls establish verification, provenance, and integrity requirements across the full AI supply chain.
+These ten controls establish verification, provenance, and integrity requirements across the full AI supply chain.
 
 ## SUP-01: Verify Model Provenance and Integrity
 
@@ -224,3 +224,59 @@ Continuously monitor for newly disclosed vulnerabilities, attacks, and safety is
 | **Judge** | New vulnerability disclosures may require Judge evaluation criteria updates to detect exploitation of newly discovered weaknesses. |
 | **Human Oversight** | Vulnerability monitoring feeds human risk assessment and drives prioritised remediation decisions. |
 
+## SUP-09: Release Prompts and Configuration Through a Versioned Evaluation Gate
+
+**Risk Tiers:** All
+
+### Objective
+
+System prompts, prompt templates, few-shot examples, tool definitions, agent skills, guardrail and judge configuration, and model parameters change behaviour as much as a new model does. Release them through the same controlled path: versioned, reviewed, evaluated, and verified at load.
+
+### Requirements
+
+| Requirement | Description |
+|-------------|-------------|
+| **Version control** | Every behaviour-affecting configuration artefact is stored in version control and recorded in the AI-BOM (SUP-07). |
+| **Owner review** | Changes require review by a named owner. Changes to safety prompts, guardrail settings, and judge configuration also require review from security or risk. |
+| **Evaluation gate** | Every change runs regression, safety, and prompt injection evaluations before promotion. Judge configuration changes also re-run judge calibration. |
+| **Immutable release** | Approved artefacts are published as immutable versions with a recorded hash, and signed for Tier 2+ systems. |
+| **Verify at load** | The runtime loads configuration by version and hash and refuses anything that does not verify. Direct edits in production consoles are disabled. |
+| **Traceability** | The configuration version and hash are logged with every request (LOG-01), so any output can be traced to the exact configuration that produced it. |
+
+### Relationship to Three Layers
+
+| Layer | How SUP-09 Supports It |
+|-------|----------------------|
+| **Guardrails** | Guardrail configuration cannot be weakened outside the release process. Drift between approved and running configuration is detectable. |
+| **Judge** | Judge prompts and thresholds are versioned and calibrated before use, so evaluation results remain comparable over time. |
+| **Human Oversight** | Every behaviour change has a named approver and evaluation evidence. |
+
+See [Prompt and Configuration Management](https://aisecuredbydesign.io/building/devops/prompt-and-config-management/) for the full pipeline.
+
+## SUP-10: Track Model Retirement and Re-Qualify Successors Before Cutover
+
+**Risk Tiers:** All
+
+### Objective
+
+Hosted foundation models are retired on the provider's schedule. When that happens, requests fail or move to a model that has not been tested. Track retirement dates for every model in use and complete a full re-qualification of the successor before the cutover.
+
+### Requirements
+
+| Requirement | Description |
+|-------------|-------------|
+| **Version pinning** | Model versions are pinned in configuration. Aliases that move automatically to new models are not used in production. |
+| **Retirement tracking** | Deprecation notices and retirement dates for every model in the AI-BOM are tracked by a named owner, with alerts well ahead of the retirement date. |
+| **Re-qualification** | The successor model goes through model risk assessment (SUP-02), regression, safety, and injection evaluations, guardrail threshold re-tuning, and judge re-calibration before cutover. |
+| **Judge models included** | Models used as guardrails or judges are tracked the same way. A retired judge model invalidates its calibration (SUP-06). |
+| **Staged cutover** | The successor is deployed through staged rollout with the previous model available for rollback (IR-04) until the retirement date. |
+
+### Relationship to Three Layers
+
+| Layer | How SUP-10 Supports It |
+|-------|----------------------|
+| **Guardrails** | Guardrail thresholds are re-tuned for the successor's output style before it serves traffic. |
+| **Judge** | Judge calibration is repeated for the new model, so detection accuracy is known rather than assumed. |
+| **Human Oversight** | The cutover is a planned, approved decision instead of a forced change on the provider's deadline. |
+
+See [Provider model deprecation](https://aisecuredbydesign.io/building/mlops/model-lifecycle/#provider-model-deprecation) for the migration checklist.

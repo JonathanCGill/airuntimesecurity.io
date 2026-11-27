@@ -73,9 +73,9 @@ If you start from a runtime layer and want to know what pre-runtime infrastructu
 
 | Runtime layer | Depends on pre-runtime controls |
 |---------------|--------------------------------|
-| [Layer 01 Guardrails](../glossary.md#guardrails) | NET-01/02/04/07, IAM-01/02/04, TOOL-01/02/03, SEC-01/02, SAND-01/02/03 |
+| [Layer 01 Guardrails](../glossary.md#guardrails) | NET-01/02/04/07, IAM-01/02/04, TOOL-01/02/03/07, SEC-01/02, SAND-01/02/03/07, SESS-06, SUP-09 |
 | [Layer 02 Model-as-Judge](../glossary.md#model-as-judge) | LOG-01/03/04/05, NET-03, DAT-08 |
-| [Layer 03 Human Oversight](../glossary.md#human-oversight) | IAM-05/08, TOOL-04, LOG-10, IR-01/05/06 |
+| [Layer 03 Human Oversight](../glossary.md#human-oversight) | IAM-05/08, TOOL-04, LOG-10, IR-01/05/06, SUP-10 |
 | [Circuit Breaker](../glossary.md#circuit-breaker) | IR-03/04, SAND-04/05, SEC-05, SESS-05 |
 
 !!! tip "Use the catalog to generate your own view"
