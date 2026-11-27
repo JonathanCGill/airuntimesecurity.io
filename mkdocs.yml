@@ -179,6 +179,7 @@ nav:
       - Risk Tiers: core/risk-tiers.md
       - Risk Assessment: core/risk-assessment.md
       - Shared Responsibility: core/shared-responsibility.md
+      - Scope and Responsibilities: core/scope-and-responsibilities.md
       - "Three-Layer Model: Guardrails, Judge, Oversight": core/controls.md
       - Semantic Firewall: core/controls/semantic-firewall.md
       - Data Provenance & Authority Boundaries: core/controls/data-provenance-and-authority-boundaries.md

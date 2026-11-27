@@ -24,6 +24,7 @@ You are updating the AI Runtime Security News page at `docs/news.md`.
    - Research, guidance, reports, and product launches get a **MASO coverage** rating: `Covered` (`success`), `Partly covered` (`warning`), or `Not covered` (`danger`), depending on whether MASO already specifies what the item calls for.
    - Only cite control IDs that exist in `docs/maso/controls/*.md` (they are defined in table rows as `| **IA-2.7** Name |`). Read the control before citing it. Never invent a control.
    - If an item reveals a gap that a later framework change closed, add a **Framework change** line.
+   - Every verdict ends with an **Owned by** line naming who owns what MASO does not cover. Use the functions in `docs/core/scope-and-responsibilities.md` and link the matching anchor (`#vulnerability-management`, `#vendors`, `#enterprise-identity`, `#security-operations`, `#model-providers`, `#platform-engineering`, `#data-governance`, `#risk-and-compliance`), or `#roles` for the agent owner or AI security. Apply that page's three-question boundary test. If nobody owns the gap, write "Nobody yet. This is an open gap in MASO." rather than assigning it to someone it does not fit.
 
 4. **Write each entry** in this format, inserting new items directly after the `<!-- NEWS_START -->` marker. Existing entries remain; newest items go at the top:
 
@@ -43,6 +44,8 @@ Summary of what happened or was published (2 to 4 sentences), with dates, versio
     | Another step | None | Say "None" where no MASO control applies |
 
     **Not covered**: What MASO would not have caught, and where that belongs instead if known.
+
+    **Owned by**: [Vulnerability management and application security](core/scope-and-responsibilities.md#vulnerability-management).
 
 **Framework relevance**: The fuller reasoning. Link the relevant emerging threat (`maso/threat-intelligence/emerging-threats.md#et-...`), incident tracker entries, and insights pages.
 

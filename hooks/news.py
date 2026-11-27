@@ -66,6 +66,7 @@ class NewsItem:
     bottom_line: str = ""   # first paragraph of the verdict block, plain text
     summary: str = ""       # first paragraph after the tags, plain text
     controls: list[str] = field(default_factory=list)
+    owned_by: str = ""      # who owns what MASO does not cover, plain text
 
 
 _items: list[NewsItem] = []
@@ -91,6 +92,9 @@ def _finish_verdict(item: NewsItem, block: list[str]) -> None:
     """Pull the bottom line and control IDs out of a verdict block's lines."""
     para: list[str] = []
     for line in block:
+        if line.startswith("**Owned by**:"):
+            item.owned_by = _plain(line.split(":", 1)[1])
+            continue
         if line.startswith("|"):
             cells = [c.strip() for c in line.strip().strip("|").split("|")]
             if len(cells) >= 2:
@@ -192,6 +196,8 @@ def validate(items: list[NewsItem], control_pages: dict[str, str]) -> list[str]:
             continue
         if not it.bottom_line:
             problems.append(f"{where}: verdict block has no bottom line")
+        if not it.owned_by:
+            problems.append(f"{where}: verdict block has no 'Owned by' line")
         if not it.controls:
             problems.append(f"{where}: verdict table names no MASO control")
         for cid in it.controls:

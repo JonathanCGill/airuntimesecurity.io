@@ -51,7 +51,10 @@ This maps directly onto the framework's two-track design. The full control archi
 
 This is not a way to offload accountability. A vendor owning a control reduces your **implementation** burden, not your **accountability** to your own customers and regulators. If a consumed AI system harms your customer, "the vendor owned that control" is an explanation, not a defence. The AI Customer role exists precisely because someone has to own the outcome end to end, and that someone is you.
 
+This page splits responsibility by vendor role. For the split inside your own organisation, between MASO and the functions around it, with a RACI for running agents, see [Scope and Responsibilities](scope-and-responsibilities.md).
+
 !!! info "References"
+    - [Scope and Responsibilities](scope-and-responsibilities.md)
     - [CSA AI Controls Matrix v1.1](https://cloudsecurityalliance.org/artifacts/ai-controls-matrix-v1-1)
     - [CSA AICM Alignment](../extensions/regulatory/csa-aicm-alignment.md)
     - [Maturity Levels](../strategy/maturity-levels.md)

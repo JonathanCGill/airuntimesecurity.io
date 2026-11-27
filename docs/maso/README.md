@@ -135,6 +135,14 @@ search:
   </div>
 </section>
 
+<section class="airs-section airs-section--card airs-center">
+  <div class="airs-wrap--narrow">
+    <p class="airs-eyebrow">Where MASO stops</p>
+    <p class="airs-statement">MASO governs the agents you run: what they reach, what they do, and how they are stopped. Patching, the SOC, model safety, and risk acceptance belong to other functions. MASO <em>specifies and verifies</em>; it rarely implements.</p>
+    <a class="airs-textlink" href="/core/scope-and-responsibilities/">Scope, boundaries, and the RACI &rarr;</a>
+  </div>
+</section>
+
 <section class="airs-section airs-section--paper airs-center">
   <div class="airs-wrap--narrow">
     <p class="airs-eyebrow">Not running a fleet yet?</p>
