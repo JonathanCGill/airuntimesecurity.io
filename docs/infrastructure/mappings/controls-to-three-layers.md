@@ -1,11 +1,11 @@
 ---
 as_at: "2026-07-04"
-description: Maps all 80 infrastructure controls to the three-layer behavioral security pattern of Guardrails, Model-as-Judge, and Human Oversight.
+description: Maps all 85 infrastructure controls to the three-layer behavioral security pattern of Guardrails, Model-as-Judge, and Human Oversight.
 ---
 
 # Controls to Three-Layer Mapping
 
-> Maps all 80 infrastructure controls to the three-layer behavioral security pattern: **Guardrails → Model-as-Judge → Human Oversight**.
+> Maps all 85 infrastructure controls to the three-layer behavioral security pattern: **Guardrails → Model-as-Judge → Human Oversight**.
 >
 > Part of the [AI Security Infrastructure Controls](../README.md) framework.
 > Companion to [AI Runtime Security](https://github.com/JonathanCGill/airuntimesecurity.io).
@@ -101,6 +101,8 @@ Infrastructure controls make these layers enforceable. Without the infrastructur
 | **SUP-06** Verify guardrail and safety model integrity | Integrity verification protects the guardrails themselves - the most critical supply chain control | Model-as-Judge integrity is directly protected; compromise would defeat the evaluation layer | Humans approve guardrail/Judge changes and review tamper detection alerts |
 | **SUP-07** Maintain AI-BOM | AI-BOM enables systematic guardrail coverage verification | AI-BOM tracks Model-as-Judge associations, ensuring consistent evaluation configuration | AI-BOM gives humans a single source of truth for what is deployed |
 | **SUP-08** Monitor for vulnerabilities | Vulnerability monitoring triggers guardrail rule updates for new attack patterns | New vulnerabilities may require Judge evaluation criteria updates | Humans assess vulnerability impact and prioritise remediation |
+| **SUP-09** Prompt and config release gate | Guardrail configuration can only change through review and evaluation; the runtime refuses unverified versions | Judge prompts and thresholds are versioned and calibrated before use | Every behaviour change has a named approver and evaluation evidence |
+| **SUP-10** Model retirement and re-qualification | Guardrail thresholds are re-tuned for the successor model before it serves traffic | Judge calibration is repeated so detection accuracy on the new model is measured, not assumed | Cutover is a planned human decision rather than a forced change on the provider's deadline |
 
 ## Incident Response
 
@@ -125,6 +127,7 @@ Infrastructure controls make these layers enforceable. Without the infrastructur
 | **TOOL-04** Classify by reversibility | Classification drives guardrail escalation - irreversible actions require more oversight | Judge calibrates evaluation depth by action class | Classification determines when humans are brought into the loop |
 | **TOOL-05** Rate-limit invocations | Rate limits are quantitative guardrails preventing accumulation attacks | Rate limit proximity feeds Judge anomaly detection | Rate limit alerts surface sessions for human review |
 | **TOOL-06** Log every invocation | Invocation logs prove guardrails are active and measure enforcement | Complete invocation logs are primary Judge input for agent evaluation | Logs give humans full visibility into agent actions |
+| **TOOL-07** Pin tool definitions | Poisoned or silently changed tool descriptions are rejected at load, before the model reads them | Judge evaluation of tool use can rely on the approved descriptions | A changed definition becomes an explicit human re-approval |
 
 ## Agentic - Session & Scope
 
@@ -135,6 +138,7 @@ Infrastructure controls make these layers enforceable. Without the infrastructur
 | **SESS-03** Limit session scope | Task scope constraints prevent agents from exceeding their declared purpose | Judge evaluates whether actions within a session are consistent with the declared task | Humans define task scope and review sessions where scope boundaries were tested |
 | **SESS-04** Implement progressive trust | Progressive trust starts with minimal permissions - a conservative guardrail that relaxes with evidence | Judge evaluates whether trust escalation is justified by the session's clean behavior history | Humans define trust escalation criteria and review escalation decisions |
 | **SESS-05** Clean up session state | Session cleanup prevents state leakage - a guardrail on persistent attack surface | Judge evaluates cleanup completeness, detecting residual state that could affect future sessions | Humans define cleanup policies and review cleanup audit logs |
+| **SESS-06** Rule of Two per session | The gateway, credentials, and egress proxy deny the third leg once a session holds two, so an injection cannot complete exfiltration | Judge reviews sessions that requested the third leg as a signal of attempted injection | Sessions that genuinely need all three route each completing action to human approval |
 
 ## Agentic - Delegation Chains
 
@@ -156,4 +160,5 @@ Infrastructure controls make these layers enforceable. Without the infrastructur
 | **SAND-04** Enforce resource limits | Resource limits are guardrails against denial of service and resource abuse | Judge monitors resource consumption patterns for anomalies | Humans define resource limits and review high-consumption sessions |
 | **SAND-05** Prevent persistent state | Ephemeral environments prevent state accumulation - a guardrail on long-term compromise | Judge evaluates that session state does not persist beyond session boundaries | Humans verify ephemeral policy compliance |
 | **SAND-06** Scan code before execution | Pre-execution scanning is a guardrail catching malicious or dangerous code before it runs | Judge evaluates scanning results alongside execution behavior | Humans review scan findings and define scanning policy |
+| **SAND-07** Isolate coding and computer-use agents | Dedicated environment, no production credentials, and an egress allowlist bound what a compromised agent can reach | Judge evaluates agent actions against the declared task, with screenshots or command logs as evidence | Consequential actions require approval enforced outside the agent's environment |
 

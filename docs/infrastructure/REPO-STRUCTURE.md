@@ -47,7 +47,7 @@ ai-security-infrastructure-controls/
 │   └── delegation-permissions.svg     # Permission intersection model for delegation
 │
 ├── mappings/
-│   ├── controls-to-three-layers.md    # All 80 controls × Guardrails/Judge/Human
+│   ├── controls-to-three-layers.md    # All 85 controls × Guardrails/Judge/Human
 │   ├── iso42001-annex-a.md            # ISO 42001 Annex A mapping
 │   ├── nist-ai-rmf.md                 # NIST AI RMF mapping (51 subcategories)
 │   └── owasp-llm-top10.md            # OWASP LLM Top 10 + Agentic Top 10 mapping
@@ -68,13 +68,13 @@ ai-security-infrastructure-controls/
 | Network & Segmentation | `controls/network-and-segmentation.md` | 8 | NET-01 to NET-08 |
 | Data Protection | `controls/data-protection.md` | 8 | DAT-01 to DAT-08 |
 | Secrets & Credentials | `controls/secrets-and-credentials.md` | 8 | SEC-01 to SEC-08 |
-| Supply Chain | `controls/supply-chain.md` | 8 | SUP-01 to SUP-08 |
+| Supply Chain | `agentic/supply-chain.md` | 10 | SUP-01 to SUP-10 |
 | Incident Response | `controls/incident-response.md` | 8 | IR-01 to IR-08 |
-| Tool Access | `agentic/tool-access-controls.md` | 6 | TOOL-01 to TOOL-06 |
-| Session & Scope | `agentic/session-and-scope.md` | 5 | SESS-01 to SESS-05 |
+| Tool Access | `agentic/tool-access-controls.md` | 7 | TOOL-01 to TOOL-07 |
+| Session & Scope | `agentic/session-and-scope.md` | 6 | SESS-01 to SESS-06 |
 | Delegation Chains | `agentic/delegation-chains.md` | 5 | DEL-01 to DEL-05 |
-| Sandbox Patterns | `agentic/sandbox-patterns.md` | 6 | SAND-01 to SAND-06 |
-| **Total** | **11 files** | **80** | |
+| Sandbox Patterns | `agentic/sandbox-patterns.md` | 7 | SAND-01 to SAND-07 |
+| **Total** | **11 files** | **85** | |
 
 ## Design Principles
 
@@ -109,7 +109,7 @@ The parent framework ([airuntimesecurity.io](https://github.com/JonathanCGill/ai
 
 This repo defines:
 
-- **How** to enforce it at the infrastructure level (80 technical controls)
+- **How** to enforce it at the infrastructure level (85 technical controls)
 - **Where** the boundaries are (network zones, identity chains, data flows)
 - **Which platforms** implement it (AWS, Azure, Databricks patterns)
 

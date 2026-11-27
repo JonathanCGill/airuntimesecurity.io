@@ -12,7 +12,7 @@ description: "Tool access controls for agentic AI: declaring, mediating, constra
 
 When AI agents invoke external tools - APIs, databases, file systems, code interpreters, or third-party services - the tool invocation boundary is one of the highest-risk points in the system. The agent decides *what* to call and *why*, but it must never decide *whether* it is allowed to call it or *how* to authenticate. That enforcement belongs to deterministic infrastructure: the authorisation gateway.
 
-These six controls establish the principle that tool access is declared, mediated, constrained, classified, rate-limited, and fully logged.
+These seven controls establish the principle that tool access is declared, mediated, constrained, classified, rate-limited, fully logged, and pinned to the definitions that were approved.
 
 ## TOOL-01: Declare Tool Permissions Explicitly Before Deployment
 
@@ -172,3 +172,30 @@ Every tool invocation - whether permitted or denied - must be logged with suffic
 | **Judge** | Complete invocation logs are a primary input for Judge evaluation of agent behavior - the Judge can assess whether the sequence and pattern of tool use was appropriate. |
 | **Human Oversight** | Full invocation logs give human reviewers the ability to understand exactly what an agent did, why it was allowed, and what it received in response. |
 
+## TOOL-07: Pin Tool Definitions by Hash and Reject Unapproved Changes
+
+**Risk Tiers:** Agentic (Tier 2+)
+
+### Objective
+
+Tool names, descriptions, and parameter schemas are read by the model and steer its behaviour, so they are an injection surface. Ensure that the definitions an agent sees at runtime are exactly the ones that were reviewed and approved, and that a tool server cannot change them afterwards.
+
+### Requirements
+
+| Requirement | Description |
+|-------------|-------------|
+| **Hash at approval** | When a tool or MCP server is approved, record a hash of each tool's name, description, and parameter schema in the tool manifest (TOOL-01) and the AI-BOM (SUP-07). |
+| **Verify at load** | The client or gateway recomputes the hash whenever tool definitions are fetched and refuses to expose any tool whose definition does not match. |
+| **Alert on change** | A mismatch raises a security alert. A changed description on an approved server is treated as a possible rug pull, not a routine update. |
+| **Review like prompts** | Definitions are reviewed for embedded instructions, references to files or credentials, and hidden Unicode before approval, using the same process as system prompts (SUP-09). |
+| **Re-approval for updates** | Legitimate changes go through the same review and evaluation gate as the original approval before the new hash is accepted. |
+
+### Relationship to Three Layers
+
+| Layer | How TOOL-07 Supports It |
+|-------|------------------------|
+| **Guardrails** | Guardrails and the gateway operate on a known, reviewed tool surface. Poisoned or silently changed descriptions never reach the model. |
+| **Judge** | Judge evaluation of tool use assumes the tool descriptions are the approved ones. Pinning keeps that assumption true. |
+| **Human Oversight** | A definition change becomes an explicit human approval decision rather than an invisible runtime event. |
+
+See [Prompt and Configuration Management](https://aisecuredbydesign.io/building/devops/prompt-and-config-management/#tool-definitions-poisoning-and-rug-pulls) for the pre-deployment process.

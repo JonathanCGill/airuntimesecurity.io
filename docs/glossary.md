@@ -1,6 +1,6 @@
 ---
 title: Glossary and Unified Taxonomy
-description: "The single canonical definition source for terms shared across airuntimesecurity.io and aisecuredbydesign.io: PACE, MASO, ASO, risk tiers, the control layers, the circuit breaker, and the 80-control ID scheme."
+description: "The single canonical definition source for terms shared across airuntimesecurity.io and aisecuredbydesign.io: PACE, MASO, ASO, risk tiers, the control layers, the circuit breaker, and the 85-control ID scheme."
 ---
 
 # Glossary and Unified Taxonomy
@@ -102,9 +102,9 @@ A self-certification path for genuinely low-risk systems (internal, read-only, n
 
 ## Infrastructure controls
 
-### Infrastructure controls (the 80)
+### Infrastructure controls (the 85)
 
-The 80 technical controls that make behavioural security enforceable, across identity, logging, network, data, secrets, supply chain, incident response, and four agentic domains. airuntimesecurity.io is authoritative for their definitions; aisecuredbydesign.io mirrors them into the pre-runtime lifecycle. See the [Infrastructure Controls Reference](infrastructure/reference.md) and the [machine-readable catalog](infrastructure/catalog/README.md).
+The 85 technical controls that make behavioural security enforceable, across identity, logging, network, data, secrets, supply chain, incident response, and four agentic domains. airuntimesecurity.io is authoritative for their definitions; aisecuredbydesign.io mirrors them into the pre-runtime lifecycle. See the [Infrastructure Controls Reference](infrastructure/reference.md) and the [machine-readable catalog](infrastructure/catalog/README.md).
 
 ### Control ID scheme
 

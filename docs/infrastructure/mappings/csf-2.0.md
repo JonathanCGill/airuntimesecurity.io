@@ -1,11 +1,11 @@
 ---
 as_at: "2026-07-04"
-description: "Mapping 80 infrastructure controls to NIST Cybersecurity Framework 2.0 Functions, Categories, and Subcategories with three-layer pattern alignment."
+description: "Mapping 85 infrastructure controls to NIST Cybersecurity Framework 2.0 Functions, Categories, and Subcategories with three-layer pattern alignment."
 ---
 
 # NIST Cybersecurity Framework 2.0 Mapping
 
-**How the framework's 80 infrastructure controls map to NIST CSF 2.0 Functions, Categories, and Subcategories.**
+**How the framework's 85 infrastructure controls map to NIST CSF 2.0 Functions, Categories, and Subcategories.**
 
 ## Relationship
 
@@ -218,5 +218,5 @@ The following CSF 2.0 subcategory areas have no direct mapping to this framework
 
 **For CSF gap assessments:** This mapping shows where AI deployments introduce new control requirements within existing CSF subcategories. PR.DS-10 (data-in-use), DE.CM-09 (runtime monitoring), and the GV.SC supply chain subcategories are most significantly affected by AI.
 
-**For audit and compliance:** The mapping provides traceability from this framework's 80 infrastructure controls to CSF 2.0 outcomes, supporting compliance evidence for organisations that report against CSF.
+**For audit and compliance:** The mapping provides traceability from this framework's 85 infrastructure controls to CSF 2.0 outcomes, supporting compliance evidence for organisations that report against CSF.
 

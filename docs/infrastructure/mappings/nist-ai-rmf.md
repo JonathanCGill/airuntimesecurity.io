@@ -67,7 +67,7 @@ The Measure function quantifies AI risks and evaluates AI systems against requir
 | **MEASURE 2.2** | AI system evaluated for safety | LOG-02, LOG-06, SUP-06, NET-02 | Guardrail decision logging, injection detection, safety model integrity, and bypass prevention measure safety. |
 | **MEASURE 2.3** | AI system evaluated for fairness | LOG-01, LOG-03, DAT-03 | I/O logging, Judge evaluation, and PII detection provide data for fairness evaluation. Fairness criteria are organisational. |
 | **MEASURE 2.5** | AI system evaluated for privacy | DAT-01 through DAT-08, SEC-01, LOG-09 | Full data protection suite, credential isolation, and log redaction support privacy evaluation. |
-| **MEASURE 2.6** | AI system evaluated for security | All 80 controls | The entire infrastructure controls framework supports security evaluation. |
+| **MEASURE 2.6** | AI system evaluated for security | All 85 controls | The entire infrastructure controls framework supports security evaluation. |
 | **MEASURE 2.7** | AI system evaluated for resilience | IR-03, IR-04, SESS-05, SAND-01 | Containment, rollback, session cleanup, and sandbox isolation support resilience evaluation. |
 | **MEASURE 2.8** | AI system evaluated for interpretability | LOG-01, LOG-04, DEL-02, TOOL-06 | I/O logging, agent chain reconstruction, delegation trails, and tool logs support interpretability. |
 | **MEASURE 2.9** | AI system performance monitored in production | LOG-01, LOG-03, LOG-05, LOG-10, NET-08 | I/O logging, Judge evaluation, drift detection, SIEM correlation, and cross-zone monitoring support production monitoring. |
