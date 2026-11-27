@@ -339,6 +339,53 @@ img[src$=".svg"] {
   color: #e5534b;
 }
 
+/* "Read next" panel under each news verdict, added by hooks/news.py. */
+.md-typeset .news-next {
+  margin: 1rem 0 1.25rem;
+  padding: 0.7rem 0.9rem 0.3rem;
+  border-left: 3px solid #b3261e;
+  background: var(--md-code-bg-color);
+  border-radius: 0 4px 4px 0;
+}
+.md-typeset .news-next__title {
+  margin: 0 0 0.3rem;
+  font-family: var(--md-code-font);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--md-default-fg-color--light);
+}
+.md-typeset .news-next ul {
+  margin: 0 0 0.4rem;
+  padding: 0;
+  list-style: none;
+}
+.md-typeset .news-next li {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  align-items: baseline;
+  margin: 0 0 0.3rem;
+  padding: 0;
+  list-style: none;
+}
+.md-typeset .news-next a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+@media (max-width: 30em) {
+  .md-typeset .news-next li { grid-template-columns: 1fr; }
+}
+.md-typeset .news-next__kind {
+  font-family: var(--md-code-font);
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--md-default-fg-color--light);
+}
+[data-md-color-scheme="slate"] .md-typeset .news-next { border-left-color: #e5534b; }
+
 /* Hide inline tabs on mobile, drawer takes over */
 @media (max-width: 76.25em) {
   .md-header-tabs {

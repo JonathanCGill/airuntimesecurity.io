@@ -17,6 +17,8 @@ This hook parses those entries once per build and uses them to:
 - replace `<!-- NEWS_LATEST -->` on the home page with the newest entries,
 - replace `<!-- NEWS_SCOREBOARD -->` on the news page with verdict counts,
 - replace `<!-- NEWS_BY_CONTROL -->` on validated-against.md with a control index,
+- add a "Read next" panel to each news entry, built from the site pages the
+  entry links to (threat pattern, insight articles, guides, then controls),
 - append a "Seen in the wild" section to each MASO control page,
 - write an Atom feed (`feed.xml`) with one entry per news item.
 
@@ -53,6 +55,16 @@ VERDICT_CLASS = {"success": "good", "warning": "partial", "danger": "none"}
 
 SECTION_TITLE = "Seen in the wild"
 
+LINK_RE = re.compile(r"\[([^\]]+)\]\(([^)\s]+)\)")
+H1_RE = re.compile(r"^# (.+?)\s*$", re.M)
+FM_TITLE_RE = re.compile(r"\A---\n(?:.*\n)*?title:\s*(.+?)\s*\n(?:.*\n)*?---\n")
+ET_HEADING_RE = re.compile(r"^#{2,4} (ET-\d+): (.+?)\s*$", re.M)
+ET_SRC = "maso/threat-intelligence/emerging-threats.md"
+
+# Pages a "Read next" panel never points to: the owner is already named in the
+# verdict, and the MASO overview is linked from the top of the page.
+NEXT_SKIP = {"core/scope-and-responsibilities.md", "maso/README.md"}
+
 
 @dataclass
 class NewsItem:
@@ -68,11 +80,14 @@ class NewsItem:
     controls: list[str] = field(default_factory=list)
     owned_by: str = ""      # who owns what MASO does not cover, plain text
     owner_anchor: str = ""  # anchor on the scope page for that owner, "" for an open gap
+    links: list[tuple[str, str]] = field(default_factory=list)  # (text, target) of internal links, in order
 
 
 _items: list[NewsItem] = []
 _control_pages: dict[str, str] = {}   # control id -> src_uri of the page defining it
 _control_names: dict[str, str] = {}
+_page_titles: dict[str, str] = {}     # src_uri -> H1, for pages news entries link to
+_et_titles: dict[str, str] = {}       # "ET-29" -> "Fully Autonomous Offensive Agents ..."
 
 
 # ── parsing ────────────────────────────────────────────────────────────────
@@ -142,10 +157,13 @@ def parse_news(text: str) -> list[NewsItem]:
         if block is not None:
             if line.startswith("    ") or not line.strip():
                 block.append(line[4:])
+                item.links += [(t, u) for t, u in LINK_RE.findall(line) if not u.startswith(("http", "#"))]
                 continue
             end_block()
 
         m = HEADING_RE.match(line)
+        if item is not None and not m:
+            item.links += [(t, u) for t, u in LINK_RE.findall(line) if not u.startswith(("http", "#"))]
         if m:
             end_para()
             item = NewsItem(
@@ -343,6 +361,81 @@ def render_limits(items: list[NewsItem]) -> str:
     return "\n".join(out)
 
 
+def _next_links(it: NewsItem) -> list[tuple[str, str, str]]:
+    """Pick the site pages most worth opening after reading an entry.
+
+    Returns (kind, label, target) in reading order: the threat pattern, then
+    insight articles, then guides, then the controls named in the verdict table.
+    """
+    threats, insights, guides = [], [], []
+    seen: set[str] = set()
+    for text, target in it.links:
+        page, _, frag = target.partition("#")
+        if page in NEXT_SKIP or page.startswith(CONTROLS_DIR) or target in seen:
+            continue
+        if page == ET_SRC:
+            m = re.match(r"ET-\d+", _plain(text))
+            et = m.group(0) if m else ""
+            if not et or any(et == t[1].split(":")[0] for t in threats):
+                continue
+            seen.add(target)
+            threats.append(("Threat pattern", f"{et}: {_et_titles.get(et, _plain(text))}", target))
+            continue
+        if page.startswith("insights/") and page not in seen:
+            seen.add(page)
+            insights.append(("Insight", _page_titles.get(page, _plain(text)), page))
+        elif page not in seen and not page.startswith("insights/"):
+            seen.add(page)
+            guides.append(("Guide", _page_titles.get(page, _plain(text)), target))
+    # One control per control page: several links to the same page add nothing.
+    controls, pages = [], set()
+    for cid in it.controls:
+        if cid in _control_pages and _control_pages[cid] not in pages:
+            pages.add(_control_pages[cid])
+            controls.append(("Control", f"{cid} {_control_names.get(cid, '')}".strip(), _control_pages[cid]))
+    picks = threats[:2] + insights[:2] + guides[:1]
+    return picks + controls[: min(2, max(0, 5 - len(picks)))]
+
+
+def render_next(it: NewsItem) -> str:
+    links = _next_links(it)
+    if not links:
+        return ""
+    rows = "\n".join(
+        f'- <span class="news-next__kind">{kind}</span> [{_md_escape(label)}]({target})'
+        for kind, label, target in links
+    )
+    return (
+        '<div class="news-next" markdown>\n'
+        '<p class="news-next__title">Read next</p>\n\n'
+        f"{rows}\n\n"
+        "</div>\n"
+    )
+
+
+def add_next_panels(markdown: str, items: list[NewsItem]) -> str:
+    """Insert each entry's "Read next" panel straight after its verdict block."""
+    by_anchor = {it.anchor: it for it in items}
+    out: list[str] = []
+    current: NewsItem | None = None
+    pending = False
+    for line in markdown.split("\n"):
+        m = HEADING_RE.match(line)
+        if m:
+            current = by_anchor.get(heading_anchor(f"{m.group(1)}: {m.group(2)}"))
+            pending = False
+        elif current is not None and VERDICT_RE.match(line):
+            pending = True
+        elif pending and line.strip() and not line.startswith("    "):
+            panel = render_next(current)
+            if panel:
+                out += [panel]
+            pending = False
+            current = None
+        out.append(line)
+    return "\n".join(out)
+
+
 def render_control_section(page_src: str, page_controls: set[str], items: list[NewsItem]) -> str:
     rows = []
     for cid in sorted(page_controls, key=_control_sort_key):
@@ -432,6 +525,16 @@ def on_config(config, **kwargs):
     docs_dir = Path(config["docs_dir"])
     news_path = docs_dir / NEWS_SRC
     _control_pages, _control_names = index_controls(docs_dir)
+    _page_titles.clear()
+    _et_titles.clear()
+    for path in docs_dir.rglob("*.md"):
+        text = path.read_text(encoding="utf-8")
+        m = FM_TITLE_RE.match(text) or H1_RE.search(text)
+        if m:
+            _page_titles[path.relative_to(docs_dir).as_posix()] = _plain(m.group(1))
+    et_path = docs_dir / ET_SRC
+    if et_path.exists():
+        _et_titles.update(dict(ET_HEADING_RE.findall(et_path.read_text(encoding="utf-8"))))
     _items = parse_news(news_path.read_text(encoding="utf-8")) if news_path.exists() else []
     for problem in validate(_items, _control_pages):
         log.warning(problem)
@@ -456,7 +559,7 @@ def on_page_markdown(markdown, page, config, files, **kwargs):
             ("<!-- NEWS_LIMITS -->", render_limits),
         ):
             markdown = markdown.replace(marker, render(_items))
-        return markdown
+        return add_next_panels(markdown, _items)
 
     if src == "validated-against.md" and "<!-- NEWS_BY_CONTROL -->" in markdown:
         return markdown.replace("<!-- NEWS_BY_CONTROL -->", render_by_control(src, _items))
