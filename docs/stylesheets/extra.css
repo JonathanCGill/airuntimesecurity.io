@@ -463,3 +463,10 @@ img[src$=".svg"] {
 .md-copyright {
   color: #8d8a83;
 }
+
+/* RACI matrix (core/scope-and-responsibilities.md): keep the activity column
+   readable and the role columns compact; the table scrolls sideways on phones. */
+.md-typeset .raci-matrix table:not([class]) th:first-child,
+.md-typeset .raci-matrix table:not([class]) td:first-child { min-width: 15rem; }
+.md-typeset .raci-matrix table:not([class]) th:not(:first-child),
+.md-typeset .raci-matrix table:not([class]) td:not(:first-child) { text-align: center; white-space: nowrap; padding-left: 0.6em; padding-right: 0.6em; }
