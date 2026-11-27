@@ -62,7 +62,7 @@ The problem extends beyond orchestrators. Multi-agent systems have three classes
 
 ### 3. The Observer
 
-**What it does:** Monitors all agents, scores anomalies, triggers PACE escalation. At Tier 3, operates on separate infrastructure with kill switch authority.
+**What it does:** Monitors all agents, scores anomalies, triggers PACE escalation. At Tier 3, operates on separate infrastructure as an advisory monitor. Kill decisions stay with people, under the [Comoverlay](../maso/controls/comoverlay.md#8-response-rule) response rule.
 
 **Current controls:** OB-3.3 requires separate infrastructure and read-only access. Cannot be influenced by task agents.
 

@@ -142,6 +142,7 @@ nav:
         - Document Extraction Integrity: maso/controls/extraction-integrity.md
         - Execution Control: maso/controls/execution-control.md
         - Observability: maso/controls/observability.md
+        - Expected vs Real Monitoring (Comoverlay): maso/controls/comoverlay.md
         - Supply Chain: maso/controls/supply-chain.md
         - Privileged Agent Governance: maso/controls/privileged-agent-governance.md
         - Model Cognition Assurance: maso/controls/model-cognition-assurance.md

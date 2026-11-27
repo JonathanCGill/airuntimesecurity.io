@@ -93,7 +93,7 @@
   <rect x="70" y="460" width="370" height="55" rx="6" fill="#0d1225" stroke="#00c9ff" stroke-width="1" stroke-dasharray="4,2"/>
   <text x="255" y="482" text-anchor="middle" fill="#00c9ff" font-size="10" font-weight="600">Independent Observability Agent</text>
   <text x="255" y="498" text-anchor="middle" fill="#8899aa" font-size="8">Separate infrastructure · Read-only · Cross-monitors primary system</text>
-  <text x="255" y="510" text-anchor="middle" fill="#667" font-size="7">Has kill switch authority (safety net)</text>
+  <text x="255" y="510" text-anchor="middle" fill="#667" font-size="7">Advisory only, no kill switch authority</text>
 
   <!-- Blast Radius Enforcement -->
   <rect x="460" y="460" width="370" height="55" rx="6" fill="#0d1225" stroke="#f5576c" stroke-width="1.5"/>

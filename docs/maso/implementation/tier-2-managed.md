@@ -155,7 +155,7 @@ Human supervisor monitors dashboards and handles escalated actions but does not 
 
 **Trigger:** Drift score > 60 for any agent, OR circuit breaker engaged for any agent, OR Model-as-Judge blocks >3 actions from the same agent in 10 minutes.
 
-**Automated response (no human approval required for P→A):**
+**Automated response (no human approval required for P→A, for each step classified safe for the workflow under [EC-2.21](../controls/execution-control.md)):**
 
 1. Anomalous agent isolated - removed from the message bus, tool access suspended.
 2. Backup agent activated. The backup is pre-configured with the same role definition but may use a different model provider. It starts with read-only permissions.
@@ -163,9 +163,11 @@ Human supervisor monitors dashboards and handles escalated actions but does not 
 4. Enhanced monitoring activated on all remaining agents - drift score thresholds lowered by 50%.
 5. Security team notified automatically.
 
+In payment and safety-critical workflows, only step 1, as a pause, and step 5 are automatic. Steps 2 to 4 wait for a human, under the stricter [Comoverlay response rule](../controls/comoverlay.md#8-response-rule).
+
 **Duration:** Alternate phase continues until the anomalous agent's behavior is explained and remediated, or permanently replaced. Maximum duration in Alternate without resolution: 48 hours, after which automatic escalation to Contingency.
 
-**Transition authority:** Automated (orchestrator or monitoring layer).
+**Transition authority:** Automated (orchestrator or enforcement point) for steps classified safe under EC-2.21. A human for every other step, and for any credential revocation, kill, or rollback.
 
 ### Contingency (C) - Degraded Mode
 
@@ -264,7 +266,7 @@ All Tier 1 tests remain valid and should be re-executed. Additional Tier 2 tests
 
 **PACE tests:**
 
-10. **P→A automated transition test:** Inject anomalous agent behavior (e.g., artificially inflate drift score) and confirm automatic transition to Alternate phase with correct response actions.
+10. **P→A automated transition test:** Inject anomalous agent behavior (e.g., artificially inflate drift score) and confirm that steps classified safe under EC-2.21 run automatically, and that every other step waits for a human.
 11. **A→C manual transition test:** Trigger Contingency from Alternate and confirm all multi-agent orchestration stops and only the single supervised agent remains.
 12. **Full PACE cycle test:** Walk through P→A→C→E→P as a planned exercise, confirming every transition action executes correctly.
 
