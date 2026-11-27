@@ -30,14 +30,26 @@
       <li class="md-header-tabs__item">
         <a
           href="{% if nav_item.title == 'Home' %}{{ nav.homepage.url | url }}{% else %}{{ first_page_url(nav_item) | trim }}{% endif %}"
-          class="md-header-tabs__link{% if nav_item.active %} md-header-tabs__link--active{% endif %}"
+          class="md-header-tabs__link{% if nav_item.active %} md-header-tabs__link--active{% endif %}{% if nav_item.title == 'News' %} md-header-tabs__link--news{% endif %}"
         >
           {{ nav_item.title }}
+          {%- if nav_item.title == 'News' and config.extra.news_latest %}
+          <span class="md-header-tabs__new" data-news-latest="{{ config.extra.news_latest }}" title="Latest item: {{ config.extra.news_latest }}" hidden>New</span>
+          {%- endif %}
         </a>
       </li>
       {% endif %}
       {% endfor %}
     </ul>
+    {# Show the "New" pill on the News tab while the latest item is under three weeks old.
+       The date comes from hooks/news.py at build time; the age is checked in the browser
+       so the pill expires on its own even if the site is not rebuilt. #}
+    <script>
+      document.querySelectorAll("[data-news-latest]").forEach(function (el) {
+        var latest = Date.parse(el.getAttribute("data-news-latest"));
+        if (!isNaN(latest) && Date.now() - latest < 21 * 864e5) el.hidden = false;
+      });
+    </script>
 
     {# Colour-scheme toggle #}
     {% if config.theme.palette %}

@@ -67,6 +67,7 @@ class NewsItem:
     summary: str = ""       # first paragraph after the tags, plain text
     controls: list[str] = field(default_factory=list)
     owned_by: str = ""      # who owns what MASO does not cover, plain text
+    owner_anchor: str = ""  # anchor on the scope page for that owner, "" for an open gap
 
 
 _items: list[NewsItem] = []
@@ -93,7 +94,10 @@ def _finish_verdict(item: NewsItem, block: list[str]) -> None:
     para: list[str] = []
     for line in block:
         if line.startswith("**Owned by**:"):
-            item.owned_by = _plain(line.split(":", 1)[1])
+            raw = line.split(":", 1)[1]
+            item.owned_by = _plain(raw)
+            m = re.search(r"scope-and-responsibilities\.md#([\w-]+)", raw)
+            item.owner_anchor = m.group(1) if m else ""
             continue
         if line.startswith("|"):
             cells = [c.strip() for c in line.strip().strip("|").split("|")]
@@ -268,6 +272,77 @@ def render_scoreboard(items: list[NewsItem]) -> str:
     return out
 
 
+OWNER_LABELS = {
+    "vulnerability-management": "Vulnerability management and application security",
+    "vendors": "Vendors",
+    "enterprise-identity": "Enterprise identity and platform security",
+    "security-operations": "Security operations and endpoint security",
+    "model-providers": "Model providers",
+    "platform-engineering": "Platform engineering",
+    "data-governance": "Data governance",
+    "risk-and-compliance": "Risk, compliance, and legal",
+    "roles": "The agent owner or AI security",
+}
+SCOPE_SRC = "core/scope-and-responsibilities.md"
+
+
+def render_scoreline_md(items: list[NewsItem]) -> str:
+    v = [i for i in items if i.kind == "verdict"]
+    n = {k: sum(1 for i in v if i.vtype == k) for k in VERDICT_CLASS}
+    return (
+        f"Of the **{len(v)} incidents** on this page, MASO implemented as specified would have "
+        f"**prevented {n['success']}** and **contained {n['warning']}**. "
+        f"It would **not have prevented {n['danger']}**."
+    )
+
+
+def render_top_controls(items: list[NewsItem], limit: int = 6) -> str:
+    counts: dict[str, int] = {}
+    for it in items:
+        if it.kind == "verdict" and it.vtype in ("success", "warning"):
+            for cid in it.controls:
+                counts[cid] = counts.get(cid, 0) + 1
+    top = sorted(counts.items(), key=lambda kv: (-kv[1], _control_sort_key(kv[0])))[:limit]
+    rows = []
+    for cid, n in top:
+        page = _control_pages.get(cid)
+        name = _control_names.get(cid, "")
+        label = f"[{cid} {name}]({page})" if page else cid
+        rows.append(f"| {label} | {n} |")
+    return "| Control | Incidents it prevented or contained |\n|---|---|\n" + "\n".join(rows)
+
+
+def _after_first_sentence(text: str) -> str:
+    """Drop the verdict sentence ("MASO would not have prevented this.") that the list already implies."""
+    head, sep, rest = text.partition(". ")
+    return rest if sep and rest else text
+
+
+def render_limits(items: list[NewsItem]) -> str:
+    out = []
+    missed = [i for i in items if i.kind == "verdict" and i.vtype == "danger"]
+    if missed:
+        out.append("**Incidents MASO would not have prevented:**\n")
+        out += [f"- [{_md_escape(i.title)}](#{i.anchor}). {_after_first_sentence(i.bottom_line)}" for i in missed]
+        out.append("")
+    gaps = [i for i in items if i.owned_by.startswith("Nobody yet")]
+    if gaps:
+        out.append("**Open gaps in MASO itself**, where nobody owns the problem yet:\n")
+        out += [f"- [{_md_escape(i.title)}](#{i.anchor})" for i in gaps]
+        out.append("")
+    owners: dict[str, int] = {}
+    for it in items:
+        if it.owner_anchor:
+            owners[it.owner_anchor] = owners.get(it.owner_anchor, 0) + 1
+    if owners:
+        out.append("**Who owns what MASO does not cover**, across every entry on this page:\n")
+        out.append("| Owner | Entries |\n|---|---|")
+        for anchor, n in sorted(owners.items(), key=lambda kv: -kv[1]):
+            label = OWNER_LABELS.get(anchor, anchor)
+            out.append(f"| [{label}]({SCOPE_SRC}#{anchor}) | {n} |")
+    return "\n".join(out)
+
+
 def render_control_section(page_src: str, page_controls: set[str], items: list[NewsItem]) -> str:
     rows = []
     for cid in sorted(page_controls, key=_control_sort_key):
@@ -360,6 +435,8 @@ def on_config(config, **kwargs):
     _items = parse_news(news_path.read_text(encoding="utf-8")) if news_path.exists() else []
     for problem in validate(_items, _control_pages):
         log.warning(problem)
+    if _items:
+        config["extra"]["news_latest"] = _items[0].date.isoformat()
     return config
 
 
@@ -371,8 +448,15 @@ def on_page_markdown(markdown, page, config, files, **kwargs):
     if src == "README.md" and "<!-- NEWS_LATEST -->" in markdown:
         return markdown.replace("<!-- NEWS_LATEST -->", render_latest(_items))
 
-    if src == NEWS_SRC and "<!-- NEWS_SCOREBOARD -->" in markdown:
-        return markdown.replace("<!-- NEWS_SCOREBOARD -->", render_scoreboard(_items))
+    if src == NEWS_SRC:
+        for marker, render in (
+            ("<!-- NEWS_SCOREBOARD -->", render_scoreboard),
+            ("<!-- NEWS_SCORELINE -->", render_scoreline_md),
+            ("<!-- NEWS_TOP_CONTROLS -->", render_top_controls),
+            ("<!-- NEWS_LIMITS -->", render_limits),
+        ):
+            markdown = markdown.replace(marker, render(_items))
+        return markdown
 
     if src == "validated-against.md" and "<!-- NEWS_BY_CONTROL -->" in markdown:
         return markdown.replace("<!-- NEWS_BY_CONTROL -->", render_by_control(src, _items))
