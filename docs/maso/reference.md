@@ -101,11 +101,11 @@ Mandates turn abstract intent into artefacts that can be validated at deployment
 
 ## Architecture
 
-![MASO Architecture](../images/maso-architecture.svg)
+![MASO Architecture](../images/maso-architecture.svg){ .arch-diagram }
 
 ### Evaluation Architecture: Inline vs. Offline
 
-![MASO Evaluation Architecture](../images/maso-evaluation-architecture.svg)
+![MASO Evaluation Architecture](../images/maso-evaluation-architecture.svg){ .arch-diagram }
 
 The evaluation architecture separates two fundamentally different types of judgment. **Inline evaluation** (left) runs at agent speed using SLMs with measurable criteria: security, privacy, compliance, and business intent. These domains have clear thresholds. When they conflict, security and privacy override business intent. A **Flight Recorder** captures every action, verdict, and reasoning chain.
 
@@ -127,7 +127,7 @@ The **Flight Recorder** captures every agent action, judge verdict, tool invocat
 
 ## Visual Navigation
 
-![MASO Tube Map](../images/maso-tube-map.svg)
+![MASO Tube Map](../images/maso-tube-map.svg){ .arch-diagram }
 
 Seven coloured lines represent the original seven control domains. Stations are key controls. Zones are implementation tiers. Interchanges mark where domains share control points (Judge Gate, PACE Bridge, Agent Registry). River PACE flows through the centre, mapping resilience phases to tier progression. Privileged Agent Governance, Model Cognition Assurance, Agentic Task Mandate, and Objective Intent were added after the tube map was created and are not yet represented visually.
 
@@ -225,7 +225,7 @@ Cross-cutting strategy that complements all eleven control domains. Instead of r
 
 ## OWASP Risk Coverage
 
-![OWASP Dual Mapping](../images/owasp-dual-mapping.svg)
+![OWASP Dual Mapping](../images/owasp-dual-mapping.svg){ .arch-diagram }
 
 Full mapping against the three OWASP threat taxonomies relevant to multi-agent systems. The diagram covers the first two; the Agentic Skills Top 10 is mapped in its own table below.
 
@@ -286,7 +286,7 @@ In a multi-agent system the skill risk compounds: a skill loaded by an orchestra
 
 ## PACE Resilience for Multi-Agent Operations
 
-![PACE Multi-Agent Cycle](../images/pace-multi-agent-cycle.svg)
+![PACE Multi-Agent Cycle](../images/pace-multi-agent-cycle.svg){ .arch-diagram }
 
 The [PACE methodology](../README.md) (Primary, Alternate, Contingency, Emergency) from the parent framework is extended for multi-agent failure modes.
 

@@ -97,7 +97,7 @@ The per-agent Model-as-Judge in the original three-layer pattern fails at multi-
 
 ## The Practical Architecture
 
-![The Intent Layer - Post-Execution Evaluation](../images/intent-layer-architecture.svg)
+![The Intent Layer - Post-Execution Evaluation](../images/intent-layer-architecture.svg){ .arch-diagram }
 
 ### Critical Design Decisions
 

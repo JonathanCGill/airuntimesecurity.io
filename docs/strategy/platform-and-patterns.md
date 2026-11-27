@@ -16,7 +16,7 @@ An enterprise with twenty AI systems running on eight platforms, using fifteen m
 
 Standardisation is not about restricting innovation. It's about making governance affordable. Every unique combination of platform, model, pattern, and data access method is a new surface to secure, a new set of controls to configure, a new operational playbook to write, and a new skill set for operations teams to learn. Multiply that by the number of AI systems and the governance cost becomes unmanageable.
 
-![Platform and Patterns](../images/strategy-platform-patterns.svg)
+![Platform and Patterns](../images/strategy-platform-patterns.svg){ .arch-diagram }
 
 The principle is straightforward: **approved platforms, trusted models, proven patterns, standardised data access, consistent operations.** Teams get freedom to solve novel business problems. They don't get freedom to invent novel infrastructure.
 

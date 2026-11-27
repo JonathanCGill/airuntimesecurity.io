@@ -331,7 +331,7 @@ rules:
 
 ### Message Latency Budget (Tier 4)
 
-![Message Latency Budget](../../images/example-comms-latency-budget.svg)
+![Message Latency Budget](../../images/example-comms-latency-budget.svg){ .arch-diagram }
 
 | Stage | Latency | Cumulative |
 |-------|---------|------------|
@@ -379,7 +379,7 @@ This is what your alerting pipeline drives.
 
 ## Step 9: AWS Implementation
 
-![AWS Implementation Architecture](../../images/example-comms-aws-implementation.svg)
+![AWS Implementation Architecture](../../images/example-comms-aws-implementation.svg){ .arch-diagram }
 
 ### Inline (Milliseconds)
 
@@ -442,5 +442,5 @@ S3 stores message logs. Step Functions selects samples for Bedrock judge evaluat
 
 ## Architecture Diagram
 
-![High-Volume Communications Architecture](../../images/example-comms-architecture.svg)
+![High-Volume Communications Architecture](../../images/example-comms-architecture.svg){ .arch-diagram }
 

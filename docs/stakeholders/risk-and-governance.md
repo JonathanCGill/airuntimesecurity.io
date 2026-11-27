@@ -34,7 +34,7 @@ The framework is built on five principles. Every control, every metric, every de
 
 ## How the Layers Work Together
 
-![Three-Layer Control Stack](../images/three-layer-stack.svg)
+![Three-Layer Control Stack](../images/three-layer-stack.svg){ .arch-diagram }
 
 Three independent control layers, each catching what the previous one missed:
 
@@ -142,7 +142,7 @@ The tier drives everything downstream: which controls apply, how much evaluation
 
 Every control layer has a predetermined degradation path:
 
-![PACE Degradation Path](../images/pace-degradation.svg)
+![PACE Degradation Path](../images/pace-degradation.svg){ .arch-diagram }
 
 | State | What It Means | Risk Implication |
 |---|---|---|

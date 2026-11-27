@@ -6,7 +6,7 @@ description: "The most effective way to reduce AI risk is not using AI where it 
 
 > The most effective way to reduce AI risk is to not use AI where it doesn't belong.
 
-![The First Control](../images/insight-first-control.svg)
+![The First Control](../images/insight-first-control.svg){ .arch-diagram }
 
 Before guardrails, before judges, before human oversight - there's a more fundamental question:
 

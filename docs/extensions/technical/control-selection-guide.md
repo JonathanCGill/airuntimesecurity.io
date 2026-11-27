@@ -20,7 +20,7 @@ Not every AI system needs every control. Controls should be proportionate to the
 
 ### Risk Tier Decision Tree
 
-![Risk Tier Decision Tree](../../images/control-selection-decision-tree.svg)
+![Risk Tier Decision Tree](../../images/control-selection-decision-tree.svg){ .arch-diagram }
 
 ### Risk Tier Examples
 

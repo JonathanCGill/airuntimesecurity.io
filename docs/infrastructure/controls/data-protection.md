@@ -44,7 +44,7 @@ Every data element entering an AI system component must be classifiable by sensi
 
 ### Classification Points
 
-![Data Classification Points](../diagrams/data-classification-points.svg)
+![Data Classification Points](../diagrams/data-classification-points.svg){ .arch-diagram }
 
 Data classification must occur at:
 

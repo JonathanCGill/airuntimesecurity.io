@@ -23,7 +23,7 @@ Standard AI controls assume discrete request/response interactions. Agentic AI b
 
 ## Agentic Control Model
 
-![Agentic Control Model](../../images/agentic-control-model.svg)
+![Agentic Control Model](../../images/agentic-control-model.svg){ .arch-diagram }
 
 ### Three Phases of Agentic Control
 

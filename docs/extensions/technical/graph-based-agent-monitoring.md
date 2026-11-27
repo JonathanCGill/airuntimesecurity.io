@@ -35,7 +35,7 @@ Every observable event in a multi-agent system is a relationship:
 
 These are not just log entries. They are a live, queryable model of how the system is behaving right now. The graph *is* the system's interaction topology, updated in real time, and every graph algorithm in the literature becomes a monitoring tool.
 
-![Agent Interaction Graph with Anomaly Detection](../../images/insight-graph-agent-monitoring.svg)
+![Agent Interaction Graph with Anomaly Detection](../../images/insight-graph-agent-monitoring.svg){ .arch-diagram }
 
 ## Near Real-Time: Is It Possible?
 
@@ -155,7 +155,7 @@ Memgraph handles this through temporal edge properties. Each edge carries a time
 
 Beyond aggregate comparison, temporal graph analysis can detect specific sequences of interactions that form attack patterns:
 
-![Temporal Motif Detection](../../images/graph-agent-temporal-motif.svg)
+![Temporal Motif Detection](../../images/graph-agent-temporal-motif.svg){ .arch-diagram }
 
 This is a temporal motif: a specific sequence of edges with temporal ordering constraints. Motif detection on a temporal graph is a single query. On tabular logs, it is a window function with self-joins across four tables, ordered by timestamp, filtered by session. The graph query runs in milliseconds. The SQL query might not finish before the next event arrives.
 
@@ -163,7 +163,7 @@ This is a temporal motif: a specific sequence of edges with temporal ordering co
 
 The graph database does not replace the framework's observability stack. It sits alongside it, consuming the same event stream and producing alerts that feed into the same PACE escalation logic.
 
-![Graph Agent Architecture Pipeline](../../images/graph-agent-architecture-pipeline.svg)
+![Graph Agent Architecture Pipeline](../../images/graph-agent-architecture-pipeline.svg){ .arch-diagram }
 
 The message bus (already mandated by MASO) is the single source of truth. The stream processor (Kafka, Pulsar, or equivalent) fans out to three consumers:
 

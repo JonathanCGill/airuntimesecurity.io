@@ -91,7 +91,7 @@ Rationale: CreditAssist directly influences decisions that affect consumers' acc
 
 ## Step 2: Control Architecture
 
-![CreditAssist Control Architecture](../../images/example-credit-architecture.svg)
+![CreditAssist Control Architecture](../../images/example-credit-architecture.svg){ .arch-diagram }
 
 **Why 100% HITL AND 100% Judge sampling?**
 - HITL (underwriter): Required for every decision-regulatory mandate, accountability

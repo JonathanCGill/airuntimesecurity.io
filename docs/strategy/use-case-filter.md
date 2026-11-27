@@ -18,7 +18,7 @@ The filter sits between [Business Alignment](business-alignment.md) (is this a r
 
 ## The Filter
 
-![Use Case Filter](../images/strategy-use-case-filter.svg)
+![Use Case Filter](../images/strategy-use-case-filter.svg){ .arch-diagram }
 
 Seven questions, evaluated in order. Each question has a clear exit or a continuation. The first "yes" that leads to a non-AI exit is the answer - don't keep going just because you want to reach the AI options.
 

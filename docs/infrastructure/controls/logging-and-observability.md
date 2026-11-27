@@ -147,7 +147,7 @@ For agentic AI systems, every step in the agent's decision chain must be logged.
 
 Logs must support reconstruction of the full decision chain for any agent task:
 
-![Agent Decision Chain Reconstruction](../diagrams/agent-chain-reconstruction.svg)
+![Agent Decision Chain Reconstruction](../diagrams/agent-chain-reconstruction.svg){ .arch-diagram }
 
 This chain is the forensic record. Without it, you cannot explain *why* the agent did what it did.
 

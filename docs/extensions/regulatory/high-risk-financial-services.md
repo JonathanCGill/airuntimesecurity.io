@@ -296,7 +296,7 @@ General cybersecurity risks - ransomware, DDoS, cloud misconfiguration - exist w
 
 AI systems don't generate knowledge from nothing. They consume data from upstream financial systems - and inherit every vulnerability those systems carry. If a feeder system is compromised, the AI is confidently wrong or actively dangerous.
 
-![Financial Services AI Feeder Systems](../../images/banking-ai-feeder-systems.svg)
+![Financial Services AI Feeder Systems](../../images/banking-ai-feeder-systems.svg){ .arch-diagram }
 
 ### The Financial Services AI Data Supply Chain
 

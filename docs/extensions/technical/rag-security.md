@@ -12,7 +12,7 @@ This covers security controls for the RAG pipeline: ingestion, embedding, retrie
 
 ## Architecture and Attack Surface
 
-![RAG Pipeline - Security Control Points](../../images/rag-security-controls.svg)
+![RAG Pipeline - Security Control Points](../../images/rag-security-controls.svg){ .arch-diagram }
 
 | Component | Attack Surface | Control Category |
 |-----------|---------------|-----------------|

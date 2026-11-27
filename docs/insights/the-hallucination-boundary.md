@@ -16,7 +16,7 @@ The same fabrication in a clinical decision support system excludes a viable tre
 
 The hallucination is identical. The consequence is not. What changed is not the model or the output. What changed is the **decision authority** the system holds and the **blast radius** of a wrong answer.
 
-![The Hallucination Risk Curve](../images/insight-hallucination-risk.svg)
+![The Hallucination Risk Curve](../images/insight-hallucination-risk.svg){ .arch-diagram }
 
 ## Three Variables That Determine Hallucination Tolerance
 

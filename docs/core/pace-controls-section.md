@@ -12,7 +12,7 @@ description: Defines the internal PACE degradation plans for each AI control lay
 
 Every control layer will eventually fail. The question is not *whether* but *how*. Before deploying any AI system, the architect must define the fail posture for each control at the assigned risk tier. This is a mandatory design input, not an operational afterthought.
 
-![Fail Posture Decision Tree](../images/pace-fail-posture-decision.svg)
+![Fail Posture Decision Tree](../images/pace-fail-posture-decision.svg){ .arch-diagram }
 
 ## Guardrails - Internal PACE
 

@@ -16,7 +16,7 @@ The security implications are not simple.
 
 RAG creates a new data access path that bypasses your existing access controls.
 
-![RAG Data Path Comparison](../images/rag-data-path-comparison.svg)
+![RAG Data Path Comparison](../images/rag-data-path-comparison.svg){ .arch-diagram }
 
 The LLM sees the retrieved data. The LLM generates a response. If the retrieved data includes content the user shouldn't see, the LLM will happily summarise it for them.
 

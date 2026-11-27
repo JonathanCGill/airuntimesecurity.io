@@ -28,19 +28,19 @@ You cannot enforce behavioral security controls on infrastructure you do not con
 
 ### How Technical Controls Enable the Three-Layer Pattern
 
-![Relationship to Parent Framework](diagrams/relationship-to-parent.svg)
+![Relationship to Parent Framework](diagrams/relationship-to-parent.svg){ .arch-diagram }
 
 ### IAM Control Architecture
 
-![IAM Control Layers](diagrams/iam-control-layers.svg)
+![IAM Control Layers](diagrams/iam-control-layers.svg){ .arch-diagram }
 
 ### Logging Pipeline and Detection Architecture
 
-![Logging Architecture](diagrams/logging-architecture.svg)
+![Logging Architecture](diagrams/logging-architecture.svg){ .arch-diagram }
 
 ### Network Zone Architecture
 
-![Network Zones](diagrams/network-zones.svg)
+![Network Zones](diagrams/network-zones.svg){ .arch-diagram }
 
 ## Control Domains
 

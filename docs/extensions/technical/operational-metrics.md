@@ -107,7 +107,7 @@ Every metric should help answer one of these questions:
 
 ### O1. Cost
 
-![Cost-Quality Frontier](../../images/cost-quality-frontier.svg)
+![Cost-Quality Frontier](../../images/cost-quality-frontier.svg){ .arch-diagram }
 
 | Metric | Definition | Target | Alert Threshold |
 |--------|------------|--------|-----------------|

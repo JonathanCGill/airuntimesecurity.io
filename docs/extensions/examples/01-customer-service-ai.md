@@ -96,7 +96,7 @@ At HIGH tier the Judge samples outputs rather than evaluating every one. The [co
 
 ### Control Architecture
 
-![Aria Control Architecture](../../images/example-aria-architecture.svg)
+![Aria Control Architecture](../../images/example-aria-architecture.svg){ .arch-diagram }
 
 ## Step 3: Guardrails Implementation (Inline)
 

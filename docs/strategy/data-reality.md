@@ -20,7 +20,7 @@ Data isn't a supporting resource for AI strategy. **Data is the strategy's found
 
 Before committing to any AI initiative, assess data reality across five dimensions:
 
-![Data Readiness Assessment](../images/strategy-data-readiness.svg)
+![Data Readiness Assessment](../images/strategy-data-readiness.svg){ .arch-diagram }
 
 ### 1. Existence
 

@@ -40,7 +40,7 @@ Without this:
 
 ## Architecture
 
-![Objective Intent Evaluation Architecture](../../images/objective-intent-architecture.svg)
+![Objective Intent Evaluation Architecture](../../images/objective-intent-architecture.svg){ .arch-diagram }
 
 The architecture operates at two levels:
 
@@ -223,7 +223,7 @@ An OISpec is a structured, version-controlled document attached to every agent, 
 
 ### Level 1: Tactical, Single Agent Against Its OISpec
 
-![Tactical Judge Evaluation](../../images/objective-intent-tactical-judge.svg)
+![Tactical Judge Evaluation](../../images/objective-intent-tactical-judge.svg){ .arch-diagram }
 
 The tactical judge answers: **Did this agent do what it was supposed to do, within the parameters it was given?**
 
@@ -231,7 +231,7 @@ This is the monitoring of one: the individual agent against its declared mandate
 
 ### Level 2: Strategic, All Agents Against the Workflow OISpec
 
-![Strategic Evaluator](../../images/objective-intent-strategic-evaluator.svg)
+![Strategic Evaluator](../../images/objective-intent-strategic-evaluator.svg){ .arch-diagram }
 
 The strategic evaluator answers: **Did the system as a whole achieve what was intended, and did the agents collectively behave as designed?**
 
@@ -239,7 +239,7 @@ This is the monitoring of the whole: the fleet-level behavioral assessment again
 
 ### Level 3: Judge Against Its OISpec
 
-![Judge Meta-Evaluator](../../images/objective-intent-judge-meta-evaluator.svg)
+![Judge Meta-Evaluator](../../images/objective-intent-judge-meta-evaluator.svg){ .arch-diagram }
 
 The meta-evaluator answers: **Is the judge still doing what it was configured to do, or has it drifted?**
 
@@ -247,7 +247,7 @@ This closes the "who watches the watchmen" loop, not through infinite recursion,
 
 ## Diagram: Intent Evaluation Hierarchy
 
-![Intent Evaluation Hierarchy](../../images/objective-intent-evaluation-hierarchy.svg)
+![Intent Evaluation Hierarchy](../../images/objective-intent-evaluation-hierarchy.svg){ .arch-diagram }
 
 **Key insight:** Intent flows downward (decomposed from workflow to agent). Evaluation flows upward (aggregated from agent to workflow). Judge monitoring is lateral, independent of both flows.
 

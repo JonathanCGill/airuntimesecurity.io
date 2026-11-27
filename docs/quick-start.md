@@ -16,7 +16,7 @@ You can't fully test AI before deployment. It's non-deterministic, it surprises 
 
 The industry is converging on three layers of control:
 
-![Quick Start Overview](images/quick-start-overview.svg)
+![Quick Start Overview](images/quick-start-overview.svg){ .arch-diagram }
 
 | Layer | What It Does | When | Tools |
 |-------|--------------|------|-------|

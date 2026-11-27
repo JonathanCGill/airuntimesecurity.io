@@ -48,7 +48,7 @@ The goal is: **AI helps interpret signals, while fraud systems remain the enforc
 
 Fraud triage has three independent decision authorities. AI is one voice, not the final word.
 
-![Three Authority Model](../../images/example-fraud-three-authorities.svg)
+![Three Authority Model](../../images/example-fraud-three-authorities.svg){ .arch-diagram }
 
 | Authority | Role | Timing |
 |-----------|------|--------|
@@ -82,7 +82,7 @@ Rationale: AI doesn't execute, but bad recommendations at scale could enable fra
 
 Each stage generates events and alerts. The full chain provides complete audit trail and enables pattern detection.
 
-![Fraud Event Chain](../../images/example-fraud-event-chain.svg)
+![Fraud Event Chain](../../images/example-fraud-event-chain.svg){ .arch-diagram }
 
 ### Stage 1: Transaction Enters Fraud Pipeline
 
@@ -214,7 +214,7 @@ Model-as-Judge + ML analyse completed cases:
 
 Fraud systems operate in risk bands. AI must fit within them, not slow them down.
 
-![Fraud Timing Model](../../images/example-fraud-timing-model.svg)
+![Fraud Timing Model](../../images/example-fraud-timing-model.svg){ .arch-diagram }
 
 ### Inline (Milliseconds)
 
@@ -259,7 +259,7 @@ Fraud systems operate in risk bands. AI must fit within them, not slow them down
 
 All systems emit structured events into a shared telemetry spine.
 
-![Alert Aggregation Architecture](../../images/example-fraud-alert-aggregation.svg)
+![Alert Aggregation Architecture](../../images/example-fraud-alert-aggregation.svg){ .arch-diagram }
 
 ### Event Categories
 
@@ -423,5 +423,5 @@ rules:
 
 ## Architecture Diagram
 
-![Fraud Analytics Architecture](../../images/example-fraud-architecture.svg)
+![Fraud Analytics Architecture](../../images/example-fraud-architecture.svg){ .arch-diagram }
 

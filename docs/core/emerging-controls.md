@@ -25,17 +25,17 @@ The core principles hold. Implementation must evolve.
 
 ## Overview Map
 
-![Emerging Controls Tube Map](../images/emerging-tube-map.svg)
+![Emerging Controls Tube Map](../images/emerging-tube-map.svg){ .arch-diagram }
 
 The map shows how emerging controls connect. Solid lines indicate established or emerging patterns; dashed lines indicate conceptual/research-stage controls. Interchanges mark integration points between control domains.
 
 ## Proposed Architecture
 
-![Emerging Controls Architecture](../images/emerging-architecture.svg)
+![Emerging Controls Architecture](../images/emerging-architecture.svg){ .arch-diagram }
 
 ## 1. Modality-Specific Guardrails
 
-![Modality-Specific Guardrails](../images/modality-guardrails.svg)
+![Modality-Specific Guardrails](../images/modality-guardrails.svg){ .arch-diagram }
 
 ### Input
 
@@ -64,7 +64,7 @@ The map shows how emerging controls connect. Solid lines indicate established or
 
 ## 2. Unified Multimodal Judge
 
-![Multi-Mode Judge Architecture](../images/multi-mode-judge.svg)
+![Multi-Mode Judge Architecture](../images/multi-mode-judge.svg){ .arch-diagram }
 
 A Judge seeing only text when the interaction included images evaluates incomplete information.
 
@@ -116,7 +116,7 @@ Requires model to expose reasoning. If hidden, this control is unavailable.
 
 ## 4. State Governance
 
-![State Governance](../images/state-governance.svg)
+![State Governance](../images/state-governance.svg){ .arch-diagram }
 
 Long context and memory create attack surfaces that accumulate over time.
 
@@ -146,7 +146,7 @@ Long context and memory create attack surfaces that accumulate over time.
 
 ## 5. Streaming Controls
 
-![Streaming Controls](../images/streaming-controls.svg)
+![Streaming Controls](../images/streaming-controls.svg){ .arch-diagram }
 
 Output reaches users before validation completes. No good solution exists.
 

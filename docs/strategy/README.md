@@ -30,7 +30,7 @@ This does not mean accepting shadow IT. It means recognising that change happens
 
 ## The Progression
 
-![AI Strategy Landscape](../images/strategy-landscape.svg)
+![AI Strategy Landscape](../images/strategy-landscape.svg){ .arch-diagram }
 
 ### Phase 1: Is This the Right Problem - and the Right Solution?
 
@@ -98,7 +98,7 @@ Implement the system and its controls together, deploy with appropriate caution,
 
 ## The Full Sequence
 
-![From Strategy to Production - Full Sequence](../images/strategy-full-sequence.svg)
+![From Strategy to Production - Full Sequence](../images/strategy-full-sequence.svg){ .arch-diagram }
 
 ## Where Organisations Are
 

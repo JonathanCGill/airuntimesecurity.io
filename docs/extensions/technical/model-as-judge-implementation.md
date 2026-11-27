@@ -12,7 +12,7 @@ This page covers the async LLM Judge pattern. It reviews AI system outputs to id
 
 > For model selection guidance, see [Model-as-Judge Selection](judge-model-selection.md)
 
-![Assurance Model](../../images/assurance-model-diagram.svg)
+![Assurance Model](../../images/assurance-model-diagram.svg){ .arch-diagram }
 
 ## What the Judge Is Not
 
@@ -28,7 +28,7 @@ This page covers the async LLM Judge pattern. It reviews AI system outputs to id
 
 The Judge operates **after the fact**, reviewing what has already happened:
 
-![Judge Interaction Flow](../../images/judge-interaction-flow.svg)
+![Judge Interaction Flow](../../images/judge-interaction-flow.svg){ .arch-diagram }
 
 1. **Transaction occurs** - User interacts with AI system
 2. **Guardrails check inline** - Fast, deterministic, blocks obvious issues
@@ -45,7 +45,7 @@ The critical point: the transaction completes before the Judge evaluates. The Ju
 
 For high-volume systems, use a two-tier approach:
 
-![Two-Tier Judge Architecture](../../images/two-tier-judge.svg)
+![Two-Tier Judge Architecture](../../images/two-tier-judge.svg){ .arch-diagram }
 
 For agentic systems where even the two-tier async approach is too slow, a [distilled Small Language Model](distill-judge-slm.md) can move the fast tier inline, screening every action in milliseconds before it reaches the network or database.
 
@@ -160,7 +160,7 @@ The Judge is itself an AI system. It requires:
 
 ### Choosing a Judge Approach
 
-![Model-as-Judge Decision Tree](../../images/judge-model-decision-tree.svg)
+![Model-as-Judge Decision Tree](../../images/judge-model-decision-tree.svg){ .arch-diagram }
 
 ## Summary
 

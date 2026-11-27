@@ -333,7 +333,7 @@ uvicorn examples.fastapi_app:app --reload
 
 ## Architecture
 
-![AIRS Security Pipeline](../images/sdk-pipeline-architecture.svg)
+![AIRS Security Pipeline](../images/sdk-pipeline-architecture.svg){ .arch-diagram }
 
 ## Project Structure
 

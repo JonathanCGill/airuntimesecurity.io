@@ -43,7 +43,7 @@ Credentials must never appear in model prompts, system prompts, conversation his
 
 ### How Credentials Stay Out of Context
 
-![Credential Isolation Architecture](../diagrams/credential-isolation.svg)
+![Credential Isolation Architecture](../diagrams/credential-isolation.svg){ .arch-diagram }
 
 **Out-of-band credential injection:** When an agent needs to call a tool API, the authorization gateway (IAM-04) injects the credential at the network layer - the agent's request to the gateway says *what* to call, and the gateway adds *how* to authenticate. The credential never passes through the model.
 

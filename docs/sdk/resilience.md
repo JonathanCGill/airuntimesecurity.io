@@ -50,7 +50,7 @@ breaker = CircuitBreaker(
 
 ### Circuit States
 
-![Circuit Breaker States](../images/sdk-circuit-breaker-states.svg)
+![Circuit Breaker States](../images/sdk-circuit-breaker-states.svg){ .arch-diagram }
 
 | State | AI Traffic | Description |
 |-------|-----------|-------------|

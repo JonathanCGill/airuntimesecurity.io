@@ -21,7 +21,7 @@ This article defines what guardrails should catch, how they should work at each 
 
 ## Guardrail Architecture
 
-![Guardrail Architecture](../images/guardrail-architecture.svg)
+![Guardrail Architecture](../images/guardrail-architecture.svg){ .arch-diagram }
 
 Guardrails operate at five points in the AI pipeline:
 
@@ -236,7 +236,7 @@ Guardrails are always on. But "always" meets reality when a legitimate business 
 
 ### The Exception Process
 
-![Guardrail Exception Governance](../images/guardrail-exception-governance.svg)
+![Guardrail Exception Governance](../images/guardrail-exception-governance.svg){ .arch-diagram }
 
 | Step | Activity | Owner | Output |
 |------|----------|-------|--------|

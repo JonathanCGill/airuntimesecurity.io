@@ -26,7 +26,7 @@ You don't need governance theory. You need an architecture reference.
 
 Every AI request passes through a pipeline. Controls intercept at specific points:
 
-![Pipeline Control Flow](../images/pipeline-control-flow.svg)
+![Pipeline Control Flow](../images/pipeline-control-flow.svg){ .arch-diagram }
 
 **Key architectural decisions:**
 - Judge runs **asynchronously** for most tiers (doesn't block response). Runs **synchronously** for CRITICAL tier (blocks until evaluated)

@@ -96,7 +96,7 @@ Automatic halts triggered by anomaly detection. Error rate spikes? Pause. Unusua
 
 Infrastructure controls don't replace instructions. They back them up.
 
-![Defence in Depth Layers](../images/insights-defence-layers.svg)
+![Defence in Depth Layers](../images/insights-defence-layers.svg){ .arch-diagram }
 
 Instructions tell the agent what you want. Infrastructure ensures it happens. Monitoring catches gaps. Response closes them.
 

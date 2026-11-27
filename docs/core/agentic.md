@@ -21,7 +21,7 @@ Additional controls for AI systems that take autonomous actions.
 
 Agentic AI security reduces to two problems:
 
-![The Two Core Problems](../images/agentic-two-problems.svg)
+![The Two Core Problems](../images/agentic-two-problems.svg){ .arch-diagram }
 
 | Problem | Question | Failure Mode |
 |---------|----------|--------------|
@@ -99,7 +99,7 @@ Validate every action independently. Don't trust agent reasoning.
 
 **Validation flow:**
 
-![Action Validator Flow](../images/action-validator-flow.svg)
+![Action Validator Flow](../images/action-validator-flow.svg){ .arch-diagram }
 
 **Dry-run / simulation mode:** For high-risk or first-time actions, execute in simulation mode before committing. The gateway routes the action to a sandbox or staging environment, captures the result, and presents it for review. Only after validation does the action execute against production systems. This is especially valuable during initial deployment when behavioral baselines have not yet been established.
 
