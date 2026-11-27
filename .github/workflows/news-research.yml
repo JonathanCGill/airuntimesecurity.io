@@ -1,6 +1,9 @@
 name: Biweekly News Research
 
 on:
+  # Runs every Monday; the first step skips even ISO weeks, so it works fortnightly.
+  schedule:
+    - cron: "17 6 * * 1"
   workflow_dispatch:
 
 permissions:
