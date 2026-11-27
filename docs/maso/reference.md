@@ -372,6 +372,7 @@ MASO inherits the parent framework's regulatory mappings and extends them to mul
 | **EU AI Act** | Art. 9, 14, 15 | Human oversight proportional to autonomy level. PACE provides the operational model. |
 | **NIST AI RMF** | Govern, Map, Measure, Manage | Control domains map directly: Observability → Measure, Execution Control → Manage. |
 | **ISO 42001** | §8.1-8.6, Annex A/B | Per-agent risk assessment and control assignment. |
+| **ISO/IEC 27090** | 5.3, 6.9, 6.11.3, 7.2-7.4 | Zero trust for agent actions, least privilege per agent pattern, prompt injection, and mitigation interference and decay. MASO covers the agent material in more depth; the standard does not address inter-agent communication, delegation or shared memory. See [ISO/IEC 27090 Alignment](../extensions/regulatory/iso-27090-alignment.md). |
 | **MITRE ATLAS** | Agent-focused techniques (Oct 2025) | Threat intelligence aligned with ATLAS agent-specific attack techniques. |
 | **DORA** | Art. 11 | Digital operational resilience for AI agents in financial services. PACE provides the resilience model. |
 | **APRA CPS 234** | Information Security | Australian prudential requirements for AI agent deployments in financial services. |
@@ -395,6 +396,12 @@ MASO's anomaly detection uses behavioural baselines. An adversary who shifts age
 ### Compound attacks exploit gaps between controls
 
 The individual red team scenarios (RT-01 through RT-13) test controls in isolation. Real attackers chain techniques: injection to gain a foothold, delegation exploitation to escalate privilege, then data exfiltration through the elevated access. The [Red Team Playbook](red-team/red-team-playbook.md) includes compound attack scenarios (RT-14 through RT-16) that test these chains. If your individual control tests pass but compound tests fail, the gap is in control integration, not in individual control strength.
+
+### Controls interfere and decay across agent boundaries
+
+Each agent's controls shape what the next agent, and the Judge, receive. Tightening input sanitisation on one agent changes the distribution of messages downstream, which can shift a Judge or anomaly baseline calibrated on the old traffic. A filter added at the message bus can strip the signal that cross-agent correlation (OB-3.4) relies on. And every model-based control in the system, from per-agent guardrails to the Judge to the observability agent, loses effectiveness over time as attackers adapt and underlying models change. ISO/IEC 27090 (7.2 to 7.4) makes the same point for single systems; in a multi-agent system the effects compound along the chain.
+
+**The counter:** treat a change to any agent's controls as a change to the whole workflow. Re-run the compound red team scenarios as well as the scenario for the control that changed, and replay fixed labelled sets through each model-based control on a schedule so that decay shows up as a measured fall rather than a quiet one. See [Operating the Layers Together](../core/controls.md#operating-the-layers-together).
 
 ### Tier 3 is unproven at scale
 

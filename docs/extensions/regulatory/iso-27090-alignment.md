@@ -9,8 +9,8 @@ description: "How ISO/IEC 27090:2026, the international guidance on AI security 
 
 *Part of [Regulatory Alignment](README.md) · Review date: November 2026*
 
-!!! warning "About this page"
-    ISO/IEC 27090 is a copyrighted ISO/IEC publication. This page summarises its structure and themes in our own words and points to clause numbers so you can find the source text. It does not reproduce the standard. If you need to evidence alignment, buy a copy from ISO or your national standards body and work from the original.
+!!! info "About this page"
+    This page summarises the standard in our own words and points to clause numbers so you can find the source text. It does not reproduce the standard, which is a copyrighted ISO/IEC publication. Copies are available from ISO and from national standards bodies.
 
 ## What the standard is
 
@@ -27,6 +27,17 @@ The standard is organised around a threat catalogue. For each type of compromise
 | Annex A | Mapping attacks to life cycle stages and to ML assets | Useful for scoping which threats need runtime controls |
 | Annex B | AI-specific variants of conventional attacks: resource exhaustion, supply chain, backdoors, model theft, data leaks | Medium. Resource exhaustion and input leakage through RAG matter at runtime |
 | Annex C | Federated machine learning | Low |
+
+## Should you read it?
+
+Yes, if it fits your role. It is a well-organised, vendor-neutral account of how AI systems get attacked, and it gives security, data science and audit teams a shared vocabulary. Read it if you:
+
+- **run an ISO/IEC 27001 ISMS** and need to bring AI systems into scope. It is written to extend that programme, and auditors will increasingly expect you to know it;
+- **threat-model AI systems**. Clause 6 is a structured catalogue of compromise types with consequences, detection and mitigation for each, and Annex A maps them to life cycle stages and assets;
+- **train or fine-tune models**. The material on data poisoning, model poisoning and privacy attacks (membership inference, model inversion) is the strongest part of the standard and mostly outside what a runtime framework covers;
+- **buy AI systems or assess suppliers**. It gives you threat-based questions to ask and terms suppliers should recognise.
+
+Know what it is not. It is guidance, so it describes options and their trade-offs rather than prescribing a design, and many sections say plainly that detection is hard or the research is still open. Its coverage of LLM applications and agents is short: a few pages on prompt injection and a few examples on agent privileges. If you are deploying generative or agentic systems, read it for the threat model and the ISMS fit, and use AIRS and [MASO](../../maso/README.md) for how to build and run the controls.
 
 ## Where the standard and the framework agree
 

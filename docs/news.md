@@ -331,6 +331,38 @@ OpenAI's October misalignment report describes two incidents in which internal c
 
 ---
 
+### 2026-10-14: ISO/IEC 27090 Gives AI Security Its First International Standard
+
+**Tags**: Guardrails, Agentic, Supply Chain, Observability, Data Protection
+
+**ISO/IEC JTC 1/SC 27**, the committee behind ISO/IEC 27001, published **ISO/IEC 27090:2026**, *Addressing security threats and compromises to AI systems*. It is guidance rather than a certifiable requirements standard, written to extend an existing ISO/IEC 27001 security programme to AI. It catalogues nine compromise types (data poisoning, evasion, membership inference, model exfiltration, model inversion, direct model poisoning, sensitive model output, prompt injection, and injection attacks carried in model output), each with consequences, detection and mitigation. It applies zero trust to AI, including per-action authorisation and expiring permissions for agents, and sets out least privilege for API-integrated agents, computer-use agents and orchestrators. Its final clause makes a point most AI guidance skips: mitigations can interfere with each other and lose effectiveness over time, so they have to be tested together and monitored in operation.
+
+!!! warning "MASO coverage: Partly covered"
+    **MASO covers the agent and runtime material and goes further on multi-agent systems. Most of the standard's training-time content is outside MASO's scope.**
+
+    | Failure point | MASO control | Effect |
+    |---|---|---|
+    | Agents granted broad, standing permissions | [IA-1.4 Scoped permissions](maso/controls/identity-and-access.md) | Each agent gets only the permissions its task needs. |
+    | Agent inherits the caller's full rights | [IA-1.3 No orchestrator inheritance](maso/controls/identity-and-access.md) | Agents act under their own identity, not the user's or orchestrator's. |
+    | Permissions outlive the task | [IA-2.2 Short-lived credentials](maso/controls/identity-and-access.md) | Credentials expire with the task, matching the standard's just-in-time access. |
+    | Computer-use agent takes an unlisted action | [EC-1.2 Tool allow-lists](maso/controls/execution-control.md) | Only explicitly permitted actions execute. |
+    | Untrusted content treated as instruction | [PG-1.4 Message source tagging](maso/controls/prompt-goal-and-epistemic-integrity.md) | Content is labelled by source so it cannot pass as an instruction. |
+    | Abnormal use goes unnoticed | [OB-2.2 Continuous anomaly scoring](maso/controls/observability.md) | Per-agent behavioural baselines feed PACE escalation. |
+    | Poisoned or tampered models and dependencies | [SC-2.1 AIBOM per agent](maso/controls/supply-chain.md) | Every model and component an agent uses is recorded and verifiable. |
+    | Published detail helps attackers tune their attempts | [PG-2.12 Control-reasoning non-disclosure](maso/controls/prompt-goal-and-epistemic-integrity.md) | Agents do not explain which control stopped them. |
+
+    **Not covered**: Data and model poisoning during training, and privacy attacks on trained models (membership inference, model inversion), whose main mitigations are applied when the model is built: data provenance, differential privacy, adversarial training. Query-pattern detection for these attacks now sits in the core controls rather than MASO.
+
+    **Owned by**: [Model providers](core/scope-and-responsibilities.md#model-providers) and [Data governance](core/scope-and-responsibilities.md#data-governance).
+
+    **Framework change**: Added [Operating the Layers Together](core/controls.md#operating-the-layers-together) to the core controls (probing detection, stack regression testing, control decay, attack-or-failure triage), a per-request compute budget, a transparency tension in [Framework Tensions](strategy/framework-tensions.md#5-transparency-versus-reconnaissance), and a MASO trade-off on controls interfering across agent boundaries.
+
+**Framework relevance**: For organisations already running ISO/IEC 27001, this is likely to become the reference auditors and procurement teams use for AI threats, which makes it the bridge between an ISMS risk register and runtime controls. The full mapping is in [ISO/IEC 27090 Alignment](extensions/regulatory/iso-27090-alignment.md). The standard is strongest on the training side, where AIRS deliberately does less, and thinnest on agents, where MASO does most. Its treatment of prompt injection relies partly on separating untrusted content inside the prompt, which [Data Provenance and Authority Boundaries](core/controls/data-provenance-and-authority-boundaries.md) treats as a hint the model may ignore rather than a boundary. It says nothing about inter-agent messaging, delegation chains or shared memory.
+
+**Source**: [ISO: ISO/IEC 27090](https://www.iso.org/standard/27090) &middot; [Nemko: ISO/IEC 27090 published as new AI cybersecurity standard](https://digital.nemko.com/news/isoiec-27090-published-as-new-ai-cybersecurity-standard)
+
+---
+
 ### 2026-10-13: Copilot in Visual Studio and SSMS Can Be Talked Into Rewriting Its Own MCP Config
 
 **Tags**: Guardrails, Agentic, Supply Chain
