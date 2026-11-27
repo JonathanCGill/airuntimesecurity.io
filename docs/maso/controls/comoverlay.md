@@ -50,8 +50,8 @@ Comoverlay is only as good as the expectations and causal knowledge it is given.
 | Artefact | Contents | Built from | Control |
 |----------|----------|------------|---------|
 | **Expected telemetry profile** | Per task stage: each monitored parameter, its target, tolerance band, hard limit, and trusted sources | Agentic Task Mandate, OISpec, Tier 1 review data (OB-1.3, OB-1.4), policy and contracts, systems of record | OB-2.9 |
-| **Deviation catalogue** | The deviations the workflow can show, each with its detector, unsafe control action type, and default severity | Mandate, threat model, STPA analysis of the workflow | OB-2.10 |
-| **Alert trigger points** | REPORT, ALERT, and ESCALATE thresholds per parameter, hysteresis, and the escalation window | Hard limits, time to limit, measured human response times | OB-2.13 |
+| **Deviation catalogue** | The deviations the workflow can show, each with its detector, unsafe control action type, and agreed severity | Mandate, threat model, STPA analysis of the workflow | OB-2.10 |
+| **Alert trigger points** | REPORT, ALERT, and ESCALATE conditions per deviation, when each clears, the escalation windows, and the evidence for each. Comoverlay supplies none: they are worked out per workflow | What the agent is meant to do (built with process owners or learned and approved), agreed severity of each deviation, how many bad deviations need action, hard limits, time to limit, measured human response times | OB-2.13 |
 | **Chain library** | The workflow's control structure, the unsafe control actions at each level, and known chains that lead to losses | STPA loss scenarios, [incident tracker](../threat-intelligence/incident-tracker.md), CAST reviews of your own incidents | OB-3.7 |
 | **Response classification** | For each automated response, whether the response itself can cause loss in this workflow | STPA applied to the responses | EC-2.21 |
 
@@ -230,33 +230,78 @@ Each workflow lists the deviations it can show. STPA's four unsafe control actio
 | **Wrong timing or order** | Refund issued before verification, action taken before approval returned | Stage order check against the orchestrator's state |
 | **Held too long or stopped too soon** | Credential or session beyond its time box, retry loop, stopping mid-transaction and leaving systems inconsistent | Duration bands, time box (EC-3.4), transaction state |
 
-For each catalogued deviation, record the parameter or invariant that detects it, the UCA type, the control level it occurs at, and the default severity.
+For each catalogued deviation, record the parameter or invariant that detects it, the UCA type, the control level it occurs at, and its severity as agreed with the people who own the outcome (section 5).
 
 ## 5. Alert trigger points
 
-The **margin** is the distance of the worst parameter from its hard limit, together with the **time to limit** at the current rate. Trigger points are declared per workflow. The defaults below are starting points to calibrate during Tier 1 and Tier 2 operation, not recommendations to keep unchanged.
+Comoverlay comes with **no thresholds**. There are no numbers that are right for every agent, and a threshold nobody has tested gives either false confidence or a flood of alerts people learn to ignore. Trigger points are worked out by the organisation deploying the agent, for each workflow, and they can only be worked out by people who know what the agent is for.
+
+That takes three things.
+
+### 1. Know what the agent is meant to be doing
+
+The expected model has to match the real world before deviations from it mean anything. There are two ways to get there, and most teams use both:
+
+- **Build it.** Sit with the people who own the process and write down what the agent should do at each stage: which tools, which data, how much, how often, in what order. Start from the mandate and the contract. This takes time, and it is time that has to be spent.
+- **Let the system learn it.** Run the monitor in observe-only mode alongside the agent and let the data layer form from what actually happens. Experiment: vary the workload, try the edge cases, and see what the agent does. Keep going until the learned model and the process owners agree on what normal looks like.
+
+Learning is not the same as accepting. An agent that misbehaves while the system is learning teaches it that misbehaviour is normal. During learning, rules and contract checks still enforce, people review what the agent does (Tier 1 supervision), and nothing the system learns becomes a baseline until someone has approved it (OB-2.14). Until then the monitor reports "can't say: NO_BASELINE" for the data layer, which is the honest answer.
+
+### 2. Know when a deviation is bad
+
+Not every deviation matters. An agent that reads four records instead of three is different. An agent that reads four hundred, or reads them from another customer's account, is a problem. Only people who understand the losses can draw that line.
+
+For each deviation in the catalogue, trace it to the losses it could contribute to, and agree its severity with the people who own the outcome:
+
+| Severity | Meaning |
+|----------|---------|
+| **Variation** | Different, but no path to a loss. Logged |
+| **Notable** | Worth a person knowing. Could be the first link in a chain |
+| **Bad** | Contributes to a loss on its own or as a link in a known chain |
+| **Dangerous** | The final link before a loss, or irreversible |
+
+### 3. Know how many bad deviations need action
+
+A single dangerous deviation may need action at once. A bad deviation may need a person only when it repeats, or when it appears alongside another. Decide, per workflow and per tier:
+
+- **Count or rate:** how many bad deviations, over what period, before someone must act.
+- **Combination:** which deviations matter more together than apart. The chain rule in section 7 gives the shape: one link logs, two links at different control levels report, three links or any final-stage link alert. You decide which deviations count as links.
+- **Speed:** how fast things can go wrong. The margin is how far a parameter is from its hard limit, and the time to limit is how long it will take to get there at the current rate. Trigger points must leave enough time to act.
+
+### Record each trigger point and its evidence
+
+Write each trigger point down with the reason for it, so it can be challenged and improved:
+
+| Field | What to record |
+|-------|----------------|
+| Deviation | The parameter, invariant, or event, and its detector |
+| Why it is bad | The loss or chain it leads to |
+| Report when | The condition for a REPORT |
+| Alert when | The condition for an ALERT |
+| Clears when | The condition for the trigger to reset, so it does not flap |
+| Evidence | Observed runs, experiments, incident history, or expert judgement, and how much of each |
+| Owner and review date | Who agreed it, and when it will be looked at again |
+
+### Rules that hold whatever the thresholds
+
+Some conditions do not depend on calibration. They are alerts in any workflow that declares the parameter:
 
 | Condition | Level |
 |-----------|-------|
-| Any single-parameter \|z\| of 2 or more for three consecutive cycles, or CUSUM crossing its decision limit | REPORT |
-| Margin at or below 50% of the distance from target to hard limit | REPORT |
-| Two chain links at different control levels (section 7) | REPORT |
-| Any \|z\| of 3 or more, or Mahalanobis distance above the 99th percentile for the number of parameters | ALERT |
-| Margin at or below 20%, or time to limit at or below twice the measured human response time | ALERT |
-| Any invariant failure on money, identity, or records of authority | ALERT |
-| Three chain links, or any link at the final stage before loss | ALERT |
+| An invariant failure on money, identity, or records of authority | ALERT |
+| A final-stage chain link | ALERT |
 | BAD_DATA or CANT_SAY under the rules in section 3 | ALERT |
-| Rapid trust collapse across several sources | ALERT |
+| Trust collapsing across several sources faster than the workflow declares normal | ALERT |
 | Profile switches above the declared rate, or an action flagged in the dual-expectation window | ALERT |
-| Agent self-report disagrees with platform telemetry for the same event | ALERT |
-| ALERT not acknowledged within the escalation window | ESCALATE to the next named human |
-| ESCALATE not acknowledged within a second window | Move to the workflow's predefined safe state (EC-2.22) and keep escalating |
+| The agent's self-report disagreeing with platform telemetry for the same event | ALERT |
+| An ALERT not acknowledged within the escalation window | ESCALATE to the next named human |
+| An ESCALATE not acknowledged within a second window | Move to the workflow's predefined safe state (EC-2.22) and keep escalating |
 
-Escalation windows are set per workflow. Together, the first window, the second window, and the time to enter the safe state must fit within the time to limit they protect. Checking each window on its own is not enough: with 60 seconds to limit, two 40-second windows each pass but delay containment to 80 seconds. Where the sequence cannot fit, the workflow must either classify an immediate pause as safe (EC-2.21) so containment does not wait for escalation, or lower its ALERT threshold so escalation starts earlier. Triggers clear only after the condition stays below 80% of its trigger level for five consecutive cycles.
+Escalation windows are set per workflow. Together, the first window, the second window, and the time to enter the safe state must fit within the time to limit they protect. Checking each window on its own is not enough: with 60 seconds to limit, two 40-second windows each pass but delay containment to 80 seconds. Where the sequence cannot fit, the workflow must either classify an immediate pause as safe (EC-2.21) so containment does not wait for escalation, or alert earlier.
 
 ### Alert fatigue
 
-Escalation that fires too often teaches people to ignore it, and an ignored alert is worse than none. The **false-alarm rate** is a key metric for the monitor, tracked per workflow and per trigger: the share of REPORTs and ALERTs that review finds needed no action. Thresholds are tuned per tier to keep it within a declared target. Tuning goes through the same approval as baselines, so it cannot quietly widen a band until a real deviation stops alerting.
+Escalation that fires too often teaches people to ignore it, and an ignored alert is worse than none. The **false-alarm rate** is a key metric for the monitor, tracked per workflow and per trigger: the share of REPORTs and ALERTs that review finds needed no action. Track **missed detections** too: deviations found later, in review or in an incident, that should have alerted and did not. Thresholds are adjusted per tier against both measures. Adjustments go through the same approval as baselines, so nobody can quietly widen a band until a real deviation stops alerting.
 
 Every REPORT and ALERT carries four things: the posture as it is, what is wrong, what the monitor cannot tell, and the **safest expected action** for the current stage from the profile.
 
@@ -360,7 +405,7 @@ Separating detection from authority matters for security as well as safety. A mo
 | **OB-2.10** | 2 | Uncertainty-aware gaps with detectors per signal type, evaluated against all classes in parallel. A deviation confirmed by a trusted independent source stands. Profile switches only from trusted sources, logged, rate-limited, with a dual-expectation window |
 | **OB-2.11** | 2 | Telemetry from the platform, not the agent. Trust that drops fast and recovers slowly, only on independent evidence, with a floor for systems of record. Rapid trust collapse is an alert |
 | **OB-2.12** | 2 | Lost-protection register: every PACE state lists the protections currently degraded. CANT_SAY carries NO_BASELINE or LOW_TRUST, and on a critical parameter triggers the safest classified response |
-| **OB-2.13** | 2 | Declared alert trigger points with hysteresis and escalation timing that fits the time to limit. False-alarm rate tracked and thresholds tuned per tier. Every alert carries posture, fault, unknowns, and safest expected action |
+| **OB-2.13** | 2 | Trigger points worked out per workflow by the deploying organisation, from what the agent is meant to do, when a deviation is bad, and how many bad deviations need action, each recorded with its evidence. No default thresholds. Escalation timing fits the time to limit. False-alarm rate and missed detections tracked |
 | **OB-2.14** | 2 | Baselines frozen per release. A new baseline needs approval and a diff against the previous one |
 | **OB-3.6** | 3 | Continuous invariant checks against systems of record as monitor input. Required at Tier 2 for payment and safety-critical workflows |
 | **OB-3.7** | 3 | Control-chain detection using the four UCA types across control levels L0 to L4, with a maintained chain library |
@@ -391,7 +436,8 @@ Where Comoverlay and MASO disagreed, the stricter control now applies.
 ## Known limits
 
 - **No physics for agents.** Contracts and invariants stand in for it, and are only as good as the systems of record behind them.
-- **Little baseline history.** New workflows start with wide bands and a lot of "can't say". That is correct behaviour, and it shows up in the lost-protection register until Tier 1 data narrows the bands.
+- **Little baseline history.** New workflows start with a lot of "can't say". That is correct behaviour, and it shows up in the lost-protection register until the organisation has built or learned, and approved, its model of normal.
+- **No thresholds out of the box.** The method says how to find trigger points, not what they are. Teams not willing to spend the time understanding what their agent is meant to do will not get useful alerts from it.
 - **Millisecond actions.** A human cannot keep up. Automatic pause, where classified safe, and the safe state are the answers. Speed is not a reason to automate destructive responses.
 - **Adversarial telemetry.** Monitor inputs are untrusted by design. Platform telemetry, independent corroboration for trust changes, and trust floors on systems of record make the monitor harder to blind, not impossible.
 - **Slow baseline poisoning.** Approval and diffs catch a shift between releases. They depend on reviewers who look at the diff.
