@@ -12,16 +12,16 @@ _Not part of the published site (lives outside `docs/`)._
 | Data Protection | DP | 15 |
 | Extraction Integrity | EI | 15 |
 | Execution Control | EC | 38 |
-| Observability | OB | 24 |
+| Observability | OB | 25 |
 | Prompt, Goal & Epistemic Integrity | PG | 24 |
 | Supply Chain | SC | 22 |
 | Objective Intent | OI | 18 |
 | Privileged Agent Governance | PA | 19 |
 | Model Cognition Assurance | MC | 21 |
 | Agentic Task Mandate | AT | 26 |
-| **Core total (11 domains)** | | **247** |
+| **Core total (11 domains)** | | **248** |
 | Environment Containment (cross-cutting) | ENV | 24 |
-| **With ENV** | | **271** |
+| **With ENV** | | **272** |
 
 ## Summary
 
@@ -131,7 +131,7 @@ _Not part of the published site (lives outside `docs/`)._
 - [ ] **EC-3.5** Automated rollback scope
 - [ ] **EC-3.6** Transformation integrity chain
 
-## Observability (OB) — 24
+## Observability (OB) — 25
 
 - [ ] **OB-1.1** Action audit log
 - [ ] **OB-1.2** Inter-agent message log
@@ -150,6 +150,7 @@ _Not part of the published site (lives outside `docs/`)._
 - [ ] **OB-2.11** Telemetry source trust
 - [ ] **OB-2.12** Lost-protection register
 - [ ] **OB-2.13** Alert trigger points
+- [ ] **OB-2.14** Baseline integrity
 - [ ] **OB-3.1** Long-window behavioral analysis
 - [ ] **OB-3.2** Causal chain reconstruction
 - [ ] **OB-3.3** Independent observability agent
@@ -340,7 +341,7 @@ Controls are numbered by tier: X-1.n = Tier 1 (Supervised), X-2.n = Tier 2 (Mana
 | Tier | Adds | Cumulative |
 |---|--:|--:|
 | Tier 1 (Supervised) | 66 | 66 |
-| Tier 2 (Managed) | 120 | 186 |
-| Tier 3 (Autonomous) | 61 | 247 |
+| Tier 2 (Managed) | 121 | 187 |
+| Tier 3 (Autonomous) | 61 | 248 |
 
-A Tier 1 deployment applies 66 controls, not 247. The full catalogue is the Tier-3 maximum.
+A Tier 1 deployment applies 66 controls, not 248. The full catalogue is the Tier-3 maximum.
