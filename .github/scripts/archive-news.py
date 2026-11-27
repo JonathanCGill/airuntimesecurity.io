@@ -52,6 +52,33 @@ def rewrite_links(text: str) -> str:
     return LINK_PATTERN.sub(repl, text)
 
 
+ADMONITION_PATTERN = re.compile(r'^!!! \w+ "([^"]+)"\s*$')
+
+
+def flatten_admonitions(text: str) -> str:
+    """GitHub does not render MkDocs admonitions, and their four-space indent
+    turns into a code block there. Rewrite each verdict block as a bold title
+    followed by its dedented content so archived items read cleanly."""
+    out: list[str] = []
+    inside = False
+    for line in text.splitlines(keepends=True):
+        m = ADMONITION_PATTERN.match(line)
+        if m:
+            out.append(f"**{m.group(1)}**\n\n")
+            inside = True
+            continue
+        if inside:
+            if line.startswith("    "):
+                out.append(line[4:])
+                continue
+            if not line.strip():
+                out.append(line)
+                continue
+            inside = False
+        out.append(line)
+    return "".join(out)
+
+
 def parse_items(text: str) -> list[tuple[date | None, str]]:
     """Split the NEWS_START/NEWS_END block into individual items."""
     items: list[tuple[date | None, str]] = []
@@ -94,7 +121,7 @@ def run() -> None:
 
     for item_date, content in items:
         if item_date is not None and item_date < CUTOFF:
-            archive.append(rewrite_links(content))
+            archive.append(rewrite_links(flatten_admonitions(content)))
         else:
             keep.append(content)
 

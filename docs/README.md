@@ -20,6 +20,20 @@ search:
   </div>
 </section>
 
+<section class="airs-section airs-section--card airs-rd-news" id="in-the-wild">
+  <div class="airs-wrap">
+    <div class="airs-rd-news__head">
+      <div>
+        <p class="airs-eyebrow airs-eyebrow--accent">In the wild</p>
+        <h2 class="airs-h2">Real agent failures. Would MASO have stopped them?</h2>
+        <p class="airs-intro">Every incident on the news page gets a straight answer, the controls that apply, and what MASO would have missed.</p>
+      </div>
+      <a class="airs-btn airs-btn--secondary" href="/news/">All verdicts &rarr;</a>
+    </div>
+<!-- NEWS_LATEST -->
+  </div>
+</section>
+
 <section class="airs-section airs-section--card">
   <div class="airs-wrap">
     <p class="airs-eyebrow">The shift</p>
@@ -129,7 +143,7 @@ search:
           </a>
           <a class="airs-minicard" href="/news/">
             <p class="airs-minicard__title">News</p>
-            <p class="airs-minicard__body">A biweekly roundup of incidents, research, and developments, each mapped to the controls it puts to the test.</p>
+            <p class="airs-minicard__body">Agentic AI incidents as they break, each with a verdict: prevented, contained, or not prevented by MASO.</p>
           </a>
         </div>
       </div>

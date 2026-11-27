@@ -38,6 +38,9 @@ theme:
   favicon: images/favicon.svg
   icon: {}
 
+hooks:
+  - hooks/news.py
+
 plugins:
   - search
   - meta
@@ -162,6 +165,8 @@ nav:
       - E-commerce Stress Test: maso/stress-test/ecommerce-10k-stress-test.md
       - Judge Proliferation Review: maso/reviews/stakeholder-review-judge-proliferation.md
       - MASO 2.0 Roadmap: maso/maso-2.0-anticipated-changes.md
+
+  - News: news.md
 
   - ASO:
     - aso/index.md
@@ -414,7 +419,6 @@ nav:
       - References & Sources: references.md
 
     - Downloads: downloads.md
-    - News: news.md
 
     - About:
       - About the Discipline: what-is-ai-runtime-security.md
