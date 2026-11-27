@@ -25,6 +25,12 @@ Each control is mapped to the incidents it would have prevented or detected, wit
 | <span class="tier-high">High</span> | Controls directly and deterministically prevent the failure. The mechanism is concrete and testable. |
 | **Moderate** | Controls significantly reduce the risk but cannot fully eliminate it. The failure class has inherent uncertainty. |
 
+## Seen in the Wild: News Items by Control
+
+The tables further down are curated from the incident tracker. This one is generated from the [news page](news.md) every time the site is built, so it always reflects the latest verdicts. Each control is listed with the news items that cite it and the verdict given there, including the items MASO would not have prevented.
+
+<!-- NEWS_BY_CONTROL -->
+
 ## Validation Summary
 
 ### Controls by Incident Alignment

@@ -1,6 +1,9 @@
 name: Biweekly News Research
 
 on:
+  # Runs every Monday; the first step skips even ISO weeks, so it works fortnightly.
+  schedule:
+    - cron: "17 6 * * 1"
   workflow_dispatch:
 
 permissions:
@@ -64,6 +67,10 @@ jobs:
             --allowedTools "Write" \
             --model claude-sonnet-4-6
 
+      - name: Check every news item has a MASO verdict
+        if: steps.biweekly.outputs.should_run == 'true'
+        run: python .github/scripts/check-news.py
+
       - name: Commit, push, and create PR
         if: steps.biweekly.outputs.should_run == 'true'
         env:
@@ -84,12 +91,13 @@ jobs:
           - Automated biweekly news research run
           - Adds recent AI runtime security news items to `docs/news.md`
           - Older items (>3 months) archived to `archive/2026-03-31/news-archive.md`
-          - Each item is mapped to relevant AIRS framework controls
+          - Each item carries a MASO verdict block mapped to specific controls
 
           ## Review checklist
 
           - [ ] News items are accurate and sourced
           - [ ] Framework tags and links are correct
+          - [ ] Each verdict is honest: "Not prevented" where MASO would not have stopped it
           - [ ] Writing tone matches the site
 
           EOF

@@ -16,23 +16,42 @@ You are updating the AI Runtime Security News page at `docs/news.md`.
 
 2. **Select** the 3 to 8 most significant items. Prioritise items that directly relate to runtime security (not training-time or general AI ethics unless they have runtime implications). Apply strict source quality filters (see below).
 
-3. **Map each item** to the relevant AIRS framework controls. Use the tags defined in the news page header. Each item should reference at least one tag. Link to the most relevant framework page where possible.
+3. **Decide the MASO verdict** for each item before writing it. Judge it for an organisation that has implemented the named controls as specified, and be conservative:
+   - Incidents and vulnerabilities get a **MASO verdict**:
+     - `Prevented` (admonition type `success`): the named controls break the attack chain before harm.
+     - `Contained` (`warning`): the first step still happens, but the controls limit what it reaches or stop it early.
+     - `Not prevented` (`danger`): MASO would not have stopped it. Say so plainly in the first sentence. Do not soften it, and do not list controls as if they would have helped when they would not.
+   - Research, guidance, reports, and product launches get a **MASO coverage** rating: `Covered` (`success`), `Partly covered` (`warning`), or `Not covered` (`danger`), depending on whether MASO already specifies what the item calls for.
+   - Only cite control IDs that exist in `docs/maso/controls/*.md` (they are defined in table rows as `| **IA-2.7** Name |`). Read the control before citing it. Never invent a control.
+   - If an item reveals a gap that a later framework change closed, add a **Framework change** line.
 
-4. **Write each entry** in this format, inserting new items between the `<!-- NEWS_START -->` and `<!-- NEWS_END -->` markers. Existing entries should remain, newest items go at the top:
+4. **Write each entry** in this format, inserting new items directly after the `<!-- NEWS_START -->` marker. Existing entries remain; newest items go at the top:
 
 ```markdown
 ### YYYY-MM-DD: Title of the news item
 
 **Tags**: Guardrails, Judge, Agentic (whatever applies)
 
-Brief summary of what happened or was published (2 to 4 sentences). Explain why it matters for AI runtime security. Written in a clear, direct tone.
+Summary of what happened or was published (2 to 4 sentences), with dates, versions, CVEs, and the people responsible.
 
-**Framework relevance**: Explain which AIRS controls would have helped, or why this validates part of the framework. Link to the relevant page, e.g. [Controls](core/controls.md) or [Agentic AI Controls](core/agentic.md).
+!!! danger "MASO verdict: Not prevented"
+    **MASO would not have prevented this.** One or two sentences saying why, in plain terms.
 
-**Source**: [Article title](https://example.com/article)
+    | Failure point | MASO control | Effect |
+    |---|---|---|
+    | What went wrong at this step | [IA-2.7 Vaulted per-flow credential brokering](maso/controls/identity-and-access.md) | What the control does about it, honestly |
+    | Another step | None | Say "None" where no MASO control applies |
+
+    **Not covered**: What MASO would not have caught, and where that belongs instead if known.
+
+**Framework relevance**: The fuller reasoning. Link the relevant emerging threat (`maso/threat-intelligence/emerging-threats.md#et-...`), incident tracker entries, and insights pages.
+
+**Source**: [Article title](https://example.com/article) &middot; [Second source](https://example.com)
 
 ---
 ```
+
+The verdict block is parsed at build time (`hooks/news.py`) to feed the home page, the control pages, and the Atom feed, so keep its shape exactly: the `!!!` line with `MASO verdict:` or `MASO coverage:`, a bold first sentence, the three-column table, and the **Not covered** line. Run `python .github/scripts/check-news.py` after editing; it must pass.
 
 ## Source quality
 
